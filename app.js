@@ -13,4 +13,4 @@ const database =   require('firebase/database');
 const routes = require('./src/config/configRoutes.js').config(expressApp, firebaseApp, database);
 
 
-expressApp.listen(process.env.PORT || 3000)
+expressApp.listen(process.env.PORT || 80)
