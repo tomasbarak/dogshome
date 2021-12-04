@@ -6,7 +6,7 @@ const fs =                 require('fs');
 const https =              require('https');
 const http =               require('http');
 
-var cert = fs.readFileSync('./certs/certificate.cert');
+var cert = fs.readFileSync('./certs/certificate.crt');
 var key = fs.readFileSync('./certs/private.key');
 var options = {
   key: key,
