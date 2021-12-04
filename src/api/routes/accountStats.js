@@ -9,7 +9,7 @@ function init(app, firebaseApp, database){
         const get = database.get;
 
         get(child(dbRef, `Users/${userId}/PublicWrite/stats`)).then((snapshot) => {
-            console.log(req.headers);
+            console.log(req.headers.authToken);
             res.status(200).send(snapshot.val());
 
         }).catch((error) => {

@@ -26,6 +26,7 @@
     "firebase": "^9.6.0",
     "firebase-admin": "^10.0.0",
     "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "https": "^1.0.0"
   }
 }
