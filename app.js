@@ -6,8 +6,8 @@ const fs =                 require('fs');
 const https =              require('https');
 const http =               require('http');
 
-var cert = fs.readFileSync('./certs/api.dogshome.softvisiondevelop.com.ar.cert');
-var key = fs.readFileSync('./certs/api.dogshome.softvisiondevelop.com.ar.key');
+var cert = fs.readFileSync('./certs/certificate.cert');
+var key = fs.readFileSync('./certs/private.key');
 var options = {
   key: key,
   cert: cert
