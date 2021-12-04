@@ -26,7 +26,7 @@ var HttpServer = http.createServer(expressApp);
 
 SecureServer.listen(8443, function() {
   HttpServer.listen(8080, function() {
-    console.log('HTTPS Server listening on port 8443 && HTTP Server listening on port 8080');
+    console.log('HTTPS Server listening on port 8443 && HTTP Server listening on port 8080', "Process id: ", process.pid);
     require('./src/config/configRoutes.js').config(expressApp, firebaseApp, database);
   });
 })
