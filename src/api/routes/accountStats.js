@@ -10,6 +10,7 @@ function init(app, firebaseApp, database){
 
         get(child(dbRef, `Users/${userId}/PublicWrite/stats`)).then((snapshot) => {
             console.log(req.headers.authToken);
+            res.header('Access-Control-Allow-Origin', '*');
             res.status(200).send(snapshot.val());
 
         }).catch((error) => {

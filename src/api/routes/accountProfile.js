@@ -10,6 +10,7 @@ function init(app, firebaseApp, database){
 
         get(child(dbRef, `Users/${userId}/PublicRead`)).then((snapshot) => {
             console.log(snapshot.val());
+            res.header('Access-Control-Allow-Origin', '*');
             res.status(200).send(snapshot.val());
 
         }).catch((error) => {
