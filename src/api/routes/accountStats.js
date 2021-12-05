@@ -1,7 +1,6 @@
 //Route to get account stats
 function init(app, firebaseApp, database){
     app.get('/user/:uid/stats/', function (req, res) {
-        
         const db =     database.getDatabase(firebaseApp);
         const dbRef =  database.ref(db);
         const userId = req.params.uid;
