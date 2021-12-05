@@ -3,7 +3,7 @@ function init(app, firebaseAdmin){
         let token = req.headers.authtoken;
 
         firebaseAdmin.auth().verifyIdToken(token).then((decodedIdToken) => {
-          console.log('Photo url accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress);
+          console.log('Photo url accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
           res.header('Access-Control-Allow-Origin', '*');
           let PhotoURL = decodedIdToken.picture;
           res.status(200).send(PhotoURL);
