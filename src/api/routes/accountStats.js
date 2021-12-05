@@ -1,6 +1,7 @@
 //Route to get account stats
 function init(app, firebaseApp, database){
     app.get('/user/:uid/stats/', function (req, res) {
+        console.log('ProfileStats accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
         const db =     database.getDatabase(firebaseApp);
         const dbRef =  database.ref(db);
         const userId = req.params.uid;
@@ -8,7 +9,6 @@ function init(app, firebaseApp, database){
         const get = database.get;
 
         get(child(dbRef, `Users/${userId}/PublicWrite/stats`)).then((snapshot) => {
-            console.log(req.headers.authToken);
             res.header('Access-Control-Allow-Origin', '*');
             res.status(200).send(snapshot.val());
 
