@@ -2,7 +2,7 @@
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const { exec } =        require("child_process");
-const logColor = require('../../config/logColors');
+const logColor =        require('../../config/logColors');
 
 function listen(app){
     app.post('/webhooks/github/', function(req, res){
