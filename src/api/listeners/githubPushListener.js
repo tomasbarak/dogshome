@@ -16,6 +16,7 @@ function listen(app){
                         console.log(logColor.success, 'Successfully updated the app.');
                         exec(`npm i`, (error, stdout, stderr) => {
                             if(!error){
+                                console.log(logColor.success, 'Successfully updated npm packages');
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
                                         console.log(logColor.success, 'Restarting app');
