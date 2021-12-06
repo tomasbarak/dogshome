@@ -6,7 +6,7 @@ const logColor =        require(appDir + '/src/config/logColors');
 function init(app, firebaseApp, database){
     app.get('/publications/all/', function (req, res) {
 
-        console.log(logColor.debug, 'ProfileStats accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+        console.log(logColor.debug, 'AllPublications accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 
         const db =              database.getDatabase(firebaseApp);
         const dbRef =           database.ref(db);
@@ -19,7 +19,7 @@ function init(app, firebaseApp, database){
 
             res.header('Access-Control-Allow-Origin', '*');
             res.status(200).send(snapshot.val());
-            
+
         }).catch((error) => {
 
             res.status(500).send(error);
