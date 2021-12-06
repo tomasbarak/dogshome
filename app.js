@@ -31,7 +31,7 @@ const database =           require('firebase/database');
 
 var SecureServer =         https.createServer(options, expressApp);
 
-console.log(logColor.debug, 'Starting server ' + ' version: ' + commitVersion);
+console.log(logColor.debug, 'App started', logColor.warn, 'version: ' + commitVersion);
 
 var HttpServer = http.createServer(function(req, res) {
   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
