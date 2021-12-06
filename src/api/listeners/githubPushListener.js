@@ -9,15 +9,21 @@ function listen(app){
         if(req.headers['x-github-event'] == 'push'){
 
             console.log(logColor.warn, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
-
-            exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull && npm i && pm2 flush app && pm2 restart app`, (error, stdout, stderr) => {
-                if (!error) {
-                    console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
-                }else{
-                    console.log(logColor.error, 'Error while updating the app. Commit id: ' + req.body.head_commit.id);
-                    console.log(logColor.error, error);
-                }
-            })
+            
+            new Promise(function(resolve, reject){
+                exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull && npm i && pm2 restart app`, (error, stdout, stderr) => {
+                    if (!error) {
+                        console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
+                    }else{
+                        console.log(logColor.error, 'Error while updating the app. Commit id: ' + req.body.head_commit.id);
+                        console.log(logColor.error, error);
+                    }
+                })
+                setTimeout(function() {
+                    resolve("program still running");
+                }, timeout);
+            });
+            
         }
     })
 }
