@@ -13,6 +13,9 @@ function listen(app){
             exec(`cd ${appDir} && git reset --hard && git pull && npm i && sudo pm2 flush app && sudo pm2 restart app`, (error, stdout, stderr) => {
                 if (!error) {
                     console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
+                }else{
+                    console.log(logColor.error, 'Error while updating the app. Commit id: ' + req.body.head_commit.id);
+                    console.log(logColor.error, error);
                 }
             })
         }
