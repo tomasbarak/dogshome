@@ -12,4 +12,8 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/mainRoute')              .init(app);
     require( appDir + '/src/api/listeners/githubPushListener')  .init(app);
 }
+
+
+//AAA
+
 module.exports = {config};
