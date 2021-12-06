@@ -11,9 +11,22 @@ function listen(app){
             console.log(logColor.warn, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
             
             new Promise(function(resolve, reject){
-                exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull && npm i && pm2 restart app`, (error, stdout, stderr) => {
+                exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull`, (error, stdout, stderr) => {
                     if (!error) {
                         console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
+                        exec(`npm i`, (error, stdout, stderr) => {
+                            if(!error){
+                                exec(`pm2 restart app`, (error, stdout, stderr) => {
+                                    if(!error){
+                                        console.log(logColor.success, 'Successfully restarted the app. Commit id: ' + req.body.head_commit.id);
+                                        resolve();
+                                    }else{
+                                        console.log(logColor.error, 'Failed to restart the app. Commit id: ' + req.body.head_commit.id);
+                                        reject();
+                                    }
+                                })
+                            }
+                        })
                     }else{
                         console.log(logColor.error, 'Error while updating the app. Commit id: ' + req.body.head_commit.id);
                         console.log(logColor.error, error);
@@ -23,7 +36,7 @@ function listen(app){
                     resolve("program still running");
                 }, 2500);
             });
-            
+
         }
     })
 }
