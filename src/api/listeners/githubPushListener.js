@@ -21,5 +21,4 @@ function listen(app){
         }
     })
 }
-
 module.exports = {listen};
