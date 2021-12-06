@@ -8,7 +8,7 @@ function listen(app){
     app.post('/webhooks/github/', function(req, res){
         if(req.headers['x-github-event'] == 'push'){
 
-            console.log(logColor.warn, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
+            console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
             
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull`, (error, stdout, stderr) => {
                     if (!error) {
@@ -17,6 +17,8 @@ function listen(app){
 
                         exec(`npm i`, (error, stdout, stderr) => {
 
+                            console.log(logColor.blue, 'Updating packages');
+
                             if(!error){
 
                                 console.log(logColor.success, 'Successfully updated npm packages');
@@ -24,11 +26,9 @@ function listen(app){
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
 
-                                        console.log(logColor.success, 'Restarting app');
-                                        resolve();
+                                        console.log(logColor.blue, 'Restarting app');
                                     }else{
                                         console.log(logColor.error, 'Failed to restart the app');
-                                        reject();
                                     }
                                 })
 
