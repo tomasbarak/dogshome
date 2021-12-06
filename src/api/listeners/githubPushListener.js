@@ -10,15 +10,20 @@ function listen(app){
 
             console.log(logColor.warn, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
             
-            new Promise(function(resolve, reject){
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull`, (error, stdout, stderr) => {
                     if (!error) {
-                        console.log(logColor.success, 'Successfully updated the app.');
+
+                        console.log(logColor.success, 'Successfully merged changes from github');
+
                         exec(`npm i`, (error, stdout, stderr) => {
+
                             if(!error){
+
                                 console.log(logColor.success, 'Successfully updated npm packages');
+
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
+
                                         console.log(logColor.success, 'Restarting app');
                                         resolve();
                                     }else{
@@ -34,11 +39,6 @@ function listen(app){
                         console.log(logColor.error, error);
                     }
                 })
-                setTimeout(function() {
-                    resolve("program still running");
-                }, 2500);
-            });
-
         }
     })
 }
