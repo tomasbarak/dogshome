@@ -9,10 +9,7 @@ function init(app, firebaseApp, database){
         console.log(logColor.debug, 'AllPublications accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 
         const db =              database.getDatabase(firebaseApp);
-        const dbRef =           database.ref(db);
         const recentPostsRef =  database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
-        const userId =          req.params.uid;
-        const child =           database.child;
         const get =             database.get;
 
         get(recentPostsRef).then((snapshot) => {

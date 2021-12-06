@@ -39,5 +39,5 @@ SecureServer.listen(443, function() {
   console.log(logColor.success, 'HTTPS Server listening on port 443');
   console.log(logColor.warn, "Process id:" + process.pid)
   require( appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
-  require( appDir + '/src/config/configListeners').config(expressApp, firebaseApp, database, firebaseAdmin);
+  require( appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
 })
