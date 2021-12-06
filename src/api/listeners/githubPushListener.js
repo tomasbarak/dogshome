@@ -7,7 +7,7 @@ const { exec } =        require("child_process");
 function listen(app){
     app.post('/webhooks/github/', function(req, res){
         if(req.headers['x-github-event'] == 'push'){
-            exec(`cd ${appDir} && git pull`, (error, stdout, stderr) => {
+            exec(`cd ${appDir} && git reset --hard HEAD && git pull && npm i`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
                     return;
