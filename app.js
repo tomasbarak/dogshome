@@ -8,6 +8,9 @@ const http =               require('http');
 const { dirname } =        require('path');
 const appDir =             dirname(require.main.filename);
 const logColor =           require(appDir + '/src/config/logColors');
+commitVersion =                 require('child_process')
+                          .execSync('git rev-parse HEAD')
+                          .toString().trim()
 
 //SSL Certificate
 var cert =                 fs.readFileSync( appDir + '/certs/certificate.crt');
@@ -27,6 +30,8 @@ const firebaseAdmin =      require( appDir + '/src/config/firebaseAdminConfig').
 const database =           require('firebase/database');
 
 var SecureServer =         https.createServer(options, expressApp);
+
+console.log(logColor.debug, 'Starting server ' + ' version: ' + commitVersion);
 
 var HttpServer = http.createServer(function(req, res) {
   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
