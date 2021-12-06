@@ -31,7 +31,6 @@ function listen(app){
                                         console.log(logColor.error, 'Failed to restart the app');
                                     }
                                 })
-
                             }
                         })
                     }else{
