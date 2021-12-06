@@ -5,7 +5,7 @@ const logColor =        require(appDir + '/src/config/logColors');
 //Route to get all publications
 function init(app, firebaseApp, database){
     app.get('/publications/:state/:id/', function (req, res) {
-        console.log(logColor.debug, 'Publication ' + req.params.state + '/' + req.params.id + 'accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+        console.log(logColor.debug, 'Publication ' + req.params.state + '/' + req.params.id + ' accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 
         const db =          database.getDatabase(firebaseApp);
         const pubId =       req.params.id;
@@ -27,7 +27,7 @@ function init(app, firebaseApp, database){
 
     })
     app.get('/publications/:id/', function (req, res) {
-        console.log(logColor.debug, 'Publication ' + req.params.id + 'accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+        console.log(logColor.debug, 'Publication ' + req.params.id + ' accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 
         const db =          database.getDatabase(firebaseApp);
         const pubId =       req.params.id;
