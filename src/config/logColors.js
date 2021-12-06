@@ -6,4 +6,5 @@ const logColor = {
     'reset': '\x1b[0m%s\x1b[0m',
     'white': '\x1b[37m%s\x1b[0m',
   }
+  
   module.exports = logColor;
