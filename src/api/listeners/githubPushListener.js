@@ -8,7 +8,7 @@ const logColor = require('../../config/logColors');
 function listen(app){
     app.post('/webhooks/github/', function(req, res){
         if(req.headers['x-github-event'] == 'push'){
-            exec(`cd ${appDir} && git reset --hard && git pull && npm i && pm2 restart app`, (error, stdout, stderr) => {
+            exec(`cd ${appDir} && git reset --hard && git pull && npm i && sudo pm2 restart app`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(logColor.error, `Error updating: ${error}`);
                     return;
