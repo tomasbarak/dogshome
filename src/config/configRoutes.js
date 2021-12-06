@@ -9,5 +9,6 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/publicationById')    .init(app, firebaseApp, database);
     require( appDir + '/src/api/routes/accountDisplayName') .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/accountPhotoUrl')    .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/mainRoute')          .init(app);
 }
 module.exports = {config};
