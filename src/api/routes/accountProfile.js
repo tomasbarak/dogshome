@@ -1,7 +1,12 @@
+const { dirname } =     require('path');
+const appDir =          dirname(require.main.filename);
+const logColor =        require(appDir + '/src/config/logColors');
+
 //Route to get account profile
 function init(app, firebaseApp, database){
     app.get('/user/:uid/profile/', function (req, res) {
-        console.log('ProfileInfo accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+
+        console.log(logColor.debug, 'ProfileInfo accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 
         const db =     database.getDatabase(firebaseApp);
         const dbRef =  database.ref(db);
