@@ -10,7 +10,7 @@ function init(app, firebaseApp, database){
 
         const db =              database.getDatabase(firebaseApp);
         const dbRef =           database.ref(db);
-        const recentPostsRef =  database.query(database.ref(db, 'Publications'), database.limitToLast(50));
+        const recentPostsRef =  database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
         const userId =          req.params.uid;
         const child =           database.child;
         const get =             database.get;
