@@ -1,5 +1,5 @@
 
-//Route to get all publications
+//Route to listen to github webhooks
 function listen(app){
     app.post('/webhooks/github', function(req, res){
         console.log(req.body);
