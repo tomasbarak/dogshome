@@ -10,7 +10,7 @@ function listen(app){
 
             console.log(logColor.warn, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
 
-            exec(`sudo -su cd ${appDir} && git reset --hard && git pull && npm i && pm2 flush app && pm2 restart app`, (error, stdout, stderr) => {
+            exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull && npm i && pm2 flush app && pm2 restart app`, (error, stdout, stderr) => {
                 if (!error) {
                     console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
                 }else{
