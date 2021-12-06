@@ -13,19 +13,19 @@ function listen(app){
             new Promise(function(resolve, reject){
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull`, (error, stdout, stderr) => {
                     if (!error) {
-                        console.log(logColor.success, 'Successfully updated the app. Commit id: ' + req.body.head_commit.id);
+                        console.log(logColor.success, 'Successfully updated the app.');
                         exec(`npm i`, (error, stdout, stderr) => {
                             if(!error){
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
-                                        console.log(logColor.success, 'Successfully restarted the app. Commit id: ' + req.body.head_commit.id);
+                                        console.log(logColor.success, 'Restarting app');
                                         resolve();
                                     }else{
-                                        console.log(logColor.error, 'Failed to restart the app. Commit id: ' + req.body.head_commit.id);
+                                        console.log(logColor.error, 'Failed to restart the app');
                                         reject();
                                     }
                                 })
-                                
+
                             }
                         })
                     }else{
