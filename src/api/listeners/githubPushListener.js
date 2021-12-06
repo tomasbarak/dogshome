@@ -21,7 +21,7 @@ function listen(app){
                 })
                 setTimeout(function() {
                     resolve("program still running");
-                }, timeout);
+                }, 2500);
             });
         }
     })
