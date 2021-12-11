@@ -1,6 +1,5 @@
 //Express and api
 const express =            require('express')
-const bodyParser =         require('body-parser');
 const cors =               require('cors');
 const fs =                 require('fs');
 const https =              require('https');
@@ -8,7 +7,7 @@ const http =               require('http');
 const { dirname } =        require('path');
 const appDir =             dirname(require.main.filename);
 const logColor =           require(appDir + '/src/config/logColors');
-commitVersion =                 require('child_process')
+commitVersion =            require('child_process')
                           .execSync('git rev-parse HEAD')
                           .toString().trim()
 
