@@ -14,7 +14,12 @@ function init(app, firebaseAdmin, database, firebaseApp) {
         destination: 'uploads',
         //Set image file name as unique without original name
         filename: function (req, file, cb) {
-            cb(null, Date.now() + '-' + file.originalname);
+            var re = /(?:\.([^.]+))?$/;
+            let ext = re.exec(file.originalname)[1];
+            authRequest.getUIDFromReq(req).then(uid => {
+                cb(null, String(uid) + '.jpg');
+            })
+            
         },
         limits: {
             fileSize: 1000000,
