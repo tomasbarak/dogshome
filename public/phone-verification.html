@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" style="align-items: flex-start !important;">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar teléfono</title>
+    <link href="stylesheets/auth-ui/auth-pages-style.css" rel="stylesheet">
+    <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="scripts/auth/phoneVerif/phone-verification.js"></script>
+    <script src="scripts/auth/phoneVerif/code-expire-time-refresh.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="scripts/auth/sign-out.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+    <script src="scripts/alerts/page-alerts.js"></script>
+</head>
+<body style="align-items: flex-start !important; height: 100vh !important; flex-direction: column" onload="{document.getElementById('digit-1').focus();}">
+<div style="position: relative; top: 0; left: 0; width: 100vw; height: 25vh;">
+    <img src="images/vector-JUNE-2020-125.svg" alt style="height: 100%; width: 100%; object-fit: cover; z-index: -1">
+    <a style="position: absolute; left: 0; top: 12.5vh; width: 100%; text-align: center; color: white; font-family: Lato, sans-serif; font-size: 24px; font-weight: 600">Verificá tu número celular</a>
+    <a class="dogs-home-logo" style="position: absolute; left: 15px; top: 15px; width: auto; text-align: center; color: white; font-size: 18px; font-weight: normal">DogsHome</a>
+</div>
+<div style="height: calc(100vh - 25vh); display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+    <div style="box-sizing: border-box; padding: 0 17px; height: 150px; width: auto; margin: 10px 15px; background-color: #f6f6f6;  border-radius: 15px; display: flex; flex-direction: row; align-items: center; justify-content: center">
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-1"></label>
+            <input onfocus="this.select()" id="digit-1" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-2"></label>
+            <input onfocus="this.select()" id="digit-2" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1} " oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-3"></label>
+            <input onfocus="this.select()" id="digit-3" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-4"></label>
+            <input onfocus="this.select()" id="digit-4" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-5"></label>
+            <input onfocus="this.select()" id="digit-5" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+        <div class="verif-phone-number-single-cont">
+            <label for="digit-6"></label>
+            <input onfocus="this.select()" id="digit-6" class="verif-phone-number-single-input" type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" oninput="if(this.value.length > 0){nextInput(this.id)}"/>
+        </div>
+    </div>
+    <a id="time-expiration" style="color: #079292; font-weight: 600">El código exipra en --</a>
+</div>
+<div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-end; align-items: center; position: relative; left: 0; bottom: 0px; padding: 15px 15px; box-sizing: border-box; background-color: white">
+    <a href="#" onclick="signOut()" style="font-size: 14px; cursor: pointer; position: relative; max-width: 50%; color: #079292; display: flex; flex: 1">Iniciar sesion con otra cuenta</a>
+    <div style="display: flex; flex: 1;"></div>
+    <a href="#" id="sign-in-btn" onload="" onclick="getVerificationCode()">Verificar</a>
+</div>
+<script>
+    function nextInput(actualInput){
+        var inputs = ['digit-1', 'digit-2', 'digit-3', 'digit-4', 'digit-5', 'digit-6']
+        var selectedInput = inputs.indexOf(actualInput)
+
+        switch (selectedInput){
+            case 0:
+                document.getElementById(inputs[selectedInput + 1]).focus();
+                selectedInput++;
+                break;
+            case 1:
+                document.getElementById(inputs[selectedInput + 1]).focus();
+                selectedInput++;
+                break;
+            case 2:
+                document.getElementById(inputs[selectedInput + 1]).focus();
+                selectedInput++;
+                break;
+            case 3:
+                document.getElementById(inputs[selectedInput + 1]).focus();
+                selectedInput++;
+                break;
+            case 4:
+                document.getElementById(inputs[selectedInput + 1]).focus();
+                selectedInput++;
+                break;
+            case 5:
+                document.getElementById('sign-in-btn').focus();
+                break;
+        }
+        console.log(selectedInput);
+    }
+</script>
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-auth.js"></script>
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
+
+<script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
+<script src="scripts/auth/save-profile-data.js"></script>
+
+<script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            getPhoneFlag(sessionStorage.getItem('sessionAccPhoneNum'))
+        } else {
+            window.location.href = "signin.html";
+            // ...
+        }
+    });
+</script>
+</body>
+</html>

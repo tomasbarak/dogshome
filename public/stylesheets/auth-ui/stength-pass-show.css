@@ -1,0 +1,65 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+#password-strength-label{
+    color: #222222;
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+    margin-top: 5px;
+}
+#password-strength{
+    transition: 0.5s;
+    width: 0;
+}
+#password-strength-container{
+    transition: 0.5s;
+    width: 100%;
+    height: 5px;
+    margin-top: 5px;
+    border-radius: 25px;
+    background-color: #d3d3d3;
+    display: flex;
+}
+.weak-pass{
+    transition: 0.5s;
+    width: calc(100%/4) !important;
+    height: 5px;
+    border-radius: 25px;
+    background-color: #d33;
+}
+.medium-pass{
+    transition: 0.5s;
+    width: calc(100%/2) !important;
+    height: 5px;
+    border-radius: 25px;
+    background-color: #ddb333;
+}
+.strong-pass{
+    transition: 0.5s;
+    width: 100% !important;
+    height: 5px;
+    border-radius: 25px;
+    background-color: #4BB543;
+}
+.no-pass{
+    transition: 0.5s;
+    width: 0 !important;
+    height: 5px;
+    border-radius: 25px;
+    background-color: #4BB543;
+}
+#password-check-icon{
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+    opacity: 0;
+}
+#password-repeat-check-icon{
+    transition-duration: 0.5s;
+    opacity: 0;
+}
