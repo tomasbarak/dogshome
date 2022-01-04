@@ -10,7 +10,7 @@ function listen(app){
 
             console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
             
-                exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull`, (error, stdout, stderr) => {
+                exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull origin testing`, (error, stdout, stderr) => {
                     if (!error) {
 
                         console.log(logColor.success, 'Successfully merged changes from github');
