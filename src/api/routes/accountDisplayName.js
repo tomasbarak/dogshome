@@ -13,7 +13,7 @@ function init(app, firebaseAdmin){
           let JSONDisplayName = JSON.parse(decodedIdToken.name)
           res.status(200).send(JSONDisplayName);
         }).catch((error) => {
-            res.status(401).send({error: 'Cant verify token'});
+            res.status(401).send({error: `Cant verify token: ${req.headers.authtoken}`});
         });
 
     })
