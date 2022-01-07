@@ -243,7 +243,7 @@ function addMyPublications(PostsIds, _callback) {
     }
 
     function getAccountStats(uid) {
-        firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+        firebase.auth().currentUser.getIdToken().then(function (idToken) {
             console.log(idToken)
             let baseUrl = 'https://api.softvisiondevelop.com.ar';
             let route = '/user/' + uid + '/stats';

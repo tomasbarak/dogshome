@@ -1,40 +1,24 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#079292">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#079292">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#079292">
-    <title>DogsHome | Inicio</title>
-    <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
-                                      con algunas funcionalidades extras, como localizar perros perdidos, reportar perros perdidos, area de noticias,
-                                      y mucho más. Visitá DogsHome para enterarte de todo." data-head-react="true">
+    <!-- Include ejs head.ejs from file-->
+    <%- include('./head.ejs'); %>
+
+    <title>DogsHome | Inicio</title> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="scripts/main/basic-navigation.js"></script>
     <script src="scripts/auth/sign-out.js"></script>
     <script src="scripts/auth/auth-state-listener.js"></script>
-    <link href="stylesheets/main/style-mainpage.css" rel="stylesheet">
-    <link href="stylesheets/publications/expandible-menu.css" rel="stylesheet">
+    <link href="stylesheets/main/style-mainpage.css" rel="stylesheet"> 
     <link href="stylesheets/main/content-show.css" rel="stylesheet">
-    <link href="stylesheets/main/drawer-navigator-style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="stylesheets/main/drawer-navigator-style.css" rel="stylesheet"> 
     <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- <link href="stylesheets/auth-ui/auth-pages-style.css" rel="stylesheet"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7008107843388819"
-     crossorigin="anonymous"></script>
-
+    crossorigin="anonymous"></script>
 </head>
 <body>
-<script src="scripts/main/loading-display.js"></script>
+    <script src="scripts/main/loading-display.js"></script>
 <div id="loading-visible">
     <lottie-player src="animations/dog-walking.json" background="transparent"  speed="1"  style="width: 200px; height: 200px;" loop autoplay></lottie-player>
 </div>
@@ -69,8 +53,8 @@
     </div>
     <div class="expandible-menu-invisible" id="expandible-menu">
         <div class="expandible-menu-option-cont" id="name-option-exp-menu">
-            <img class="" id="profile-pic-exp-menu" src="animations/image-loading.gif" alt="profile pic" style="height: 55px; width: 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
-            <a id="exp-menu-name"> </a>
+            <img class="" id="profile-pic-exp-menu" src=<%= photoUrl %> alt="profile pic" style="height: 55px; width: 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
+            <a id="exp-menu-name"><%= displayName %></a>
         </div>
         <ul class="exp-options-container">
             <li>

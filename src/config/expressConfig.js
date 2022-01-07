@@ -3,7 +3,8 @@ const bodyParser =         require('body-parser');
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const ejs = require('ejs');
-
+//Require cookie parser
+const cookieParser = require('cookie-parser');
 var anti_ddos = new ddos({burst:10, limit:15})
 
 function config(express, cors){
@@ -12,8 +13,8 @@ function config(express, cors){
     //App configuration
     app.set('view engine', 'ejs');
     console.log(appDir)
-    app.use("stylesheets/", express.static(appDir + '/public/stylesheets/'));
-    app.use("scripts/", express.static(appDir + '/public/scripts/'));
+    app.use(cookieParser());
+    app.use(express.static('public'));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cors());
