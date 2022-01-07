@@ -1,40 +1,39 @@
-const { dirname } =     require('path');
-const appDir =          dirname(require.main.filename);
-const authRequest = require(appDir + '/src/api/auth/authRequest');
+const { dirname } = require('path');
+const appDir = dirname(require.main.filename);
 const axios = require('axios');
 
-function init(app, firebaseAdmin){
-    authRequest.setFirebaseAdmin(firebaseAdmin);
-    app.get('/publication/:id', function(req, res){
-        authRequest.getUIDFromReq(req).then((uid) => {
-            console.log(req.headers.authtoken)
-            axios.get(
-                `https://127.0.0.1/user/${uid}/displayName/`, 
-                {
-                headers: {
-                  'authtoken': req.headers.authtoken,
-                }
-              }).then((response) => {
-                  console.log(response)
-                res.render(appDir + '/public/dog.ejs', {
-                    postID: req.params.id,
-                    displayName: response.data.nameAndSurname.displayName,
-                    name: response.data.nameAndSurname.name,
-                    surname: response.data.nameAndSurname.surname,
-                    uid: uid,
+function init(app, firebaseAdmin) {
+
+    //Setting up index route
+    app.get(['/', '/index', '/index.html'], (req, res) => {
+        let token = String(req.cookies.token);
+        if (token) {
+            console.log(token);
+
+            firebaseAdmin.auth().verifyIdToken(token).then((decodedIdToken) => {
+                let parsedDisplayName = JSON.parse(decodedIdToken.name);
+                res.render(appDir + '/public/index', {
+                    uid: decodedIdToken.uid,
+                    displayName: name.nameAndSurname.displayName,
+                    name: name.nameAndSurname.name,
+                    surname: name.nameAndSurname.surname,
+                    photoUrl: name.picture,
                 });
             }).catch((error) => {
-                console.log(error);
-            });
-        }).catch((error) => {
-            console.log(error);
-        })
-        //Make http request to get user display name
-        
-        console.log();
-        
-    })
-    
+                res.send(error);
+
+            })
+        } else {
+            res.redirect('/signin');
+        }
+
+    });
+
+    //Setting up login route
+    app.get(['/signin.html', '/signin'], (req, res) => {
+        res.render(appDir + '/public/signin',);
+    });
+
 }
 
-module.exports = {init};
+module.exports = { init };

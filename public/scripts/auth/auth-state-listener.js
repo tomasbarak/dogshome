@@ -4,6 +4,7 @@ function authStateListener() {
         if (user) {
             //window.location = "/";
             var uid = user.uid;
+            
             // ...
         } else {
                 window.location = "/signin.html";

@@ -13,7 +13,7 @@ function signIn( email, password){
             // Signed in
             var user = userCredential.user;
             console.log("Inicio de sesion exitoso");
-
+            
             localStorage.setItem("userDataMail", email);
             console.log(email);
             authStateListener();
