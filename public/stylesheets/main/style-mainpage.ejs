@@ -1,0 +1,203 @@
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loading-visible {
+        display: flex;
+        transition: 0.5s;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: calc(100% - 60px);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        opacity: 1;
+        z-index: 101;
+    }
+
+    #loading-invisible {
+        display: flex;
+        transition: 0.5s;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: calc(100% - 60px);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        opacity: 0;
+        visibility: hidden
+    }
+
+    #main {
+        height: 100%;
+        width: 100%;
+    }
+
+    #search-bar {
+        width: 100%;
+        height: 60px;
+        background-color: #079292;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 8px;
+        box-sizing: border-box;
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    #search-input,
+    #search-input-container,
+    #search-form {
+        height: 100%;
+        flex: 1;
+        max-width: 600px;
+        border-width: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        overflow-x: hidden;
+
+    }
+
+    #search-form {
+        padding: 0;
+    }
+
+    #search-input {
+        box-shadow: none;
+
+    }
+
+    #search-input:focus {
+        outline: none;
+    }
+
+    #search-input::placeholder {
+        color: #d3d3d3;
+        user-select: none;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    #menu-button,
+    #fav-button {
+        display: none;
+    }
+
+    .desktop-elements {
+        display: flex;
+    }
+
+    .nav-buttons {
+        user-select: none;
+        cursor: pointer;
+        color: white;
+        font-size: 12pt;
+        transform: scale(1);
+        transform-origin: center;
+        transition: 0.15s;
+        padding: 0 10px;
+        box-sizing: border-box;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .nav-buttons:hover {
+        transition: 0.15s;
+        transform: scale(1.025);
+    }
+
+    #profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    #search-input-container {
+        min-width: 200px;
+    }
+
+    .top-bar-section-cont {
+        width: calc(100% / 3);
+        height: 100%;
+        display: flex;
+        flex: none;
+    }
+
+    @media screen and (max-width: 1023px) {
+
+        #search-input,
+        #search-input-container,
+        #search-form {
+            max-width: 400px;
+        }
+
+        #search-form {
+            padding: 0;
+        }
+
+        #search-input-container {
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #menu-button,
+        #fav-button {
+            display: flex;
+        }
+
+        .desktop-elements {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 645px) {
+        .top-bar-section-cont {
+            width: auto;
+            flex: 1;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+
+        #search-input,
+        #search-input-container,
+        #search-form {
+            height: 100%;
+            flex: 1;
+            max-width: 250px;
+            border-width: 0;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 50px;
+        }
+
+        #search-form {
+            padding: 0;
+        }
+
+        #search-input-container {
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #profile-pic {
+            width: 30px;
+            height: 30px;
+        }
+    }
+</style>
