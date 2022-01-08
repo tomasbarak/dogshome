@@ -131,7 +131,7 @@
         <section id="content">
             <section id="content-show">
                 <% publications.forEach(function(post){%>
-                <div class="publication">
+                <div class="publication" onclick="{let uid = '<%= post[0].Id %>'; window.location = '/publication/' + uid}">
                     <img src= <%= post[0].Photo %> alt class="publication-photo">
                     <div class="publication-desc-cont">
                         <h1 class="publication-name"><%= post[0].Name %></h1>
