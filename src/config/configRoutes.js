@@ -11,7 +11,7 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/uploadImage')            .init(app, firebaseadmin, database, firebaseApp);
     require( appDir + '/src/api/routes/accountPhotoUrl')        .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/getImage')               .init(app);
-    require( appDir + '/src/api/routes/publicationPageRoute')   .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/publicationPageRoute')   .init(app, firebaseadmin, firebaseApp, database);
     require( appDir + '/src/api/listeners/githubPushListener')  .listen(app);
 }
 

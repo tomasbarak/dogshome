@@ -23,4 +23,5 @@ function config(express, cors){
     //app.use(anti_ddos.express)
     return app;
 }
+
 module.exports = {config};
