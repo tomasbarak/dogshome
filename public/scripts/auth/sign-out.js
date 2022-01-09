@@ -8,6 +8,8 @@ function signOut(){
         }
     }
     xmlhttp.open("POST", "https://api.softvisiondevelop.com.ar/signout", true);
+
+    xmlhttp.send();
 }
 
 function deleteAllFlags(){
