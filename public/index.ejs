@@ -169,21 +169,7 @@
     <script src="scripts/main/add-publication.js"></script>
     <script src="scripts/profile/profile-settings-functions.js"></script>
     <script src="scripts/publications/expand-menu.js"></script>
-
-    <script>
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                if (user.emailVerified === true) {
-                    checkProfile(user);
-                } else {
-                    window.location = "verification.html";
-                }
-            } else {
-                window.location.href = "signin.html";
-                // ...
-            }
-        });
-    </script>
+sd
     <script>
         var width;
         window.onresize = window.onload = function () {
