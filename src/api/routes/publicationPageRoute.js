@@ -52,10 +52,10 @@ function init(app, firebaseAdmin, firebaseApp, database) {
     app.get(['/signin.html', '/signin'], (req, res) => {
         res.render(appDir + '/public/signin',);
     });
-    app.post(['/signout', '/signout.html'], (req, res) => {{
+    app.post(['/signout', '/signout.html'], (req, res) => {
         res.clearCookie('session');
         res.redirect('/signin');
-    }
+    });
     app.post('/sessionLogin', (req, res) => {
         res.header('Access-Control-Allow-Origin', '*');
         // Get the ID token passed and the CSRF token.
