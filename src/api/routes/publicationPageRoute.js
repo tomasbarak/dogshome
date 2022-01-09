@@ -36,7 +36,7 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                         });
 
                     }else{
-                        res.redirect('/verificacion');
+                        res.redirect('/verification');
                     }
 
                 }).catch((error) => {
@@ -74,7 +74,7 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                     // Set cookie policy for session cookie.
                     const options = { maxAge: expiresIn, httpOnly: true, Secure: true, SameSite: 'None' };
                     res.cookie('session', sessionCookie, options);
-                    res.end(JSON.stringify({ status: 'success' }));
+                    res.redirect('/');
                 },
                 (error) => {
                     res.status(401).send(error);

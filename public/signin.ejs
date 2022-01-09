@@ -61,48 +61,6 @@
   </script>
 
   <script src="scripts/auth/sign-in.js"></script>
-  <script>
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-        firebase.auth().currentUser.getIdToken().then(function (idToken) {
-          // Send token to your backend via HTTPS
-          let xhr = new XMLHttpRequest();
-          xhr.open('POST', '/sessionLogin');
-          xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              // Success!
-              console.log('Token verified');
-              window.location.href = './index.html';
-            } else {
-              // Error :(
-              console.log('Error verifying token');
-            }
-          };
-          xhr.send(JSON.stringify({
-            idToken: idToken
-          })); 
-          var location = window.location.href;
-
-          if (location.includes("localhost")) {
-            //window.location.href = "index.html";
-          } else {
-            //window.location.href = "/";
-          }
-
-          var uid = user.uid;
-        }).catch(function (error) {
-          console.error(error);
-        });
-
-        // ...
-      } else {
-
-        // ...
-      }
-    });
-  </script>
 </body>
 
 </html>
