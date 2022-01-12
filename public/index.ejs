@@ -4,15 +4,24 @@
 <head>
     <!-- Include ejs head.ejs from file-->
     <%- include('./head.ejs'); %>
+    <title>DogsHome | Inicio</title>
+    <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
+                                      con algunas funcionalidades extras, como localizar perros perdidos, reportar perros perdidos, area de noticias,
+                                      y mucho más. Visitá DogsHome para enterarte de todo." data-head-react="true">
 
-        <title>DogsHome | Inicio</title>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="scripts/main/basic-navigation.js"></script>
-        <script src="scripts/auth/sign-out.js"></script>
-        <%- include('./stylesheets/main/style-mainpage.ejs'); %>
-        <%- include('./stylesheets/main/content-show.ejs'); %>
-        <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
-        <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+
+    <meta property="og:title" content="DogsHome"/>
+    <meta property="og:url" content="https://api.softvisiondevelop.com.ar"/>
+    <meta property="og:description" content="DogsHome, adoptá ya">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/387358973/ae282366-2d40-4bb7-9d1f-549d7051d13c">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scripts/main/basic-navigation.js"></script>
+    <script src="scripts/auth/sign-out.js"></script>
+    <%- include('./stylesheets/main/style-mainpage.ejs'); %>
+    <%- include('./stylesheets/main/content-show.ejs'); %>
+    <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
+    <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
 </head>
 
 <body>
