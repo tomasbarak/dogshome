@@ -12,11 +12,8 @@ function listen(app){
                 console.log(logColor.blue, 'Branch: ' + branch);
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull origin testing`, (error, stdout, stderr) => {
                     if (!error) {
-
                         console.log(logColor.success, 'Successfully merged changes from github');
-
                         console.log(logColor.blue, 'Updating npm packages');
-
                         exec(`npm i`, (error, stdout, stderr) => {
                             if(!error){
                                 console.log(logColor.success, 'Successfully updated npm packages');
