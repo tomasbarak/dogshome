@@ -15,6 +15,8 @@ function config(express, cors){
     console.log(appDir)
     app.use(cookieParser());
     app.use(express.static('public'));
+    app.use('/perfil', express.static('public'));
+    app.use('/perfil/images/', express.static('public'));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cors());
