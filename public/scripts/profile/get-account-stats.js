@@ -153,111 +153,111 @@ function addMyPublications(PostsIds, _callback) {
         xmlHttp.onload = function () {
             console.log("Publications: ", xmlHttp.response);
             let publications = xmlHttp.response;
-                if (publications) {
-                    for (let key in publications) {
-                        if (key in swappedPostsIds) {
-                            console.log(key, publications[key]);
-                            let publicationCreatedContainer = document.createElement('div');
-                            publicationCreatedContainer.className = 'publication';
-                            publicationCreatedContainer.onclick = function () {
-                                window.location = "dog.html" + '?publication=' + publications[key].Id
-                            };
-                            console.log("Actual pub id: ", "dog.html" + '?publication=' + publications[key].Id)
-                            //publicationCreatedContainer.style.height = (Math.random() * (330 - 270 + 1) + 270) + "px";
-                            publicationsIDS.push(publications[key].Id);
-                            console.log("Pushing data", '' + publications[key].Id)
-                            let publicationContainer = document.getElementById("content-show").appendChild(publicationCreatedContainer);
+            if (publications) {
+                for (let key in publications) {
+                    if (key in swappedPostsIds) {
+                        console.log(key, publications[key]);
+                        let publicationCreatedContainer = document.createElement('div');
+                        publicationCreatedContainer.className = 'publication';
+                        publicationCreatedContainer.onclick = function () {
+                            window.location = "dog.html" + '?publication=' + publications[key].Id
+                        };
+                        console.log("Actual pub id: ", "dog.html" + '?publication=' + publications[key].Id)
+                        //publicationCreatedContainer.style.height = (Math.random() * (330 - 270 + 1) + 270) + "px";
+                        publicationsIDS.push(publications[key].Id);
+                        console.log("Pushing data", '' + publications[key].Id)
+                        let publicationContainer = document.getElementById("content-show").appendChild(publicationCreatedContainer);
 
-                            let publicationCreatedImage = document.createElement('img');
-                            publicationCreatedImage.className = 'publication-photo';
-                            publicationCreatedImage.loading = 'lazy';
-                            publicationCreatedImage.src = publications[key].Photo;
+                        let publicationCreatedImage = document.createElement('img');
+                        publicationCreatedImage.className = 'publication-photo';
+                        publicationCreatedImage.loading = 'lazy';
+                        publicationCreatedImage.src = publications[key].Photo;
 
-                            let publicationImage = publicationContainer.appendChild(publicationCreatedImage);
+                        let publicationImage = publicationContainer.appendChild(publicationCreatedImage);
 
-                            let publicationCreatedDescContainer = document.createElement('div');
-                            publicationCreatedDescContainer.className = 'publication-desc-cont';
+                        let publicationCreatedDescContainer = document.createElement('div');
+                        publicationCreatedDescContainer.className = 'publication-desc-cont';
 
-                            let publicationDescContainer = publicationContainer.appendChild(publicationCreatedDescContainer);
+                        let publicationDescContainer = publicationContainer.appendChild(publicationCreatedDescContainer);
 
-                            let publicationCreatedName = document.createElement('h1');
-                            publicationCreatedName.className = 'publication-name';
-                            publicationCreatedName.innerText = publications[key].Name;
+                        let publicationCreatedName = document.createElement('h1');
+                        publicationCreatedName.className = 'publication-name';
+                        publicationCreatedName.innerText = publications[key].Name;
 
-                            let publicationName = publicationDescContainer.appendChild(publicationCreatedName);
+                        let publicationName = publicationDescContainer.appendChild(publicationCreatedName);
 
-                            let publicationCreatedDesc = document.createElement('p');
-                            publicationCreatedDesc.className = 'publication-description';
-                            publicationCreatedDesc.innerText = publications[key].SDescription;
+                        let publicationCreatedDesc = document.createElement('p');
+                        publicationCreatedDesc.className = 'publication-description';
+                        publicationCreatedDesc.innerText = publications[key].SDescription;
 
-                            let publicationDesc = publicationDescContainer.appendChild(publicationCreatedDesc);
+                        let publicationDesc = publicationDescContainer.appendChild(publicationCreatedDesc);
 
-                            let publicationCreatedRefNameCont = document.createElement('div');
-                            publicationCreatedRefNameCont.className = 'ref-name-cont';
+                        let publicationCreatedRefNameCont = document.createElement('div');
+                        publicationCreatedRefNameCont.className = 'ref-name-cont';
 
-                            let publicationRefNameCont = publicationContainer.appendChild(publicationCreatedRefNameCont);
+                        let publicationRefNameCont = publicationContainer.appendChild(publicationCreatedRefNameCont);
 
-                            let publicationCreatedRefName = document.createElement('a');
-                            publicationCreatedRefName.innerText = publications[key].Refugio;
+                        let publicationCreatedRefName = document.createElement('a');
+                        publicationCreatedRefName.innerText = publications[key].Refugio;
 
-                            let publicationRefName = publicationRefNameCont.appendChild(publicationCreatedRefName);
+                        let publicationRefName = publicationRefNameCont.appendChild(publicationCreatedRefName);
 
-                        }
                     }
-                } else {
-                    console.log("No data available");
                 }
-                _callback()
+            } else {
+                console.log("No data available");
+            }
+            _callback()
         }
-        }else {
+    } else {
 
+    }
+}
+
+function setAccountStats(Stats) {
+    if (Stats != null && Stats.length > 0) {
+        if (Stats.Following) {
+            document.getElementById("profile-following").innerText = Stats.Following.length
         }
-    }
-
-    function setAccountStats(Stats) {
-        if (Stats != null && Stats.length > 0) {
-            if (Stats.Following) {
-                document.getElementById("profile-following").innerText = Stats.Following.length
-            }
-            if (Stats.Following) {
-                document.getElementById("profile-following-mobile").innerText = Stats.Following.length
-            }
-            if (Stats.Followers) {
-                document.getElementById("profile-followers").innerText = Stats.Followers.length
-            }
-            if (Stats.Followers) {
-                document.getElementById("profile-followers-mobile").innerText = Stats.Followers.length
-            }
-        } else {
-            document.getElementById("profile-following").innerText = '0'
-            document.getElementById("profile-following-mobile").innerText = '0'
-            document.getElementById("profile-followers-mobile").innerText = '0'
-            document.getElementById("profile-followers").innerText = '0'
+        if (Stats.Following) {
+            document.getElementById("profile-following-mobile").innerText = Stats.Following.length
         }
+        if (Stats.Followers) {
+            document.getElementById("profile-followers").innerText = Stats.Followers.length
+        }
+        if (Stats.Followers) {
+            document.getElementById("profile-followers-mobile").innerText = Stats.Followers.length
+        }
+    } else {
+        document.getElementById("profile-following").innerText = '0'
+        document.getElementById("profile-following-mobile").innerText = '0'
+        document.getElementById("profile-followers-mobile").innerText = '0'
+        document.getElementById("profile-followers").innerText = '0'
     }
+}
 
-    function setAccountPostsQ(PostsCount) {
-        document.getElementById("profile-posts").innerText = PostsCount;
+function setAccountPostsQ(PostsCount) {
+    document.getElementById("profile-posts").innerText = PostsCount;
 
-        document.getElementById("profile-posts-mobile").innerText = PostsCount;
-    }
+    document.getElementById("profile-posts-mobile").innerText = PostsCount;
+}
 
-    function getAccountStats(uid) {
-        firebase.auth().currentUser.getIdToken().then(function (idToken) {
-            console.log(idToken)
-            let baseUrl = 'https://api.softvisiondevelop.com.ar';
-            let route = '/user/' + uid + '/stats';
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.responseType = 'json';
-            xmlHttp.open("GET", baseUrl + route, true); // false for synchronous request
-            xmlHttp.setRequestHeader('authToken', idToken);
-            xmlHttp.send(null);
+function getAccountStats(uid) {
+    firebase.auth().currentUser.getIdToken().then(function (idToken) {
+        console.log(idToken)
+        let baseUrl = 'https://api.softvisiondevelop.com.ar';
+        let route = '/user/' + uid + '/stats';
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.responseType = 'json';
+        xmlHttp.open("GET", baseUrl + route, true); // false for synchronous request
+        xmlHttp.setRequestHeader('authToken', idToken);
+        xmlHttp.send(null);
 
-            xmlHttp.onload = function () {
-                const data = xmlHttp.response;
-                setAccountStats(data);
-            }
-        }).catch(function (error) {
-            console.log(error)
-        });
-    }
+        xmlHttp.onload = function () {
+            const data = xmlHttp.response;
+            setAccountStats(data);
+        }
+    }).catch(function (error) {
+        console.log(error)
+    });
+}

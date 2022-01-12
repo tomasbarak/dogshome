@@ -9,14 +9,10 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="scripts/main/basic-navigation.js"></script>
         <script src="scripts/auth/sign-out.js"></script>
-        <script src="scripts/auth/auth-state-listener.js"></script>
         <%- include('./stylesheets/main/style-mainpage.ejs'); %>
-            <%- include('./stylesheets/main/content-show.ejs'); %>
-                <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
-                    <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
-                    <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7008107843388819"
-                        crossorigin="anonymous"></script>
+        <%- include('./stylesheets/main/content-show.ejs'); %>
+        <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
+        <link rel="icon" href="images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
 </head>
 
 <body>
@@ -61,7 +57,7 @@
                     onclick="expandMenu()">menu</span>
                 <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px"
                     onclick="navigateToProfile()"></a>
-                <img class="desktop-elements" id="profile-pic" onclick="navigateToProfile()" src=<%=photoUrl %>
+                <img class="desktop-elements" id="profile-pic" onclick="window.location.href = 'perfil/<%= uid %>'" src=<%=photoUrl %>
                 alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                 none; border-radius: 80px; object-fit: cover">
             </div>
@@ -70,7 +66,9 @@
             <div class="expandible-menu-option-cont" id="name-option-exp-menu">
                 <img class="" id="profile-pic-exp-menu" src=<%=photoUrl %> alt="profile pic" style="height: 55px; width:
                 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
-                <a id="exp-menu-name"> <%= displayName %> </a>
+                <a id="exp-menu-name">
+                    <%= displayName %>
+                </a>
             </div>
             <ul class="exp-options-container">
                 <li>
@@ -106,7 +104,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="perfil.html?u=mine">
+                    <a href="perfil/<%= uid %>">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
                             <path fill-rule="evenodd"
                                 d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z">
@@ -131,20 +129,27 @@
         <section id="content">
             <section id="content-show">
                 <% publications.forEach(function(post){%>
-                <div class="publication" onclick="{let uid = '<%= post[0].Id %>'; window.location = '/publication/' + uid}">
-                    <img src= <%= post[0].Photo %> alt class="publication-photo">
-                    <div class="publication-desc-cont">
-                        <h1 class="publication-name"><%= post[0].Name %></h1>
-                        <p class="publication-description"><%= post[0].SDescription %></p>
+                    <div class="publication"
+                        onclick="{let uid = '<%= post[0].Id %>'; window.location = '/publication/' + uid}">
+                        <img src=<%=post[0].Photo %> alt class="publication-photo">
+                        <div class="publication-desc-cont">
+                            <h1 class="publication-name">
+                                <%= post[0].Name %>
+                            </h1>
+                            <p class="publication-description">
+                                <%= post[0].SDescription %>
+                            </p>
+                        </div>
+                        <div class="ref-name-cont">
+                            <a>
+                                <%= post[0].Refugio %>
+                            </a>
+                        </div>
                     </div>
-                    <div class="ref-name-cont">
-                        <a><%= post[0].Refugio %></a>
-                    </div>
-                </div>
-                <%});%>
-                <script>
-                    setLoading(false)
-                </script>
+                    <%});%>
+                        <script>
+                            setLoading(false)
+                        </script>
             </section>
         </section>
         <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
@@ -169,7 +174,7 @@
     <script src="scripts/main/add-publication.js"></script>
     <script src="scripts/profile/profile-settings-functions.js"></script>
     <script src="scripts/publications/expand-menu.js"></script>
-sd
+    sd
     <script>
         var width;
         window.onresize = window.onload = function () {
