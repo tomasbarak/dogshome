@@ -2,6 +2,10 @@
 <html lang="en" style="height: 100%">
 <head>
     <%- include('./head.ejs'); %>
+    <%- include('stylesheets/main/style-mainpage.ejs'); %>
+    <%- include('stylesheets/profile/profile-def-view.ejs'); %>
+    <%- include('stylesheets/publications/publications-style.ejs'); %>
+    <%- include('stylesheets/main/content-show.ejs'); %>
     <script src="/scripts/main/basic-navigation.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
     <script src="/scripts/auth/auth-state-listener.js"></script>
@@ -334,27 +338,7 @@
 <script src="https://dogshome-6af88.web.app/__/firebase/8.8.0/firebase-app-check.js"></script>
 
 <script>
-
     setLoading(false)
-
-    function myPublicationsCallback(){
-        let desktopPublications = document.getElementById("profile-view-cont").appendChild(document.getElementById("content-show").cloneNode(true));
-        desktopPublications.id = "content-show-desktop"
-        desktopPublications.className = "desktop"
-            
-        //desktopPublications.innerHTML = '<img class="no-visible" id="posts-not-found-mob" src="images/account-publications-not-found.png" alt="No hay publicaciones"/>';
-        for(let key in desktopPublications.childNodes){
-            console.log("Actual key: ", key)
-            desktopPublications.childNodes[key].onclick = function () {
-                window.location = "dog.html" + '?publication=' + publicationsIDS[key]
-            };
-        }
-    }
 </script>
-
-<%- include('stylesheets/main/style-mainpage.ejs'); %>
-<%- include('stylesheets/profile/profile-def-view.ejs'); %>
-<%- include('stylesheets/publications/publications-style.ejs'); %>
-<%- include('stylesheets/main/content-show.ejs'); %>
 </body>
 </html>
