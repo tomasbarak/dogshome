@@ -18,7 +18,6 @@ function listen(app){
                         console.log(logColor.blue, 'Updating npm packages');
 
                         exec(`npm i`, (error, stdout, stderr) => {
-
                             if(!error){
 
                                 console.log(logColor.success, 'Successfully updated npm packages');
