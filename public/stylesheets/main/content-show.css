@@ -1,0 +1,178 @@
+#content{
+    display: flex;
+    justify-content: center;
+    padding-left: 10px;
+    padding-top: 110px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+}
+#content-show{
+    width: fit-content;
+    height: 100%;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(5, 1fr);
+}
+#content-show-desktop {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    width: 80% !important;
+    max-width: 1024px !important;
+    height: fit-content;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(5, 1fr);
+    overflow-x: scroll;
+    margin-top: 50px;
+    overflow-y: hidden;
+}
+#content-show-desktop::-webkit-scrollbar {
+    height: 10px;
+}
+#content-show-desktop::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+#content-show-desktop::-webkit-scrollbar-thumb {
+    background: #079292;
+    border-radius: 15px;
+}
+#content-show-desktop::-webkit-scrollbar-thumb:hover {
+    background: #067a7a;
+}
+
+
+#content-show::-webkit-scrollbar {
+    height: 10px;
+}
+#content-show::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+#content-show::-webkit-scrollbar-thumb {
+    background: #079292;
+    border-radius: 15px;
+}
+#content-show::-webkit-scrollbar-thumb:hover {
+    background: #067a7a;
+}
+
+.publication{
+    transition: 0.25s;
+    width: 240px;
+    height: 330px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 30px 48px -25px;
+    cursor: pointer;
+}
+.publication:hover{
+    transition: 0.25s;
+    box-shadow: rgba(0, 0, 0, 0.5) 2px 30px 48px -25px;
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+      background-position: -800px 0
+    }
+    100% {
+      background-position: 800px 0
+    }
+  }
+
+.publication-photo{
+    width: 100%;
+    height: 50%;
+    max-height: 50%;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right, #ffffff 8%, #d3d3d3 18%, #ffffff 33%);
+    background-size: 800px 104px;
+}
+.publication-desc-cont{
+    height: 40%;
+}
+.publication-name{
+    font-weight: 600;
+    text-align: center;
+    text-transform: none;
+    word-wrap: break-word;
+    color: #595959;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+.publication-description{
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-family: 'Lato', sans-serif;
+    color: #545454;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.ref-name-cont{
+    display: flex;
+    height: 10%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #079292;
+    font-family: Lato, sans-serif;
+}
+.no-visible{
+    display: none;
+}
+@media screen and (min-width: 1885px){
+    #content-show{
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+@media screen and (max-width: 1300px){
+    #content-show{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (max-width: 1023px){
+    #content-show{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 770px){
+    #content-show{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 480px){
+    #content-show{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .publication{
+        transition: 0.25s;
+        width: 180px;
+        height: 270px;
+    }
+}
+@media screen and (max-width: 390px){
+    #content-show{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .publication{
+        transition: 0.25s;
+        width: 240px;
+        height: 330px;
+    }
+}
