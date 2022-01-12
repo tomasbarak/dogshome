@@ -25,7 +25,6 @@ function listen(app){
 
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
-
                                         console.log(logColor.blue, 'Restarting app');
                                     }else{
                                         console.log(logColor.error, 'Failed to restart the app');
