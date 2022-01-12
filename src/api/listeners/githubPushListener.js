@@ -7,7 +7,7 @@ const logColor =        require('../../config/logColors');
 function listen(app){
     app.post('/webhooks/github/', function(req, res){
         if(req.headers['x-github-event'] == 'push'){
-
+            console.log(logColor.green, req.body.head_commit);
             console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
             
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull origin testing`, (error, stdout, stderr) => {
