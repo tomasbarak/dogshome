@@ -9,7 +9,7 @@ function listen(app){
         if(req.headers['x-github-event'] == 'push'){
             console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
                 let branch = req.body.ref.split('/').pop();
-                
+
                 console.log(logColor.blue, 'Branch: ' + branch);
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull origin main`, (error, stdout, stderr) => {
                     if (!error) {
@@ -21,7 +21,7 @@ function listen(app){
                                 exec(`pm2 restart app`, (error, stdout, stderr) => {
                                     if(!error){
                                         console.log(logColor.blue, 'Restarting app');
-                                    }else{
+                                    }else{ 
                                         console.log(logColor.error, 'Failed to restart the app');
                                     }
                                 })
