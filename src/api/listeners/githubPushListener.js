@@ -9,6 +9,7 @@ function listen(app){
         if(req.headers['x-github-event'] == 'push'){
             console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
                 let branch = req.body.ref.split('/').pop();
+                
                 console.log(logColor.blue, 'Branch: ' + branch);
                 exec(`sudo -su barak cd ${appDir} && git reset --hard && git pull origin main`, (error, stdout, stderr) => {
                     if (!error) {
