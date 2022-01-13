@@ -24,6 +24,11 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     let postsIds =      profile.PostsIds || [];
                     let isMine =        false
 
+                    if (req.params.u == decodedIdToken.user_id) {
+                        isMine = true;
+                    } else {
+                        isMine = false;
+                    }
                     if (posts.length > 0) {
                         for (let key in posts) {
                             let singleRealPost = query(ref(db, `Publications/All/${posts[key]}`));
@@ -33,15 +38,9 @@ function init(app, database, firebaseAdmin, firebaseApp) {
 
                                 if (Object.keys(posts).length == result.length) {
 
-                                    if (req.params.u == decodedIdToken.user_id) {
-                                        isMine = true;
-                                    } else {
-                                        isMine = false;
-                                    }
-                                    console.log(result);
                                     res.render(appDir + '/public/profile', {
                                         publications:   result,
-                                        photo:          profile.Photo,
+                                        photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
                                         name:           profile.Name,
                                         surname:        profile.Surname,
                                         typeStr:        accType.TypeStr,
@@ -66,11 +65,11 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     } else {
                         res.render(appDir + '/public/profile', {
                             publications:   [],
-                            photo:          profile.Photo,
+                            photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
                             name:           profile.Name,
                             surname:        profile.Surname,
-                            typeStr:        accType.TypeStr,
-                            typeNum:        accType.TypeNum,
+                            typeStr:        accType.TypeStr || 'Adoptante',
+                            typeNum:        accType.TypeNum || 1,
                             refName:        profile.RefName || '',
                             description:    profile.ShortDescription || '',
                             facebook:       SocialMedia.Facebook || null,

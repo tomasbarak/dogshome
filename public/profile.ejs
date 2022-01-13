@@ -129,16 +129,18 @@
             <div style="width: calc(50% - 100px); height: 100%; display: flex; align-items: center; justify-content: center">
                 <div id="my-account-name-cont-desk">
                     <a id="my-account-name-text-desk">
-                        <% if(typeNum == 2){%> 
+                        <% if(typeNum == 2){ %> 
                             <%= refName %>
-                        <%}else{%>
+                        <% } else { %>
                             <%= name %> <%= surname %>
-                        <%}%>
+                        <% } %>
                     </a>
                 </div>
-                <div id="sign-out-btn" onclick="showSignOutAlert()" class="profile-action-button">
-                    <a>Cerrar sesión</a>
-                </div>
+                <% if(isMine){ %>
+                    <div id="sign-out-btn" onclick="showSignOutAlert()" class="profile-action-button">
+                        <a>Cerrar sesión</a>
+                    </div>
+                <% } %>
             </div>
         </div>
         <section id="media-info-section-desk">
@@ -205,7 +207,7 @@
             </section>
 
         </section>
-        <a id="short-desc">Somos DogsHome, una plataforma de Adopción de perros online. </a>
+        <a id="short-desc"><%= description %></a>
     </div>
 
     <div id="profile-view-cont-mobile" class="mobile">
@@ -279,25 +281,27 @@
             
         </div>
         <div id="content-show" class="content-show-account">
-            <% publications.forEach(function(post){%>
-                <div class="publication"
-                    onclick="{let uid = '<%= post.Id %>'; window.location = '/publication/' + uid}">
-                    <img src=<%=post.Photo %> alt class="publication-photo">
-                    <div class="publication-desc-cont">
-                        <h1 class="publication-name">
-                            <%= post.Name %>
-                        </h1>
-                        <p class="publication-description">
-                            <%= post.SDescription %>
-                        </p>
+            <% if(publications.length > 0) {%> 
+                <% publications.forEach(function(post){%>
+                    <div class="publication"
+                        onclick="{let uid = '<%= post.Id %>'; window.location = '/publication/' + uid}">
+                        <img src=<%=post.Photo %> alt class="publication-photo">
+                        <div class="publication-desc-cont">
+                            <h1 class="publication-name">
+                                <%= post.Name %>
+                            </h1>
+                            <p class="publication-description">
+                                <%= post.SDescription %>
+                            </p>
+                        </div>
+                        <div class="ref-name-cont">
+                            <a>
+                                <%= post.Refugio %>
+                            </a>
+                        </div>
                     </div>
-                    <div class="ref-name-cont">
-                        <a>
-                            <%= post.Refugio %>
-                        </a>
-                    </div>
-                </div>
-            <%});%>
+                <%});%>
+            <% } %>
         </div>
     </div>
     <div id="content-show-desktop" class="desktop">
