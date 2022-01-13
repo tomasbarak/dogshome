@@ -13,52 +13,75 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 const userPosts = query(ref(db, `Users/${userId}`));
 
                 get(userPosts).then((snapshot) => {
-                    let snapshotVal = snapshot.val() || {};
-                    let profile = snapshotVal.PublicRead || {};
-                    let publicWrite = snapshotVal.PublicWrite || {};
-                    let posts = profile.PostsIds || [];
-                    var result = [];
-                    if(posts.length > 0) {
+                    let snapshotVal =   snapshot.val() || {};
+                    let profile =       snapshotVal.PublicRead || {};
+                    let publicWrite =   snapshotVal.PublicWrite || {};
+                    let posts =         profile.PostsIds || [];
+                    var result =        [];
+                    let stats =         publicWrite.stats || {};
+                    let SocialMedia =   profile.SocialMedia || {};
+                    let accType =       profile.Type || {};
+                    let postsIds =      profile.PostsIds || [];
+                    let isMine =        false
+
+                    if (posts.length > 0) {
                         for (let key in posts) {
                             let singleRealPost = query(ref(db, `Publications/All/${posts[key]}`));
                             get(singleRealPost).then((snapshot) => {
                                 let singlePost = snapshot.val();
                                 result.push(singlePost);
-    
+
                                 if (Object.keys(posts).length == result.length) {
-                                    let stats = publicWrite.stats || {};
-                                    let isMine = false
-                                    if(req.params.u == decodedIdToken.user_id){
+
+                                    if (req.params.u == decodedIdToken.user_id) {
                                         isMine = true;
-                                    }else{
+                                    } else {
                                         isMine = false;
                                     }
+                                    console.log(result);
                                     res.render(appDir + '/public/profile', {
                                         publications:   result,
                                         photo:          profile.Photo,
                                         name:           profile.Name,
                                         surname:        profile.Surname,
-                                        typeStr:        profile.Type.TypeStr,
-                                        typeNum:        profile.Type.TypeNum,
+                                        typeStr:        accType.TypeStr,
+                                        typeNum:        accType.TypeNum,
                                         refName:        profile.RefName || '',
                                         description:    profile.ShortDescription || '',
-                                        facebook:       profile.SocialMedia.Facebook || null,
-                                        twitter:        profile.SocialMedia.Twitter || null,
-                                        instagram:      profile.SocialMedia.Instagram || null,
+                                        facebook:       SocialMedia.Facebook || null,
+                                        twitter:        SocialMedia.Twitter || null,
+                                        instagram:      SocialMedia.Instagram || null,
                                         website:        profile.WebSite || null,
                                         followers:      stats.Followers || 0,
                                         following:      stats.Following || 0,
-                                        postsCount:     profile.PostsIds.length || 0,
+                                        postsCount:     postsIds.length || 0,
                                         isMine:         isMine
                                     });
                                 }
-    
+
                             }).catch((error) => {
                                 console.log(error);
                             });
                         }
-                    }else{
-                        res.send('No hay publicaciones');
+                    } else {
+                        res.render(appDir + '/public/profile', {
+                            publications:   [],
+                            photo:          profile.Photo,
+                            name:           profile.Name,
+                            surname:        profile.Surname,
+                            typeStr:        accType.TypeStr,
+                            typeNum:        accType.TypeNum,
+                            refName:        profile.RefName || '',
+                            description:    profile.ShortDescription || '',
+                            facebook:       SocialMedia.Facebook || null,
+                            twitter:        SocialMedia.Twitter || null,
+                            instagram:      SocialMedia.Instagram || null,
+                            website:        profile.WebSite || null,
+                            followers:      stats.Followers || 0,
+                            following:      stats.Following || 0,
+                            postsCount:     postsIds.length || 0,
+                            isMine:         isMine
+                        });
                     }
                 }).catch((error) => {
                     console.log(error);
