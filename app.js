@@ -28,7 +28,7 @@ const firebaseApp =        require( appDir + '/src/config/firebaseConfig').confi
 const firebaseAdmin =      require( appDir + '/src/config/firebaseAdminConfig').config();
 const database =           require('firebase/database');
 
-var SecureServer =         https.createServer(options, expressApp);
+var SecureServer =         https.createServer(expressApp);
 
 console.log(logColor.debug, 'App started version: ' + commitVersion);
 
