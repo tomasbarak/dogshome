@@ -16,6 +16,16 @@
     <link href="stylesheets/main/drawer-navigator-style.css" rel="stylesheet">
     <title>Perfil</title>
     <script>var publicationsIDS = [];</script>
+    <% if(typeNum == 2){ %> 
+        <meta property="og:title" content="Refugio | <%= refName %>"/>
+    <% } else { %>
+        <meta property="og:title" content="Perfil | <%= name %> <%= surname %>"/>
+    <% } %>
+    <meta property="og:url" content="https://dogshome.com.ar/perfil/<%= uid %>"/>
+    <meta property="og:description" content="<%= description %> ">
+    <meta property="og:image" content="<%= photo %> ">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
 </head>
 <body onload="">
 
