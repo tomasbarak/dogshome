@@ -28,19 +28,19 @@ const firebaseApp =        require( appDir + '/src/config/firebaseConfig').confi
 const firebaseAdmin =      require( appDir + '/src/config/firebaseAdminConfig').config();
 const database =           require('firebase/database');
 
-var SecureServer =         https.createServer(options, expressApp);
+var SecureServer =         https.createServer(expressApp);
 
 console.log(logColor.debug, 'App started version: ' + commitVersion);
 
 var HttpServer = http.createServer(function(req, res) {
   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
   res.end();
-}).listen(80, function() {
-  console.log(logColor.success, 'HTTP Server listening on port 80')
+}).listen(8080, function() {
+  console.log(logColor.success, 'HTTP Server listening on port 8080')
 });
 
-SecureServer.listen(443, function() {
-  console.log(logColor.success, 'HTTPS Server listening on port 443');
+SecureServer.listen(80, function() {
+  console.log(logColor.success, 'HTTPS Server listening on port 80');
   console.log(logColor.warn, "Process id:" + process.pid)
   require( appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
   require( appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
