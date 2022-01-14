@@ -29,6 +29,26 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     } else {
                         isMine = false;
                     }
+                    let renderVar = {
+                        publications:   result,
+                        photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                        name:           profile.Name || '',
+                        surname:        profile.Surname || '',
+                        typeStr:        accType.TypeStr || 'Adoptante',
+                        uid:            userId || '',
+                        typeNum:        accType.TypeNum || 1,
+                        refName:        profile.RefName || '',
+                        description:    profile.ShortDescription || '',
+                        facebook:       SocialMedia.Facebook || null,
+                        twitter:        SocialMedia.Twitter || null,
+                        instagram:      SocialMedia.Instagram || null,
+                        website:        profile.WebSite || null,
+                        followers:      stats.Followers || 0,
+                        following:      stats.Following || 0,
+                        postsCount:     postsIds.length || 0,
+                        isMine:         isMine
+                    };
+
                     if (posts.length > 0) {
                         for (let key in posts) {
                             let singleRealPost = query(ref(db, `Publications/All/${posts[key]}`));
@@ -38,24 +58,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
 
                                 if (Object.keys(posts).length == result.length) {
 
-                                    res.render(appDir + '/public/profile', {
-                                        publications:   result,
-                                        photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                                        name:           profile.Name,
-                                        surname:        profile.Surname,
-                                        typeStr:        accType.TypeStr,
-                                        typeNum:        accType.TypeNum,
-                                        refName:        profile.RefName || '',
-                                        description:    profile.ShortDescription || '',
-                                        facebook:       SocialMedia.Facebook || null,
-                                        twitter:        SocialMedia.Twitter || null,
-                                        instagram:      SocialMedia.Instagram || null,
-                                        website:        profile.WebSite || null,
-                                        followers:      stats.Followers || 0,
-                                        following:      stats.Following || 0,
-                                        postsCount:     postsIds.length || 0,
-                                        isMine:         isMine
-                                    });
+                                    res.render(appDir + '/public/profile', renderVar);
                                 }
 
                             }).catch((error) => {
@@ -63,24 +66,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                             });
                         }
                     } else {
-                        res.render(appDir + '/public/profile', {
-                            publications:   [],
-                            photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                            name:           profile.Name,
-                            surname:        profile.Surname,
-                            typeStr:        accType.TypeStr || 'Adoptante',
-                            typeNum:        accType.TypeNum || 1,
-                            refName:        profile.RefName || '',
-                            description:    profile.ShortDescription || '',
-                            facebook:       SocialMedia.Facebook || null,
-                            twitter:        SocialMedia.Twitter || null,
-                            instagram:      SocialMedia.Instagram || null,
-                            website:        profile.WebSite || null,
-                            followers:      stats.Followers || 0,
-                            following:      stats.Following || 0,
-                            postsCount:     postsIds.length || 0,
-                            isMine:         isMine
-                        });
+                        renderVar.publications = [];
+                        res.render(appDir + '/public/profile', renderVar);
                     }
                 }).catch((error) => {
                     console.log(error);
