@@ -53,14 +53,14 @@
     <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
         <span class="material-icons-outlined" id="fav-button" style="color: #fff; cursor: pointer; margin: 0 10px; user-select: none;" onclick="expandMenu()">menu</span>
         <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="navigateToProfile()"></a>
-        <img class="desktop-elements" id="profile-pic" onclick="" src=<%= photo %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
+        <img class="desktop-elements" id="profile-pic" onclick="" src=<%= myPhoto %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
     </div>
 </div>
 <div class="expandible-menu-invisible" id="expandible-menu">
     <div class="expandible-menu-option-cont" id="name-option-exp-menu">
-        <img class="" id="profile-pic-exp-menu" src=<%= photo %>  alt
+        <img class="" id="profile-pic-exp-menu" src=<%= myPhoto %>  alt
              style="height: 55px; width: 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
-        <a id="exp-menu-name"><%= name %> <%= surname %> </a>
+        <a id="exp-menu-name"><%= myName %> <%= mySurname %> </a>
     </div>
     <ul class="exp-options-container">
         <li>
@@ -93,16 +93,36 @@
             </a>
         </li>
         <li>
-            <a href="perfil.html?u=mine">
-                <svg xmlns="http://www.w3.org/2000/svg" class="selected" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                    <path fill-rule="evenodd"
-                          d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
-                </svg>
-                <span  class="selected" >Mi perfil</span>
-            </a>
+            <% if (isPrivate) { %>
+                <a href="/signin">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
+                        <path fill-rule="evenodd"
+                              d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
+                    </svg>
+                    <span>Iniciar Sesión</span>
+                </a>
+            <% } else { %>
+                <a href="/perfil/<%= uid %>">
+                    
+
+                    <% if(isMine) { %>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="selected" viewBox="0 0 24 24" fill="#333" width="24" height="24">
+                            <path fill-rule="evenodd"
+                                  d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
+                        </svg>
+                        <span  class="selected" >Mi perfil</span>
+                    <% } else { %>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
+                            <path fill-rule="evenodd"
+                                  d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
+                        </svg>
+                        <span >Mi perfil</span>
+                    <% } %> 
+                </a>
+            <% } %>  
         </li>
         <li>
-            <% if(isMine){ %>
+            <% if(!isPrivate){ %>
                 <a onclick="showSignOutAlert()" style="cursor: pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="24" height="24">
                         <path fill-rule="evenodd"
