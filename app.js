@@ -46,6 +46,9 @@ SecureServer.listen(443, function () {
   require(appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
   expressApp.use(function (req, res, next) {
     res.status(404);
-    res.render(appDir + '/public/404');
+    res.render(appDir + '/public/404', {
+      errorCode: "404",
+      errorMessage: "Página no encontrada",
+    });
   });
 })
