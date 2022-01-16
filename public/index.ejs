@@ -69,11 +69,11 @@
                 <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px"
                     onclick="navigateToProfile()"></a>
                 <% if (isPrivate) {%>
-                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = 'signin'" src=<%=photoUrl %>
+                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %>
                     alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                     none; border-radius: 80px; object-fit: cover">
                 <% } else { %>
-                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = 'perfil/<%= uid %>'" src=<%=photoUrl %>
+                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/perfil/<%= uid %>'" src=<%=photoUrl %>
                     alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                     none; border-radius: 80px; object-fit: cover">
                 <% } %>   
@@ -123,7 +123,7 @@
                 </li>
                 <li>
                     <% if (isPrivate) {%> 
-                        <a href="signin">
+                        <a href="/signin">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
                                 <path fill-rule="evenodd"
                                     d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z">
@@ -132,7 +132,7 @@
                             <span>Iniciar Sesión</span>
                         </a>
                     <% } else { %>
-                        <a href="perfil/<%= uid %>">
+                        <a href="/perfil/<%= uid %>">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
                                 <path fill-rule="evenodd"
                                     d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z">

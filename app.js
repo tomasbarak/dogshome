@@ -1,19 +1,19 @@
 //Express and api
-const express =            require('express')
-const cors =               require('cors');
-const fs =                 require('fs');
-const https =              require('https');
-const http =               require('http');
-const { dirname } =        require('path');
-const appDir =             dirname(require.main.filename);
-const logColor =           require(appDir + '/src/config/logColors');
-commitVersion =            require('child_process')
-                          .execSync('git rev-parse HEAD')
-                          .toString().trim()
+const express = require('express')
+const cors = require('cors');
+const fs = require('fs');
+const https = require('https');
+const http = require('http');
+const { dirname } = require('path');
+const appDir = dirname(require.main.filename);
+const logColor = require(appDir + '/src/config/logColors');
+commitVersion = require('child_process')
+  .execSync('git rev-parse HEAD')
+  .toString().trim()
 
 //SSL Certificate
-var cert =                 fs.readFileSync( appDir + '/certs/certificate.crt');
-var key =                  fs.readFileSync( appDir + '/certs/private.key');
+var cert = fs.readFileSync(appDir + '/certs/certificate.crt');
+var key = fs.readFileSync(appDir + '/certs/private.key');
 
 var options = {
   key: key,
@@ -21,27 +21,31 @@ var options = {
 };
 
 
-let expressApp =           require( appDir + '/src/config/expressConfig').config(express, cors);
+let expressApp = require(appDir + '/src/config/expressConfig').config(express, cors);
 
 //Firebase
-const firebaseApp =        require( appDir + '/src/config/firebaseConfig').config();
-const firebaseAdmin =      require( appDir + '/src/config/firebaseAdminConfig').config();
-const database =           require('firebase/database');
+const firebaseApp = require(appDir + '/src/config/firebaseConfig').config();
+const firebaseAdmin = require(appDir + '/src/config/firebaseAdminConfig').config();
+const database = require('firebase/database');
 
-var SecureServer =         https.createServer(options, expressApp);
+var SecureServer = https.createServer(options, expressApp);
 
 console.log(logColor.debug, 'App started version: ' + commitVersion);
 
-var HttpServer = http.createServer(function(req, res) {
+var HttpServer = http.createServer(function (req, res) {
   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
   res.end();
-}).listen(80, function() {
+}).listen(80, function () {
   console.log(logColor.success, 'HTTP Server listening on port 80')
 });
 
-SecureServer.listen(443, function() {
+SecureServer.listen(443, function () {
   console.log(logColor.success, 'HTTPS Server listening on port 443');
   console.log(logColor.warn, "Process id:" + process.pid)
-  require( appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
-  require( appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
+  require(appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
+  require(appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
+  expressApp.use(function (req, res, next) {
+    res.status(404);
+    res.render(appDir + '/public/404');
+  });
 })
