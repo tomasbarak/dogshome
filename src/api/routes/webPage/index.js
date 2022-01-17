@@ -4,7 +4,7 @@ const axios = require('axios');
 
 function init(app, firebaseAdmin, firebaseApp, database) {
     //Setting up index route
-    app.get(['/', '/index', '/index.html'], (req, res) => {
+    app.get(['/', '/index', '/index.html', '/inicio'], (req, res) => {
         const token = req.cookies.session || ' ';
 
         const db = database.getDatabase(firebaseApp);
