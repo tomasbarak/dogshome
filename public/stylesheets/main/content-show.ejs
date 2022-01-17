@@ -120,21 +120,24 @@
         color: #595959;
         font-family: 'Lato', sans-serif;
         font-size: 16px;
+        height: 25%;
     }
 
     .publication-description {
         font-size: 12px;
         box-sizing: border-box;
-        padding: 10px;
+        padding: 0 10px;
         font-weight: 400;
-        line-height: normal;
         text-align: left;
-        word-wrap: break-word;
-        word-break: break-word;
         font-family: 'Lato', sans-serif;
         color: #545454;
-        text-overflow: ellipsis;
+        
         overflow: hidden;
+        text-overflow: ellipsis;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
     }
 
     .ref-name-cont {
@@ -188,6 +191,10 @@
             width: 180px;
             height: 270px;
         }
+
+        .publication-description{
+            -webkit-line-clamp: 4;
+        }
     }
 
     @media screen and (max-width: 390px) {
@@ -199,6 +206,9 @@
             transition: 0.25s;
             width: 240px;
             height: 330px;
+        }
+        .publication-description{
+            -webkit-line-clamp: 5;
         }
     }
 </style>
