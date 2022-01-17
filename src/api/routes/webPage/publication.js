@@ -15,7 +15,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const pubSecImages = snapshotVal.Images || [];
             const pubPhoto = snapshotVal.Photo || ' ';
             const filters = snapshotVal.Filters || {};
-            const age = snapshotVal.Filters.Age || {};
+            const age = filters.Age || {};
             const shelterPublications = query(ref(db, `Users/${snapshotVal.RefId}/PublicRead/PostsIds}`));
 
             let allPhotosArray = [];
