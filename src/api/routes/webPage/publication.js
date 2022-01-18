@@ -15,9 +15,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const pubSecImages = snapshotVal.Images || [];
             const pubPhoto = snapshotVal.Photo || ' ';
             const filters = snapshotVal.Filters || {};
+            const refId = snapshotVal.RefId || ' ';
             const age = filters.Age || {};
-            const shelterPublications = query(ref(db, `Users/${snapshotVal.RefId}/PublicRead/PostsIds}`));
-
             let allPhotosArray = [];
             let secPhotosArray = [];
 
@@ -36,11 +35,11 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 allPhotosArray.push(pubSecImages[key]);
                 secPhotosArray.push(pubSecImages[key]);
             }
+            const shelterPublications = query(ref(db, `Users/${refId}/PublicRead/PostsIds`));
 
             get(shelterPublications).then((snapshot) => {
                 const publications = snapshot.val() || {};
                 let result = [];
-
                 firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
                     const parsedDisplayName = JSON.parse(decodedIdToken.name);
                     const renderVar = {
@@ -71,20 +70,26 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         vaccinated: filters.Vaccinated || false,
                         treatments: filters.Treatments || '',
                         dewormed: filters.Dewormed || false,
-                        shelterPubs: result
+                        shelterPubs: result,
+                        refId: snapshotVal.RefId || '',
                     }
 
                     if (publications.length > 0) {
+                        if (publications.indexOf(pubId) > -1) {
+                            publications.splice(publications.indexOf(pubId), 1);
+                        }
                         for (let key in publications) {
+                            
                             let singleRealPost = query(ref(db, `Publications/All/${publications[key]}`));
                             get(singleRealPost).then((snapshot) => {
                                 let singlePost = snapshot.val();
                                 result.push(singlePost);
-    
+
                                 if (Object.keys(publications).length == result.length) {
+                                    
                                     res.render(appDir + '/public/publication', renderVar)
                                 }
-    
+
                             }).catch((error) => {
                                 console.log(error);
                             });
@@ -122,15 +127,37 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         vaccinated: filters.Vaccinated || false,
                         treatments: filters.Treatments || '',
                         dewormed: filters.Dewormed || false,
+                        refId: snapshotVal.RefId || '',
+                        shelterPubs: result || [],
                     }
-                    res.render(appDir + '/public/publication', renderPrivVar)
+                    if (publications.length > 0) {
+                        if (publications.indexOf(pubId) > -1) {
+                            publications.splice(publications.indexOf(pubId), 1);
+                        }
+                        for (let key in publications) {
+                            let singleRealPost = query(ref(db, `Publications/All/${publications[key]}`));
+                            get(singleRealPost).then((snapshot) => {
+                                let singlePost = snapshot.val();
+                                result.push(singlePost);
+                                if (Object.keys(publications).length == result.length) {
+                                    res.render(appDir + '/public/publication', renderPrivVar)
+                                }
+
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                        }
+                    } else {
+                        renderPrivVar.shelterPubs = [];
+                        res.render(appDir + '/public/publication', renderPrivVar)
+                    }
                 });
-                
+
             }).catch((error) => {
-                
+
             });
 
-            
+
         }).catch((error) => {
             console.log(error);
             res.status(500).send(error);

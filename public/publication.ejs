@@ -7,6 +7,7 @@
     <%- include('./stylesheets/publications/slider.ejs'); %>
     <%- include('./stylesheets/main/style-mainpage.ejs'); %>
     <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
+    <%- include('./stylesheets/main/content-show.ejs'); %>
 
     <title>DogsHome | <%= name %></title>
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
@@ -158,8 +159,7 @@
                         <div id="publication-content-mobile" class="mobile">
                             <div class="post-name-mobile-container">
                                 <a id="post-name-mobile"><%= name %></a>
-                                <a></a>
-                                <a id="post-shelter-name"> <%= ShelterName %></a>
+                                <a id="post-shelter-name" onclick="window.location = '/perfil/<%= refId %>'"><%= ShelterName %></a>
                             </div>
                             <div id="publication-description-mobile" class="mobile">
                                 <a style="font-weight: bolder; color: rgba(0, 0, 0, 0.75); margin-bottom: 10px;">Descripción</a>
@@ -215,6 +215,32 @@
                                     <a class="detail-prop"><%- dewormed ? 'Sí' : 'No'%></a>
                                 </div>
                             </div>
+                            <% if(shelterPubs.length > 0) {%>
+                                <div id="more-shelter-publications-mobile">
+                                    <a style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <font color="#079292"><%= ShelterName %></font></a>
+                                    <div class="shelter-publications-container">
+                                        <% shelterPubs.forEach(function(post){%>
+                                            <div class="publication"
+                                                onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
+                                                <img src=<%=post.Photo %> alt class="publication-photo">
+                                                <div class="publication-desc-cont">
+                                                    <h1 class="publication-name">
+                                                        <%= post.Name %>
+                                                    </h1>
+                                                    <p class="publication-description">
+                                                        <%= post.SDescription %>
+                                                    </p>
+                                                </div>
+                                                <div class="ref-name-cont">
+                                                    <a>
+                                                        <%= post.Refugio %>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <%});%>
+                                    </div>
+                                </div>
+                            <%}%>
                         </div>
                     </div>
                     <div id="secondary-images-container-mobile">
@@ -298,6 +324,32 @@
         <div id="description-container">
             <p id="description"><%= description %> </p>
         </div>
+        <% if(shelterPubs.length > 0) {%>
+            <div id="more-shelter-publications">
+                <a style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <font color="#079292"><%= ShelterName %></font></a>
+                <div class="shelter-publications-container">
+                    <% shelterPubs.forEach(function(post){%>
+                        <div class="publication"
+                            onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
+                            <img src=<%=post.Photo %> alt class="publication-photo">
+                            <div class="publication-desc-cont">
+                                <h1 class="publication-name">
+                                    <%= post.Name %>
+                                </h1>
+                                <p class="publication-description">
+                                    <%= post.SDescription %>
+                                </p>
+                            </div>
+                            <div class="ref-name-cont">
+                                <a>
+                                    <%= post.Refugio %>
+                                </a>
+                            </div>
+                        </div>
+                    <%});%>
+                </div>
+            </div>
+        <%}%>
     </div>
 
     <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
