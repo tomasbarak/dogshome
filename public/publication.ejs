@@ -18,11 +18,12 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
 
-    <script src="/scripts/publications/create-slider.js"></script>
     <script src="/scripts/main/open-close-drawer.js"></script>
     <script src="/scripts/main/basic-navigation.js"></script>
     <script src="/scripts/publications/expand-menu.js"></script>
     <script src="/scripts/alerts/page-alerts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/themes/splide-default.min.css">
 </head>
 <body>
 
@@ -110,7 +111,6 @@
         </ul>
     </div>
     <div id="all-container">
-
         <div id="post">
             <div style="flex-direction: row; display: flex; width: 100%; height: 100%">
                 <div id="post-images-selector">
@@ -126,35 +126,115 @@
                 <div id="left-post">
                     <div id="post-image-container">
                         <img id="post-image" src="<%= photo %> " alt>
-                        <div id="image-count">
-                            <a id="image-count-number" style="box-shadow: rgba(0, 0, 0, 0.5) 2px 30px 48px -25px;"></a>
-                        </div>
                         <!--Creates the slider-->
-                        <div class="slider-wrap" style="width: 100%; margin: 0; padding: 0; height: 100%">
-                            <div class="slider" id="slider">
-                                <!--Creates the holder-->
-                                <div class="holder">
-                                    <% allPhotos.forEach(function(photo){%>
-                                        <div class="slide-wrapper">
-                                            <div class="slide">
-                                                <div class="slider-image">
-                                                    <img src="<%= photo %> " alt id="image-slider">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <%});%>
+                        <div id="splide-slider-wrapper">
+                            <div id="main-wrapper">
+                                <div class="splide" id="splide-slider-main">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                            <% allPhotos.forEach(function(photo){%>
+                                                <li class="splide__slide">
+                                                    <img src="<%= photo %> " class="main-slider-image" alt>
+                                                </li>
+                                            <%});%>
+                                        </ul>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div id="thumbnail-wrapper">
+                                <div class="splide" id="splide-slider">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                            <% allPhotos.forEach(function(photo){%>
+                                                <li class="splide__slide">
+                                                    <img src="<%= photo %>" alt>
+                                                </li>
+                                            <%});%>
+                                        </ul>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div id="publication-content-mobile" class="mobile">
+                            <div class="post-name-mobile-container">
+                                <a id="post-name-mobile"><%= name %></a>
+                                <a></a>
+                                <a id="post-shelter-name"> <%= ShelterName %></a>
+                            </div>
+                            <div id="publication-description-mobile" class="mobile">
+                                <a style="font-weight: bolder; color: rgba(0, 0, 0, 0.75); margin-bottom: 10px;">Descripción</a>
+                                <p id="publication-description-text-mobile"><%= description %></p>
+                            </div>
+                            <div class="post-details-mobile mobile">
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Castrado: </a>
+                                    <a class="detail-prop"><%- castrated ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Amigable con gatos: </a>
+                                    <a class="detail-prop"><%- catfriendly ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Amigable con perros: </a>
+                                    <a class="detail-prop"><%- dogfriendly ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Amigable con niños: </a>
+                                    <a class="detail-prop"><%- kidsfriendly ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Color: </a>
+                                    <a class="detail-prop"><%= color %></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Tamaño: </a>
+                                    <a class="detail-prop"><%= size %></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Edad (Años): </a>
+                                    <a class="detail-prop"><%= ageInYears %></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Edad (Meses): </a>
+                                    <a class="detail-prop"><%= ageInMonths %></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Raza: </a>
+                                    <a class="detail-prop"><%= breed %></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Amigable con los gatos: </a>
+                                    <a class="detail-prop"><%- catfriendly ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Vacunado: </a>
+                                    <a class="detail-prop"><%- vaccinated ? 'Sí' : 'No'%></a>
+                                </div>
+                                <div class="detail-cont">
+                                    <a class="detail-name-mobile">Desparasitado: </a>
+                                    <a class="detail-prop"><%- dewormed ? 'Sí' : 'No'%></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+                    <div id="secondary-images-container-mobile">
+                        <% secPhotos.forEach(function(photo) { %>
+                            <div class="secondary-image-cont-unselected" id="secondary-image-mobile<%= secPhotos.indexOf(photo) %>" onclick="onSecondaryImageClick(this.id)">
+                                <img src="<%= photo %>" alt class="secondary-image">
+                            </div>
+                        <% }) %>
+                    </div>
                 </div>
             </div>
 
             <div id="right-post">
                 <div id="publication-details">
-                    <a id="post-name"><%= name %></a>
-                    <div id="post-details">
+                    <div style="width: auto; height:fit-content; display:flex; flex-direction:row; align-items:flex-end; justify-content: center">
+                        <a id="post-name-mobile"><%= name %></a>
+                        <a></a>
+                        <a id="post-shelter-name"> <%= ShelterName %></a>
+                    </div>
+                    <div class="post-details">
                         <div class="detail-cont">
                             <a class="detail-name">Castrado: </a>
                             <a class="detail-prop"><%- castrated ? 'Sí' : 'No'%></a>
@@ -206,7 +286,7 @@
                     </div>
                 </div>
                 <div id="publication-actions">
-                    <a class="action-button-circle" id="share-btn" onclick="window.prompt('Copiar link: ', window.location);">
+                    <a class="action-button-circle" id="share-btn" onclick="Navigator.share(window.location)">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="#079292" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M20 5.5a3.5 3.5 0 01-6.062 2.385l-5.112 3.021a3.497 3.497 0 010 2.188l5.112 3.021a3.5 3.5 0 11-.764 1.29l-5.112-3.02a3.5 3.5 0 110-4.77l5.112-3.021v.001A3.5 3.5 0 1120 5.5zm-1.5 0a2 2 0 11-4 0 2 2 0 014 0zM5.5 14a2 2 0 100-4 2 2 0 000 4zm13 4.5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </a>
                     <a class="action-button-circle">
@@ -227,12 +307,11 @@
     <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
     <script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
 
-    <script src="/scripts/publications/slider.js"></script>
     <script src="/scripts/profile/profile-settings-functions.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
 
     <script>
-        function onSecondaryImageClick(id){
+        function onSecondaryImageClick(id) {
             document.getElementById(id).className = 'secondary-image-cont-selected';
             var secondaryImagesCont = document.getElementById("post-images-selector");
             var secondaryImagesArray = secondaryImagesCont.getElementsByTagName('div');
@@ -240,13 +319,49 @@
             document.getElementById("post-image").src = document.getElementById(id).getElementsByTagName("img")[0].src;
         }
 
-        function unselectOthersOnClick(exception_id, all_secondary_photos){
-            for(let key in all_secondary_photos){
-                if(all_secondary_photos[key].id !== exception_id){
+        function unselectOthersOnClick(exception_id, all_secondary_photos) {
+            for (let key in all_secondary_photos) {
+                if (all_secondary_photos[key].id !== exception_id) {
                     all_secondary_photos[key].className = "secondary-image-cont-unselected";
                 }
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var main = new Splide('#splide-slider-main', {
+                type: 'slide',
+                rewind: true,
+                pagination: false,
+                arrows: false,
+                width: '100%',
+                height: '100%',
+                gap: 50,
+                perPage: 1,
+            })
+            var thumbnails = new Splide('#splide-slider', {
+                fixedWidth: 100,
+                fixedHeight: 60,
+                gap: 10,
+                rewind: true,
+                pagination: false,
+                cover: true,
+                isNavigation: true,
+                breakpoints: {
+                    800: {
+                        fixedWidth: 60,
+                        fixedHeight: 44,
+                    },
+                },
+                dragMinThreshold: {
+                        mouse: 50,
+                        touch: 10,
+                },
+            });
+
+            main.sync(thumbnails);
+            main.mount();
+            thumbnails.mount();
+        });
     </script>
 </body>
 </html>

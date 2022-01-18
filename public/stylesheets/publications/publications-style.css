@@ -165,7 +165,10 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 
 }
-@media screen and (max-width: 1024px){
+#secondary-images-container-mobile{
+    display: none;
+}
+@media screen and (max-width: 1184px){
     #image-dog-not-found{
         height: auto;
         width: 75%;
@@ -196,7 +199,5 @@ html, body {
     #image-count{
         display: flex;
     }
-}
-@media screen and (max-width: 1184px) {
-
+    
 }
