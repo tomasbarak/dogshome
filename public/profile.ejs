@@ -314,7 +314,7 @@
             <% if(publications.length > 0) {%> 
                 <% publications.forEach(function(post){%>
                     <div class="publication"
-                        onclick="{let uid = '<%= post.Id %>'; window.location = '/publication/' + uid}">
+                        onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
                         <img src=<%=post.Photo %> alt class="publication-photo">
                         <div class="publication-desc-cont">
                             <h1 class="publication-name">
@@ -337,7 +337,7 @@
     <div id="content-show-desktop" class="desktop">
         <% publications.forEach(function(post){%>
             <div class="publication"
-                onclick="{let uid = '<%= post.Id %>'; window.location = '/publication/' + uid}">
+                onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
                 <img src=<%=post.Photo %> alt class="publication-photo">
                 <div class="publication-desc-cont">
                     <h1 class="publication-name">
