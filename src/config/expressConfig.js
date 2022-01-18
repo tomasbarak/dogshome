@@ -14,7 +14,6 @@ function config(express, cors){
     
     //process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
     //App configuration
-    app.use(compression());
     app.set('view engine', 'ejs');
     console.log(appDir)
     app.use(cookieParser());
