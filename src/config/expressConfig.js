@@ -3,6 +3,7 @@ const bodyParser =         require('body-parser');
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const ejs = require('ejs');
+const compression = require('compression');
 //Require cookie parser
 const cookieParser = require('cookie-parser');
 var anti_ddos = new ddos({burst:10, limit:15})
@@ -13,6 +14,7 @@ function config(express, cors){
     
     //process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
     //App configuration
+    app.use(compression());
     app.set('view engine', 'ejs');
     console.log(appDir)
     app.use(cookieParser());
