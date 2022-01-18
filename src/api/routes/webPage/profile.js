@@ -88,7 +88,6 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 }
 
             }).catch((error) => {
-                console.log(error);
                 let renderPrivVar = {
                     publications: result,
                     photo: profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
