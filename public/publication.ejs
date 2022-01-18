@@ -3,7 +3,6 @@
 <head>
     <%- include('./head.ejs'); %>
     <%- include('./stylesheets/publications/publications-style.ejs'); %>
-    <%- include('./stylesheets/publications/publications-style.ejs'); %>
     <%- include('./stylesheets/publications/slider.ejs'); %>
     <%- include('./stylesheets/main/style-mainpage.ejs'); %>
     <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
@@ -217,7 +216,7 @@
                             </div>
                             <% if(shelterPubs.length > 0) {%>
                                 <div id="more-shelter-publications-mobile">
-                                    <a style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <font color="#079292"><%= ShelterName %></font></a>
+                                    <h1 style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <a href="/perfil/<%= refId %> " style="color: #079292; text-decoration: none;"><%= ShelterName %></a></h1>
                                     <div class="shelter-publications-container">
                                         <% shelterPubs.forEach(function(post){%>
                                             <div class="publication"
@@ -322,11 +321,12 @@
             </div>
         </div>
         <div id="description-container">
+            <a style=" margin-left: 60px; font-weight: bolder; color: rgba(0, 0, 0, 0.75); margin-bottom: 10px;">Descripción</a>
             <p id="description"><%= description %> </p>
         </div>
         <% if(shelterPubs.length > 0) {%>
             <div id="more-shelter-publications">
-                <a style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <font color="#079292"><%= ShelterName %></font></a>
+                <h1 style="font-family: 'Lato', sans-serif; font-weight: bolder; font-size: 14pt; color: rgba(0, 0, 0, 0.75);">Mas publicaciones de <a href="/perfil/<%= refId %> " style="color: #079292; text-decoration: none;"><%= ShelterName %></a></h1>
                 <div class="shelter-publications-container">
                     <% shelterPubs.forEach(function(post){%>
                         <div class="publication"
