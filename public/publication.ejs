@@ -328,8 +328,8 @@
         }
 
         function share(){
-            if(Navigator.share){
-                Navigator.share({url: window.location}).then(() => {
+            if(navigator.share){
+                navigator.share({url: window.location}).then(() => {
                     console.log('Successful share');
                 }).catch((error) => {
                     console.log('Error sharing', error);
