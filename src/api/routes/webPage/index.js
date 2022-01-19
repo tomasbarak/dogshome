@@ -32,9 +32,11 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                         isPrivate: false
                     });
                 } else {
+                    console.log(decodedIdToken.email_verified);
                     res.redirect('/verification');
                 }
             }).catch((error) => {
+                console.log(error);
                 res.render(appDir + '/public/index', {
                     uid: '',
                     displayName: 'Cuenta Privada',
