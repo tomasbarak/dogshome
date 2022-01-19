@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100vw; height: 100%; overflow: hidden">
+<head>
+    <meta charset="UTF-8">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#079292">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#079292">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#079292">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+    <script src="/scripts/auth/save-profile-data.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Prompt&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+    <title>Verificación</title>
+</head>
+<body style="display: flex; align-items: center; justify-content: flex-start; height: 100%; flex-direction: column">
+<a style="font-family: 'Lato', sans-serif; font-size: 3em; margin-top: calc(100vh/4); font-weight: 600; color: #595959">Verificación</a>
+<img src="/images/email-verification.svg" alt style="height: calc(100vh / 4); margin-top: 50px">
+<a id="EmailSentTo" style="font-family: 'Prompt', sans-serif; font-size: 1em; margin-top: 50px"></a>
+<a onclick="window.location.href=window.location.href" style="width: 100px; height: 50px; border-radius: 8px; margin-top: 50px; cursor: pointer; background-color: #079292; color: white; font-family: 'Lato', sans-serif; display: flex; align-items: center; justify-content: center">Continuar</a>
+
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-auth.js"></script>
+<script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
+<script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
+
+<script src="/scripts/auth/email-verification.js"></script>
+
+<script>
+    window.Swal = Swal
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            if (user.emailVerified === false) {
+                axios.post('/verify/email').then(function (response) {
+                    console.log(response)
+                    if (response.status == 200) {
+                        Swal.fire({
+                            title: '¡Enviado!',
+                            text: 'Se ha enviado un correo electrónico a ' + user.email + ' para verificar su cuenta.',
+                            type: 'success',
+                            confirmButtonText: 'Continuar'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: '¡Error!',
+                            text: 'No se ha podido enviar el correo electrónico. Por favor, inténtelo de nuevo más tarde.',
+                            type: 'error',
+                            confirmButtonText: 'Continuar'
+                        })
+                    }
+                })
+                //saveFirstBlankData()
+
+                /*user.sendEmailVerification().then(function () {
+                    Swal.fire({
+                        title: 'Email de verificación enviado',
+                        text: 'Por favor verifique su email',
+                        icon: 'success',
+                        confirmButtonColor: '#079292',
+                    });
+                }).catch(function (error) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudo enviar el email de verificación',
+                        icon: 'error',
+                        confirmButtonColor: '#079292',
+                    });
+                });*/
+            } else {
+                user.getIdToken().then(function (idToken) {
+                    // Send token to your backend via HTTPS
+                    axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
+                        window.location.href = "/";
+                    })
+                }).catch(function (error) {
+                    console.error(error);
+                });
+
+            }
+        } else {
+            window.location = 'signin.html';
+        }
+    });
+</script>
+
+</body>
+</html>

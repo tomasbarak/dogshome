@@ -9,7 +9,9 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/allPublications')                .init(app, firebaseApp, database);
     require( appDir + '/src/api/routes/publicationById')                .init(app, firebaseApp, database);
     require( appDir + '/src/api/routes/accountDisplayName')             .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/email/sendVerification')         .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/accountPhotoUrl')                .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/verifyEmail')                    .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/getImage')                       .init(app);
 
     //WebPage routes
@@ -18,6 +20,8 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/publication')            .init(app, database, firebaseadmin, firebaseApp);
     require( appDir + '/src/api/routes/webPage/createSession')          .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signin')                 .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/webPage/signup')                 .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/webPage/verification')           .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signout')                .init(app);
 
     //Github changes listener
