@@ -6,20 +6,20 @@
         <label for="upload-photo" id="upload-profile-image-button">
             <img id="profile-image-upload-cont" src="/images/Gallery.svg" alt height="50" width="50">
         </label>
-        <input type="file" accept="image/png, image/gif, image/jpeg" name="photo" id="upload-photo" onchange=""/>
+        <input type="file" accept="image/png, image/gif, image/jpeg" name="file" id="upload-photo" onchange=""/>
     </div>
 </div>
 <script>
     function sendData() {
         var formData = new FormData();
         var imagefile = document.querySelector('#upload-photo');
-        formData.append("image", imagefile.files[0]);
-        axios.post('https://dogshome.com.ar/profile/upload/image/', formData, {
+        formData.append("file", imagefile.files[0]);
+        axios.post('https://127.0.0.1/profile/upload/image/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(function(response){
-            console.log(response);
+            console.log(response.data.photoURL);
         }).catch(function (error){
             console.log(error)
         })
