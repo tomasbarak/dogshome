@@ -15,10 +15,11 @@
         var formData = new FormData();
         var imagefile = document.querySelector('#upload-photo');
         formData.append("file", imagefile.files[0]);
-        axios.post('https://dogshome.com.ar/profile/upload/image/', {withCredentials: true}, formData, {
+        axios.post('https://dogshome.com.ar/profile/upload/image/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            },
+            }, 
+            withCredentials: true
         }).then(function(response){
             console.log(response.data.photoURL);
         }).catch(function (error){
