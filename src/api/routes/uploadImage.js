@@ -34,7 +34,8 @@ function init(app, firebaseAdmin, database, firebaseApp) {
 
     app.post('/profile/upload/image/', upload.single('file'), function (req, res, next) {
         console.log(logColor.debug, 'Profile upload images accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
-        res.header('Access-Control-Allow-Origin', '*');
+        const reqOrigin = req.headers.origin;
+        res.header('Access-Control-Allow-Origin', reqOrigin);
         res.header('Access-Control-Allow-Credentials', true);
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;
