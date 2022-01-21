@@ -1,23 +1,36 @@
 <style>
-    #name-and-surname{
-        display: flex; 
-        flex-direction: column; 
-        width: fit-content;
-    }
+    
 </style>
 <div class="action-container">
-    <div id="name-and-surname">
-        <div class="input-container">
-            <label for="name" style="margin-bottom: 15px; font-size: 12pt">Nombre: </label>
-            <input placeholder="Nombre" id="name" type="text" onkeypress="enter()">
-        </div>
-        <div class="input-container">
-            <label for="surname" style="margin-bottom: 15px; font-size: 12pt">Apellido: </label>
-            <input placeholder="Apellido" id="surname" autocomplete="off" type="text">
+    <div class="input-container">
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; border-bottom: solid 1px #d3d3d3">
+            <img src="/images/argFlag.png" style="height: 25px; object-fit: contain">
+            <a style="font-family: Lato, sans-serif; font-size: 14px; color: #222222; margin: 0 10px; margin-bottom: 0.5175px">+54</a>
+            <div style="width: 1px; height: 40px; background-color: #d3d3d3; margin-top: 10px; margin-right: 10px"></div>
+            <!-- ^((\(?\d{3}\)?[-. ]?\d{4})|(\(?\d{4}\)?[-. ]?\d{3})|(\(?\d{5}\)?[-. ]?\d{2}))[-. ]?\d{4}$ -->
+            <input placeholder="Numero celular" id="acc-phone-num" oninput="formatPhoneNum(this.value)" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" type="tel" onkeyup="enter(this.event)" style="border: none !important;">
         </div>
     </div>
 </div>
 <script>
+    function formatPhoneNum(uncleanedPhone){
+        //Filter only numbers from the input
+        let cleaned = ('' + uncleanedPhone).replace(/\D/g, '');
+
+        console.log(cleaned);
+        //Check if the input is of correct length
+        let match = cleaned.match(/^([0-9]{2,3})([0-9]{4})([0-9]{4})$/);
+
+        console.log(match);
+        if (match) {
+            var matched = match[1] + ' ' + match[2] + '-' + match[3];
+            document.getElementById('acc-phone-num').value = matched;
+            //console.log(match)
+        }else {
+            //console.log('nose')
+            document.getElementById('acc-phone-num').value = cleaned;
+        }
+}
     function sendData() {
         const dataToSend = {
             name: document.getElementById('name').value,

@@ -1,67 +1,103 @@
 <style>
-    
+    #upload-profile-image-button {
+        height: 200px;
+        width: 200px;
+        border-radius: 240px;
+        border: solid 1px #079292;
+        background-color: #f6f6f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #upload-photo {
+        visibility: hidden;
+    }
+    .cover{
+        width: 200px;
+        height: 200px;
+        border-radius: 240px;
+        object-fit: cover;
+    }
+    .not-cover{
+        width: 100px;
+        height: 100px;
+    }
 </style>
 <div class="action-container">
     <div class="input-container" style="align-items: center !important;">
         <label for="upload-photo" id="upload-profile-image-button">
-            <img id="profile-image-upload-cont" src="/images/Gallery.svg" alt height="50" width="50">
+            <img id="profile-image-upload-cont" src="/images/Gallery.svg" alt class="not-cover">
         </label>
-        <input type="file" accept="image/png, image/gif, image/jpeg" name="file" id="upload-photo" onchange=""/>
+        <input type="file" accept="image/png, image/gif, image/jpeg" name="file" id="upload-photo" onchange="readURL(this)"/>
     </div>
 </div>
 <script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile-image-upload-cont').attr('src', e.target.result);
+                $('#profile-image-upload-cont').attr('class', 'cover');
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     function sendData() {
         axios.defaults.withCredentials = true;
         var formData = new FormData();
         var imagefile = document.querySelector('#upload-photo');
         formData.append("file", imagefile.files[0]);
-        axios.post('https://dogshome.com.ar/profile/upload/image/', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }, 
-            withCredentials: true
-        }).then(function(response){
-            console.log(response.data.photoURL);
-        }).catch(function (error){
-            console.log(error)
-        })
-        /*const dataToSend = {
-            name: document.getElementById('name').value,
-            surname: document.getElementById('surname').value
-        }
-        //Show loading swal
         Swal.fire({
-            title: 'Estamos guardando tus datos',
-            text: 'Esperá un momento',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        });
-        axios.post('https://127.0.0.1/profile/creation/<%=sendDataPath%>', dataToSend).then(function (response) {
-            Swal.fire({
-                title: 'Perfecto!',
-                text: 'Tu nombre y apellido se han guardado correctamente, te estamos llevando al siguiente paso',
-                icon: 'success',
+                title: 'Estamos guardando tu foto de perfil',
+                text: 'Esperá un momento',
                 allowOutsideClick: false,
+                showConfirmButton: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                timerProgressBarColor: '#079292'
-            }).then(function () {
-                window.location.reload();
-            })
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+        });
+        axios.post(`https://${window.location.host}/profile/upload/image/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            withCredentials: true
+        }).then(function (response) {
+            const dataToSend = {
+                photoURL: response.data.photoURL
+            }
+            //Show loading swal
+            
+            axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                Swal.fire({
+                    title: 'Ya casi estamos!',
+                    text: 'Tu foto de perfil se guardó y actualizó correctamente, ahora solo quedan unos pasos mas',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    timerProgressBarColor: '#079292'
+                }).then(function () {
+                    window.location.reload();
+                })
+            }).catch(function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo.',
+                })
+            });
         }).catch(function (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algo salió mal, intenta de nuevo.',
-            })
-        });*/
+            console.log(error)
+        })
+
     }
 </script>

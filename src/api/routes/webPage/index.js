@@ -30,6 +30,7 @@ function init(app, firebaseAdmin, firebaseApp, database) {
             } else if (isVerified) {
 
                 let name =                          user.name || '{}';
+                console.log('name', name);
                 let parsedDisplayName =             JSON.parse(name);
                 const nameAndSurname =              parsedDisplayName.nameAndSurname || {};
                 const nameAndSurname_name =         nameAndSurname.name || ' ';
@@ -49,6 +50,7 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                 res.redirect('/verification');
             }
         }).catch((error) => {
+            console.log(error);
             res.status(500).send(error);
         });
 

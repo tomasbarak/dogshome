@@ -142,7 +142,14 @@
 <style>
 
 </style>
-
+<script>
+    function enter() {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            sendData();
+        }
+    }
+</script>
 <body>
     <div id="page-container">
         <div id="page-header">

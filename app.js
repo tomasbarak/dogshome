@@ -59,7 +59,7 @@ SecureServer.listen(443, function () {
 function setupPreloadFunction(expressApp, firebaseAdmin) {
   expressApp.use(function (req, res, next) {
     const token = req.cookies.session || ' ';
-    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {

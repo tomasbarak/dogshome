@@ -153,7 +153,7 @@
             allowEnterKey: false,
 
         });
-        axios.post('https://127.0.0.1/profile/creation/<%=sendDataPath%>', dataToSend).then(function (response) {
+        axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
             Swal.fire({
                 title: 'Seguí asi!',
                 text: 'Tu tipo de cuenta se establecó correctamente, esperá mientras te dirigimos a tu siguiente paso',

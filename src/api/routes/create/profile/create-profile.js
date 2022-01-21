@@ -42,8 +42,16 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 console.log(error);
                 res.status(500).send({ error: error });
             } else {
+                let name_no_spaces = name.replace(/\s/g, '');
+                const constructedDisplayName = name.replace(/\s/g, '') + ' ' + surname.replace(/\s/g, '');
                 firebaseAdmin.auth().updateUser(uid, {
-                    displayName: `{nameAndSurname: {name: ${name}, surname: ${surname}, displayName: ${name} ${surname}}}`,
+                    displayName: JSON.stringify({
+                        "nameAndSurname": {
+                            "name": name.replace(/\s/g, ''),
+                            "surname": surname.replace(/\s/g, ''),
+                            "displayName": constructedDisplayName
+                        }
+                    }),
                 }).then(() => {
                     res.status(200).send({ redirectRoute: '/profile/creation/profile-type' });
                 }).catch((error) => {
@@ -181,17 +189,17 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const uid = res.locals.user.uid;
             const db = firebaseAdmin.database();
             const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            const { photoUrl } = req.body;
+            const { photoURL } = req.body;
             user_profile.update({
                 CreationInstance: targetCreatioInstance,
-                Photo: photoUrl,
+                Photo: photoURL,
             }, (error) => {
                 if (error) {
                     console.log(error);
                     res.status(500).send({ error: error });
                 } else {
                     firebaseAdmin.auth().updateUser(uid, {
-                        picture: photoUrl,
+                        picture: photoURL,
                     }).then(() => {
                         res.status(200).send({ redirectRoute: '/profile/creation/short-description' });
                     }).catch((error) => {
@@ -205,6 +213,28 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         }
 
     });
+
+    app.get('/profile/creation/phone', (req, res) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const creationInstance = res.locals.creationInstance;
+        const user = res.locals.user || {};
+
+        if (!isPrivate) {
+            if (isVerified) {
+                res.render(appDir + '/public/create-profile.ejs', {
+                    uid: user.user_id,
+                    creationInstance: creationInstance,
+                    isVerified: isVerified,
+                    isPrivate: isPrivate,
+                    action: 'Ingresá tu número de teléfono',
+                    actionRawName: 'phone',
+                    sendDataPath: 'phone',
+                });
+            }
+        }
+    });
+    
 }
 
 module.exports = { init };
