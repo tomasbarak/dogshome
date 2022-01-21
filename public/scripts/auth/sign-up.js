@@ -15,6 +15,17 @@ function throwEmailExistsError() {
 }
 
 function signUp(email, password, repeatPassword) {
+    Swal.fire({
+        title: 'Registrando',
+        text: 'Porfavor espere mientras registramos su cuenta',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+    
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in

@@ -1,0 +1,37 @@
+<style>
+    #name-and-surname{
+        display: flex; 
+        flex-direction: column; 
+        width: fit-content;
+    }
+</style>
+<div class="action-container">
+    <div id="name-and-surname">
+        <div class="input-container">
+            <label for="name" style="margin-bottom: 15px; font-size: 12pt">Nombre: </label>
+            <input placeholder="Nombre" id="name" type="text" onkeypress="enter()">
+        </div>
+        <div class="input-container">
+            <label for="surname" style="margin-bottom: 15px; font-size: 12pt">Apellido: </label>
+            <input placeholder="Apellido" id="surname" autocomplete="off" type="text">
+        </div>
+    </div>
+</div>
+<script>
+    function sendData(){
+        const dataToSend = {
+            name: document.getElementById('name').value,
+            surname: document.getElementById('surname').value
+        }
+        axios.post('https://dogshome.com.ar/profile/creation/<%=sendDataPath%>', dataToSend).then(function(response) {
+            console.log(response.data);
+        }).catch(function(error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intenta de nuevo.',
+            })
+        });
+    }
+</script>

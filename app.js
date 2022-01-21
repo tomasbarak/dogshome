@@ -7,6 +7,7 @@ const http = require('http');
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
 const logColor = require(appDir + '/src/config/logColors');
+const axios = require('axios');
 commitVersion = require('child_process')
   .execSync('git rev-parse HEAD')
   .toString().trim()
@@ -42,6 +43,9 @@ var HttpServer = http.createServer(function (req, res) {
 SecureServer.listen(443, function () {
   console.log(logColor.success, 'HTTPS Server listening on port 443');
   console.log(logColor.warn, "Process id:" + process.pid)
+
+  setupPreloadFunction(expressApp, firebaseAdmin);
+
   require(appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
   require(appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
   expressApp.use(function (req, res, next) {
@@ -52,3 +56,60 @@ SecureServer.listen(443, function () {
     });
   });
 })
+function setupPreloadFunction(expressApp, firebaseAdmin) {
+  expressApp.use(function (req, res, next) {
+    const token = req.cookies.session || ' ';
+    res.header("Access-Control-Allow-Origin", "*");
+
+    firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
+      res.locals.isPrivate = false;
+      res.locals.user = decodedIdToken;
+      let creationInstance = 0;
+      if(req.method == 'GET'){
+        isFirstTime(decodedIdToken.uid).then((snapshot) => {
+          const creationInstance = snapshot.val() || 0;
+          const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'therms-and-conditions']
+          res.locals.creationInstance = creationInstance;
+          console.log('creationInstance', creationInstance);
+          console.log('Requested Path:', req.path);
+          console.log('Requested Path 2:', req.path.substring(req.path.lastIndexOf('/')));
+          if (decodedIdToken.email_verified) {
+            res.locals.isVerified = true;
+            if(creationInstance < 10 && req.path !== `/profile/creation/${creationRoutes[creationInstance]}`){
+              res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
+              console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
+            }else{
+              next();
+            }
+  
+          } else {
+            res.locals.isVerified = false;
+            next();
+          }
+        })
+      }else{
+        if (decodedIdToken.email_verified) {
+          res.locals.isVerified = true;
+          next();
+        } else {
+          res.locals.isVerified = false;
+          next();
+        }
+      }
+      
+    }).catch((error) => {
+      res.locals.authError = error;
+      res.locals.isPrivate = true;
+      next();
+    });
+  });
+
+  function isFirstTime(user_id) {
+    const { ref, get, getDatabase, query } = database;
+
+    const db = getDatabase(firebaseApp);
+    const user_profile = query(ref(db, `Users/${user_id}/PublicRead/CreationInstance`));
+
+    return get(user_profile);
+  }
+}

@@ -22,7 +22,6 @@
 <a style="font-family: 'Lato', sans-serif; font-size: 3em; margin-top: calc(100vh/4); font-weight: 600; color: #595959">Verificación</a>
 <img src="/images/email-verification.svg" alt style="height: calc(100vh / 4); margin-top: 50px">
 <a id="EmailSentTo" style="font-family: 'Prompt', sans-serif; font-size: 1em; margin-top: 50px"></a>
-<a onclick="window.location.href=window.location.href" style="width: 100px; height: 50px; border-radius: 8px; margin-top: 50px; cursor: pointer; background-color: #079292; color: white; font-family: 'Lato', sans-serif; display: flex; align-items: center; justify-content: center">Continuar</a>
 
 <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
 
@@ -32,59 +31,99 @@
 <script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
 
 <script src="/scripts/auth/email-verification.js"></script>
-
+<style>
+    *{
+        font-family: 'Lato', sans-serif !important;
+    }
+</style>
 <script>
     window.Swal = Swal
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            // User is signed in.
-            if (user.emailVerified === false) {
-                axios.post('/verify/email').then(function (response) {
-                    console.log(response)
-                    if (response.status == 200) {
+            if (user.emailVerified) {
+                user.getIdToken(true).then(function (idToken) {
+                    axios.post('/sessionLogin', { idToken: idToken }).then(function (response) {
                         Swal.fire({
-                            title: '¡Enviado!',
-                            text: 'Se ha enviado un correo electrónico a ' + user.email + ' para verificar su cuenta.',
-                            type: 'success',
-                            confirmButtonText: 'Continuar'
-                        })
-                    } else {
-                        Swal.fire({
-                            title: '¡Error!',
-                            text: 'No se ha podido enviar el correo electrónico. Por favor, inténtelo de nuevo más tarde.',
-                            type: 'error',
-                            confirmButtonText: 'Continuar'
-                        })
-                    }
-                })
-                //saveFirstBlankData()
+                            title: '¡Bienvenido!',
+                            text: 'Su correo ya se encuentra verificado',
+                            icon: 'success',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#079292',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
 
-                /*user.sendEmailVerification().then(function () {
-                    Swal.fire({
-                        title: 'Email de verificación enviado',
-                        text: 'Por favor verifique su email',
-                        icon: 'success',
-                        confirmButtonColor: '#079292',
-                    });
-                }).catch(function (error) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'No se pudo enviar el email de verificación',
-                        icon: 'error',
-                        confirmButtonColor: '#079292',
-                    });
-                });*/
+                        }).then((result) => {
+                            setTimeout(function () {
+                                window.location.href = '/'
+                            }, 1000)
+                        })
+                    }).catch(function (error) {
+                        console.log(error)
+                    })})
             } else {
-                user.getIdToken().then(function (idToken) {
-                    // Send token to your backend via HTTPS
-                    axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
-                        window.location.href = "/";
-                    })
-                }).catch(function (error) {
-                    console.error(error);
-                });
+                user.getIdToken(true).then(function (idToken) {
+                    axios.post('/sessionLogin', { idToken: idToken }).then(function (response) {
+                        if (response.status == 200) {
+                            //Show loading alert
+                            Swal.fire({
+                                title: 'Enviando correo de verificación',
+                                html: 'Por favor espere...',
+                                allowEscapeKey: false,
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                }
+                            });
+                            axios.post('/verify/email').then(function (response) {
+                                console.log(response)
+                                if (response.status == 200) {
+                                    Swal.fire({
+                                        title: '¡Enviado!',
+                                        text: 'Se ha enviado un correo electrónico a ' + user.email + ' para verificar su cuenta.',
+                                        confirmButtonText: 'Verificar',
+                                        confirmButtonColor: '#079292',
+                                        allowEscapeKey: false,
+                                        allowOutsideClick: false,
+                                        icon: 'success'
+                                    }).then(function () {
+                                        window.location.href = '/signin'
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title: '¡Error!',
+                                        text: 'No se ha podido enviar el correo electrónico. Por favor, inténtelo de nuevo más tarde.',
+                                        icon: 'error',
+                                        confirmButtonText: 'Intentar de nuevo',
+                                        confirmButtonColor: '#079292',
+                                        allowEscapeKey: false,
+                                        allowOutsideClick: false,
+                                    }).then(function () {
+                                        window.location.reload();
+                                    })
+                                }
+                            }).catch(function (error) {
+                                const errorCode = error.code || null;
+                                const errorMessage = error.message || null;
 
+                                Swal.fire({
+                                    title: '¡Error!',
+                                    text: 'No se ha podido enviar el correo electrónico. Por favor, inténtelo de nuevo más tarde.',
+                                    icon: 'error',
+                                    confirmButtonText: 'Intentar de nuevo',
+                                    confirmButtonColor: '#079292',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                }).then(function () {
+                                    window.location.reload();
+                                })
+                            })
+                        }
+                    })
+
+                })
             }
+            // User is signed in.
+
         } else {
             window.location = 'signin.html';
         }

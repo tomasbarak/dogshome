@@ -5,38 +5,19 @@ const axios = require('axios');
 function init(app, firebaseAdmin, firebaseApp, database) {
     //Setting up index route
     app.get(['/', '/index', '/index.html', '/inicio'], (req, res) => {
-        const token = req.cookies.session || ' ';
+        const isPrivate =       res.locals.isPrivate;
+        const isVerified =      res.locals.isVerified;
+        const user =            res.locals.user || {};
 
-        const db = database.getDatabase(firebaseApp);
-        const recentPostsRef = database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
-        const get = database.get;
+        const db =              database.getDatabase(firebaseApp);
+        const recentPostsRef =  database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
+        const get =             database.get;
 
         get(recentPostsRef).then((snapshot) => {
-            var json_data = snapshot.val();
-            var result = [];
+            var json_data =     snapshot.val();
+            const result =      createArrayFromJson(json_data);
 
-            for (var i in json_data) {
-                result.push([json_data[i]]);
-            }
-
-            firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
-                if (decodedIdToken.email_verified) {
-                    let parsedDisplayName = JSON.parse(decodedIdToken.name);
-                    res.render(appDir + '/public/index', {
-                        uid: decodedIdToken.user_id,
-                        displayName: parsedDisplayName.nameAndSurname.displayName,
-                        name: parsedDisplayName.nameAndSurname.name,
-                        surname: parsedDisplayName.nameAndSurname.surname,
-                        photoUrl: decodedIdToken.picture,
-                        publications: result,
-                        isPrivate: false
-                    });
-                } else {
-                    console.log(decodedIdToken.email_verified);
-                    res.redirect('/verification');
-                }
-            }).catch((error) => {
-                console.log(error);
+            if (isPrivate) {
                 res.render(appDir + '/public/index', {
                     uid: '',
                     displayName: 'Cuenta Privada',
@@ -46,13 +27,40 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                     publications: result,
                     isPrivate: true
                 });
-            });
+            } else if (isVerified) {
 
+                let name =                          user.name || '{}';
+                let parsedDisplayName =             JSON.parse(name);
+                const nameAndSurname =              parsedDisplayName.nameAndSurname || {};
+                const nameAndSurname_name =         nameAndSurname.name || ' ';
+                const nameAndSurname_surname =      nameAndSurname.surname || ' ';
+                const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
+
+                res.render(appDir + '/public/index', {
+                    uid: user.user_id,
+                    displayName: nameAndSurname_fullName || ' ',
+                    name: nameAndSurname_name || ' ',
+                    surname: nameAndSurname_surname || ' ',
+                    photoUrl: user.picture,
+                    publications: result,
+                    isPrivate: false
+                });
+            } else if (!isVerified) {
+                res.redirect('/verification');
+            }
         }).catch((error) => {
             res.status(500).send(error);
         });
 
     });
+    function createArrayFromJson(json_data) {
+        var result = [];
+
+        for (var i in json_data) {
+            result.push([json_data[i]]);
+        }
+        return result;
+    }
 }
 
 module.exports = { init };
