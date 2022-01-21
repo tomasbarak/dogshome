@@ -1,27 +1,13 @@
-<style>
-    #name-and-surname{
-        display: flex; 
-        flex-direction: column; 
-        width: fit-content;
-    }
-</style>
 <div class="action-container">
-    <div id="name-and-surname">
-        <div class="input-container">
-            <label for="name" style="margin-bottom: 15px; font-size: 12pt">Nombre: </label>
-            <input placeholder="Nombre" id="name" type="text" onkeypress="enter()">
-        </div>
-        <div class="input-container">
-            <label for="surname" style="margin-bottom: 15px; font-size: 12pt">Apellido: </label>
-            <input placeholder="Apellido" id="surname" autocomplete="off" type="text">
-        </div>
+    <div class="input-container">
+        <label for="refugio-name" style="margin-bottom: 15px; font-size: 12pt">Nombre del refugio: </label>
+        <input placeholder="Nombre" id="refugio-name" type="text" onkeypress="enter()">
     </div>
 </div>
 <script>
     function sendData() {
         const dataToSend = {
-            name: document.getElementById('name').value,
-            surname: document.getElementById('surname').value
+            shelterName: document.getElementById('refugio-name').value
         }
         //Show loading swal
         Swal.fire({
@@ -37,8 +23,8 @@
         });
         axios.post('https://127.0.0.1/profile/creation/<%=sendDataPath%>', dataToSend).then(function (response) {
             Swal.fire({
-                title: 'Perfecto!',
-                text: 'Tu nombre y apellido se han guardado correctamente, te estamos llevando al siguiente paso',
+                title: 'Fácil!',
+                text: 'El nombre del refugio se guardó correctamente, el siguiente paso esta cerca',
                 icon: 'success',
                 allowOutsideClick: false,
                 allowEscapeKey: false,

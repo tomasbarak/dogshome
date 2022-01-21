@@ -1,0 +1,179 @@
+<style>
+    .account-type-option {
+        transition: 0.5s;
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        height: 150px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0);
+        padding: 8px;
+    }
+
+    .acc-type-selected {
+        border: 1px solid #079292;
+    }
+
+    .acc-type-unselected {
+        border: 1px solid rgba(0, 0, 0, 0);
+    }
+
+    .account-type-option-container {
+        width: auto;
+        height: auto;
+
+    }
+
+    #account-type {
+        display: flex;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .account-type-option:hover {
+        transition: 0.5s;
+        border: 1px solid #079292;
+        transform: scale(1.01);
+    }
+
+    #account-types-container {
+        margin-bottom: 8px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #acc-type-lbl1 {
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        color: #222222;
+        width: calc(100%);
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    #acc-type-cont1 {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+    }
+    @media screen and (max-width: 480px){
+    #account-types-container{
+        flex-direction: column;
+    }
+    #acc-type-cont1{
+        margin-left: 0;
+    }
+    .account-type-option{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+</style>
+<div class="action-container">
+    <div id="account-type" class="signup-instance" style="display: flex; flex-direction: column;">
+        <div id="account-types-container">
+            <div class="account-type-option-container" id="acc-type-cont1" onclick="accTypeSelection = 1; setAccTypeSelection(1)">
+                <div id="adoptante" class="account-type-option acc-type-unselected" style="">
+                    <img src="/images/adoptant.svg" alt width="100%" height="100%">
+                </div>
+                <a id="acc-type-lbl1">Adoptante</a>
+            </div>
+            <div class="account-type-option-container" id="acc-type-cont2" style="display: flex; flex-direction: column; margin: 0 15px;" onclick="accTypeSelection = 2; setAccTypeSelection(2)">
+                <div id="refugio" class="account-type-option acc-type-unselected" style="">
+                    <img src="/images/shelter.svg" alt width="100%" height="100%">
+                </div>
+                <a style="margin-right: 15px; font-family: 'Lato', sans-serif; font-size: 12px; color: #222222; width: calc(100% - 0px); margin-top: 8px; text-align: center">Refugio</a>
+            </div>
+            <div class="account-type-option-container" id="acc-type-cont3" style="display: flex; flex-direction: column;" onclick="accTypeSelection = 3; setAccTypeSelection(3)">
+                <div  id="rescatista" class="account-type-option acc-type-unselected">
+                    <img src="/images/single-shelter.svg" alt width="100%" height="100%">
+                </div>
+                <a style="margin-right: 15px; font-family: 'Lato', sans-serif; font-size: 12px; color: #222222; width: calc(100% - 0px); margin-top: 8px; text-align: center">Rescatista</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function setAccTypeSelection(selection) {
+        var accountTypesContainer = document.getElementById('account-types-container');
+
+        var accountTypes = accountTypesContainer.getElementsByClassName('account-type-option-container');
+
+        switch (selection) {
+            case 1:
+                document.getElementById('adoptante').className = 'account-type-option acc-type-selected';
+                document.getElementById('refugio').className = 'account-type-option acc-type-unselected';
+                document.getElementById('rescatista').className = 'account-type-option acc-type-unselected';
+                break;
+            case 2:
+                document.getElementById('adoptante').className = 'account-type-option acc-type-unselected';
+                document.getElementById('refugio').className = 'account-type-option acc-type-selected';
+                document.getElementById('rescatista').className = 'account-type-option acc-type-unselected';
+                break;
+            case 3:
+                document.getElementById('adoptante').className = 'account-type-option acc-type-unselected';
+                document.getElementById('refugio').className = 'account-type-option acc-type-unselected';
+                document.getElementById('rescatista').className = 'account-type-option acc-type-selected';
+                break;
+        }
+    }
+
+    function sendData() {
+        let selected = document.getElementsByClassName('acc-type-selected');
+        var accType = selected[0].id;
+        const allOptions = [null, 'adoptante', 'refugio', 'rescatista'];
+        console.log(accType);
+        dataToSend = {
+            accTypeName: accType,
+            accTypeNum: allOptions.indexOf(accType)
+        }
+        //Show loading swal
+        Swal.fire({
+            title: 'Estamos guardando tus datos',
+            text: 'Esperá un momento',
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+
+        });
+        axios.post('https://127.0.0.1/profile/creation/<%=sendDataPath%>', dataToSend).then(function (response) {
+            Swal.fire({
+                title: 'Seguí asi!',
+                text: 'Tu tipo de cuenta se establecó correctamente, esperá mientras te dirigimos a tu siguiente paso',
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                timerProgressBarColor: '#079292'
+            }).then(function () {
+                window.location.reload();
+            })
+        }).catch(function (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intenta de nuevo.',
+            })
+        });
+    }
+</script>

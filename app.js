@@ -64,39 +64,39 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
       res.locals.isPrivate = false;
       res.locals.user = decodedIdToken;
-      let creationInstance = 0;
-      if(req.method == 'GET'){
-        isFirstTime(decodedIdToken.uid).then((snapshot) => {
-          const creationInstance = snapshot.val() || 0;
+      isFirstTime(decodedIdToken.uid).then((snapshot) => {
+        const creationInstance = snapshot.val() || 0;
+        res.locals.creationInstance = creationInstance
+        if (req.method == 'GET') {
           const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'therms-and-conditions']
-          res.locals.creationInstance = creationInstance;
           console.log('creationInstance', creationInstance);
           console.log('Requested Path:', req.path);
           console.log('Requested Path 2:', req.path.substring(req.path.lastIndexOf('/')));
           if (decodedIdToken.email_verified) {
             res.locals.isVerified = true;
-            if(creationInstance < 10 && req.path !== `/profile/creation/${creationRoutes[creationInstance]}`){
+            if (creationInstance < 10 && req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
               res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
               console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
-            }else{
+            } else {
               next();
             }
-  
+
           } else {
             res.locals.isVerified = false;
             next();
           }
-        })
-      }else{
-        if (decodedIdToken.email_verified) {
-          res.locals.isVerified = true;
-          next();
         } else {
-          res.locals.isVerified = false;
-          next();
+          if (decodedIdToken.email_verified) {
+            res.locals.isVerified = true;
+            next();
+          } else {
+            res.locals.isVerified = false;
+            next();
+          }
         }
-      }
-      
+      }).catch((error) => {
+        res.status(500).send(error);
+      })
     }).catch((error) => {
       res.locals.authError = error;
       res.locals.isPrivate = true;

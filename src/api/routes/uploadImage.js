@@ -19,7 +19,7 @@ function init(app, firebaseAdmin, database, firebaseApp) {
             authRequest.getUIDFromReq(req).then(uid => {
                 cb(null, String(uid) + '.jpg');
             })
-            
+
         },
         limits: {
             fileSize: 1000000,
@@ -39,7 +39,7 @@ function init(app, firebaseAdmin, database, firebaseApp) {
     const changeProfilePhotoURL = async function (uid, photoURL) {
         await firebaseAdmin.auth().updateUser(uid, { photoURL: String(photoURL) })
     }
-    
+
     const changeProfilePhotoDB = async function (uid, photoURL) {
         const db = firebaseAdmin.database();
         const ref = db.ref('Users/' + uid + '/PublicRead/');
@@ -48,28 +48,36 @@ function init(app, firebaseAdmin, database, firebaseApp) {
         ref.update({
             'Photo': photoURL,
         });
-        
+
     }
     app.post('/profile/upload/image/', authentication, upload.single('upload'), function (req, res, next) {
         console.log(logColor.debug, 'Profile upload images accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
         res.header('Access-Control-Allow-Origin', '*');
-
-        authRequest.getUIDFromReq(req).then(uid => {
-            console.log(uid)
-            let photoURL = 'https://api.softvisiondevelop.com.ar/profile/image/uploaded/' + req.file.filename;
-            changeProfilePhotoURL(uid, photoURL).then(() => {
-                changeProfilePhotoDB(uid, photoURL).then(() => {
-                    res.status(200).send({ 'url': photoURL });
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const user = res.locals.user;
+        const uid = user.uid;
+        if (!isPrivate) {
+            if (isVerified) {
+                console.log(uid)
+                let photoURL = 'https://api.softvisiondevelop.com.ar/profile/image/uploaded/' + req.file.filename;
+                changeProfilePhotoURL(uid, photoURL).then(() => {
+                    changeProfilePhotoDB(uid, photoURL).then(() => {
+                        res.status(200).send({ 'url': photoURL });
+                    }).catch(err => {
+                        console.log(err)
+                        res.status(500).send({ 'error': 'Error updating photo (DB)' });
+                    })
                 }).catch(err => {
                     console.log(err)
-                    res.status(500).send({ 'error': 'Error updating photo (DB)' });
+                    res.status(500).send({ 'error': 'Error updating photo' });
                 })
-            }).catch(err => {
-                console.log(err)
-                res.status(500).send({ 'error': 'Error updating photo' });
-            })
-        });
-
+            }else{
+                res.status(403).send({ 'error': 'User not verified' });
+            }
+        }else{
+            res.status(401).send('Not authorized');
+        }
     })
 
 }
