@@ -11,14 +11,15 @@
 </div>
 <script>
     function sendData() {
+        axios.defaults.withCredentials = true;
         var formData = new FormData();
         var imagefile = document.querySelector('#upload-photo');
         formData.append("file", imagefile.files[0]);
         axios.post('https://dogshome.com.ar/profile/upload/image/', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'Cookies': document.cookie
             },
-            withCredentials: true
         }).then(function(response){
             console.log(response.data.photoURL);
         }).catch(function (error){
