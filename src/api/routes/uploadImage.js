@@ -43,7 +43,7 @@ function init(app, firebaseAdmin, database, firebaseApp) {
         const uid = user.uid;
         if (!isPrivate) {
             if (isVerified) {
-                console.log(uid)
+                console.log(req.body);
                 let photoURL = 'https://api.softvisiondevelop.com.ar/profile/image/uploaded/' + req.body.file.filename;
                 res.send({ photoURL: photoURL });
             }else{
