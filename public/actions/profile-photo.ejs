@@ -1,25 +1,29 @@
 <style>
-    #name-and-surname{
-        display: flex; 
-        flex-direction: column; 
-        width: fit-content;
-    }
+    
 </style>
 <div class="action-container">
-    <div id="name-and-surname">
-        <div class="input-container">
-            <label for="name" style="margin-bottom: 15px; font-size: 12pt">Nombre: </label>
-            <input placeholder="Nombre" id="name" type="text" onkeypress="enter()">
-        </div>
-        <div class="input-container">
-            <label for="surname" style="margin-bottom: 15px; font-size: 12pt">Apellido: </label>
-            <input placeholder="Apellido" id="surname" autocomplete="off" type="text">
-        </div>
+    <div class="input-container" style="align-items: center !important;">
+        <label for="upload-photo" id="upload-profile-image-button">
+            <img id="profile-image-upload-cont" src="/images/Gallery.svg" alt height="50" width="50">
+        </label>
+        <input type="file" accept="image/png, image/gif, image/jpeg" name="photo" id="upload-photo" onchange=""/>
     </div>
 </div>
 <script>
     function sendData() {
-        const dataToSend = {
+        var formData = new FormData();
+        var imagefile = document.querySelector('#upload-photo');
+        formData.append("image", imagefile.files[0]);
+        axios.post('https://dogshome.com.ar/profile/upload/image/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(function(response){
+            console.log(response);
+        }).catch(function (error){
+            console.log(error)
+        })
+        /*const dataToSend = {
             name: document.getElementById('name').value,
             surname: document.getElementById('surname').value
         }
@@ -56,6 +60,6 @@
                 title: 'Oops...',
                 text: 'Algo salió mal, intenta de nuevo.',
             })
-        });
+        });*/
     }
 </script>
