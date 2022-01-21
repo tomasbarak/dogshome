@@ -64,6 +64,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
       res.locals.isPrivate = false;
       res.locals.user = decodedIdToken;
+      req.user_authenticated_id = decodedIdToken.uid;
       isFirstTime(decodedIdToken.uid).then((snapshot) => {
         const creationInstance = snapshot.val() || 0;
         res.locals.creationInstance = creationInstance
