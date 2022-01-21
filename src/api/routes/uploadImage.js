@@ -44,7 +44,7 @@ function init(app, firebaseAdmin, database, firebaseApp) {
         if (!isPrivate) {
             if (isVerified) {
                 console.log(uid)
-                let photoURL = 'https://api.softvisiondevelop.com.ar/profile/image/uploaded/' + req.file.filename;
+                let photoURL = 'https://api.softvisiondevelop.com.ar/profile/image/uploaded/' + req.body.file.filename;
                 res.send({ photoURL: photoURL });
             }else{
                 res.status(403).send({ 'error': 'User not verified' });
