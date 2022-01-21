@@ -18,6 +18,7 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/index')                  .init(app, firebaseadmin, firebaseApp, database);
     require( appDir + '/src/api/routes/webPage/profile')                .init(app, database, firebaseadmin, firebaseApp);
     require( appDir + '/src/api/routes/webPage/publication')            .init(app, database, firebaseadmin, firebaseApp);
+    require( appDir + '/src/api/routes/create/profile/create-profile')    .init(app, database, firebaseadmin, firebaseApp);
     require( appDir + '/src/api/routes/webPage/createSession')          .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signin')                 .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signup')                 .init(app, firebaseadmin);

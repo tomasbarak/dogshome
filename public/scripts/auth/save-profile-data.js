@@ -158,18 +158,6 @@ function updateProfileDisplayName(name, surname) {
                 }
             });
         }
-
-        /*function saveBlankPostsId() {
-            firebase.database().ref('Users/' + user.uid + "/PublicRead/PostsIds").update({
-                0: "firstPost"
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    console.log("Success");
-                }
-            });
-        }*/
     }
     function saveUserPhoneNumber(phone){
         const user = firebase.auth().currentUser;

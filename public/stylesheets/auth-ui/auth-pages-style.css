@@ -1,16 +1,16 @@
 html, body {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: auto;
     min-height: 500px;
     padding-bottom: 10px;
-    overflow-y: hidden !important;
-
 }
-
+body.swal2-height-auto{
+    height: 100% !important;
+}
 * {
     margin: 0;
     padding: 0;

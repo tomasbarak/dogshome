@@ -5,20 +5,17 @@ const axios = require('axios');
 function init(app, firebaseAdmin) {
     //Setting up login route
     app.get(['/verification.html', '/verification'], (req, res) => {
-        const token = req.cookies.session || ' ';
+        const isPrivate =       res.locals.isPrivate;
+        const isVerified =      res.locals.isVerified;
         
-        if(token){
-            firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
-                if(decodedIdToken.email_verified){
-                    res.redirect('/');
-                }else{
-                    res.render(appDir + '/public/verification');
-                }
-            }).catch((error) => {
-                res.render(appDir + '/public/signup');
-            });
+        if (!isPrivate){
+            if(isVerified){
+                res.redirect('/');
+            }else{
+                res.render(appDir + '/public/verification');
+            }
         }else{
-            res.render(appDir + '/public/signup',);
+            res.redirect('/signin');
         }
     });
 }

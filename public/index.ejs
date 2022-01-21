@@ -43,7 +43,7 @@
 
         <div id="search-bar">
             <div class="top-bar-section-cont" style="flex-direction: row; align-items: center;">
-                <img src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo"
+                <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo"
                     style="height: 50px; width: 50px; margin-right: 10px">
 
                 <a id="alerts-button" class="desktop-elements nav-buttons" onclick="navigateToAlerts()">Alertas</a>
@@ -69,11 +69,11 @@
                 <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px"
                     onclick="navigateToProfile()"></a>
                 <% if (isPrivate) {%>
-                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %>
+                    <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %>
                     alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                     none; border-radius: 80px; object-fit: cover">
                 <% } else { %>
-                    <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/perfil/<%= uid %>'" src=<%=photoUrl %>
+                    <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/perfil/<%= uid %>'" src=<%=photoUrl %>
                     alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                     none; border-radius: 80px; object-fit: cover">
                 <% } %>   
@@ -82,7 +82,7 @@
         </div>
         <div class="expandible-menu-invisible" id="expandible-menu">
             <div class="expandible-menu-option-cont" id="name-option-exp-menu">
-                <img class="" id="profile-pic-exp-menu" src=<%=photoUrl %> alt="profile pic" style="height: 55px; width:
+                <img loading="lazy" class="" id="profile-pic-exp-menu" src=<%=photoUrl %> alt="profile pic" style="height: 55px; width:
                 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
                 <a id="exp-menu-name">
                     <%= displayName %>
@@ -162,7 +162,7 @@
                 <% publications.forEach(function(post){%>
                     <div class="publication"
                         onclick="{let uid = '<%= post[0].Id %>'; window.location = '/publicacion/' + uid}">
-                        <img src=<%=post[0].Photo %> alt class="publication-photo">
+                        <img loading="lazy" src=<%=post[0].Photo %> alt class="publication-photo">
                         <div class="publication-desc-cont">
                             <h1 class="publication-name">
                                 <%= post[0].Name %>
