@@ -114,11 +114,55 @@
         font-size: 15px;
         text-decoration: none;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, .75);
+        cursor: pointer;
+    }
+    #logout-button{
+        transition: .5s;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        font-size: 15px;
+        text-decoration: none;
+        box-shadow: none;
+        cursor: pointer;
+    }
+    #logout-button:hover{
+        transition: .5s;
+        color: rgb(200, 0, 0)
     }
     #next-button:hover{
         transition: .5s;
         background-color: rgb(17, 156, 156);
         box-shadow: 0px 0px 10px rgba(7, 146, 146, .75);
+    }
+    textarea{
+        border: 2px solid #d3d3d3;
+        border-radius: 8px;
+    }
+    #action-buttons-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+    }
+    #skip-button{
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    #action-btn-subcontainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
     }
     @media screen and (max-width: 1024px){
         input{
@@ -159,9 +203,64 @@
             <%- include('./actions/' + actionRawName + '.ejs'); %>
         </div>
         <div id="buttons-container">
-            <a id="next-button" onclick="sendData()">Siguiente</a>
+            <div id="action-buttons-container">
+                <% if (skippable) { %>
+                    <a id="skip-button" onclick="skipStep()">Saltar</a>
+                <% } %>
+                <div id="action-btn-subcontainer">
+                    <% if (canGoBack) { %>
+                        <svg id="back-button" style="margin-bottom: 8px; margin-right: 5px; cursor: pointer; display: flex;" onclick="goBack()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M9.78 12.78a.75.75 0 01-1.06 0L4.47 8.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L6.06 8l3.72 3.72a.75.75 0 010 1.06z"></path></svg>
+                    <% } %>
+                    <a id="next-button" onclick="sendData()">Siguiente</a>
+                </div>
+            </div>
+            <a id="logout-button" onclick="logout()">Cerrar sesión</a>
         </div>
     </div>
 </body>
-
+<script>
+    function logout(){
+        Swal.fire({
+            title: 'Cerrando Sesión',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        })
+        axios.post(`https://${window.location.host}/sessionLogout`)
+            .then(function (response) {
+                Swal.close();
+                window.location = '/signin';
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+<% if (canGoBack) { %>
+    <script>
+        function goBack() {
+            Swal.fire({
+                title: 'Retrocediendo',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            })
+            axios.post(`https://${window.location.host}/profile/creation/step/back`)
+                .then(function (response) {
+                    window.location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
+<% } %>
 </html>

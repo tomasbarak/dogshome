@@ -1,0 +1,96 @@
+<style>
+    #name-and-surname{
+        display: flex; 
+        flex-direction: column; 
+        width: fit-content;
+    }
+</style>
+<div class="action-container">
+    <div class="input-container">
+        <label for="refugio-name" style="margin-bottom: 15px; font-size: 12pt">Descripción corta: </label>
+        <textarea maxlength="140" onfocus="this.maxLength = 140" onfocusout="this.maxLength = 140" onchange="this.maxLength = 140" oninput="document.getElementById('short-desc-length').innerText = this.value.length + '/140'; this.maxLength = 140" style="resize: none; overflow: hidden; width: 100%; height: 100px; box-sizing: border-box; padding: 5px; min-width: 600px;" placeholder="Escribí tu descripción corta(máx. 140 caracteres)" id="short-desc" type="text" onkeypress="enter()"></textarea>
+        <a id="short-desc-length" style="width: 100%; text-align: end; font-size: 10px; margin-top: 5px; color: #079292">0/140</a>
+    </div>
+</div>
+<script>
+    function sendData() {
+        const dataToSend = {
+            short_description: document.getElementById('short-desc').value
+        }
+        //Show loading swal
+        Swal.fire({
+            title: 'Estamos guardando tus datos',
+            text: 'Esperá un momento',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+            Swal.fire({
+                title: 'Queda poco!',
+                text: 'La descripción de tu perfil se guardó correctamente, redirigiendote al siguiente paso',
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                timerProgressBarColor: '#079292'
+            }).then(function () {
+                window.location.reload();
+            })
+        }).catch(function (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intenta de nuevo.',
+            })
+        });
+    }
+</script>
+<script>
+    function skipStep() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const dataToSend = {
+                    short_description: null,
+                }
+                axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                    Swal.fire({
+                        title: 'Todo correcto!',
+                        text: 'El paso se saltó, redirigiendo al siguiente',
+                        icon: 'warning',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        timerProgressBarColor: '#079292'
+                    }).then(function () {
+                        window.location.reload();
+                    })
+                }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo.',
+                    })
+                });
+            }
+        })
+    }
+</script>

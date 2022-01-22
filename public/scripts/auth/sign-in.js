@@ -35,7 +35,6 @@ function signIn(email, password) {
 
                 localStorage.setItem("userDataMail", email);
                 console.log(email);
-                authStateListener();
             })
             .catch((error) => {
                 var errorCode = error.code;

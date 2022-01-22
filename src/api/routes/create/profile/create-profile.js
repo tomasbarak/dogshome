@@ -3,6 +3,47 @@ const appDir = dirname(require.main.filename);
 const axios = require('axios');
 
 function init(app, database, firebaseAdmin, firebaseApp) {
+    app.get('/profile/creation/*', (req, res, next) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        if(!isPrivate){
+            if(!isVerified){
+                res.redirect('/inicio');
+            }else{
+                next();
+            }
+        }else{
+            res.redirect('/inicio');
+        }
+    })
+    app.post('/profile/creation/step/back', (req, res, next) => {
+        let creationInstance = res.locals.creationInstance;
+        const accType = res.locals.accType || {};
+        const accTypeNum = accType.TypeNum;
+        const uid = res.locals.user.uid;
+        if(creationInstance > 0){
+            if(creationInstance === 8 || creationInstance === 7 && accTypeNum === 1){
+                creationInstance = 5;
+            }else if(creationInstance === 8 || creationInstance === 7 && accTypeNum !== 1){
+                creationInstance--;
+            }else if(creationInstance === 3 && accTypeNum === 2){
+                creationInstance--;
+            }else if(creationInstance === 3 && accTypeNum !== 2){
+                creationInstance = 1;
+            }else{
+                creationInstance--;
+            }
+            const db = firebaseAdmin.database();
+            const user_profile = db.ref(`Users/${uid}/PublicRead`);     
+            user_profile.update({
+                CreationInstance: creationInstance
+            }).then(() => {
+                res.send({'Success': true});
+            }).catch((error) => {
+                res.status(500).send(error);
+            });
+        }
+    })
     app.get('/profile/creation/start', (req, res) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;
@@ -19,6 +60,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     action: 'Ingresá tu nombre y apellido',
                     actionRawName: 'name-and-surname',
                     sendDataPath: 'start',
+                    skippable: false,
+                    canGoBack: false,
                 });
             }
         } else {
@@ -77,6 +120,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     action: 'Elegí el tipo de cuenta',
                     actionRawName: 'profile-type',
                     sendDataPath: 'profile-type',
+                    skippable: false,
+                    canGoBack: true,
                 });
             }
         }
@@ -131,6 +176,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     action: 'Ingresá el nombre del refugio',
                     actionRawName: 'shelter-name',
                     sendDataPath: 'shelter-name',
+                    skippable: false,
+                    canGoBack: true,
                 });
             }
         }
@@ -177,6 +224,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     action: 'Subí tu foto de perfil',
                     actionRawName: 'profile-photo',
                     sendDataPath: 'profile-photo',
+                    skippable: true,
+                    canGoBack: true,
                 });
             }
         }
@@ -230,11 +279,150 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     action: 'Ingresá tu número de teléfono',
                     actionRawName: 'phone',
                     sendDataPath: 'phone',
+                    skippable: true,
+                    canGoBack: true,
                 });
             }
         }
     });
+
+    app.post('/profile/creation/phone', (req, res) => {
+        const libphonenumber = require('libphonenumber-js');
+        const creationInstance = res.locals.creationInstance;
+        let targetCreatioInstance = 5;
+        const allowedInstance = 4;
+        if (allowedInstance === creationInstance) {
+            const uid = res.locals.user.uid;
+            const db = firebaseAdmin.database();
+            const user_profile = db.ref(`Users/${uid}/PublicRead`);
+            const { phone_number, phone_country_code, phone_country_iso } = req.body;
+            user_profile.update({
+                CreationInstance: targetCreatioInstance,
+                Contact:{
+                    Phone: phone_number,
+                    PhoneCountryCode: phone_country_code,
+                    PhoneCountryISO: phone_country_iso,
+
+                }
+            }, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).send({ error: error });
+                } else {
+                    res.status(200).send({ redirectRoute: '/profile/creation/email' });
+                }
+            });
+        } else {
+            res.status(401).send('Not authorized');
+        }
+
+    });
+
+    app.get('/profile/creation/short-description', (req, res) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const creationInstance = res.locals.creationInstance;
+        const user = res.locals.user || {};
+        
+        if (!isPrivate) {
+            if (isVerified) {
+                res.render(appDir + '/public/create-profile.ejs', {
+                    uid: user.user_id,
+                    creationInstance: creationInstance,
+                    isVerified: isVerified,
+                    isPrivate: isPrivate,
+                    action: 'Ingresá una descripción corta para tu perfil',
+                    actionRawName: 'short-description',
+                    sendDataPath: 'short-description',
+                    skippable: false,
+                    canGoBack: true,
+                });
+            }
+        }
+        
+    });
+    app.post('/profile/creation/short-description', (req, res) => {
+        const creationInstance = res.locals.creationInstance;
+        const accType = res.locals.accType;
+        const accTypeNum = accType.TypeNum;
+        let targetCreationInstance;
+        accTypeNum === 1 ? targetCreationInstance = 8 : targetCreationInstance = 6;
+        const allowedInstance = 5;
+        if (allowedInstance === creationInstance) {
+            const { short_description } = req.body;
+            console.log(short_description.length);
+            if(short_description.length <= 141){
+                const uid = res.locals.user.uid;
+                const db = firebaseAdmin.database();
+                const user_profile = db.ref(`Users/${uid}/PublicRead`);
+                user_profile.update({
+                    CreationInstance: targetCreationInstance,
+                    ShortDescription: short_description,
+                }, (error) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500).send({ error: error });
+                    } else {
+                        res.status(200).send({ redirectRoute: '/profile/creation/long-description' });
+                    }
+                });
+            }else{
+                res.status(413).send('La descripción es demasiado larga');
+            }
+            
+        } else {
+            res.status(401).send('Not authorized');
+        }
+    });
     
+    app.get('/profile/creation/web-site', (req, res) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const creationInstance = res.locals.creationInstance;
+        const user = res.locals.user || {};
+
+        if (!isPrivate) {
+            if (isVerified) {
+                res.render(appDir + '/public/create-profile.ejs', {
+                    uid: user.user_id,
+                    creationInstance: creationInstance,
+                    isVerified: isVerified,
+                    isPrivate: isPrivate,
+                    action: 'Ingresá tu página web',
+                    actionRawName: 'web-site',
+                    sendDataPath: 'web-site',
+                    skippable: true,
+                    canGoBack: true,
+                });
+            }
+        }
+    });
+    app.post('/profile/creation/web-site', (req, res) => {
+        const creationInstance = res.locals.creationInstance;
+        const accType = res.locals.accType;
+        const accTypeNum = accType.TypeNum;
+        let targetCreationInstance = 7;
+        const allowedInstance = 6;
+        if (allowedInstance === creationInstance) {
+            const { web_site } = req.body;
+            const uid = res.locals.user.uid;
+            const db = firebaseAdmin.database();
+            const user_profile = db.ref(`Users/${uid}/PublicRead`);
+            user_profile.update({
+                CreationInstance: targetCreationInstance,
+                WebSite: web_site,
+            }, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).send({ error: error });
+                } else {
+                    res.status(200).send({ redirectRoute: '/profile/creation/social-networks' });
+                }
+            });
+        } else {
+            res.status(401).send('Not authorized');
+        }
+    })
 }
 
 module.exports = { init };
