@@ -27,6 +27,25 @@ function init(app, firebaseAdmin) {
                 }
             );
     });
+    app.post('/sessionLogout', (req, res) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        // Delete the session cookie.
+        const user = res.locals.user;
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        if(!isPrivate){
+            res.clearCookie('session');
+            firebaseAdmin.auth().revokeRefreshTokens(user.uid).then(() => {
+                res.send('Logged out');
+            }).catch((error) => {
+                console.log(error)
+                res.status(500).send(error);
+            });
+        }else{
+            res.status(401).send('Private account');
+        }
+        
+    })
 }
 
 module.exports = { init };

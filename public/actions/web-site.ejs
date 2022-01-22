@@ -1,0 +1,106 @@
+<div class="action-container">
+    <div class="input-container">
+        <label for="website" style="margin-bottom: 15px; font-size: 12pt">Sitio: </label>
+        <div id="web-input-container">
+            <span id="web-prefix">www.</span>
+            <input placeholder="ejemplo.com" id="website" type="url" onkeypress="enter()">
+        </div>
+    </div>
+</div>
+<script>
+    const { URL, parse } = require('url');
+
+    const stringIsAValidUrl = (s, protocols) => {
+        try {
+            new URL(s);
+            const parsed = parse(s);
+            return protocols
+                ? parsed.protocol
+                    ? protocols.map(x => `${x.toLowerCase()}:`).includes(parsed.protocol)
+                    : false
+                : true;
+        } catch (err) {
+            return false;
+        }
+    };
+    function sendData() {
+        const dataToSend = {
+            shelterName: document.getElementById('refugio-name').value
+        }
+        //Show loading swal
+        Swal.fire({
+            title: 'Estamos guardando tus datos',
+            text: 'Esperá un momento',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+            Swal.fire({
+                title: 'Muy Bien!',
+                text: 'Tu web ahora será visible en la página de tu perfil',
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                timerProgressBarColor: '#079292'
+            }).then(function () {
+                window.location.reload();
+            })
+        }).catch(function (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intenta de nuevo.',
+            })
+        });
+    }
+</script>
+<script>
+    function skipStep() {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar'
+        }).then((result) => {
+            if (result.value) {
+                const dataToSend = {
+                    web_site: null,
+                }
+                axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                    Swal.fire({
+                        title: 'Todo correcto!',
+                        text: 'El paso se saltó, redirigiendo al siguiente',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        timerProgressBarColor: '#079292'
+                    }).then(function () {
+                        window.location.reload();
+                    })
+                }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo.',
+                    })
+                });
+            }
+        })
+    }
+</script>

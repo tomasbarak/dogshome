@@ -101,3 +101,20 @@
 
     }
 </script>
+<script>
+    function skipStep(){
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+            }
+        })
+    }
+</script>

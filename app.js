@@ -67,22 +67,23 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       res.locals.user = decodedIdToken;
       req.user_authenticated_id = decodedIdToken.uid;
       isFirstTime(decodedIdToken.uid).then((snapshot) => {
-        const creationInstance = snapshot.val() || 0;
+        const snapshotVal = snapshot.val();
+        res.locals.accType = snapshotVal.Type;
+        const creationInstance = snapshotVal.CreationInstance || 0;
         res.locals.creationInstance = creationInstance
         if (req.method == 'GET') {
           const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'therms-and-conditions']
-          console.log('creationInstance', creationInstance);
-          console.log('Requested Path:', req.path);
-          console.log('Requested Path 2:', req.path.substring(req.path.lastIndexOf('/')));
+          console.log('Type', res.locals.accType);
           if (decodedIdToken.email_verified) {
             res.locals.isVerified = true;
             if (creationInstance < 10 && req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
-              res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
+              console.log('Creation instance', creationInstance);
               console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
+              console.log(req.path);
+              res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
             } else {
               next();
             }
-
           } else {
             res.locals.isVerified = false;
             next();
@@ -110,7 +111,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
     const { ref, get, getDatabase, query } = database;
 
     const db = getDatabase(firebaseApp);
-    const user_profile = query(ref(db, `Users/${user_id}/PublicRead/CreationInstance`));
+    const user_profile = query(ref(db, `Users/${user_id}/PublicRead/`));
 
     return get(user_profile);
   }
