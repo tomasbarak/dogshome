@@ -41,39 +41,40 @@
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             if (user.emailVerified) {
-                user.getIdToken(true).then(function (idToken) {
-                    axios.post('/sessionLogin', { idToken: idToken }).then(function (response) {
-                        Swal.fire({
-                            title: '¡Bienvenido!',
-                            text: 'Su correo ya se encuentra verificado',
-                            icon: 'success',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#079292',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
+                Swal.fire({
+                    title: '¡Bienvenido!',
+                    text: 'Su correo ya se encuentra verificado',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#079292',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
 
-                        }).then((result) => {
-                            setTimeout(function () {
-                                window.location.href = '/'
-                            }, 1000)
+                }).then((result) => {
+                    user.getIdToken(true).then(function (idToken) {
+                        axios.post('/sessionLogin', { idToken: idToken }).then(function (response) {
+                            window.location.href = '/'
+                        }).catch(function (error) {
+                            console.log(error)
                         })
-                    }).catch(function (error) {
-                        console.log(error)
-                    })})
+                    })
+                })
+
             } else {
                 user.getIdToken(true).then(function (idToken) {
+                    Swal.fire({
+                        title: 'Enviando correo de verificación',
+                        html: 'Por favor espere...',
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
                     axios.post('/sessionLogin', { idToken: idToken }).then(function (response) {
                         if (response.status == 200) {
                             //Show loading alert
-                            Swal.fire({
-                                title: 'Enviando correo de verificación',
-                                html: 'Por favor espere...',
-                                allowEscapeKey: false,
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                }
-                            });
+
                             axios.post('/verify/email').then(function (response) {
                                 console.log(response)
                                 if (response.status == 200) {

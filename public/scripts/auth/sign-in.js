@@ -23,7 +23,7 @@ function signIn(email, password) {
                 // Signed in
                 var user = userCredential.user;
 
-                user.getIdToken().then(function (idToken) {
+                user.getIdToken(true).then(function (idToken) {
                     // Send token to your backend via HTTPS
                     axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
                         window.location.href = "/";

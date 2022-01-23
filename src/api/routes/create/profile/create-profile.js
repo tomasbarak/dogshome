@@ -248,7 +248,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     res.status(500).send({ error: error });
                 } else {
                     firebaseAdmin.auth().updateUser(uid, {
-                        picture: photoURL,
+                        photoURL: photoURL,
                     }).then(() => {
                         res.status(200).send({ redirectRoute: '/profile/creation/short-description' });
                     }).catch((error) => {
@@ -331,7 +331,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     creationInstance: creationInstance,
                     isVerified: isVerified,
                     isPrivate: isPrivate,
-                    action: 'Ingresá una descripción corta para tu perfil',
+                    action: 'Describí tu perfil brevemente',
                     actionRawName: 'short-description',
                     sendDataPath: 'short-description',
                     skippable: false,
@@ -423,6 +423,80 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             res.status(401).send('Not authorized');
         }
     })
+    app.get('/profile/creation/social-media', (req, res) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const creationInstance = res.locals.creationInstance;
+        const user = res.locals.user || {};
+
+        if (!isPrivate) {
+            if (isVerified) {
+                res.render(appDir + '/public/create-profile.ejs', {
+                    uid: user.user_id,
+                    creationInstance: creationInstance,
+                    isVerified: isVerified,
+                    isPrivate: isPrivate,
+                    action: 'Ingresá tus redes sociales',
+                    actionRawName: 'social-media',
+                    sendDataPath: 'social-media',
+                    skippable: true,
+                    canGoBack: true,
+                });
+            }
+        }
+    });
+    app.post('/profile/creation/social-media', (req, res) => {
+        const creationInstance = res.locals.creationInstance;
+        const accType = res.locals.accType;
+        const accTypeNum = accType.TypeNum;
+        let targetCreationInstance = 8;
+        const allowedInstance = 7;
+        if (allowedInstance === creationInstance) {
+            const { instagram_user, facebook_user, twitter_user } = req.body;
+            const uid = res.locals.user.uid;
+            const db = firebaseAdmin.database();
+            const user_profile = db.ref(`Users/${uid}/PublicRead`);
+            user_profile.update({
+                CreationInstance: targetCreationInstance,
+                SocialMedia: {
+                    Instagram: instagram_user,
+                    Facebook: facebook_user,
+                    Twitter: twitter_user,
+                },
+            }, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).send({ error: error });
+                } else {
+                    res.status(200).send({ redirectRoute: '/profile/creation/interests' });
+                }
+            });
+        } else {
+            res.status(401).send('Not authorized');
+        }
+    });
+    app.get('/profile/creation/terms-and-conditions', (req, res) => {
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        const creationInstance = res.locals.creationInstance;
+        const user = res.locals.user || {};
+
+        if (!isPrivate) {
+            if (isVerified) {
+                res.render(appDir + '/public/create-profile.ejs', {
+                    uid: user.user_id,
+                    creationInstance: creationInstance,
+                    isVerified: isVerified,
+                    isPrivate: isPrivate,
+                    action: 'Aceptá los términos y condiciones',
+                    actionRawName: 'terms-and-conditions',
+                    sendDataPath: 'terms-and-conditions',
+                    skippable: false,
+                    canGoBack: true,
+                });
+            }
+        }
+    });
 }
 
 module.exports = { init };

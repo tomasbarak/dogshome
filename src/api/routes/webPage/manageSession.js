@@ -42,7 +42,7 @@ function init(app, firebaseAdmin) {
                 res.status(500).send(error);
             });
         }else{
-            res.status(401).send('Private account');
+            res.status(200).send('Logged out');
         }
         
     })

@@ -1,5 +1,5 @@
 function signOut() {
-    axios.post("/signout", {}).then(function (response) {
+    axios.post("/sessionLogout").then(function (response) {
         window.location.href = "/signin";
     })
 }
