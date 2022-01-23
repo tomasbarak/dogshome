@@ -34,7 +34,7 @@ var SecureServer = https.createServer(options, expressApp);
 console.log(logColor.debug, 'App started version: ' + commitVersion);
 
 var HttpServer = http.createServer(function (req, res) {
-  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+  res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}` });
   res.end();
 }).listen(80, function () {
   console.log(logColor.success, 'HTTP Server listening on port 80')
@@ -53,8 +53,10 @@ SecureServer.listen(443, function () {
     res.render(appDir + '/public/404', {
       errorCode: "404",
       errorMessage: "Página no encontrada",
+      isPrivate: res.locals.isPrivate,
     });
   });
+  //require(appDir + '/src/cleaning/purgeUnverifiedUsers').init(firebaseAdmin)
 })
 function setupPreloadFunction(expressApp, firebaseAdmin) {
   expressApp.use(function (req, res, next) {
@@ -62,17 +64,25 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    pathArr = req.url.split('/');
+    pathArr.shift();
+    console.log(logColor.debug, 'pathArr', pathArr, '<--', req.url );
+    const freeAccessPath = ['public', ]
+    if(pathArr[0] === 'profile' && pathArr[1] === 'image'){
+      next();
+      return;
+    }
     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
       res.locals.isPrivate = false;
       res.locals.user = decodedIdToken;
       req.user_authenticated_id = decodedIdToken.uid;
       isFirstTime(decodedIdToken.uid).then((snapshot) => {
-        const snapshotVal = snapshot.val();
+        const snapshotVal = snapshot.val() || {};
         res.locals.accType = snapshotVal.Type;
         const creationInstance = snapshotVal.CreationInstance || 0;
         res.locals.creationInstance = creationInstance
         if (req.method == 'GET') {
-          const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'therms-and-conditions']
+          const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'terms-and-conditions']
           console.log('Type', res.locals.accType);
           if (decodedIdToken.email_verified) {
             res.locals.isVerified = true;
@@ -98,6 +108,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
           }
         }
       }).catch((error) => {
+        console.log(error);
         res.status(500).send(error);
       })
     }).catch((error) => {
