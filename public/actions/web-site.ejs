@@ -8,21 +8,7 @@
     </div>
 </div>
 <script>
-    const { URL, parse } = require('url');
 
-    const stringIsAValidUrl = (s, protocols) => {
-        try {
-            new URL(s);
-            const parsed = parse(s);
-            return protocols
-                ? parsed.protocol
-                    ? protocols.map(x => `${x.toLowerCase()}:`).includes(parsed.protocol)
-                    : false
-                : true;
-        } catch (err) {
-            return false;
-        }
-    };
     function sendData() {
         const dataToSend = {
             shelterName: document.getElementById('refugio-name').value
@@ -70,7 +56,7 @@
             text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#079292',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Continuar'
         }).then((result) => {
