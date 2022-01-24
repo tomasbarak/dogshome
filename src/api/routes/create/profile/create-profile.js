@@ -497,6 +497,32 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             }
         }
     });
+    app.post('/profile/creation/terms-and-conditions', (req, res) => {
+        const creationInstance = res.locals.creationInstance;
+        const accType = res.locals.accType;
+        const accTypeNum = accType.TypeNum;
+        let targetCreationInstance = 9;
+        const allowedInstance = 8;
+        if (allowedInstance === creationInstance) {
+            const { accepted } = req.body;
+            const uid = res.locals.user.uid;
+            const db = firebaseAdmin.database();
+            const user_profile = db.ref(`Users/${uid}/PublicRead`);
+            user_profile.update({
+                CreationInstance: targetCreationInstance,
+                TermsAndConditions: true,
+            }, (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).send({ error: error });
+                } else {
+                    res.status(200).send({ redirectRoute: '/inicio' });
+                }
+            });
+        } else {
+            res.status(401).send('Not authorized');
+        }
+    });
 }
 
 module.exports = { init };

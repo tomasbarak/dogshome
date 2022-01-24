@@ -1,3 +1,46 @@
-<div style="height: calc(100% - 120px); overflow-y: scroll; box-sizing: border-box; padding: 15px 10px">
+<div style="height: calc(100% - 50px); overflow-y: scroll; box-sizing: border-box; padding: 25px; box-shadow: inset 0px -10px 50px -10px rgba(7, 146, 146, 0.25);">
     <%- include('./terms-and-conditions-text.ejs'); %>
 </div>
+<script>
+    function sendData() {
+        const dataToSend = {
+            accepted: true
+        }
+        //Show loading swal
+        Swal.fire({
+            title: 'Estamos guardando tus datos',
+            text: 'Esperá un momento',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+            Swal.fire({
+                title: 'Felicidades!',
+                text: 'Tu cuenta esta lista para usarse, deberás iniciar sesión de nuevo para poder usarla.',
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showConfirmButton: true,
+                
+            }).then(function (value) {
+                axios.post(`https://${window.location.host}/sessionLogout`).then(function (response) {
+                    window.location = '/signin';
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            })
+        }).catch(function (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intenta de nuevo.',
+            })
+        });
+    }
+</script>
