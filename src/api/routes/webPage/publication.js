@@ -46,7 +46,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         allPhotos: allPhotosArray || [],
                         photo: pubPhoto || ' ',
                         secPhotos: secPhotosArray || [],
-                        myPhoto: decodedIdToken.picture,
+                        myPhoto: decodedIdToken.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                         myName: parsedDisplayName.nameAndSurname.name,
                         uid: decodedIdToken.user_id || ' ',
                         mySurname: parsedDisplayName.nameAndSurname.surname,

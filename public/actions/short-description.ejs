@@ -23,43 +23,55 @@
 </div>
 <script>
     function sendData() {
-        const dataToSend = {
-            short_description: document.getElementById('short-desc').value
-        }
-        //Show loading swal
-        Swal.fire({
-            title: 'Estamos guardando tus datos',
-            text: 'Esperá un momento',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            didOpen: () => {
-                Swal.showLoading();
+        let descriptionComponent = document.getElementById('short-desc');
+        if (descriptionComponent.value.length > 30) {
+
+            const dataToSend = {
+                short_description: descriptionComponent.value
             }
-        });
-        axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+            //Show loading swal
             Swal.fire({
-                title: 'Queda poco!',
-                text: 'La descripción de tu perfil se guardó correctamente, redirigiendote al siguiente paso',
-                icon: 'success',
+                title: 'Estamos guardando tus datos',
+                text: 'Esperá un momento',
                 allowOutsideClick: false,
+                showConfirmButton: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                timerProgressBarColor: '#079292'
-            }).then(function () {
-                window.location.reload();
-            })
-        }).catch(function (error) {
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                Swal.fire({
+                    title: 'Queda poco!',
+                    text: 'La descripción de tu perfil se guardó correctamente, redirigiendote al siguiente paso',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    timerProgressBarColor: '#079292'
+                }).then(function () {
+                    window.location.reload();
+                })
+            }).catch(function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo.',
+                    confirmButtonColor: '#d33',
+                })
+            });
+        } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Algo salió mal, intenta de nuevo.',
+                text: 'La descripción debe tener más de 30 caracteres',
+                confirmButtonColor: '#d33',
             })
-        });
+        }
     }
 </script>
 <script>

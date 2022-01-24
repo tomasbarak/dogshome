@@ -92,6 +92,17 @@
             confirmButtonText: 'Continuar'
         }).then((result) => {
             if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Saltando paso...',
+                    text: 'Esperá un momento',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
                 const dataToSend = {
                     phone_number: null,
                     phone_country_code: null,

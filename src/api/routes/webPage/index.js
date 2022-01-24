@@ -42,7 +42,7 @@ function init(app, firebaseAdmin, firebaseApp, database) {
                     displayName: nameAndSurname_fullName || ' ',
                     name: nameAndSurname_name || ' ',
                     surname: nameAndSurname_surname || ' ',
-                    photoUrl: user.picture,
+                    photoUrl: user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                     publications: result,
                     isPrivate: false
                 });

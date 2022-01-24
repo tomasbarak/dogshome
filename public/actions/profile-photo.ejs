@@ -50,8 +50,9 @@
         axios.defaults.withCredentials = true;
         var formData = new FormData();
         var imagefile = document.querySelector('#upload-photo');
-        formData.append("file", imagefile.files[0]);
-        Swal.fire({
+        if (imagefile.files.length > 0) {
+            formData.append("file", imagefile.files[0]);
+            Swal.fire({
                 title: 'Estamos guardando tu foto de perfil',
                 text: 'Esperá un momento',
                 allowOutsideClick: false,
@@ -61,59 +62,98 @@
                 didOpen: () => {
                     Swal.showLoading();
                 }
-        });
-        axios.post(`https://${window.location.host}/profile/upload/image/`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            withCredentials: true
-        }).then(function (response) {
-            const dataToSend = {
-                photoURL: response.data.photoURL
-            }
-            //Show loading swal
-            
-            axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
-                Swal.fire({
-                    title: 'Ya casi estamos!',
-                    text: 'Tu foto de perfil se guardó y actualizó correctamente, ahora solo quedan unos pasos mas',
-                    icon: 'success',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    timerProgressBarColor: '#079292'
-                }).then(function () {
-                    window.location.reload();
-                })
-            }).catch(function (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Algo salió mal, intenta de nuevo.',
-                })
             });
-        }).catch(function (error) {
-            console.log(error)
-        })
-
+            axios.post(`https://${window.location.host}/profile/upload/image/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                withCredentials: true
+            }).then(function (response) {
+                const dataToSend = {
+                    photoURL: response.data.photoURL
+                }
+                axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                    Swal.fire({
+                        title: 'Ya casi estamos!',
+                        text: 'Tu foto de perfil se guardó y actualizó correctamente, ahora solo quedan unos pasos mas',
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    }).then(function () {
+                        window.location.reload();
+                    })
+                }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo.',
+                    })
+                });
+            }).catch(function (error) {
+                console.log(error)
+            })
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes seleccionar una imagen',
+                confirmButtonColor: '#079292',
+            })
+        }
     }
 </script>
 <script>
-    function skipStep(){
+    function skipStep() {
         Swal.fire({
             title: '¿Estás seguro?',
             text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#079292',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Continuar'
         }).then((result) => {
-            if (result.isConfirmed) {
-
+            if (result.value) {
+                Swal.fire({
+                    title: 'Saltando paso...',
+                    text: 'Esperá un momento',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                const dataToSend = {
+                    photoURL: null,
+                }
+                axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                    Swal.fire({
+                        title: 'Todo correcto!',
+                        text: 'El paso se saltó, redirigiendo al siguiente',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        timerProgressBarColor: '#079292'
+                    }).then(function () {
+                        window.location.reload();
+                    })
+                }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo.',
+                    })
+                });
             }
         })
     }
