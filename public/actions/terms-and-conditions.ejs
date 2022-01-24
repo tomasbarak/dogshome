@@ -27,8 +27,19 @@
                 allowEscapeKey: false,
                 allowEnterKey: false,
                 showConfirmButton: true,
-                
+
             }).then(function (value) {
+                Swal.fire({
+                    title: 'Finalizando...',
+                    text: 'Esperá un momento',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
                 axios.post(`https://${window.location.host}/sessionLogout`).then(function (response) {
                     window.location = '/signin';
                 }).catch(function (error) {
