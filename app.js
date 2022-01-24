@@ -64,14 +64,10 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    pathArr = req.url.split('/');
-    pathArr.shift();
+    let pathArr = req.url.split('/').slice(0,3).join('/')
     console.log(logColor.debug, 'pathArr', pathArr, '<--', req.url );
-    const freeAccessPath = ['public', ]
-    if(pathArr[0] === 'profile' && pathArr[1] === 'image'){
-      next();
-      return;
-    }
+    const freeAccessPath = ['/profile/image', '/profile/image/']
+    if(!freeAccessPath.includes(pathArr)){
     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
       res.locals.isPrivate = false;
       res.locals.user = decodedIdToken;
@@ -86,13 +82,25 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
           console.log('Type', res.locals.accType);
           if (decodedIdToken.email_verified) {
             res.locals.isVerified = true;
-            if (creationInstance < 10 && req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
-              console.log('Creation instance', creationInstance);
-              console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
-              console.log(req.path);
-              res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
-            } else {
-              next();
+            if (creationInstance < 9) {
+              console.log('Profile is not complete');
+              if(req.path !== `/profile/creation/${creationRoutes[creationInstance]}`){
+                console.log('Path is not equal');
+                console.log('Creation instance', creationInstance);
+                console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
+                console.log(req.path);
+                res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
+              }else{
+                next();
+              }
+            }else{
+              console.log('Is equal path');
+              const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
+              if(!profileCreationAccessPath.includes(pathArr)){
+                next();
+              }else{
+                res.redirect('/inicio');
+              }
             }
           } else {
             res.locals.isVerified = false;
@@ -116,6 +124,9 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       res.locals.isPrivate = true;
       next();
     });
+  }else{
+    next();
+  }
   });
 
   function isFirstTime(user_id) {
