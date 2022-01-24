@@ -87,7 +87,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
 
                     let renderVar = {
                         publications:   result,
-                        photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                        photo:          profile.Photo || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                         myPhoto:        user.picture,
                         myName:         parsedDisplayName.nameAndSurname.name,
                         mySurname:      parsedDisplayName.nameAndSurname.surname,

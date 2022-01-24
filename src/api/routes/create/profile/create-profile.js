@@ -21,10 +21,16 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         const accType = res.locals.accType || {};
         const accTypeNum = accType.TypeNum;
         const uid = res.locals.user.uid;
+        console.log('typeNum', accTypeNum);
         if(creationInstance > 0){
-            if(creationInstance === 8 || creationInstance === 7 && accTypeNum === 1){
+            if(creationInstance === 8 && accTypeNum === 1){
+                console.log('Creation instance', creationInstance);
                 creationInstance = 5;
-            }else if(creationInstance === 8 || creationInstance === 7 && accTypeNum !== 1){
+            }else if(creationInstance === 7 && accTypeNum === 1){
+                creationInstance = 5;
+            }else if(creationInstance === 8 && accTypeNum !== 1){
+                creationInstance--;
+            }else if(creationInstance === 7 && accTypeNum !== 1){
                 creationInstance--;
             }else if(creationInstance === 3 && accTypeNum === 2){
                 creationInstance--;
@@ -43,7 +49,8 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 res.status(500).send(error);
             });
         }
-    })
+    });
+    
     app.get('/profile/creation/start', (req, res) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;

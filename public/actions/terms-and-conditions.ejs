@@ -8,7 +8,7 @@
         }
         //Show loading swal
         Swal.fire({
-            title: 'Estamos guardando tus datos',
+            title: 'Finalizando tu perfil',
             text: 'Esperá un momento',
             allowOutsideClick: false,
             showConfirmButton: false,
@@ -27,6 +27,8 @@
                 allowEscapeKey: false,
                 allowEnterKey: false,
                 showConfirmButton: true,
+                confirmButtonText: 'Iniciar sesión',
+                confirmButtonColor: '#079292',
 
             }).then(function (value) {
                 Swal.fire({

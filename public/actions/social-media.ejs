@@ -63,7 +63,7 @@
                 allowEscapeKey: false,
                 allowEnterKey: false,
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 3000,
                 timerProgressBar: true,
                 timerProgressBarColor: '#079292'
             }).then(function () {
@@ -76,5 +76,59 @@
                 text: 'Algo salió mal, intenta de nuevo.',
             })
         });
+    }
+</script>
+<script>
+    function skipStep(){
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Tener un perfil completo ayuda a una mejor comunicación con los usuarios. Podrás completar estos datos mas tarde",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#079292',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Saltando paso...',
+                    text: 'Esperá un momento',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                const dataToSend = {
+                    instagram_user: null,
+                    facebook_user: null,
+                    twitter_user: null
+                }
+                axios.post(`https://${window.location.host}/profile/creation/<%=sendDataPath%>`, dataToSend).then(function (response) {
+                    Swal.fire({
+                        title: 'Todo correcto!',
+                        text: 'El paso se saltó, redirigiendo al siguiente',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        timerProgressBarColor: '#079292'
+                    }).then(function () {
+                        window.location.reload();
+                    })
+                }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo.',
+                    })
+                });
+            }
+        })
     }
 </script>
