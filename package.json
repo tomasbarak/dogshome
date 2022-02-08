@@ -39,6 +39,7 @@
     "nodemailer": "^6.7.2",
     "path": "^0.12.7",
     "util": "^0.12.4",
-    "follow-redirects": ">=1.14.7"
+    "follow-redirects": ">=1.14.7",
+    "node-fetch": ">=2.6.7"
   }
 }
