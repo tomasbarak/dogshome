@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "firebase": "^9.6.5",
     "firebase-admin": "^10.0.0",
-    "fs": "^0.0.1-security",
+    "fs": "^0.0.2",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "libphonenumber-js": "^1.9.44",
