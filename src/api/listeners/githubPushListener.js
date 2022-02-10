@@ -17,6 +17,7 @@ function listen(app) {
 
                     console.log(logColor.success,   'Successfully merged changes from github');
                     console.log(logColor.blue,      'Updating npm packages');
+                    
                     exec(`npm i`, (error, stdout, stderr) => {
                         if (!error) {
 
