@@ -38,7 +38,7 @@ const deleteCollection = (db, collectionName) => {
 
 const insertOne = (db, collectionName, data) => {
     return new Promise((resolve, reject) => {
-        db.collection(collectionName).updateOne(data, {$set: data}, { upsert: true, expireAfterSeconds: 10 }, (err, res) => {
+        db.collection(collectionName).updateOne(data, {$set: data}, { upsert: true}, (err, res) => {
             if (err) {
                 reject(err);
             }else{
