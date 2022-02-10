@@ -25,7 +25,7 @@ function init(app, firebaseAdmin) {
         let hashed = crypto.createHash('sha256').update(authtoken).digest('hex');
 
         connectClient().then(db => {
-            
+            db.eventlog.createIndex({ "authtoken": 1 }, { expireAfterSeconds: 10 });
             let dbo = db.db('dogshome');
             let collectionName = 'api_tokens';
             let cursor = dbo.collection(collectionName).find().toArray();
