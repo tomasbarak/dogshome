@@ -12,7 +12,7 @@ function listen(app) {
 
             console.log(logColor.blue, 'Trying to merge changes from github. Commit id: ' + req.body.head_commit.id);
 
-            exec(`git reset --hard && git pull origin ${branch}`, (error, stdout, stderr) => {
+            exec(`sudo git reset --hard && sudo git pull origin ${branch}`, (error, stdout, stderr) => {
                 if (!error) {
 
                     console.log(logColor.success,   'Successfully merged changes from github');
@@ -21,7 +21,6 @@ function listen(app) {
                     exec(`npm i`, (error, stdout, stderr) => {
                         if (!error) {
                             console.log(logColor.success, 'Successfully updated npm packages');
-
                             exec(`pm2 restart app`, (error, stdout, stderr) => {
 
                                 if (!error) {
