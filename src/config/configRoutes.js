@@ -23,6 +23,7 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/signin')                 .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signup')                 .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/verification')           .init(app, firebaseadmin);
+    require( appDir + '/src/api/generateApiToken')                      .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signout')                .init(app);
 
     //Github changes listener
