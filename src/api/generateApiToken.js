@@ -32,7 +32,6 @@ function init(app, firebaseAdmin) {
             cursor.then(docs => {
                 console.log(docs);
             })
-
             insertOne(dbo, collectionName, { [hashed]: {userToken: authtoken} }).then(result => {
                 console.log('Successfully inserted api token');
                 res.send(hashed);
