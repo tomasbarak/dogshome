@@ -21,27 +21,35 @@ function decrypt(text, key) {
 
 function init(app, firebaseAdmin) {
     app.get('/generate/api/token', function (req, res) {
-        const authtoken = req.cookies.session || '';
-        let hashed = crypto.createHash('sha256').update(authtoken).digest('hex');
+        const isPrivate =       res.locals.isPrivate;
 
-        connectClient().then(db => {
-            db.eventlog.createIndex({ "authtoken": 1 }, { expireAfterSeconds: 10 });
-            let dbo = db.db('dogshome');
-            let collectionName = 'api_tokens';
-            let cursor = dbo.collection(collectionName).find().toArray();
-            cursor.then(docs => {
-                console.log(docs);
-            })
-            insertOne(dbo, collectionName, { [hashed]: {userToken: authtoken} }).then(result => {
-                console.log('Successfully inserted api token');
-                res.send(hashed);
-                db.close();
-            }).catch(err => {
-                res.status(500).send(err);
-                console.log(err);
-                db.close();
+        if (!isPrivate) {
+            const authtoken = req.cookies.session || '';
+            let hashed = crypto.createHash('sha256').update(authtoken).digest('hex');
+
+            connectClient().then(db => {
+
+                let dbo = db.db('dogshome');
+                let collectionName = 'api_tokens';
+                let cursor = dbo.collection(collectionName).find().toArray();
+                cursor.then(docs => {
+                    console.log(docs);
+                })
+                console.log('Successfully deleted api_tokens collection');
+                insertOne(dbo, collectionName, { [hashed]: { userToken: authtoken } }).then(result => {
+                    console.log('Successfully inserted api token');
+                    res.send(hashed);
+                    db.close();
+                }).catch(err => {
+                    res.status(500).send(err);
+                    console.log(err);
+                    db.close();
+                });
+
             });
-        });
+        }else{
+            res.status(401).send({ error: `Cant generate api token: ${req.cookies.session}` });
+        }
     });
 
 }
