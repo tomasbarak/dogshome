@@ -1,51 +1,103 @@
+
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-const dbName = 'dogshome';
 
-const connectClient = () => {
+const connectClient = (url) => {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(url, function(err, db) {
-            if (err) {
+        MongoClient.connect(url, (err, client) => {
+            if(err){
                 reject(err);
             }else{
-                resolve(db);
-            };
-        });
-    })
-    
-}
-
-const checkCollection = (db, collectionName) => {
-    return new Promise((resolve, reject) => {
-        db.listCollections({name: collectionName}).next((err, collinfo) => {
-            if(collinfo) resolve(collinfo);
-            else reject(err);
-        })
-    })
-};
-
-const deleteCollection = (db, collectionName) => {
-    return new Promise((resolve, reject) => {
-        db.dropCollection(collectionName, (err, res) => {
-            if (err) {
-                reject(err);
-            }else{
-                resolve(res);
+                resolve(client);
             }
         });
-    })
+    });
 }
 
-const insertOne = (db, collectionName, data) => {
+const getMany = (collection, projection = {}, query = {}) =>{
+    console.log(query);
+    console.log(projection);
     return new Promise((resolve, reject) => {
-        db.collection(collectionName).updateOne(data, {$set: data}, { upsert: true}, (err, res) => {
-            if (err) {
+        collection.find(query).project(projection).toArray((err, result) => {
+            if(err){
                 reject(err);
             }else{
-                resolve(res);
+                resolve(result);
             }
         });
-    })
+    });
 }
 
-module.exports = { connectClient, checkCollection, deleteCollection, insertOne };
+const getOne = (collection, projection = {}, query = {}) => {
+    return new Promise((resolve, reject) => {
+        
+        collection.findOne(query, projection, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+const getAllCollection = (collection) => {
+    return new Promise((resolve, reject) => {
+        collection.find({}).toArray((err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+const saveOne = (collection, dataToSave) => {
+    return new Promise((resolve, reject) => {
+        collection.updateOne(dataToSave, {$set: dataToSave}, {upsert: true}, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });    
+}
+
+const saveMany = (collection, dataToSave) => {
+    return new Promise((resolve, reject) => {
+        collection.updateMany(dataToSave, {$set: dataToSave}, {upsert: true}, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+const deleteOne = (collection, query) => {
+    return new Promise((resolve, reject) => {
+        collection.deleteOne(query, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+const deleteMany = (collection, query) => {
+    return new Promise((resolve, reject) => {
+        collection.deleteMany(query, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany };

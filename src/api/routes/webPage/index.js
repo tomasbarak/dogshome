@@ -1,58 +1,72 @@
-const { dirname } = require('path');
-const appDir = dirname(require.main.filename);
-const axios = require('axios');
+const { dirname } =                         require('path');
+const appDir =                              dirname(require.main.filename);
+const { connectClient, getMany, 
+        getOne, getAllCollection, 
+        saveOne, saveMany,
+        deleteOne, deleteMany } =           require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL =                            'mongodb://localhost:27017/dogshome';
+const mongoDBName =                         'dogshome';
 
-function init(app, firebaseAdmin, firebaseApp, database) {
+function init(app) {
     //Setting up index route
     app.get(['/', '/index', '/index.html', '/inicio'], (req, res) => {
         const isPrivate =       res.locals.isPrivate;
         const isVerified =      res.locals.isVerified;
         const user =            res.locals.user || {};
 
-        const db =              database.getDatabase(firebaseApp);
-        const recentPostsRef =  database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
-        const get =             database.get;
+        connectClient(mongoURL).then(client => {
+            const mongoDB =         client.db(mongoDBName);
+            const collection =      mongoDB.collection('Publications');
+            let requestProjection =     { _id: 0};
+            let requestQuery =          {};
 
-        get(recentPostsRef).then((snapshot) => {
-            var json_data =     snapshot.val();
-            const result =      createArrayFromJson(json_data);
+            getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+                var json_data =     snapshot || {};
+                const result =      createArrayFromJson(json_data);
+                if (isPrivate) {
+                    res.render(appDir + '/public/index', {
+                        uid:            '',
+                        displayName:    'Cuenta Privada',
+                        name:           'Cuenta',
+                        surname:        'Privada',
+                        photoUrl:       'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
+                        publications:   result,
+                        isPrivate:      true
+                    });
+                    client.close();
+                } else if (isVerified) {
+                    let name =                          user.name || '{}';
+                    let parsedDisplayName =             JSON.parse(name);
+                    const nameAndSurname =              parsedDisplayName.nameAndSurname || {};
+                    const nameAndSurname_name =         nameAndSurname.name || ' ';
+                    const nameAndSurname_surname =      nameAndSurname.surname || ' ';
+                    const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
 
-            if (isPrivate) {
-                res.render(appDir + '/public/index', {
-                    uid: '',
-                    displayName: 'Cuenta Privada',
-                    name: 'Cuenta',
-                    surname: 'Privada',
-                    photoUrl: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
-                    publications: result,
-                    isPrivate: true
-                });
-            } else if (isVerified) {
+                    res.render(appDir + '/public/index', {
+                        uid:            user.user_id,
+                        displayName:    nameAndSurname_fullName || ' ',
+                        name:           nameAndSurname_name || ' ',
+                        surname:        nameAndSurname_surname || ' ',
+                        photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                        publications:   result,
+                        isPrivate:      false
+                    });
+                    client.close();
 
-                let name =                          user.name || '{}';
-                console.log('name', name);
-                let parsedDisplayName =             JSON.parse(name);
-                const nameAndSurname =              parsedDisplayName.nameAndSurname || {};
-                const nameAndSurname_name =         nameAndSurname.name || ' ';
-                const nameAndSurname_surname =      nameAndSurname.surname || ' ';
-                const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
+                } else if (!isVerified) {
+                    res.redirect('/verification');
+                    client.close();
 
-                res.render(appDir + '/public/index', {
-                    uid: user.user_id,
-                    displayName: nameAndSurname_fullName || ' ',
-                    name: nameAndSurname_name || ' ',
-                    surname: nameAndSurname_surname || ' ',
-                    photoUrl: user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                    publications: result,
-                    isPrivate: false
-                });
-            } else if (!isVerified) {
-                res.redirect('/verification');
-            }
-        }).catch((error) => {
-            console.log(error);
-            res.status(500).send(error);
+                }
+            }).catch((error) => {
+                console.log(error);
+                client.close();
+            });
+        }).catch(err => {
+            console.log(err);
+            client.close();
         });
+
 
     });
     function createArrayFromJson(json_data) {

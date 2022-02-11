@@ -1,7 +1,7 @@
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const logColor =        require(appDir + '/src/config/logColors');
-
+const dogshome = require(appDir + '/src/api/mongodbFunctions');
 //Route to get all publications
 function init(app, firebaseApp, database){
     app.get('/publications/all/', function (req, res) {
