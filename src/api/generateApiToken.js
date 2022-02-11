@@ -1,6 +1,6 @@
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
-const { connectClient, checkCollection, deleteCollection, insertOne } = require(appDir + '/src/api/mongodbFunctions.js');
+const { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany } = require(appDir + '/src/api/mongodbFunctions.js');
 const crypto = require('crypto');
 
 const encrypt = (text, key, iv) => {
@@ -26,24 +26,25 @@ function init(app, firebaseAdmin) {
         if (!isPrivate) {
             const authtoken = req.cookies.session || '';
             let hashed = crypto.createHash('sha256').update(authtoken).digest('hex');
+            const url = 'mongodb://localhost:27017/';
+            connectClient(url).then(client => {
 
-            connectClient().then(db => {
-
-                let dbo = db.db('dogshome');
+                const db = client.db('dogshome');
+                const collection = db.collection('api_keys')
                 let collectionName = 'api_tokens';
-                let cursor = dbo.collection(collectionName).find().toArray();
-                cursor.then(docs => {
-                    console.log(docs);
-                })
-                console.log('Successfully deleted api_tokens collection');
-                insertOne(dbo, collectionName, { [hashed]: { userToken: authtoken } }).then(result => {
+                getAllCollection(collection).then(result => {
+                    console.log(result);
+                }).catch(err => {
+                    console.log(err)
+                });;
+                saveOne(collection, { [hashed]: { userToken: authtoken } }).then(result => {
                     console.log('Successfully inserted api token');
                     res.send(hashed);
-                    db.close();
+                    client.close();
                 }).catch(err => {
                     res.status(500).send(err);
                     console.log(err);
-                    db.close();
+                    client.close();
                 });
 
             });
