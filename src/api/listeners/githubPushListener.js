@@ -22,7 +22,7 @@ function listen(app) {
                         if (!error) {
                             console.log(logColor.success, 'Successfully updated npm packages');
                             
-                            exec(`pm2 restart app`, (error, stdout, stderr) => {
+                            exec(`pm2 restart dogshome`, (error, stdout, stderr) => {
 
                                 if (!error) {
                                     console.log(logColor.blue,      'Restarting app');
