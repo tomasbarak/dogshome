@@ -22,7 +22,7 @@ function init(app) {
 
             getMany(collection, requestProjection, requestQuery).then((snapshot) => {
                 console.log(snapshot)
-                var json_data =     snapshot || {};
+                var json_data =     snapshot[0] || {};
                 const result =      createArrayFromJson(json_data);
                 if (isPrivate) {
                     res.render(appDir + '/public/index', {
