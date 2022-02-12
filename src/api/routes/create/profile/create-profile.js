@@ -1,56 +1,70 @@
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
-const axios = require('axios');
+const { connectClient, getMany,
+    getOne, getAllCollection,
+    saveOne, saveMany,
+    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
 
 function init(app, database, firebaseAdmin, firebaseApp) {
     app.get('/profile/creation/*', (req, res, next) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;
-        if(!isPrivate){
-            if(!isVerified){
+        if (!isPrivate) {
+            if (!isVerified) {
                 res.redirect('/inicio');
-            }else{
+            } else {
                 next();
             }
-        }else{
+        } else {
             res.redirect('/inicio');
         }
     })
     app.post('/profile/creation/step/back', (req, res, next) => {
-        let creationInstance = res.locals.creationInstance;
-        const accType = res.locals.accType || {};
-        const accTypeNum = accType.TypeNum;
-        const uid = res.locals.user.uid;
-        console.log('typeNum', accTypeNum);
-        if(creationInstance > 0){
-            if(creationInstance === 8 && accTypeNum === 1){
-                console.log('Creation instance', creationInstance);
-                creationInstance = 5;
-            }else if(creationInstance === 7 && accTypeNum === 1){
-                creationInstance = 5;
-            }else if(creationInstance === 8 && accTypeNum !== 1){
-                creationInstance--;
-            }else if(creationInstance === 7 && accTypeNum !== 1){
-                creationInstance--;
-            }else if(creationInstance === 3 && accTypeNum === 2){
-                creationInstance--;
-            }else if(creationInstance === 3 && accTypeNum !== 2){
-                creationInstance = 1;
-            }else{
-                creationInstance--;
+        connectClient(mongoURL).then(client => {
+            let creationInstance = res.locals.creationInstance;
+            const accType = res.locals.accType || {};
+            const accTypeNum = accType.TypeNum;
+            const uid = res.locals.user.uid;
+            console.log('typeNum', accTypeNum);
+            if (creationInstance > 0) {
+                if (creationInstance === 8 && accTypeNum === 1) {
+                    console.log('Creation instance', creationInstance);
+                    creationInstance = 5;
+                } else if (creationInstance === 7 && accTypeNum === 1) {
+                    creationInstance = 5;
+                } else if (creationInstance === 8 && accTypeNum !== 1) {
+                    creationInstance--;
+                } else if (creationInstance === 7 && accTypeNum !== 1) {
+                    creationInstance--;
+                } else if (creationInstance === 3 && accTypeNum === 2) {
+                    creationInstance--;
+                } else if (creationInstance === 3 && accTypeNum !== 2) {
+                    creationInstance = 1;
+                } else {
+                    creationInstance--;
+                }
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+                let saveFilters = { "Id": sanitize(uid) };
+                let saveData = { "CreationInstance": creationInstance };
+                saveMany(collection, saveFilters, { $set: saveData }).then((snapshot) => {
+                    console.log(snapshot)
+                    res.status(200).send();
+                    client.close();
+                }).catch((err) => {
+                    console.log(err)
+                })
+            } else {
+                res.status(200).send();
             }
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);     
-            user_profile.update({
-                CreationInstance: creationInstance
-            }).then(() => {
-                res.send({'Success': true});
-            }).catch((error) => {
-                res.status(500).send(error);
-            });
-        }
+        }).catch((error) => {
+            console.log(error)
+        });
+
     });
-    
+
     app.get('/profile/creation/start', (req, res) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;
@@ -76,22 +90,24 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         }
     });
     app.post('/profile/creation/start', (req, res) => {
-        let { name, surname } = req.body;
-        const uid = res.locals.user.uid;
-        name = name.charAt(0).toUpperCase() + name.slice(1);
-        surname = surname.charAt(0).toUpperCase() + surname.slice(1);
-        const db = firebaseAdmin.database();
-        const user_profile = db.ref(`Users/${uid}/PublicRead`);
-        user_profile.set({
-            Name: name,
-            Surname: surname,
-            CreationInstance: 1,
-            Id: uid,
-        }, (error) => {
-            if (error) {
-                console.log(error);
-                res.status(500).send({ error: error });
-            } else {
+        connectClient(mongoURL).then((client) => {
+            let { name, surname } = req.body;
+            const uid = res.locals.user.uid;
+            name = name.charAt(0).toUpperCase() + name.slice(1);
+            surname = surname.charAt(0).toUpperCase() + surname.slice(1);
+            const mongoDB = client.db(mongoDBName);
+            const collection = mongoDB.collection('Users');
+            let saveFilters = { Id: sanitize(uid) };
+            let saveData = {
+                Name: sanitize(name),
+                Surname: sanitize(surname),
+                CreationInstance: 1,
+                Id: sanitize(uid),
+            };
+
+            saveMany(collection, saveFilters, { $set: saveData }).then((snapshot) => {
+                console.log(snapshot)
+
                 let name_no_spaces = name.replace(/\s/g, '');
                 const constructedDisplayName = name.replace(/\s/g, '') + ' ' + surname.replace(/\s/g, '');
                 firebaseAdmin.auth().updateUser(uid, {
@@ -108,7 +124,13 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     console.log(error);
                     res.status(500).send({ error: error });
                 });
-            }
+                client.close();
+            }).catch((err) => {
+                console.log(err)
+            })
+        }).catch((error) => {
+            console.log(error)
+            res.status(500).send({ error: error });
         });
     });
     app.get('/profile/creation/profile-type', (req, res) => {
@@ -138,34 +160,35 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         let targetCreatioInstance = 1;
         const allowedInstance = 1;
         if (allowedInstance === creationInstance) {
-            let { accTypeName, accTypeNum } = req.body;
-            const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            if (accTypeNum == 2) {
-                targetCreatioInstance = 2;
-            } else {
-                targetCreatioInstance = 3;
-            }
+            connectClient(mongoURL).then((client) => {
+                let { accTypeName, accTypeNum } = req.body;
+                const uid = res.locals.user.uid;
 
-            user_profile.update({
-                CreationInstance: targetCreatioInstance,
-                Type: {
-                    TypeNum: accTypeNum,
-                    TypeStr: accTypeName.charAt(0).toUpperCase() + accTypeName.slice(1),
-                }
-            }, (error) => {
-                if (error) {
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+
+                accTypeNum === 2 ? targetCreatioInstance = 2 : targetCreatioInstance = 3;
+
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreatioInstance,
+                    Type: {
+                        TypeNum: accTypeNum,
+                        TypeStr: sanitize(accTypeName.charAt(0).toUpperCase() + accTypeName.slice(1)),
+                    }
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
+                    res.status(200).send({ redirectRoute: '/profile/creation/shelter-name' });
+                    client.close();
+                }).catch((err) => {
                     console.log(error);
                     res.status(500).send({ error: error });
-                } else {
-                    res.status(200).send({ redirectRoute: '/profile/creation/shelter-name' });
-                }
-            });
+                })
+            })
         } else {
             res.status(401).send('Not authorized');
         }
-
     });
     app.get('/profile/creation/shelter-name', (req, res) => {
         const isPrivate = res.locals.isPrivate;
@@ -194,22 +217,29 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         let targetCreatioInstance = 3;
         const allowedInstance = 2;
         if (allowedInstance === creationInstance) {
-            let { shelterName } = req.body;
-            const uid = res.locals.user.uid;
-            shelterName = shelterName.charAt(0).toUpperCase() + shelterName.slice(1);
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            user_profile.update({
-                CreationInstance: targetCreatioInstance,
-                RefName: shelterName,
-            }, (error) => {
-                if (error) {
+            connectClient(mongoURL).then((client) => {
+                let { shelterName } = req.body;
+                const uid = res.locals.user.uid;
+                shelterName = shelterName.charAt(0).toUpperCase() + shelterName.slice(1);
+
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreatioInstance,
+                    RefName: sanitize(shelterName),
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
+                    res.status(200).send({ redirectRoute: '/profile/creation/shelter-address' });
+                    client.close();
+                }).catch((err) => {
                     console.log(error);
                     res.status(500).send({ error: error });
-                } else {
-                    res.status(200).send({ redirectRoute: '/profile/creation/shelter-address' });
-                }
-            });
+                    client.close();
+                })
+            })
         } else {
             res.status(401).send('Not authorized');
         }
@@ -242,28 +272,36 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         let targetCreatioInstance = 4;
         const allowedInstance = 3;
         if (allowedInstance === creationInstance) {
-            const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            const { photoURL } = req.body;
-            user_profile.update({
-                CreationInstance: targetCreatioInstance,
-                Photo: photoURL,
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).send({ error: error });
-                } else {
+            connectClient(mongoURL).then((client) => {
+                const uid = res.locals.user.uid;
+                const { photoURL } = req.body;
+
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreatioInstance,
+                    Photo: photoURL,
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
                     firebaseAdmin.auth().updateUser(uid, {
                         photoURL: photoURL,
                     }).then(() => {
                         res.status(200).send({ redirectRoute: '/profile/creation/short-description' });
+                        client.close();
                     }).catch((error) => {
                         console.log(error);
                         res.status(500).send({ error: error });
+                        client.close();
                     });
-                }
-            });
+                }).catch((err) => {
+                    console.log(error);
+                    res.status(500).send({ error: error });
+                    client.close();
+                })
+            })
         } else {
             res.status(401).send('Not authorized');
         }
@@ -305,7 +343,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const { phone_number, phone_country_code, phone_country_iso } = req.body;
             user_profile.update({
                 CreationInstance: targetCreatioInstance,
-                Contact:{
+                Contact: {
                     Phone: phone_number,
                     PhoneCountryCode: phone_country_code,
                     PhoneCountryISO: phone_country_iso,
@@ -330,7 +368,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         const isVerified = res.locals.isVerified;
         const creationInstance = res.locals.creationInstance;
         const user = res.locals.user || {};
-        
+
         if (!isPrivate) {
             if (isVerified) {
                 res.render(appDir + '/public/create-profile.ejs', {
@@ -346,7 +384,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 });
             }
         }
-        
+
     });
     app.post('/profile/creation/short-description', (req, res) => {
         const creationInstance = res.locals.creationInstance;
@@ -358,7 +396,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         if (allowedInstance === creationInstance) {
             const { short_description } = req.body;
             console.log(short_description.length);
-            if(short_description.length <= 141){
+            if (short_description.length <= 141) {
                 const uid = res.locals.user.uid;
                 const db = firebaseAdmin.database();
                 const user_profile = db.ref(`Users/${uid}/PublicRead`);
@@ -373,15 +411,15 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         res.status(200).send({ redirectRoute: '/profile/creation/long-description' });
                     }
                 });
-            }else{
+            } else {
                 res.status(413).send('La descripción es demasiado larga');
             }
-            
+
         } else {
             res.status(401).send('Not authorized');
         }
     });
-    
+
     app.get('/profile/creation/web-site', (req, res) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;

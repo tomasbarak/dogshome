@@ -52,9 +52,9 @@ const getAllCollection = (collection) => {
     });
 }
 
-const saveOne = (collection, dataToSave) => {
+const saveOne = (collection, filter=update, update) => {
     return new Promise((resolve, reject) => {
-        collection.updateOne(dataToSave, {$set: dataToSave}, {upsert: true}, (err, result) => {
+        collection.updateOne(filter, {$set: update}, {upsert: true}, (err, result) => {
             if(err){
                 reject(err);
             }else{
@@ -64,9 +64,9 @@ const saveOne = (collection, dataToSave) => {
     });    
 }
 
-const saveMany = (collection, dataToSave) => {
+const saveMany = (collection, filter=update, update, options = {upsert: true}) => {
     return new Promise((resolve, reject) => {
-        collection.updateMany(dataToSave, {$set: dataToSave}, {upsert: true}, (err, result) => {
+        collection.updateMany(filter, update, options, (err, result) => {
             if(err){
                 reject(err);
             }else{
@@ -100,4 +100,17 @@ const deleteMany = (collection, query) => {
     });
 }
 
-module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany };
+const sanitize = (data) => {
+    let sanitized = '';
+    const mongoIllegalChars = ['', '#', '$', '[', ']']
+    for(let i = 0; i < data.length; i++){
+        if(mongoIllegalChars.indexOf(data[i]) !== -1){
+            sanitized += '_';
+        }else{
+            sanitized += data[i];
+        }
+    }
+    console.log(sanitized);
+    return sanitized.toString();
+}
+module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize };

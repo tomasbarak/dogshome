@@ -52,8 +52,8 @@
     </div>
     <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
         <span class="material-icons-outlined" id="fav-button" style="color: #fff; cursor: pointer; margin: 0 10px; user-select: none;" onclick="expandMenu()">menu</span>
-        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="navigateToProfile()"></a>
-        <img class="desktop-elements" id="profile-pic" onclick="" src=<%= myPhoto %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
+        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="window.location.href='<%= userHref %>'"></a>
+        <img class="desktop-elements" id="profile-pic" onclick="window.location.href='<%= userHref %>'" src=<%= myPhoto %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
     </div>
 </div>
 <div class="expandible-menu-invisible" id="expandible-menu">

@@ -1,5 +1,5 @@
-{
-  "0264417bb57de": {
+[
+  {
     "Filters": {
       "Age": {
         "Months": 18,
@@ -35,7 +35,7 @@
     "Refugio": "DogsHome",
     "SDescription": "Coco es un perro de tamaño medio, es muy amigable con los humanos y con los perros. Sabe hacer pis afuera y cuida mucho a los niños."
   },
-  "82365746c58a": {
+  {
     "Id": "82365746c58a",
     "Images": [
       "https://images.unsplash.com/photo-1554079576-2c60630c343a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
@@ -48,7 +48,7 @@
     "Refugio": "Mascotas en Adopción",
     "SDescription": "Pupi es un perro muy simpático, muy buena onda, buen cachorro. Con las otras mascotas se lleva bien, y con los chicos también. Pupi quiere estar en una casa."
   },
-  "8b1e11d0d4474": {
+  {
     "Id": "8b1e11d0d4474",
     "Images": [
       "https://images.pexels.com/photos/1458908/pexels-photo-1458908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -61,7 +61,7 @@
     "Refugio": "DogsHome",
     "SDescription": "Kenia es un perro encontrado hace 3 años, se descubrió que la familia lo maltrataba"
   },
-  "b83a138536022": {
+  {
     "Id": "b83a138536022",
     "Images": [
       "https://images.pexels.com/photos/1133082/pexels-photo-1133082.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -74,7 +74,7 @@
     "Refugio": "Dogshome",
     "SDescription": "Puré es un perro que muere de ganas de ser adoptado. Una familia lo miró y no le gustó, ni siquiera le dio una oportunidad."
   },
-  "b9fe54c6568dd": {
+  {
     "Id": "b9fe54c6568dd",
     "Images": [
       "https://images.pexels.com/photos/2679612/pexels-photo-2679612.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -87,7 +87,7 @@
     "Refugio": "DogsHome",
     "SDescription": "Gaspar no ve la hora de tener un hogar, busca siempre el contacto con gente.  Se lleva bien con otros perros."
   },
-  "e5098422ce337": {
+  {
     "Id": "e5098422ce337",
     "Images": [
       "https://images.pexels.com/photos/5047562/pexels-photo-5047562.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -101,7 +101,7 @@
     "Refugio": "DogsHome",
     "SDescription": "Mora es un perro callejero cortado en una pelea con otros perros, tiene una herida que no se ha cerrado del todo."
   },
-  "f82015bd078c1": {
+  {
     "Filters": {
       "Age": {
         "Months": 6,
@@ -132,4 +132,4 @@
     "Refugio": "DogsHome",
     "SDescription": "Doggy es un perro en adopcion que lleva encerrado en el refugio varios meses. Al parecer entre los estantes de madera se ha formado una pequeña cueva, donde el pobre can se esconde de los otros perros porque se ve muy asustado."
   }
-}
+]

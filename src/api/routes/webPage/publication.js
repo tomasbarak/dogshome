@@ -1,32 +1,29 @@
-const { dirname } =                 require('path');
-const appDir =                      dirname(require.main.filename);
-const { connectClient, getMany, 
-        getOne, getAllCollection, 
-        saveOne, saveMany,
-        deleteOne, deleteMany } =   require(appDir + '/src/api/mongodbFunctions.js');
-const mongoURL =                    'mongodb://localhost:27017/dogshome';
-const mongoDBName =                 'dogshome';
+const { dirname } = require('path');
+const appDir = dirname(require.main.filename);
+const { connectClient, getMany,
+    getOne, getAllCollection,
+    saveOne, saveMany,
+    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
 
 function init(app, database, firebaseAdmin, firebaseApp) {
     app.get(['/publicacion/:id', '/publicacion.html/:id'], (req, res) => {
         const token = req.cookies.session || ' ';
-        const { ref, get, getDatabase, query } = database;
-        const pubId = req.params.id;
-        const db = getDatabase(firebaseApp);
-        const publication = query(ref(db, `Publications/All/${pubId}`));
+        const pubId = sanitize(req.params.id);
 
         connectClient(mongoURL).then(client => {
             const mongoDB = client.db(mongoDBName);
             const collection = mongoDB.collection('Publications');
-            let requestProjection = {_id: 0};
-            let requestQuery = {Id: pubId};
+            let requestProjection = { _id: 0 };
+            let requestQuery = { Id: pubId };
 
             getMany(collection, requestProjection, requestQuery).then((snapshot) => {
                 let snapshotVal = snapshot[0] || {};
                 const pubSecImages = snapshotVal.Images || [];
                 const pubPhoto = snapshotVal.Photo || ' ';
                 const filters = snapshotVal.Filters || {};
-                const refId = 'ISTZXl0HLROXJTVlyXf8Jb1CGg73'
+                const refId = sanitize(snapshotVal.RefId || ' ');
                 const age = filters.Age || {};
                 let allPhotosArray = [];
                 let secPhotosArray = [];
@@ -37,6 +34,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         errorCode: "404",
                         errorMessage: "Publicación no encontrada",
                     });
+                    client.close();
                     return;
                 }
 
@@ -46,19 +44,19 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     allPhotosArray.push(pubSecImages[key]);
                     secPhotosArray.push(pubSecImages[key]);
                 }
-                const shelterPublications = query(ref(db, `Users/${refId}/PublicRead/PostsIds`));
                 const usersCollection = mongoDB.collection('Users');
-                requestProjection = {_id: 0};
-                requestQuery = {};
+                requestProjection = { _id: 0, "PublicRead.PostsIds": 1 };
+                requestQuery = { "PublicRead.Id": refId };
                 getMany(usersCollection, requestProjection, requestQuery).then((snapshot) => {
-                    console.log(snapshot);
-                }).catch(err => {
-                    console.log(err);
-                });
-
-                get(shelterPublications).then((snapshot) => {
-                    const publications = snapshot.val() || {};
+                    snapsot = snapshot[0] || {};
+                    snapshot = snapsot.PublicRead || {};
+                    snapshot = snapshot.PostsIds || [];
+                    const publications = snapshot;
                     let result = [];
+
+                    requestProjection = { _id: 0 };
+                    requestQuery = { Id: { $in: publications } };
+
                     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
                         const parsedDisplayName = JSON.parse(decodedIdToken.name);
                         const renderVar = {
@@ -94,28 +92,28 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                         }
 
                         if (publications.length > 0) {
-                            if (publications.indexOf(pubId) > -1) {
-                                publications.splice(publications.indexOf(pubId), 1);
-                            }
-                            for (let key in publications) {
+                            if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);
 
-                                let singleRealPost = query(ref(db, `Publications/All/${publications[key]}`));
-                                get(singleRealPost).then((snapshot) => {
-                                    let singlePost = snapshot.val();
-                                    result.push(singlePost);
 
-                                    if (Object.keys(publications).length == result.length) {
 
-                                        res.render(appDir + '/public/publication', renderVar)
-                                    }
-
-                                }).catch((error) => {
-                                    console.log(error);
+                            getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+                                snapshot.forEach(element => {
+                                    result.push(element);
                                 });
-                            }
+                                res.render(appDir + '/public/publication', renderVar);
+                                client.close();
+
+                            }).catch((err) => {
+                                console.log(err);
+                                res.status(500).send(err);
+                                client.close();
+
+                            });
                         } else {
                             renderVar.shelterPubs = [];
                             res.render(appDir + '/public/publication', renderVar)
+                            client.close();
+
                         }
                     }).catch((error) => {
                         const renderPrivVar = {
@@ -150,38 +148,41 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                             shelterPubs: result || [],
                         }
                         if (publications.length > 0) {
-                            if (publications.indexOf(pubId) > -1) {
-                                publications.splice(publications.indexOf(pubId), 1);
-                            }
-                            for (let key in publications) {
-                                let singleRealPost = query(ref(db, `Publications/All/${publications[key]}`));
-                                get(singleRealPost).then((snapshot) => {
-                                    let singlePost = snapshot.val();
-                                    result.push(singlePost);
-                                    if (Object.keys(publications).length == result.length) {
-                                        res.render(appDir + '/public/publication', renderPrivVar)
-                                    }
+                            if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);
 
-                                }).catch((error) => {
-                                    console.log(error);
+                            getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+                                snapshot.forEach(element => {
+                                    result.push(element);
                                 });
-                            }
+                                res.render(appDir + '/public/publication', renderPrivVar);
+                                client.close();
+                            }).catch((err) => {
+                                console.log(err);
+                            });
                         } else {
                             renderPrivVar.shelterPubs = [];
                             res.render(appDir + '/public/publication', renderPrivVar)
+                            client.close();
                         }
                     });
-
-                }).catch((error) => {
-
+                }).catch(err => {
+                    console.log(err);
+                    res.status(500).send('Error');
+                    client.close();
+                    
                 });
-
 
             }).catch(err => {
                 console.log(err);
+                res.status(500).send('Error');
+                client.close();
+
             });
         }).catch((error) => {
             console.log(error);
+            res.status(500).send('Error');
+            client.close();
+
         });
     });
 }

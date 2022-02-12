@@ -7,7 +7,13 @@ const http = require('http');
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
 const logColor = require(appDir + '/src/config/logColors');
-const axios = require('axios');
+const { connectClient, getMany,
+  getOne, getAllCollection,
+  saveOne, saveMany,
+  deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
+
 commitVersion = require('child_process')
   .execSync('git rev-parse HEAD')
   .toString().trim()
@@ -60,81 +66,99 @@ SecureServer.listen(443, function () {
 })
 function setupPreloadFunction(expressApp, firebaseAdmin) {
   expressApp.use(function (req, res, next) {
-    const token = req.cookies.session || ' ';
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    let pathArr = req.url.split('/').slice(0,3).join('/')
-    console.log(logColor.debug, 'pathArr', pathArr, '<--', req.url );
-    const freeAccessPath = ['/profile/image', '/profile/image/']
-    if(!freeAccessPath.includes(pathArr)){
-    firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
-      res.locals.isPrivate = false;
-      res.locals.user = decodedIdToken;
-      req.user_authenticated_id = decodedIdToken.uid;
-      isFirstTime(decodedIdToken.uid).then((snapshot) => {
-        const snapshotVal = snapshot.val() || {};
-        res.locals.accType = snapshotVal.Type;
-        const creationInstance = snapshotVal.CreationInstance || 0;
-        res.locals.creationInstance = creationInstance
-        if (req.method == 'GET') {
-          const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'terms-and-conditions']
-          console.log('Type', res.locals.accType);
-          if (decodedIdToken.email_verified) {
-            res.locals.isVerified = true;
-            if (creationInstance < 9) {
-              console.log('Profile is not complete');
-              if(req.path !== `/profile/creation/${creationRoutes[creationInstance]}`){
-                console.log('Path is not equal');
-                console.log('Creation instance', creationInstance);
-                console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
-                console.log(req.path);
-                res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
-              }else{
+    connectClient(mongoURL).then(client => {
+      const token = req.cookies.session || ' ';
+      res.header("Access-Control-Allow-Origin", '*');
+      res.header('Access-Control-Allow-Credentials', true);
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      let pathArr = req.url.split('/').slice(0, 3).join('/')
+      console.log(logColor.debug, 'pathArr', pathArr, '<--', req.url);
+      const freeAccessPath = ['/profile/image', '/profile/image/']
+      if (!freeAccessPath.includes(pathArr)) {
+        firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
+          res.locals.isPrivate = false;
+          res.locals.user = decodedIdToken;
+          req.user_authenticated_id = decodedIdToken.uid;
+          const mongoDB = client.db(mongoDBName);
+          isFirstTime(decodedIdToken.uid, mongoDB).then((snapshot) => {
+            const snapshotVal = snapshot || {};
+            res.locals.accType = snapshotVal.Type;
+            const creationInstance = snapshotVal.CreationInstance || 0;
+            res.locals.creationInstance = creationInstance
+            if (req.method == 'GET') {
+              const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'terms-and-conditions']
+              console.log('Type', res.locals.accType);
+              if (decodedIdToken.email_verified) {
+                res.locals.isVerified = true;
+                if (creationInstance < 9) {
+                  console.log('Profile is not complete');
+                  if (req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
+                    console.log('Path is not equal');
+                    console.log('Creation instance', creationInstance);
+                    console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
+                    console.log(req.path);
+                    res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
+                  } else {
+                    next();
+                  }
+                } else {
+                  console.log('Is equal path');
+                  const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
+                  if (!profileCreationAccessPath.includes(pathArr)) {
+                    next();
+                  } else {
+                    res.redirect('/inicio');
+                  }
+                }
+              } else {
+                res.locals.isVerified = false;
                 next();
               }
-            }else{
-              console.log('Is equal path');
-              const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
-              if(!profileCreationAccessPath.includes(pathArr)){
+            } else {
+              if (decodedIdToken.email_verified) {
+                res.locals.isVerified = true;
                 next();
-              }else{
-                res.redirect('/inicio');
+              } else {
+                res.locals.isVerified = false;
+                next();
               }
             }
-          } else {
-            res.locals.isVerified = false;
-            next();
-          }
-        } else {
-          if (decodedIdToken.email_verified) {
-            res.locals.isVerified = true;
-            next();
-          } else {
-            res.locals.isVerified = false;
-            next();
-          }
-        }
-      }).catch((error) => {
-        console.log(error);
-        res.status(500).send(error);
-      })
+          }).catch((error) => {
+            console.log(error);
+            res.status(500).send(error);
+          })
+        }).catch((error) => {
+          res.locals.authError = error;
+          res.locals.isPrivate = true;
+          next();
+        });
+      } else {
+        next();
+      }
     }).catch((error) => {
-      res.locals.authError = error;
-      res.locals.isPrivate = true;
-      next();
+      console.log(error);
+      res.status(500).send(error);
     });
-  }else{
-    next();
-  }
   });
 
-  function isFirstTime(user_id) {
-    const { ref, get, getDatabase, query } = database;
+  function isFirstTime(user_id, mongoDB) {
+    user_id = sanitize(user_id);
+    return new Promise((resolve, reject) => {
+      const collection = mongoDB.collection('Users');
+      let query = {Id: user_id};
+      let projection = { _Id: 0};
 
-    const db = getDatabase(firebaseApp);
-    const user_profile = query(ref(db, `Users/${user_id}/PublicRead/`));
-
-    return get(user_profile);
+      collection.find(query).project(projection).toArray((error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          if (result.length > 0) {
+            resolve(result[0]);
+          } else {
+            resolve({});
+          }
+        }
+      });
+    })
   }
 }
