@@ -1,174 +1,173 @@
-const { dirname } =     require('path');
-const appDir =          dirname(require.main.filename);
-const axios =           require('axios');
-const { exit } =        require('process');
+const { connect } = require('http2');
+const { dirname } = require('path');
+const appDir = dirname(require.main.filename);
+const { connectClient, getMany,
+    getOne, getAllCollection,
+    saveOne, saveMany,
+    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
 
 function init(app, database, firebaseAdmin, firebaseApp) {
+
     app.get(['/perfil/:u', '/perfil.html/:u', '/perfil', '/perfil.html'], (req, res) => {
-        const isPrivate =                           res.locals.isPrivate;
-        const isVerified =                          res.locals.isVerified;
-        const user =                                res.locals.user || {};
+        connectClient(mongoURL).then(client => {
+            const isPrivate = res.locals.isPrivate;
+            const isVerified = res.locals.isVerified;
+            const user = res.locals.user || {};
 
-        const { ref, get, getDatabase, query } =    database;
-        const userId =                              req.params.u || user.uid || ' ';
-        const db =                                  getDatabase(firebaseApp);
-        const userPosts =                           query(ref(db, `Users/${userId}`));
+            const { ref, get, getDatabase, query } = database;
+            const userId = sanitize(req.params.u || user.uid || ' ');
+            const db = getDatabase(firebaseApp);
+            const userPosts = query(ref(db, `Users/${userId}`));
 
-        get(userPosts).then((snapshot) => {
-            let snapshotVal =   snapshot.val() || {};
-            let profile =       snapshotVal.PublicRead || {};
+            const mongoDB = client.db(mongoDBName);
+            const usersCollection = mongoDB.collection('Users');
+            let requestProjection = { _id: 0 };
+            let requestQuery = { "PublicRead.Id": userId };
 
-            if (!profileExists(profile)) {
-                res.status(404);
-                res.render(appDir + '/public/404', {
-                    errorCode: "404",
-                    errorMessage: "Perfil no encontrado",
-                });
-                return;
-            }
+            getMany(usersCollection, requestProjection, requestQuery).then((snapshot) => {
+                let snapshotVal = snapshot[0] || {};
+                let profile = snapshotVal.PublicRead || {};
 
-            let publicWrite =       snapshotVal.PublicWrite || {};
-            let posts =         profile.PostsIds || [];
-            var result =        [];
-            let stats =         publicWrite.stats || {};
-            let SocialMedia =   profile.SocialMedia || {};
-            let accType =       profile.Type || {};
-            let postsIds =      profile.PostsIds || [];
-            let isMine =        isMyProfile(userId, user.uid);
-
-            if (isPrivate) {
-                let renderPrivVar = {
-                    publications:   result,
-                    photo:          profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                    myPhoto:        'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
-                    myName:         'Cuenta',
-                    mySurname:      'Privada',
-                    name:           profile.Name || '',
-                    surname:        profile.Surname || '',
-                    typeStr:        accType.TypeStr || 'Adoptante',
-                    uid:            userId || '',
-                    typeNum:        accType.TypeNum || 1,
-                    refName:        profile.RefName || '',
-                    description:    profile.ShortDescription || '',
-                    facebook:       SocialMedia.Facebook || null,
-                    twitter:        SocialMedia.Twitter || null,
-                    instagram:      SocialMedia.Instagram || null,
-                    website:        profile.WebSite || null,
-                    followers:      stats.Followers || 0,
-                    following:      stats.Following || 0,
-                    postsCount:     postsIds.length || 0,
-                    isMine:         isMine,
-                    isPrivate:      isPrivate,
-                };
-
-                if (posts.length > 0) {
-                    for (let key in posts) {
-                        let singleRealPost = query(ref(db, `Publications/All/${posts[key]}`));
-
-                        get(singleRealPost).then((snapshot) => {
-                            let singlePost = snapshot.val();
-                            result.push(singlePost);
-
-                            if (checkJsonLength(posts, result.length)) {
-                                res.render(appDir + '/public/profile', renderPrivVar);
-                            }
-
-                        }).catch((error) => {
-                            console.log(error);
-                        });
-                    }
-                } else {
-                    renderPrivVar.publications = [];
-                    res.render(appDir + '/public/profile', renderPrivVar);
+                if (Object.keys(profile).length === 0) {
+                    res.status(404);
+                    res.render(appDir + '/public/404', {
+                        errorCode: "404",
+                        errorMessage: "Perfil no encontrado",
+                    });
+                    client.close();
+                    return;
                 }
-            } else {
-                if (isVerified) {
-                    let parsedDisplayName = JSON.parse(user.name);
 
-                    let renderVar = {
-                        publications:   result,
-                        photo:          profile.Photo || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                        myPhoto:        user.picture,
-                        myName:         parsedDisplayName.nameAndSurname.name,
-                        mySurname:      parsedDisplayName.nameAndSurname.surname,
-                        name:           profile.Name || '',
-                        surname:        profile.Surname || '',
-                        typeStr:        accType.TypeStr || 'Adoptante',
-                        uid:            userId || '',
-                        typeNum:        accType.TypeNum || 1,
-                        refName:        profile.RefName || '',
-                        description:    profile.ShortDescription || '',
-                        facebook:       SocialMedia.Facebook || null,
-                        twitter:        SocialMedia.Twitter || null,
-                        instagram:      SocialMedia.Instagram || null,
-                        website:        profile.WebSite || null,
-                        followers:      stats.Followers || 0,
-                        following:      stats.Following || 0,
-                        postsCount:     postsIds.length || 0,
-                        isMine:         isMine,
-                        isPrivate:      isPrivate
+                let publicWrite = snapshotVal.PublicWrite || {};
+                let posts = profile.PostsIds || [];
+                var result = [];
+                let stats = publicWrite.stats || {};
+                let SocialMedia = profile.SocialMedia || {};
+                let accType = profile.Type || {};
+                let postsIds = profile.PostsIds || [];
+                let isMine = userId === user.uid;
+
+                const publicationsCollection = mongoDB.collection('Publications');
+                requestProjection = { _id: 0 };
+                requestQuery = { Id: { $in: posts } };
+                if (isPrivate) {
+                    let renderPrivVar = {
+                        publications: result,
+                        photo: profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                        myPhoto: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
+                        myName: 'Cuenta',
+                        mySurname: 'Privada',
+                        name: profile.Name || '',
+                        surname: profile.Surname || '',
+                        typeStr: accType.TypeStr || 'Adoptante',
+                        uid: userId || '',
+                        typeNum: accType.TypeNum || 1,
+                        refName: profile.RefName || '',
+                        description: profile.ShortDescription || '',
+                        facebook: SocialMedia.Facebook || null,
+                        twitter: SocialMedia.Twitter || null,
+                        instagram: SocialMedia.Instagram || null,
+                        website: profile.WebSite || null,
+                        followers: stats.Followers || 0,
+                        following: stats.Following || 0,
+                        postsCount: postsIds.length || 0,
+                        isMine: isMine,
+                        isPrivate: isPrivate,
+                        userHref: `/signin`
                     };
 
                     if (posts.length > 0) {
-                        for (let key in posts) {
-                            let singleRealPost = query(ref(db, `Publications/All/${posts[key]}`));
-
-                            get(singleRealPost).then((snapshot) => {
-                                
-                                let singlePost = snapshot.val();
-                                result.push(singlePost);
-                                if (checkJsonLength(posts, result.length)) {
-                                    res.render(appDir + '/public/profile', renderVar);
-                                }
-
-                            }).catch((error) => {
-                                console.log(error);
+                        getMany(publicationsCollection, requestProjection, requestQuery).then((snapshot) => {
+                            snapshot.forEach((publication) => {
+                                result.push(publication);
                             });
-                        }
-                    } else {
+                            res.render(appDir + '/public/profile', renderPrivVar);
+                            client.close();
 
-                        renderVar.publications = [];
-                        res.render(appDir + '/public/profile', renderVar);
+                        }).catch((err) => {
+                            console.log(err);
+                            res.status(500).send();
+                            client.close();
+
+                        });
+                    } else {
+                        renderPrivVar.publications = [];
+                        res.render(appDir + '/public/profile', renderPrivVar);
+                        client.close();
+
                     }
                 } else {
-                    res.redirect('/verification');
-                }
-            }
+                    console.log(isMine)
+                    if (isVerified) {
+                        let parsedDisplayName = JSON.parse(user.name);
+                        let renderVar = {
+                            publications: result,
+                            photo: profile.Photo || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                            myPhoto: user.picture,
+                            myName: parsedDisplayName.nameAndSurname.name,
+                            mySurname: parsedDisplayName.nameAndSurname.surname,
+                            name: profile.Name || '',
+                            surname: profile.Surname || '',
+                            typeStr: accType.TypeStr || 'Adoptante',
+                            uid: userId || '',
+                            typeNum: accType.TypeNum || 1,
+                            refName: profile.RefName || '',
+                            description: profile.ShortDescription || '',
+                            facebook: SocialMedia.Facebook || null,
+                            twitter: SocialMedia.Twitter || null,
+                            instagram: SocialMedia.Instagram || null,
+                            website: profile.WebSite || null,
+                            followers: stats.Followers || 0,
+                            following: stats.Following || 0,
+                            postsCount: postsIds.length || 0,
+                            isMine: isMine,
+                            isPrivate: isPrivate,
+                            userHref: !isMine ? `/perfil/${userId}` : `#`
+                        };
 
-        }).catch((error) => {
-            console.log(error);
+                        if (posts.length > 0) {
+                            getMany(publicationsCollection, requestProjection, requestQuery).then((snapshot) => {
+                                snapshot.forEach((publication) => {
+                                    result.push(publication);
+                                });
+                                res.render(appDir + '/public/profile', renderVar);
+                                client.close();
+
+                            }).catch((err) => {
+                                console.log(err);
+                                res.status(500).send();
+                                client.close();
+
+                            });
+                        } else {
+
+                            renderVar.publications = [];
+                            res.render(appDir + '/public/profile', renderVar);
+                            client.close();
+
+                        }
+                    } else {
+                        res.redirect('/verification');
+                        client.close();
+
+                    }
+                }
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).send();
+                client.close();
+
+            });
         });
     });
-
-    function createArrayFromJson(json) {
-        let result = [];
-        for (let key in json) {
-            result.push(json[key]);
-        }
-        return result;
-    }
 
     function profileExists(profile_json) {
         if (Object.keys(profile_json).length == 0) {
             return false;
         } else {
             return true;
-        }
-    }
-
-    function checkJsonLength(json, expected_length) {
-        if (Object.keys(json).length == expected_length) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function isMyProfile(req_uid, my_uid) {
-        if (req_uid == my_uid) {
-            return true;
-        } else {
-            return false;
         }
     }
 }

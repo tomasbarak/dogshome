@@ -3,7 +3,7 @@ const appDir =                              dirname(require.main.filename);
 const { connectClient, getMany, 
         getOne, getAllCollection, 
         saveOne, saveMany,
-        deleteOne, deleteMany } =           require(appDir + '/src/api/mongodbFunctions.js');
+        deleteOne, deleteMany, sanitize } =           require(appDir + '/src/api/mongodbFunctions.js');
 const mongoURL =                            'mongodb://localhost:27017/dogshome';
 const mongoDBName =                         'dogshome';
 
@@ -22,7 +22,7 @@ function init(app) {
 
             getMany(collection, requestProjection, requestQuery).then((snapshot) => {
                 console.log(snapshot)
-                var json_data =     snapshot[0] || {};
+                var json_data =     snapshot || {};
                 const result =      createArrayFromJson(json_data);
                 if (isPrivate) {
                     res.render(appDir + '/public/index', {
