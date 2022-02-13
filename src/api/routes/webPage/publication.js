@@ -50,7 +50,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 getMany(usersCollection, requestProjection, requestQuery).then((snapshot) => {
                     snapshot = snapshot[0] || {};
 
-                    const publications = snapshot.PostsIds;
+                    const publications = snapshot.PostsIds || [];
                     console.log(snapshot);
                     let result = [];
 
