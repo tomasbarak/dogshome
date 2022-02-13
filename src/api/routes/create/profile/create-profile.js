@@ -55,12 +55,14 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     client.close();
                 }).catch((err) => {
                     console.log(err)
+                    client.close()
                 })
             } else {
                 res.status(200).send();
             }
         }).catch((error) => {
             console.log(error)
+            res.status(500).send();
         });
 
     });
@@ -120,13 +122,16 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     }),
                 }).then(() => {
                     res.status(200).send({ redirectRoute: '/profile/creation/profile-type' });
+                    client.close();
                 }).catch((error) => {
                     console.log(error);
                     res.status(500).send({ error: error });
+                    client.close();
                 });
-                client.close();
             }).catch((err) => {
                 console.log(err)
+                res.status(500).send({ error: err });
+                client.close();
             })
         }).catch((error) => {
             console.log(error)
@@ -184,8 +189,12 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 }).catch((err) => {
                     console.log(error);
                     res.status(500).send({ error: error });
+                    client.close();
                 })
-            })
+            }).catch((error) => {
+                console.log(error)
+                res.status(500).send({ error: error });
+            });
         } else {
             res.status(401).send('Not authorized');
         }
@@ -228,7 +237,7 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 let saveFilters = { Id: sanitize(uid) };
                 let saveData = {
                     CreationInstance: targetCreatioInstance,
-                    RefName: sanitize(shelterName),
+                    RefName: shelterName,
                 };
 
                 saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
@@ -239,7 +248,10 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     res.status(500).send({ error: error });
                     client.close();
                 })
-            })
+            }).catch((error) => {
+                console.log(error)
+                res.status(500).send({ error: error });
+            });
         } else {
             res.status(401).send('Not authorized');
         }
@@ -301,7 +313,10 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     res.status(500).send({ error: error });
                     client.close();
                 })
-            })
+            }).catch((err) => {
+                console.log(error);
+                res.status(500).send({ error: error });
+            });
         } else {
             res.status(401).send('Not authorized');
         }
@@ -332,31 +347,41 @@ function init(app, database, firebaseAdmin, firebaseApp) {
     });
 
     app.post('/profile/creation/phone', (req, res) => {
-        const libphonenumber = require('libphonenumber-js');
         const creationInstance = res.locals.creationInstance;
         let targetCreatioInstance = 5;
         const allowedInstance = 4;
         if (allowedInstance === creationInstance) {
             const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            const { phone_number, phone_country_code, phone_country_iso } = req.body;
-            user_profile.update({
-                CreationInstance: targetCreatioInstance,
-                Contact: {
-                    Phone: phone_number,
-                    PhoneCountryCode: phone_country_code,
-                    PhoneCountryISO: phone_country_iso,
 
-                }
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).send({ error: error });
-                } else {
-                    res.status(200).send({ redirectRoute: '/profile/creation/email' });
-                }
+            connectClient(mongoURL).then((client) => {
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+                const { phone_number, phone_country_code, phone_country_iso } = req.body;
+
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreatioInstance,
+                    Contact: {
+                        Phone: sanitize(phone_number),
+                        PhoneCountryCode: phone_country_code,
+                        PhoneCountryISO: phone_country_iso,
+                    }
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
+                    res.status(200).send({ redirectRoute: '/profile/creation/short-description' });
+                    client.close();
+                }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send({ error: err });
+                    client.close();
+                });
+
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).send({ error: err });
             });
+            
         } else {
             res.status(401).send('Not authorized');
         }
@@ -397,19 +422,28 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const { short_description } = req.body;
             console.log(short_description.length);
             if (short_description.length <= 141) {
-                const uid = res.locals.user.uid;
-                const db = firebaseAdmin.database();
-                const user_profile = db.ref(`Users/${uid}/PublicRead`);
-                user_profile.update({
-                    CreationInstance: targetCreationInstance,
-                    ShortDescription: short_description,
-                }, (error) => {
-                    if (error) {
-                        console.log(error);
-                        res.status(500).send({ error: error });
-                    } else {
-                        res.status(200).send({ redirectRoute: '/profile/creation/long-description' });
-                    }
+                connectClient(mongoURL).then((client) => {
+                    const uid = res.locals.user.uid;
+
+                    const mongoDB = client.db(mongoDBName);
+                    const collection = mongoDB.collection('Users');
+                    let saveFilters = { Id: sanitize(uid) };
+                    let saveData = {
+                        CreationInstance: targetCreationInstance,
+                        ShortDescription: short_description,
+                    };
+
+                    saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
+                        res.status(200).send({ redirectRoute: '/profile/creation/web-site' });
+                        client.close();
+                    }).catch((err) => {
+                        console.log(err);
+                        res.status(500).send({ error: err });
+                        client.close();
+                    });
+                }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send({ error: err });
                 });
             } else {
                 res.status(413).send('La descripción es demasiado larga');
@@ -449,20 +483,29 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         let targetCreationInstance = 7;
         const allowedInstance = 6;
         if (allowedInstance === creationInstance) {
-            const { web_site } = req.body;
-            const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            user_profile.update({
-                CreationInstance: targetCreationInstance,
-                WebSite: web_site,
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).send({ error: error });
-                } else {
+            connectClient(mongoURL).then( (client) => {
+                const { web_site } = req.body;
+                const uid = res.locals.user.uid;
+
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreationInstance,
+                    WebSite: web_site,
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
                     res.status(200).send({ redirectRoute: '/profile/creation/social-networks' });
-                }
+                    client.close();
+                }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send({ error: err });
+                    client.close();
+                });
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).send({ error: err });
             });
         } else {
             res.status(401).send('Not authorized');
@@ -493,28 +536,36 @@ function init(app, database, firebaseAdmin, firebaseApp) {
     app.post('/profile/creation/social-media', (req, res) => {
         const creationInstance = res.locals.creationInstance;
         const accType = res.locals.accType;
-        const accTypeNum = accType.TypeNum;
         let targetCreationInstance = 8;
         const allowedInstance = 7;
         if (allowedInstance === creationInstance) {
-            const { instagram_user, facebook_user, twitter_user } = req.body;
-            const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            user_profile.update({
-                CreationInstance: targetCreationInstance,
-                SocialMedia: {
-                    Instagram: instagram_user,
-                    Facebook: facebook_user,
-                    Twitter: twitter_user,
-                },
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).send({ error: error });
-                } else {
-                    res.status(200).send({ redirectRoute: '/profile/creation/interests' });
-                }
+            connectClient(mongoURL).then((client) => {
+                const { instagram_user, facebook_user, twitter_user } = req.body;
+                const uid = res.locals.user.uid;
+                
+                const mongoDB = client.db(mongoDBName);
+                const collection = mongoDB.collection('Users');
+                let saveFilters = { Id: sanitize(uid) };
+                let saveData = {
+                    CreationInstance: targetCreationInstance,
+                    SocialMedia: {
+                        Instagram: instagram_user,
+                        Facebook: facebook_user,
+                        Twitter: twitter_user,
+                    },
+                };
+
+                saveMany(collection, saveFilters, { $set: saveData }, { upsert: true }).then((snapshot) => {
+                    res.status(200).send({ redirectRoute: '/profile/creation/social-networks' });
+                    client.close();
+                }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send({ error: err });
+                    client.close();
+                });
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).send({ error: err });
             });
         } else {
             res.status(401).send('Not authorized');
@@ -550,20 +601,34 @@ function init(app, database, firebaseAdmin, firebaseApp) {
         const allowedInstance = 8;
         if (allowedInstance === creationInstance) {
             const { accepted } = req.body;
-            const uid = res.locals.user.uid;
-            const db = firebaseAdmin.database();
-            const user_profile = db.ref(`Users/${uid}/PublicRead`);
-            user_profile.update({
-                CreationInstance: targetCreationInstance,
-                TermsAndConditions: true,
-            }, (error) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).send({ error: error });
-                } else {
-                    res.status(200).send({ redirectRoute: '/inicio' });
-                }
-            });
+            
+            if(accepted){
+                const uid = res.locals.user.uid;
+                connectClient(mongoURL).then( (client ) => {    
+                    const mongoDB = client.db(mongoDBName);
+                    const collection = mongoDB.collection('Users');
+                    let saveFilters = { Id: sanitize(uid) };
+                    let saveData = {
+                        CreationInstance: targetCreationInstance,
+                        TermsAndConditions: true,
+                    };
+
+                    saveMany(collection, saveFilters, {$set: saveData}, {upsert: true}).then((snapshot) => {
+                        res.status(200).send({ redirectRoute: '/profile/creation/finish' });
+                        client.close();
+                    }).catch((err) => {
+                        console.log(err);
+                        res.status(500).send({ error: err });
+                        client.close();
+                    });
+                    
+                }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send({ error: err });
+                });
+            }else{
+                res.status(200).send({message: 'Debes aceptar los términos y condiciones para poder continuar'});
+            }
         } else {
             res.status(401).send('Not authorized');
         }

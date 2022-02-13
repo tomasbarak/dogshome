@@ -102,6 +102,7 @@ const deleteMany = (collection, query) => {
 
 const sanitize = (data) => {
     let sanitized = '';
+    data = String(data);
     const mongoIllegalChars = ['', '#', '$', '[', ']']
     for(let i = 0; i < data.length; i++){
         if(mongoIllegalChars.indexOf(data[i]) !== -1){
@@ -111,6 +112,6 @@ const sanitize = (data) => {
         }
     }
     console.log(sanitized);
-    return sanitized.toString();
+    return String(sanitized);
 }
 module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize };
