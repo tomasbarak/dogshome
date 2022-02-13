@@ -45,13 +45,13 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     secPhotosArray.push(pubSecImages[key]);
                 }
                 const usersCollection = mongoDB.collection('Users');
-                requestProjection = { _id: 0, "PublicRead.PostsIds": 1 };
-                requestQuery = { "PublicRead.Id": refId };
+                requestProjection = { _id: 0, PostsIds: 1 };
+                requestQuery = { Id: String(refId) };
                 getMany(usersCollection, requestProjection, requestQuery).then((snapshot) => {
-                    snapsot = snapshot[0] || {};
-                    snapshot = snapsot.PublicRead || {};
-                    snapshot = snapshot.PostsIds || [];
-                    const publications = snapshot;
+                    snapshot = snapshot[0] || {};
+
+                    const publications = snapshot.PostsIds;
+                    console.log(snapshot);
                     let result = [];
 
                     requestProjection = { _id: 0 };

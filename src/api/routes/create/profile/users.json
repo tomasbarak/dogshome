@@ -1,119 +1,59 @@
-    [
-        {
-            "PublicRead": {
-                "CreationInstance": 9,
-                "Id": "ISTZXl0HLROXJTVlyXf8Jb1CGg73",
-                "Name": "Tomas",
-                "ShortDescription": "Dogshome es una plataforma de adopcion canina Argentina",
-                "Surname": "Barak",
-                "TermsAndConditions": true,
-                "Type": {
-                    "TypeNum": 1,
-                    "TypeStr": "Adoptante"
-                }
-            }
-        },
-        {
-            "PublicRead": {
-                "Contact": {
-                    "Phone": "91164964013",
-                    "PhoneCountryCode": "54",
-                    "PhoneCountryISO": "AR"
-                },
-                "CreationInstance": 9,
-                "Id": "bqDDJ7QiHvVyxkRXaER6sP9S2LE2",
-                "Name": "Daniel",
-                "Photo": "https://dogshome.com.ar/profile/image/uploaded/bqDDJ7QiHvVyxkRXaER6sP9S2LE2.jpg",
-                "ShortDescription": "Me llamo Daniel y estoy buscando un hogar para una mascota ",
-                "Surname": "Barak",
-                "TermsAndConditions": true,
-                "Type": {
-                    "TypeNum": 1,
-                    "TypeStr": "Adoptante"
-                }
-            }
-        },
-        {
-            "PublicRead": {
-                "Contact": {
-                    "Phone": "91165413200",
-                    "PhoneCountryCode": "54",
-                    "PhoneCountryISO": "AR"
-                },
-                "CreationInstance": 9,
-                "Id": "lxfAgybtGDNpSINDa7b59uWJKmz2",
-                "Name": "Tomas",
-                "Photo": "https://dogshome.com.ar/profile/image/uploaded/lxfAgybtGDNpSINDa7b59uWJKmz2.jpg",
-                "ShortDescription": "Esta es una cuenta de prueba para el desarrollo de DogsHome.",
-                "Surname": "Barak",
-                "TermsAndConditions": true,
-                "Type": {
-                    "TypeNum": 1,
-                    "TypeStr": "Adoptante"
-                }
-            }
-        },
-        {
-            "PublicRead": {
-                "Contact": {
-                    "Phone": "91140285088",
-                    "PhoneCountryCode": "54",
-                    "PhoneCountryISO": "AR"
-                },
-                "CreationInstance": 9,
-                "Id": "zgzPw7uIlnQhLN7mtq9p1rBSWRr2",
-                "Name": "Cinthia",
-                "ShortDescription": "Amo a los perros, en especial a los callejeros.",
-                "Surname": "Bramuglia",
-                "TermsAndConditions": true,
-                "Type": {
-                    "TypeNum": 1,
-                    "TypeStr": "Adoptante"
-                }
-            }
-        },
-        {
-            "PublicRead": {
-                "CreationInstance": 10,
-                "CreationInstanceMap": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10
-                ],
-                "Email": "darktomdj@gmail.com",
-                "Finished": true,
-                "Id": "yfrd2f611ZNqKHmK174J4IlT3ow2",
-                "Name": "Tomas",
-                "Phone": "01165413200",
-                "PhoneVerified": "true",
-                "Photo": "https://api.softvisiondevelop.com.ar/profile/image/uploaded/yfrd2f611ZNqKHmK174J4IlT3ow2.jpg",
-                "PostsIds": [
-                    "b83a138536022",
-                    "0264417bb57de",
-                    "e5098422ce337",
-                    "b9fe54c6568dd",
-                    "8b1e11d0d4474"
-                ],
-                "RefName": "DogsHome",
-                "ShortDescription": "Somos DogsHome, una plataforma de Adopción de perros online.",
-                "SocialMedia": {
-                    "Facebook": "",
-                    "Instagram": "tomasbarakk",
-                    "Twitter": "tomasbarak3"
-                },
-                "Surname": "Barak",
-                "Type": {
-                    "TypeNum": 2,
-                    "TypeStr": "Refugio"
-                },
-                "WebSite": "dogshome.softvisiondevelop.com.ar"
-            }
-        }
-    ]
+[
+  {
+    "_id": {
+      "$oid": "6207704f9ab7a1ed081d17c0"
+    },
+    "Id": "lxfAgybtGDNpSINDa7b59uWJKmz2",
+    "CreationInstance": 9,
+    "Name": "Tomas",
+    "Surname": "Barak",
+    "Type": {
+      "TypeNum": 2,
+      "TypeStr": "Refugio"
+    },
+    "RefName": "Barak",
+    "Photo": "https://dogshome.com.ar/profile/image/uploaded/lxfAgybtGDNpSINDa7b59uWJKmz2.jpg",
+    "Contact": {
+      "Phone": "null",
+      "PhoneCountryCode": "null",
+      "PhoneCountryISO": "null"
+    },
+    "ShortDescription": "Soy tomas barak, esta es una cuenta de prueba $$$///",
+    "WebSite": "dogshome.com.ar",
+    "SocialMedia": {
+      "Instagram": "tomasbarakk",
+      "Facebook": "",
+      "Twitter": "tomasbarak3"
+    },
+    "TermsAndConditions": true
+  },
+  {
+    "_id": {
+      "$oid": "6209715a026d98abab98acdb"
+    },
+    "CreationInstance": 10,
+    "Id": "yfrd2f611ZNqKHmK174J4IlT3ow2",
+    "Name": "Tomas",
+    "Photo": "https://api.softvisiondevelop.com.ar/profile/image/uploaded/yfrd2f611ZNqKHmK174J4IlT3ow2.jpg",
+    "PostsIds": [
+      "b83a138536022",
+      "0264417bb57de",
+      "e5098422ce337",
+      "b9fe54c6568dd",
+      "8b1e11d0d4474"
+    ],
+    "RefName": "DogsHome",
+    "ShortDescription": "Somos DogsHome, una plataforma de Adopción de perros online.",
+    "SocialMedia": {
+      "Facebook": "",
+      "Instagram": "tomasbarakk",
+      "Twitter": "tomasbarak3"
+    },
+    "Surname": "Barak",
+    "Type": {
+      "TypeNum": 2,
+      "TypeStr": "Refugio"
+    },
+    "WebSite": "dogshome.softvisiondevelop.com.ar"
+  }
+]
