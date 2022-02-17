@@ -96,41 +96,61 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
                 if (creationInstance < 9) {
                   if (req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
                     res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
+                    client.close();
+
                   } else {
                     next();
+                    client.close();
+
                   }
                 } else {
                   const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
                   if (!profileCreationAccessPath.includes(pathArr)) {
                     next();
+                    client.close();
+
                   } else {
                     res.redirect('/inicio');
+                    client.close();
+
                   }
                 }
               } else {
                 res.locals.isVerified = false;
                 next();
+                client.close();
+
               }
             } else {
               if (decodedIdToken.email_verified) {
                 res.locals.isVerified = true;
                 next();
+                client.close();
+
               } else {
                 res.locals.isVerified = false;
                 next();
+                client.close();
+
               }
             }
           }).catch((error) => {
             console.log(error);
             res.status(500).send(error);
+            client.close();
+
           })
         }).catch((error) => {
           res.locals.authError = error;
           res.locals.isPrivate = true;
           next();
+          client.close();
+          
         });
       } else {
         next();
+        client.close();
+
       }
     }).catch((error) => {
       console.log(error);
@@ -155,9 +175,8 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
           } else {
             resolve({});
           }
-          client.close();
         }
-      });
-    })
+      })
+    });
   }
 }
