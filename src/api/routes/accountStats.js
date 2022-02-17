@@ -25,9 +25,12 @@ function init(app){
                 data = snapshot[0]["Stats"] || {};
                 res.header('Access-Control-Allow-Origin', '*');
                 res.status(200).send(data);
+                client.close()
+
             }).catch((error) => {
 
                 res.status(500).send(error);
+                client.close()
 
             });
 

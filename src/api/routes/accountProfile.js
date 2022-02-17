@@ -26,8 +26,10 @@ function init(app){
                     res.status(404).send({
                         message: 'User not found'
                     });
+                    client.close()
                 }else{
                     res.status(200).send(data);
+                    client.close()
                 }
             }).catch((error) => {
 

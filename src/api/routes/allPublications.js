@@ -18,8 +18,12 @@ function init(app){
             getAllCollection(collection, projection).then((snapshot) => {
                 res.header('Access-Control-Allow-Origin', '*');
                 res.status(200).send(snapshot);
+                client.close()
+
             }).catch((error) => {
                 res.status(500).send(error);
+                client.close()
+
             });
 
         }).catch((error) => {

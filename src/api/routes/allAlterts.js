@@ -16,10 +16,12 @@ function init(app, firebaseApp, database){
 
             res.header('Access-Control-Allow-Origin', '*');
             res.status(200).send(snapshot.val());
+            client.close()
 
         }).catch((error) => {
 
             res.status(500).send(error);
+            client.close()
 
           });
 
