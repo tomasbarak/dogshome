@@ -151,9 +151,11 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
         } else {
           if (result.length > 0) {
             resolve(result[0]);
+
           } else {
             resolve({});
           }
+          client.close();
         }
       });
     })
