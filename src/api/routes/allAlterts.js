@@ -4,7 +4,7 @@ const logColor =        require(appDir + '/src/config/logColors');
 
 //Route to get all publications
 function init(app, firebaseApp, database){
-    app.get('/alerts/all/', function (req, res) {
+    app.get('/api/alerts/all/', function (req, res) {
 
         console.log(logColor.debug, 'All alerts accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
 

@@ -2,11 +2,8 @@ const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
 const logColor = require(appDir + '/src/config/logColors');
 const multer = require('multer');
-const authRequest = require(appDir + '/src/api/auth/authRequest');
 
-const authentication = authRequest.auth;
-
-function init(app, firebaseAdmin, database, firebaseApp) {
+function init(app) {
     //multer options
     const storage = multer.diskStorage({
         destination: 'uploads',

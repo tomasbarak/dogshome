@@ -2,51 +2,34 @@ const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const logColor =        require(appDir + '/src/config/logColors');
 
+const { connectClient, getMany,
+    getOne, getAllCollection,
+    saveOne, saveMany,
+    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
+
 //Route to get all publications
-function init(app, firebaseApp, database){
-    app.get('/publications/:state/:id/', function (req, res) {
-        console.log(logColor.debug, 'Publication ' + req.params.state + '/' + req.params.id + ' accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+function init(app){
+    app.get(['/api/publications/:id/'], function (req, res) {
+        connectClient(mongoURL).then((client) => {     
+            const pubId =       req.params.id;
 
-        const db =          database.getDatabase(firebaseApp);
-        const pubId =       req.params.id;
-        const dbRef =       database.ref(db);
-        const pubState =    req.params.state;
-        const child =       database.child;
-        const get =         database.get;
+            const mongoDB =     client.db(mongoDBName);
+            const collection =  mongoDB.collection('Publications');
+            let requestQuery =  { Id: pubId };
+            let requestProjection = { _id: 0 };
+            
+            getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+                res.header('Access-Control-Allow-Origin', '*');
+                res.status(200).send(snapshot[0]);
 
-        get(child(dbRef, `Publications/${pubState}/${pubId}/`)).then((snapshot) => {
+            }).catch((error) => {
+                res.status(500).send(error);
 
-            res.header('Access-Control-Allow-Origin', '*');
-            res.status(200).send(snapshot.val());
+            });
 
-        }).catch((error) => {
-
-            res.status(500).send(error);
-
-          });
-
-    })
-    app.get('/publications/:id/', function (req, res) {
-        console.log(logColor.debug, 'Publication ' + req.params.id + ' accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
-
-        const db =          database.getDatabase(firebaseApp);
-        const pubId =       req.params.id;
-        const dbRef =       database.ref(db);
-        const pubState =    req.params.state;
-        const child =       database.child;
-        const get =         database.get;
-
-        get(child(dbRef, `Publications/All/${pubId}/`)).then((snapshot) => {
-
-            res.header('Access-Control-Allow-Origin', '*');
-            res.status(200).send(snapshot.val());
-
-        }).catch((error) => {
-
-            res.status(500).send(error);
-
-          });
-
+        })
     })
 }
 

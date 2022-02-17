@@ -7,7 +7,7 @@ const { connectClient, getMany,
 const mongoURL = 'mongodb://localhost:27017/dogshome';
 const mongoDBName = 'dogshome';
 
-function init(app, database, firebaseAdmin, firebaseApp) {
+function init(app, firebaseAdmin) {
     app.get(['/publicacion/:id', '/publicacion.html/:id'], (req, res) => {
         const token = req.cookies.session || ' ';
         const pubId = sanitize(req.params.id);
@@ -51,7 +51,6 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                     snapshot = snapshot[0] || {};
 
                     const publications = snapshot.PostsIds || [];
-                    console.log(snapshot);
                     let result = [];
 
                     requestProjection = { _id: 0 };

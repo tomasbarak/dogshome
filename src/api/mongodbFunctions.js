@@ -14,8 +14,6 @@ const connectClient = (url) => {
 }
 
 const getMany = (collection, projection = {}, query = {}) =>{
-    console.log(query);
-    console.log(projection);
     return new Promise((resolve, reject) => {
         collection.find(query).project(projection).toArray((err, result) => {
             if(err){
@@ -40,9 +38,9 @@ const getOne = (collection, projection = {}, query = {}) => {
     });
 }
 
-const getAllCollection = (collection) => {
+const getAllCollection = (collection, projection = {}) => {
     return new Promise((resolve, reject) => {
-        collection.find({}).toArray((err, result) => {
+        collection.find({}).project(projection).toArray((err, result) => {
             if(err){
                 reject(err);
             }else{
@@ -111,7 +109,6 @@ const sanitize = (data) => {
             sanitized += data[i];
         }
     }
-    console.log(sanitized);
     return String(sanitized);
 }
 module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize };

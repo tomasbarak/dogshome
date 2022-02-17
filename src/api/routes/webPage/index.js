@@ -21,7 +21,6 @@ function init(app) {
             let requestQuery =          {};
 
             getMany(collection, requestProjection, requestQuery).then((snapshot) => {
-                console.log(snapshot)
                 var json_data =     snapshot || {};
                 const result =      createArrayFromJson(json_data);
                 if (isPrivate) {

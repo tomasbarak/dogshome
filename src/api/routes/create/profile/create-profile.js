@@ -7,7 +7,7 @@ const { connectClient, getMany,
 const mongoURL = 'mongodb://localhost:27017/dogshome';
 const mongoDBName = 'dogshome';
 
-function init(app, database, firebaseAdmin, firebaseApp) {
+function init(app, firebaseAdmin) {
     app.get('/profile/creation/*', (req, res, next) => {
         const isPrivate = res.locals.isPrivate;
         const isVerified = res.locals.isVerified;
@@ -50,7 +50,6 @@ function init(app, database, firebaseAdmin, firebaseApp) {
                 let saveFilters = { "Id": sanitize(uid) };
                 let saveData = { "CreationInstance": creationInstance };
                 saveMany(collection, saveFilters, { $set: saveData }).then((snapshot) => {
-                    console.log(snapshot)
                     res.status(200).send();
                     client.close();
                 }).catch((err) => {
@@ -108,7 +107,6 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             };
 
             saveMany(collection, saveFilters, { $set: saveData }).then((snapshot) => {
-                console.log(snapshot)
 
                 let name_no_spaces = name.replace(/\s/g, '');
                 const constructedDisplayName = name.replace(/\s/g, '') + ' ' + surname.replace(/\s/g, '');

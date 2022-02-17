@@ -3,7 +3,7 @@ const appDir =          dirname(require.main.filename);
 const logColor =        require(appDir + '/src/config/logColors');
 
 function init(app, firebaseAdmin){
-    app.get('/user/:uid/displayName/', function(req, res){
+    app.get('/api/user/:uid/displayName/', function(req, res){
         let token = String(req.headers.authtoken);
         
         console.log(logColor.debug, 'DisplayName accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());

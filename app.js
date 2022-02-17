@@ -72,7 +72,11 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       res.header('Access-Control-Allow-Credentials', true);
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       let pathArr = req.url.split('/').slice(0, 3).join('/')
-      console.log(logColor.debug, 'pathArr', pathArr, '<--', req.url);
+      let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      if (ip.substr(0, 7) == "::ffff:") {
+        ip = ip.substr(7)
+      }
+      console.log(`\x1b[36m${pathArr} \x1b[0m<-- \x1b[32m${ip}`);
       const freeAccessPath = ['/profile/image', '/profile/image/']
       if (!freeAccessPath.includes(pathArr)) {
         firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
@@ -87,22 +91,15 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
             res.locals.creationInstance = creationInstance
             if (req.method == 'GET') {
               const creationRoutes = ['start', 'profile-type', 'shelter-name', 'profile-photo', 'phone', 'short-description', 'web-site', 'social-media', 'terms-and-conditions']
-              console.log('Type', res.locals.accType);
               if (decodedIdToken.email_verified) {
                 res.locals.isVerified = true;
                 if (creationInstance < 9) {
-                  console.log('Profile is not complete');
                   if (req.path !== `/profile/creation/${creationRoutes[creationInstance]}`) {
-                    console.log('Path is not equal');
-                    console.log('Creation instance', creationInstance);
-                    console.log(`/profile/creation/${creationRoutes[creationInstance]}`);
-                    console.log(req.path);
                     res.redirect(`/profile/creation/${creationRoutes[creationInstance]}`);
                   } else {
                     next();
                   }
                 } else {
-                  console.log('Is equal path');
                   const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
                   if (!profileCreationAccessPath.includes(pathArr)) {
                     next();

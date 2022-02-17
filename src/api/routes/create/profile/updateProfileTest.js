@@ -12,7 +12,6 @@ connectClient(mongoURL).then(client => {
     const collection = mongoDB.collection('Users');
     let requestQuery = {"PublicRead.Id": "yfrd2f611ZNqKHmK174J4IlT3ow2"  };
     saveMany(collection, requestQuery, {"PublicRead.Phone": "1165413202"}).then((snapshot) => {
-        console.log(snapshot)
         client.close();
     }).catch((err) => {
         console.log(err)

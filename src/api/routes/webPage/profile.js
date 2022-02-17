@@ -8,7 +8,7 @@ const { connectClient, getMany,
 const mongoURL = 'mongodb://localhost:27017/dogshome';
 const mongoDBName = 'dogshome';
 
-function init(app, database, firebaseAdmin, firebaseApp) {
+function init(app) {
 
     app.get(['/perfil/:u', '/perfil.html/:u', '/perfil', '/perfil.html'], (req, res) => {
         connectClient(mongoURL).then(client => {
@@ -16,19 +16,16 @@ function init(app, database, firebaseAdmin, firebaseApp) {
             const isVerified = res.locals.isVerified;
             const user = res.locals.user || {};
 
-            const { ref, get, getDatabase, query } = database;
             const userId = sanitize(req.params.u || user.uid || ' ');
-            const db = getDatabase(firebaseApp);
-            const userPosts = query(ref(db, `Users/${userId}`));
 
             const mongoDB = client.db(mongoDBName);
             const usersCollection = mongoDB.collection('Users');
             let requestProjection = { _id: 0 };
-            let requestQuery = { "PublicRead.Id": userId };
+            let requestQuery = { Id: userId };
 
             getMany(usersCollection, requestProjection, requestQuery).then((snapshot) => {
                 let snapshotVal = snapshot[0] || {};
-                let profile = snapshotVal.PublicRead || {};
+                let profile = snapshotVal || {};
 
                 if (Object.keys(profile).length === 0) {
                     res.status(404);
@@ -99,13 +96,12 @@ function init(app, database, firebaseAdmin, firebaseApp) {
 
                     }
                 } else {
-                    console.log(isMine)
                     if (isVerified) {
                         let parsedDisplayName = JSON.parse(user.name);
                         let renderVar = {
                             publications: result,
                             photo: profile.Photo || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                            myPhoto: user.picture,
+                            myPhoto: user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                             myName: parsedDisplayName.nameAndSurname.name,
                             mySurname: parsedDisplayName.nameAndSurname.surname,
                             name: profile.Name || '',

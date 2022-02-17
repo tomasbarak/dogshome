@@ -1,28 +1,31 @@
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 const logColor =        require(appDir + '/src/config/logColors');
-const dogshome = require(appDir + '/src/api/mongodbFunctions');
-//Route to get all publications
-function init(app, firebaseApp, database){
-    app.get('/publications/all/', function (req, res) {
+const { connectClient, getMany,
+    getOne, getAllCollection,
+    saveOne, saveMany,
+    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL = 'mongodb://localhost:27017/dogshome';
+const mongoDBName = 'dogshome';
 
-        console.log(logColor.debug, 'AllPublications accessed by', req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(":").pop());
+function init(app){
+    app.get('/api/publications/all/', function (req, res) {
+        connectClient(mongoURL).then((client) => {
+            const mongoDB =         client.db(mongoDBName);
+            const collection =      mongoDB.collection('Publications');
+            let projection =        { _id: 0 };
 
-        const db =              database.getDatabase(firebaseApp);
-        const recentPostsRef =  database.query(database.ref(db, 'Publications/All'), database.limitToLast(50));
-        const get =             database.get;
-
-        get(recentPostsRef).then((snapshot) => {
-
-            res.header('Access-Control-Allow-Origin', '*');
-            res.status(200).send(snapshot.val());
+            getAllCollection(collection, projection).then((snapshot) => {
+                res.header('Access-Control-Allow-Origin', '*');
+                res.status(200).send(snapshot);
+            }).catch((error) => {
+                res.status(500).send(error);
+            });
 
         }).catch((error) => {
-
+            console.log(logColor.error, error);
             res.status(500).send(error);
-
-          });
-
+        });
     })
 }
 
