@@ -1,7 +1,7 @@
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 
-function config(app, firebaseApp, database, firebaseadmin){
+function config(app, firebaseadmin){
     //API routes
     require( appDir + '/src/api/routes/uploadImage')                    .init(app);
     require( appDir + '/src/api/routes/accountProfile')                 .init(app);
@@ -26,6 +26,7 @@ function config(app, firebaseApp, database, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/verification')           .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signout')                .init(app);
     require( appDir + '/src/api/routes/webPage/createPublication')      .init(app);
+    require( appDir + '/src/api/routes/publicationDraft')               .init(app);
 
     //Github changes listener
     require( appDir + '/src/api/listeners/githubPushListener')          .listen(app);

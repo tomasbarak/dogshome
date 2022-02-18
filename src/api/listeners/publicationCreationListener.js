@@ -8,7 +8,7 @@ function listen(firebaseApp, database){
         on(recentPostsRef, (snapshot) => {
             const data = snapshot.val();
             //console.log(data);
-          })
+        })
 }
 
 module.exports = {listen};

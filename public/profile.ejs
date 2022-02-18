@@ -239,6 +239,16 @@
         </section>
         <a id="short-desc"><%= description %></a>
     </div>
+    <% if (publications.length > 0) { %>
+        <div style="margin-top: 50px; display: flex; flex-direction: row" class="desktop">
+            <a style="font-size: 2em;">Publicaciones</a>
+        </div>
+    <% } else { %>
+        <div style="margin-top: 50px; display: flex; flex-direction: row;" class="desktop">
+            <a style="font-size: 2em;">Aún no hay publicaciones</a>
+        </div>
+    <% } %> 
+    
 
     <div id="profile-view-cont-mobile" class="mobile">
         <div id="profile-stats-cont-mobile">
@@ -310,6 +320,16 @@
             <% } %> 
             
         </div>
+        <% if(publications.length > 0) {%>
+            <div style="margin-top: 25px;" class="mobile">
+                <a style="font-size: 1.75em;">Publicaciones</a>
+            </div>
+        <% } else { %>
+            <div style="margin-top: 25px;" class="mobile">
+                <a style="font-size: 1.75em;">Aún no hay publicaciones</a>
+            </div>
+        <% } %>   
+        
         <div id="content-show" class="content-show-account">
             <% if(publications.length > 0) {%> 
                 <% publications.forEach(function(post){%>
@@ -331,29 +351,41 @@
                         </div>
                     </div>
                 <%});%>
+            <% } else { %>
+                <script>
+                    document.getElementById("content-show").style.display = "flex";
+                </script>
+                <img src="/images/empty_street.svg" alt="No hay publicaciones" style="width: 100%">
             <% } %>
         </div>
     </div>
     <div id="content-show-desktop" class="desktop">
-        <% publications.forEach(function(post){%>
-            <div class="publication"
-                onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
-                <img src=<%=post.Photo %> alt class="publication-photo">
-                <div class="publication-desc-cont">
-                    <h1 class="publication-name">
-                        <%= post.Name %>
-                    </h1>
-                    <p class="publication-description">
-                        <%= post.SDescription %>
-                    </p>
+        <% if (publications.length > 0) { %> 
+            <% publications.forEach(function(post){%>
+                <div class="publication"
+                    onclick="{let uid = '<%= post.Id %>'; window.location = '/publicacion/' + uid}">
+                    <img src=<%=post.Photo %> alt class="publication-photo">
+                    <div class="publication-desc-cont">
+                        <h1 class="publication-name">
+                            <%= post.Name %>
+                        </h1>
+                        <p class="publication-description">
+                            <%= post.SDescription %>
+                        </p>
+                    </div>
+                    <div class="ref-name-cont">
+                        <a>
+                            <%= post.Refugio %>
+                        </a>
+                    </div>
                 </div>
-                <div class="ref-name-cont">
-                    <a>
-                        <%= post.Refugio %>
-                    </a>
-                </div>
-            </div>
-        <%});%>
+            <%});%>
+        <% } else { %>
+            <script>
+                document.getElementById("content-show-desktop").style.display = "flex";
+            </script>
+            <img src="/images/empty_street.svg" alt="No hay publicaciones" style="width: 100%">
+        <% } %> 
     </div>
 </div>
 

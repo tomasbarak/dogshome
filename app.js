@@ -52,8 +52,7 @@ SecureServer.listen(443, function () {
 
   setupPreloadFunction(expressApp, firebaseAdmin);
 
-  require(appDir + '/src/config/configRoutes').config(expressApp, firebaseApp, database, firebaseAdmin);
-  require(appDir + '/src/config/configListeners').config(firebaseApp, database, firebaseAdmin);
+  require(appDir + '/src/config/configRoutes').config(expressApp, firebaseAdmin);
   expressApp.use(function (req, res, next) {
     res.status(404);
     res.render(appDir + '/public/404', {

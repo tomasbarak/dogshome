@@ -50,9 +50,9 @@ const getAllCollection = (collection, projection = {}) => {
     });
 }
 
-const saveOne = (collection, filter=update, update) => {
+const saveOne = (collection, filter=update, update, options={upsert: true}) => {
     return new Promise((resolve, reject) => {
-        collection.updateOne(filter, {$set: update}, {upsert: true}, (err, result) => {
+        collection.updateOne(filter, {$set: update}, options, (err, result) => {
             if(err){
                 reject(err);
             }else{
@@ -60,6 +60,17 @@ const saveOne = (collection, filter=update, update) => {
             }
         });
     });    
+}
+const insertOne = (collection, data) => {
+    return new Promise((resolve, reject) => {
+        collection.insertOne(data, (err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
 }
 
 const saveMany = (collection, filter=update, update, options = {upsert: true}) => {
@@ -111,4 +122,4 @@ const sanitize = (data) => {
     }
     return String(sanitized);
 }
-module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize };
+module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize, insertOne };

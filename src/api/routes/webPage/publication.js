@@ -27,7 +27,6 @@ function init(app, firebaseAdmin) {
                 const age = filters.Age || {};
                 let allPhotosArray = [];
                 let secPhotosArray = [];
-                console.log(snapshotVal);
                 if (Object.keys(snapshotVal).length === 0) {
                     res.status(404);
                     res.render(appDir + '/public/404', {
