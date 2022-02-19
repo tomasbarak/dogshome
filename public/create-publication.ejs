@@ -131,5 +131,55 @@
             </li>
         </ul>
     </div>
+    <div style="position: absolute; top: 60px; left: 0; background-color: rgba(7, 146, 146, 0.8); width: 100%; height: calc(50vh - 60px); display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; padding: 25px 50px;">
+        <h1 class="create-title">Ingresá el nombre del perro</h1>
+    </div>
+    <div id="dog-name-input-container" style="">
+        <input placeholder="Nombre del perro" id="dog-name-input" type="text">
+    </div>
+    <style>
+        .create-title {
+            font-size: 2.5rem;
+            font-family: 'Lato', sans-serif;
+            color: white;
+            font-weight: bold;
+        }
+    
+        #dog-name-input-container {
+            height: 60px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(60px + 50vh - 60px - 30px);
+            margin-left: auto;
+            margin-right: auto;
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: border .5s;
+        }
+        #dog-name-input-container:hover{
+            transition: border .5s;
+            border: 1.5px solid #079292;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        #dog-name-input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.25rem;
+            font-family: 'Lato', sans-serif;
+            color: #444;
+            font-weight: normal;
+            outline: none !important;
+            padding: 0 15px;
+        }
+    </style>
 </body>
 </html>

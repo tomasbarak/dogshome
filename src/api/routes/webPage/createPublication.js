@@ -8,7 +8,7 @@ const mongoURL = 'mongodb://localhost:27017/dogshome';
 const mongoDBName = 'dogshome';
 
 function init(app){
-    app.get(['/create/publication/:draftId/step_one', '/create/publication/:draftId/step_one.html', '/crear/publicacion/:draftId/paso_uno', '/crear/publicacion/:draftId/paso_uno.html'], (req, res) => {
+    app.get(['/create/publication/:draftId/', '/crear/publicacion/:draftId/'], (req, res) => {
         connectClient(mongoURL).then( (client) => {    
             const draftId = req.params.draftId;
             const isPrivate =       res.locals.isPrivate;
@@ -27,14 +27,24 @@ function init(app){
             let requestProjection =     { _id: 0};
             let requestQuery =          { Id: draftId };
 
-            res.render(appDir + '/public/create-publication', {
-                uid:            user.user_id,
-                displayName:    nameAndSurname_fullName || ' ',
-                name:           nameAndSurname_name || ' ',
-                surname:        nameAndSurname_surname || ' ',
-                photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                isPrivate:      isPrivate
+            getMany(collection, requestProjection, requestQuery).then( (snapshot) => {
+                snapshot = snapshot[0] || {};
+                const step = snapshot.Step || 1;
+
+                res.render(appDir + '/public/create-publication', {
+                    uid:            user.user_id,
+                    displayName:    nameAndSurname_fullName || ' ',
+                    name:           nameAndSurname_name || ' ',
+                    surname:        nameAndSurname_surname || ' ',
+                    photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                    isPrivate:      isPrivate,
+                    step:           step,
+                });
+            }).catch( (err) => {
+                console.log(err);
+                res.status(500).send({error: err, success: false});
             });
+            
         }).catch( (err) => {
             console.log(err);
             res.status(500).send({error: err});

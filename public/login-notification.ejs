@@ -1,0 +1,199 @@
+<style>
+    #login-notification-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100px;
+        height: fit-content;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        box-sizing: border-box;
+    }
+    #login-notification-container a{
+        font-family: 'Lato', sans-serif;
+    }
+    #login-notification-advice-container {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+    }
+
+    #login-notification-advice-container a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #login-notification-image {
+        width: 80px;
+        height: 80px;
+        margin-right: 12px;
+    }
+
+    #login-notification-space {
+        display: flex;
+        width: auto;
+    }
+
+    #login-notification-buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #login-notification-login-button {
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: #079292;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 4px;
+    }
+
+    #login-notification-signup-button {
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: transparent;
+        color: #079292;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4px;
+    }
+
+    #advice-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #login-notification-close-button {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        fill: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 800px) {
+        #login-notification-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100px;
+            height: fit-content;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            box-sizing: border-box;
+        }
+
+        #login-notification-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 12px;
+            margin-left: -60px;
+        }
+
+        #advice-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        #login-notification-advice-container a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #login-notification-buttons-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        #login-notification-login-button {
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            background-color: #079292;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            margin-top: 8px;
+        }
+
+        #login-notification-signup-button {
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #079292;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4px;
+        }
+    }
+</style>
+
+<div id="login-notification-container">
+    <svg id="login-notification-close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" onclick="closeLoginNotif()">
+        <path fill-rule="evenodd"
+            d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z">
+        </path>
+    </svg>
+    <div id="advice-container">
+        <img id="login-notification-image" src="/images/DogsHomeLogo-ReDesign (White&Final).png" alt="DogsHome logo">
+        <div id="login-notification-advice-container">
+            <a style="font-weight: bolder;"> <strong>Iniciá sesión en DogsHome.</strong> </a>
+            <a>Iniciá sesión para disfrutar de la mejor experiencia.</a>
+        </div>
+    </div>
+    <div id="login-notification-buttons-container">
+        <a id="login-notification-login-button" href="/signin">Iniciar Sesión</a>
+        <a id="login-notification-signup-button" href="/signup">Crear Cuenta</a>
+    </div>
+<script>
+    function closeLoginNotif() {
+        document.getElementById("login-notification-container").style.display = "none";
+    }
+</script>
+</div>

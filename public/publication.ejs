@@ -419,5 +419,8 @@
             thumbnails.mount();
         });
     </script>
+    <% if (isPrivate) { %> 
+        <%- include('./login-notification.ejs') %>
+    <% } %> 
 </body>
 </html>

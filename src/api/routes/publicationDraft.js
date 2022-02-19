@@ -26,48 +26,56 @@ function init(app){
         });
     }
     app.post(['/create/publication/draft', '/create/publication/draft.html', '/crear/publicacion/borrador', '/crear/publicacion/borrador.html'], (req, res) => {
-        connectClient(mongoURL).then( (client) => {
-            
-            const mongoDB = client.db(mongoDBName);
-            const collection = mongoDB.collection('PublicationDrafts');
-            const isPrivate = res.locals.isPrivate;
-            const isVerified = res.locals.isVerified;
-            const user = res.locals.user || {};
-            const refId = user.user_id;
-            checkMaxCreated(collection, refId).then((allowed) => {
-                if(allowed){
-                    let ObjectId = require('mongodb').ObjectId;
-                const objectId = new ObjectId();
-                const draftId = objectId.toString();
-                
-                let draft = {
-                            _id: objectId,
-                            Id: draftId,
-                            Step: 1,
-                            RefId: refId,
-                            updatedAt: new Date(),
+        const isPrivate = res.locals.isPrivate;
+        const isVerified = res.locals.isVerified;
+        
+        if(!isPrivate ){
+            if(isVerified){
+                connectClient(mongoURL).then( (client) => {
+                    const mongoDB = client.db(mongoDBName);
+                    const collection = mongoDB.collection('PublicationDrafts');
+                    const user = res.locals.user || {};
+                    const refId = user.user_id;
+                    checkMaxCreated(collection, refId).then((allowed) => {
+                        if(allowed){
+                        let ObjectId = require('mongodb').ObjectId;
+                        const objectId = new ObjectId();
+                        const draftId = objectId.toString();
+                        
+                        let draft = {
+                                    _id: objectId,
+                                    Id: draftId,
+                                    Step: 1,
+                                    RefId: refId,
+                                    updatedAt: new Date(),
+                                }
+                        insertOne(collection, draft).then( (result) => {
+                            res.send({
+                                success: true,
+                                id: draftId,
+                                redirectPath: `/crear/publicacion/${draftId}`
+                            });
+                        }).catch( (err) => {
+                            console.log(err);
+                            res.status(500).send({error: err, success: false});
+                        });
+                        }else{
+                            res.status(403).send({error: 'You have reached the maximum number of drafts allowed.'});
                         }
-                insertOne(collection, draft).then( (result) => {
-                    res.send({
-                        success: true,
-                        id: draftId,
-                        redirectPath: `/crear/publicacion/${draftId}/paso_uno`
+                    }).catch((err) => {
+                        console.log(err);
                     });
+                    
                 }).catch( (err) => {
                     console.log(err);
-                    res.status(500).send({error: err, success: false});
+                    res.status(500).send({error: err});
                 });
-                }else{
-                    res.status(403).send({error: 'You have reached the maximum number of drafts allowed.'});
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
-            
-        }).catch( (err) => {
-            console.log(err);
-            res.status(500).send({error: err});
-        });
+            }else{
+                res.status(403).send({error: 'You are not verified.'});
+            }
+        }else{
+            res.status(403).send({error: 'You are not allowed to create drafts.'});
+        }
     });
 
 }

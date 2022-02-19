@@ -23,10 +23,11 @@
     <%- include('./stylesheets/main/content-show.ejs'); %>
     <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+    <script src="/scripts/main/loading-display.js"></script>
+
 </head>
 
 <body>
-    <script src="/scripts/main/loading-display.js"></script>
     <div id="loading-visible">
         <lottie-player src="/animations/dog-walking.json" background="transparent" speed="1"
             style="width: 200px; height: 200px;" loop autoplay></lottie-player>
@@ -177,9 +178,6 @@
                         </div>
                     </div>
                 <%});%>
-                        <script>
-                            setLoading(false)
-                        </script>
             </section>
         </section>
         <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
@@ -203,13 +201,19 @@
     <script src="/scripts/publications/expand-menu.js"></script>
     <script>
         var width;
-        window.onresize = window.onload = function () {
+        window.onresize = function () {
             width = this.innerWidth;
             if (width > 1024) {
                 document.getElementById("expandible-menu").className = 'expandible-menu-invisible';
             }
         }
+        window.onload = () => {
+            setLoading(false)
+        }
     </script>
+    <% if (isPrivate) { %> 
+        <%- include('./login-notification.ejs') %>
+    <% } %> 
 </body>
 
 </html>
