@@ -53,9 +53,10 @@ function init(app) {
                     let renderPrivVar = {
                         publications: result,
                         photo: profile.Photo || 'https://miro.medium.com/fit/c/1360/1360/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                        myPhoto: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
+                        photoUrl: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
                         myName: 'Cuenta',
                         mySurname: 'Privada',
+                        displayName: 'Cuenta Privada',
                         name: profile.Name || '',
                         surname: profile.Surname || '',
                         typeStr: accType.TypeStr || 'Adoptante',
@@ -72,7 +73,8 @@ function init(app) {
                         postsCount: postsIds.length || 0,
                         isMine: isMine,
                         isPrivate: isPrivate,
-                        userHref: `/signin`
+                        userHref: `/signin`,
+                        locals: { active: 3 }
                     };
 
                     if (posts.length > 0) {
@@ -101,9 +103,10 @@ function init(app) {
                         let renderVar = {
                             publications: result,
                             photo: profile.Photo || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                            myPhoto: user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                            photoUrl: user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                             myName: parsedDisplayName.nameAndSurname.name,
                             mySurname: parsedDisplayName.nameAndSurname.surname,
+                            displayName: parsedDisplayName.nameAndSurname.displayName,
                             name: profile.Name || '',
                             surname: profile.Surname || '',
                             typeStr: accType.TypeStr || 'Adoptante',
@@ -120,7 +123,8 @@ function init(app) {
                             postsCount: postsIds.length || 0,
                             isMine: isMine,
                             isPrivate: isPrivate,
-                            userHref: !isMine ? `/perfil/${userId}` : `#`
+                            userHref: !isMine ? `/perfil/${userId}` : `#`,
+                            locals: { active: 3 }
                         };
 
                         if (posts.length > 0) {

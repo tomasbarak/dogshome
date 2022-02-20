@@ -25,24 +25,34 @@ function init(app){
             const mongoDB =             client.db(mongoDBName);
             const collection =          mongoDB.collection('PublicationDrafts');
             let requestProjection =     { _id: 0};
-            let requestQuery =          { Id: draftId };
+            let requestQuery =          { Id: draftId, RefId: user.user_id };
 
-            getMany(collection, requestProjection, requestQuery).then( (snapshot) => {
-                snapshot = snapshot[0] || {};
-                const step = snapshot.Step || 1;
-
-                res.render(appDir + '/public/create-publication', {
-                    uid:            user.user_id,
-                    displayName:    nameAndSurname_fullName || ' ',
-                    name:           nameAndSurname_name || ' ',
-                    surname:        nameAndSurname_surname || ' ',
-                    photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                    isPrivate:      isPrivate,
-                    step:           step,
-                });
+            getMany(collection, requestProjection, requestQuery).then( (data) => {
+                if(data.length > 0){   
+                    snapshot = data[0] || {};
+                    const step = snapshot.Step || 1;
+                    res.render(appDir + '/public/create-publication', {
+                        uid:            user.user_id,
+                        displayName:    nameAndSurname_fullName || ' ',
+                        name:           nameAndSurname_name || ' ',
+                        surname:        nameAndSurname_surname || ' ',
+                        photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                        isPrivate:      isPrivate,
+                        step:           step,
+                        draftId:        draftId,
+                    });
+                    client.close();
+                }else{
+                    res.render(appDir + '/public/404', {
+                        errorCode: '404',
+                        errorMessage: 'No se encontró el borrador de publicación',
+                    });
+                    client.close();
+                }
             }).catch( (err) => {
                 console.log(err);
                 res.status(500).send({error: err, success: false});
+                client.close();
             });
             
         }).catch( (err) => {

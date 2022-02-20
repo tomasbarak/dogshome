@@ -6,7 +6,6 @@ function init(app, firebaseAdmin) {
         res.header('Access-Control-Allow-Origin', '*');
         // Get the ID token passed and the CSRF token.
         const idToken = req.body.idToken;
-        console.log(idToken);
         // Set session expiration to 5 days.
         const expiresIn = 60 * 60 * 24 * 5 * 1000;
         // Create the session cookie. This will also verify the ID token in the process.

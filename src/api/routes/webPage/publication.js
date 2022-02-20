@@ -61,10 +61,11 @@ function init(app, firebaseAdmin) {
                             allPhotos: allPhotosArray || [],
                             photo: pubPhoto || ' ',
                             secPhotos: secPhotosArray || [],
-                            myPhoto: decodedIdToken.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                            photoUrl: decodedIdToken.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                             myName: parsedDisplayName.nameAndSurname.name,
                             uid: decodedIdToken.user_id || ' ',
                             mySurname: parsedDisplayName.nameAndSurname.surname,
+                            displayName: parsedDisplayName.nameAndSurname.displayName || ' ',
                             name: snapshotVal.Name || '',
                             owner: snapshotVal.Owner || '',
                             pubId: snapshotVal.Id || '',
@@ -87,6 +88,7 @@ function init(app, firebaseAdmin) {
                             dewormed: filters.Dewormed || false,
                             shelterPubs: result,
                             refId: snapshotVal.RefId || '',
+                            locals: {active: -1},
                         }
 
                         if (publications.length > 0) {
@@ -118,10 +120,11 @@ function init(app, firebaseAdmin) {
                             allPhotos: allPhotosArray || [],
                             photo: pubPhoto || ' ',
                             secPhotos: secPhotosArray || [],
-                            myPhoto: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
+                            photoUrl: 'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
                             myName: 'Cuenta',
                             uid: '',
                             mySurname: 'Privada',
+                            displayName: 'Cuenta Privada',
                             name: snapshotVal.Name || '',
                             owner: snapshotVal.Owner || '',
                             pubId: snapshotVal.Id || '',
@@ -144,6 +147,7 @@ function init(app, firebaseAdmin) {
                             dewormed: filters.Dewormed || false,
                             refId: snapshotVal.RefId || '',
                             shelterPubs: result || [],
+                            locals: {active: -1},
                         }
                         if (publications.length > 0) {
                             if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);

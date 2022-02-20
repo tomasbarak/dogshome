@@ -1,0 +1,105 @@
+<style>
+    #dog-desc-input-container {
+        height: 150px;
+        width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(60px + 50vh - 60px - 75px);
+        margin-left: auto;
+        margin-right: auto;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: border .5s;
+    }
+
+    #dog-desc-input-container:hover {
+        transition: border .5s;
+        border: 1.5px solid #079292;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #dog-desc-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        font-weight: normal;
+        outline: none !important;
+        padding: 15px 15px 30px 15px;
+        box-sizing: border-box;
+        resize: none;
+    }
+    #desc-counter{
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        font-size: 0.7rem;
+        color: #079292;
+        font-weight: bold;
+        font-family: 'Lato', sans-serif;
+    }
+</style>
+
+<div style="position: absolute; top: 60px; left: 0; background-color: rgba(7, 146, 146, 0.8); width: 100%; height: calc(50vh - 60px); display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; padding: 25px 50px;">
+    <h1 class="create-title">Escribí una descripción corta</h1>
+</div>
+<div id="dog-desc-input-container">
+    <textarea placeholder="Descripción corta" id="dog-desc-input" type="text" oninput="updateCounter()"></textarea>
+    <a id="desc-counter">0/140</a>
+</div>
+
+<script>
+    const updateDraft = (draftId) => {
+        Swal.fire({
+            title: 'Actualizando borrador',
+            text: 'Esperá un momento',
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+
+        });
+        axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+            description: document.getElementById('dog-desc-input').value,
+        }).then(res => {
+            console.log(res);
+            if(res.status === 200){
+                window.location.reload();
+            }else{
+                Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+            Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+            });
+        });
+    }
+
+    const updateCounter = () => {
+        const counter = document.getElementById('desc-counter');
+        const input = document.getElementById('dog-desc-input');
+        input.setAttribute('maxlength', 140);
+        counter.innerHTML = `${input.value.length}/140`;
+    }
+    window.onload = updateCounter();
+</script>

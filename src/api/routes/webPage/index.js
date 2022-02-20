@@ -31,7 +31,8 @@ function init(app) {
                         surname:        'Privada',
                         photoUrl:       'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
                         publications:   result,
-                        isPrivate:      true
+                        isPrivate:      true,
+                        locals: {active: 0}
                     });
                     client.close();
                 } else if (isVerified) {
@@ -49,7 +50,8 @@ function init(app) {
                         surname:        nameAndSurname_surname || ' ',
                         photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                         publications:   result,
-                        isPrivate:      false
+                        isPrivate:      false,
+                        locals: {active: 0}
                     });
                     client.close();
 

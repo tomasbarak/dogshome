@@ -53,88 +53,11 @@
     <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
         <span class="material-icons-outlined" id="fav-button" style="color: #fff; cursor: pointer; margin: 0 10px; user-select: none;" onclick="expandMenu()">menu</span>
         <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="window.location.href='<%= userHref %>'"></a>
-        <img class="desktop-elements" id="profile-pic" onclick="window.location.href='<%= userHref %>'" src=<%= myPhoto %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
+        <img class="desktop-elements" id="profile-pic" onclick="window.location.href='<%= userHref %>'" src=<%= photoUrl %>  alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
     </div>
 </div>
-<div class="expandible-menu-invisible" id="expandible-menu">
-    <div class="expandible-menu-option-cont" id="name-option-exp-menu">
-        <img class="" id="profile-pic-exp-menu" src=<%= myPhoto %>  alt
-             style="height: 55px; width: 55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
-        <a id="exp-menu-name"><%= myName %> <%= mySurname %> </a>
-    </div>
-    <ul class="exp-options-container">
-        <li>
-            <a href="/inicio">
-                <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 0 24 24" width="24" fill="#333"
-                     height="24">
-                    <path fill-rule="evenodd"
-                          d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"></path>
-                </svg>
-                <span>Inicio</span>
-            </a>
-        </li>
-        <li>
-            <a href="/alertas">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                    <path d="M12 13.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path>
-                    <path fill-rule="evenodd"
-                          d="M19.071 3.429C15.166-.476 8.834-.476 4.93 3.429c-3.905 3.905-3.905 10.237 0 14.142l.028.028 5.375 5.375a2.359 2.359 0 003.336 0l5.403-5.403c3.905-3.905 3.905-10.237 0-14.142zM5.99 4.489A8.5 8.5 0 0118.01 16.51l-5.403 5.404a.859.859 0 01-1.214 0l-5.378-5.378-.002-.002-.023-.024a8.5 8.5 0 010-12.02z"></path>
-                </svg>
-                <span>Alertas</span>
-            </a>
-        </li>
-        <li>
-            <a href="/favoritos">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                    <path fill-rule="evenodd"
-                          d="M6.736 4C4.657 4 2.5 5.88 2.5 8.514c0 3.107 2.324 5.96 4.861 8.12a29.66 29.66 0 004.566 3.175l.073.041.073-.04c.271-.153.661-.38 1.13-.674.94-.588 2.19-1.441 3.436-2.502 2.537-2.16 4.861-5.013 4.861-8.12C21.5 5.88 19.343 4 17.264 4c-2.106 0-3.801 1.389-4.553 3.643a.75.75 0 01-1.422 0C10.537 5.389 8.841 4 6.736 4zM12 20.703l.343.667a.75.75 0 01-.686 0l.343-.667zM1 8.513C1 5.053 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262a31.146 31.146 0 01-5.233 3.576l-.025.013-.007.003-.002.001-.344-.666-.343.667-.003-.002-.007-.003-.025-.013A29.308 29.308 0 0110 20.408a31.147 31.147 0 01-3.611-2.632C3.8 15.573 1 12.332 1 8.514z"></path>
-                </svg>
-                <span>Favoritos</span>
-            </a>
-        </li>
-        <li>
-            <% if (isPrivate) { %>
-                <a href="/signin">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                        <path fill-rule="evenodd"
-                              d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
-                    </svg>
-                    <span>Iniciar Sesión</span>
-                </a>
-            <% } else { %>
-                <a href="/perfil/<%= uid %>">
-                    
 
-                    <% if(isMine) { %>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="selected" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                            <path fill-rule="evenodd"
-                                  d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
-                        </svg>
-                        <span  class="selected" >Mi perfil</span>
-                    <% } else { %>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333" width="24" height="24">
-                            <path fill-rule="evenodd"
-                                  d="M12 2.5a5.5 5.5 0 00-3.096 10.047 9.005 9.005 0 00-5.9 8.18.75.75 0 001.5.045 7.5 7.5 0 0114.993 0 .75.75 0 101.499-.044 9.005 9.005 0 00-5.9-8.181A5.5 5.5 0 0012 2.5zM8 8a4 4 0 118 0 4 4 0 01-8 0z"></path>
-                        </svg>
-                        <span >Mi perfil</span>
-                    <% } %> 
-                </a>
-            <% } %>  
-        </li>
-        <li>
-            <% if(!isPrivate){ %>
-                <a onclick="showSignOutAlert()" style="cursor: pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff0000" width="24" height="24">
-                        <path fill-rule="evenodd"
-                              d="M3 3.25c0-.966.784-1.75 1.75-1.75h5.5a.75.75 0 010 1.5h-5.5a.25.25 0 00-.25.25v17.5c0 .138.112.25.25.25h5.5a.75.75 0 010 1.5h-5.5A1.75 1.75 0 013 20.75V3.25zm16.006 9.5l-3.3 3.484a.75.75 0 001.088 1.032l4.5-4.75a.75.75 0 000-1.032l-4.5-4.75a.75.75 0 00-1.088 1.032l3.3 3.484H10.75a.75.75 0 000 1.5h8.256z"></path>
-                    </svg>
-                    <span style="color: #ff0000">Cerrar sesión</span>
-                </a>
-            <% } %>  
-            
-        </li>
-    </ul>
-</div>
+<%- include('./expandable-menu.ejs') %> 
 
 <div id="profile-view-cont">
     <div id="profile-view-stats" class="desktop">
@@ -243,31 +166,6 @@
                     <div style="margin-left: 102px; cursor: pointer; background-color: #079292; color: white; height: 50px; width: 125px; box-sizing: border-box; padding: 2px; font-size: 14px; border-radius: 5px; display: flex; align-items: center; justify-content: center;" onclick="createDraft()">
                         <a>Crear publicación</a>
                     </div>
-                    <script>
-                        const createDraft = () => {
-                            Swal.fire({
-                                title: 'Creando borrador',
-                                allowOutsideClick: false,
-                                allowEscapeKey: false,
-                                allowEnterKey: false,
-                                showConfirmButton: false,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
-                            })
-                            axios.post(`https://${window.location.host}/create/publication/draft`)
-                                .then(function (response) {
-                                    const data = response.data || {};
-                                    console.log(data);
-                                    const id = data.id || '';
-                                    const redirectPath = data.redirectPath || '';
-                                    window.location.href = redirectPath;
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
-                        }
-                    </script>
                 <% } %> 
             </section>
         </div>
@@ -354,7 +252,39 @@
                     </div>
                 </div>
             <% } %> 
-            
+            <% if (isMine) {%>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: fit-content; padding: 15px 25px; box-sizing: border-box;">
+                    <div style="margin-left: 0; cursor: pointer; background-color: #079292; color: white; height: 50px; width: 125px; box-sizing: border-box; padding: 2px; font-size: 14px; border-radius: 5px; display: flex; align-items: center; justify-content: center;" onclick="createDraft()">
+                        <a>Crear publicación</a>
+                    </div>
+                </div>
+                
+                <script>
+                    const createDraft = () => {
+                        Swal.fire({
+                            title: 'Creando borrador',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            showConfirmButton: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        })
+                        axios.post(`https://${window.location.host}/create/publication/draft`)
+                            .then(function (response) {
+                                const data = response.data || {};
+                                console.log(data);
+                                const id = data.id || '';
+                                const redirectPath = data.redirectPath || '';
+                                window.location.href = redirectPath;
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                </script>
+            <% } %>
         </div>
         <% if (typeNum !== 1) { %> 
             <% if(publications.length > 0) {%>

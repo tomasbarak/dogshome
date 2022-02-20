@@ -1,18 +1,17 @@
 
 .expandible-menu-invisible{
-    display: none;
-    visibility: hidden;
     flex-direction: column;
     position: fixed;
     top: 60px;
     right: 0;
     width: 100%;
-    height: 100%;
+    height: 0;
     background-color: white;
     z-index: 103;
     box-sizing: border-box;
-    padding: 25px 0;
     padding-top: 0;
+    transition: height 0.25s ease-in-out;
+    overflow: hidden;
 }
 .swal2-container swal2-center swal2-backdrop-show{
     z-index: 104 !important;
@@ -29,7 +28,6 @@
     display: flex;
     top: 60px;
     right: 0;
-    visibility: visible;
     flex-direction: column;
     position: fixed;
     width: 100%;
@@ -39,6 +37,8 @@
     box-sizing: border-box;
     padding: 25px 0;
     padding-top: 0;
+    transition: height 0.25s ease-in-out;
+    overflow: hidden;
 }
 .expandible-menu-option-cont{
     display: flex;
