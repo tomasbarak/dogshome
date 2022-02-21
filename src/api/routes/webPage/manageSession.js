@@ -7,7 +7,7 @@ function init(app, firebaseAdmin) {
         // Get the ID token passed and the CSRF token.
         const idToken = req.body.idToken;
         // Set session expiration to 15 days.
-        const expiresIn = 60 * 60 * 24 * 15 * 1000;
+        const expiresIn = 60 * 60 * 24 * 14 * 1000;
         // Create the session cookie. This will also verify the ID token in the process.
         // The session cookie will have the same claims as the ID token.
         // To only allow session cookie setting on recent sign-in, auth_time in ID token
