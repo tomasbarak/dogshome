@@ -74,7 +74,13 @@ function init(app) {
                         isMine: isMine,
                         isPrivate: isPrivate,
                         userHref: `/signin`,
-                        locals: { active: 3 }
+                        locals: {
+                                active: 3,
+                                navButtons: [
+                                        {name: 'Inicio', href: '/'}, 
+                                        {name: 'Alertas', href: '/alertas'}
+                                    ] 
+                                }
                     };
 
                     if (posts.length > 0) {
@@ -124,7 +130,13 @@ function init(app) {
                             isMine: isMine,
                             isPrivate: isPrivate,
                             userHref: !isMine ? `/perfil/${userId}` : `#`,
-                            locals: { active: 3 }
+                            locals: {
+                                    active: 3,
+                                    navButtons: [
+                                        {name: 'Inicio', href: '/'}, 
+                                        {name: 'Alertas', href: '/alertas'}
+                                    ] 
+                                }
                         };
 
                         if (posts.length > 0) {

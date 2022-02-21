@@ -1,3 +1,4 @@
+<% var rootPath = '../../' %> 
 <style>
     @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);
 
@@ -125,3 +126,69 @@
         }
     }
 </style>
+
+<script>
+    const onSecondaryImageClick = (id) => {
+        document.getElementById(id).className = 'secondary-image-cont-selected';
+        var secondaryImagesCont = document.getElementById("post-images-selector");
+        var secondaryImagesArray = secondaryImagesCont.getElementsByTagName('div');
+        unselectOthersOnClick(id, secondaryImagesArray);
+        document.getElementById("post-image").src = document.getElementById(id).getElementsByTagName("img")[0].src;
+    }
+
+    const unselectOthersOnClick = (exception_id, all_secondary_photos) => {
+        for (let key in all_secondary_photos) {
+            if (all_secondary_photos[key].id !== exception_id) {
+                all_secondary_photos[key].className = "secondary-image-cont-unselected";
+            }
+        }
+    }
+
+    const share = () => {
+        if(navigator.share){
+            navigator.share({url: window.location}).then(() => {
+                console.log('Successful share');
+            }).catch((error) => {
+                console.log('Error sharing', error);
+            });
+        }else{
+            window.prompt("Copiar link", window.location);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var main = new Splide('#splide-slider-main', {
+            type: 'slide',
+            rewind: true,
+            pagination: false,
+            arrows: false,
+            width: '100%',
+            height: '100%',
+            gap: 50,
+            perPage: 1,
+        })
+        var thumbnails = new Splide('#splide-slider', {
+            fixedWidth: 100,
+            fixedHeight: 60,
+            gap: 10,
+            rewind: true,
+            pagination: false,
+            cover: true,
+            isNavigation: true,
+            breakpoints: {
+                800: {
+                    fixedWidth: 60,
+                    fixedHeight: 44,
+                },
+            },
+            dragMinThreshold: {
+                    mouse: 50,
+                    touch: 10,
+            },
+        });
+
+        main.sync(thumbnails);
+        main.mount();
+        thumbnails.mount();
+    });
+</script>

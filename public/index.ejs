@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
+    <% var rootPath = './'; %>
     <!-- Include ejs head.ejs from file-->
     <%- include('./head.ejs'); %>
+
     <title>DogsHome | Inicio</title>
     <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
                                       con algunas funcionalidades extras, como localizar perros perdidos, reportar perros perdidos, area de noticias,
@@ -19,68 +21,18 @@
     
     <script src="/scripts/main/basic-navigation.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
-    <%- include('./stylesheets/main/style-mainpage.ejs'); %>
-    <%- include('./stylesheets/main/content-show.ejs'); %>
-    <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
+    <%- include(rootPath + 'ejs-resources/index/index_style.ejs'); %>
+
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
-    <script src="/scripts/main/loading-display.js"></script>
 
 </head>
 
 <body>
-    <div id="loading-visible">
-        <lottie-player src="/animations/dog-walking.json" background="transparent" speed="1"
-            style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-    </div>
+    <%- include(rootPath + 'ejs-resources/loading-animation/loading-animation.ejs') %> 
+
     <section id="main">
-        <section id="drawer-navigator-dim" class="dim-null">
-            <section id="drawer-navigator" class="drawer-closed" style="z-index: 100">
-
-            </section>
-            <section onclick="drawerAction()" style="width: 25%; height: 100%; position: absolute; top: 0; right: 0">
-            </section>
-        </section>
-
-        <div id="search-bar">
-            <div class="top-bar-section-cont" style="flex-direction: row; align-items: center;">
-                <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo"
-                    style="height: 50px; width: 50px; margin-right: 10px">
-
-                <a id="alerts-button" class="desktop-elements nav-buttons" onclick="navigateToAlerts()">Alertas</a>
-                <!-- <a id="refugios-button" class="desktop-elements nav-buttons" onclick="navigateToRefs()">Refugios</a>-->
-            </div>
-            <div class="top-bar-section-cont">
-                <form id="search-form">
-                    <div id="search-input-container"
-                        style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
-                        <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…"
-                            maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"
-                            tabindex="3">
-                        <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none"
-                            onclick="searchPost()">search</span>
-                    </div>
-                </form>
-            </div>
-            <div class="top-bar-section-cont" id="userSpace"
-                style="flex: 1; align-items: center; justify-content: flex-end;">
-                <span class="material-icons-outlined" id="fav-button"
-                    style="color: #fff; cursor: pointer; margin: 0 10px; user-select: none;"
-                    onclick="expandMenu()">menu</span>
-                <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px"
-                    onclick="navigateToProfile()"></a>
-                <% if (isPrivate) {%>
-                    <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %>
-                    alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
-                    none; border-radius: 80px; object-fit: cover">
-                <% } else { %>
-                    <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/perfil/<%= uid %>'" src=<%=photoUrl %>
-                    alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
-                    none; border-radius: 80px; object-fit: cover">
-                <% } %>   
-                
-            </div>
-        </div>
-        <%- include("./expandable-menu.ejs") %> 
+        <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
+        <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
         <section id="content">
             <section id="content-show">
                 <% publications.forEach(function(post){%>
@@ -121,8 +73,6 @@
     <script src="https://dogshome-6af88.web.app/__/firebase/8.8.0/firebase-app-check.js"></script>
 
     <script src="/scripts/auth/sign-out.js"></script>
-    <script src="/scripts/main/open-close-drawer.js"></script>
-    <script src="/scripts/publications/expand-menu.js"></script>
     <script>
         var width;
         window.onresize = function () {

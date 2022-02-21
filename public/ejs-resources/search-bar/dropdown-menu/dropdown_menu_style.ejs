@@ -1,0 +1,52 @@
+<style>
+    #user-dropdown-container {
+        width: 300px;
+        height: fit-content;
+        max-height: 0px;
+        background-color: white;
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        transition: max-height 0.5s ease-in-out;
+        overflow: hidden;
+        font-family: 'Lato', sans-serif !important;
+        box-sizing: border-box;
+        z-index: 1001;
+    }
+
+    .dropdown-visible {
+        max-height: 500px !important;
+        overflow: auto !important;
+        transition: max-height 0.5s ease-in-out !important;
+    }
+
+    .menu-option-container {
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0px 18px;
+        transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, fill 0.15s ease-in-out;
+        box-sizing: border-box;
+        color: #222;
+        fill: #222;
+        text-decoration: none;
+    }
+
+    .menu-option-container:hover {
+        background-color: #f5f5f5;
+        transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, fill 0.15s ease-in-out;
+        cursor: pointer;
+        color: #079292;
+        fill: #079292;
+    }
+
+    .menu-option-identifier-icon {
+        margin-right: 8px;
+    }
+
+
+</style>

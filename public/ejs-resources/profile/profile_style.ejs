@@ -1,3 +1,8 @@
+<% var rootPath = '../../'; %>
+<% var localPath = './'; %> 
+
+<%- include(rootPath + 'ejs-resources/publication-card/publication_card_style.ejs') %> 
+<%- include(localPath + 'profile_content_show_style.ejs') %> 
 <style>
     html,
     body {
@@ -241,30 +246,8 @@
         color: #222222;
     }
 
-    .content-show-account {
-        flex-direction: row;
-        overflow-x: visible;
-        overflow-y: auto;
-        max-width: none;
-        margin-top: 25px;
-        height: auto !important;
-        width: 100% !important;
-        align-items: start;
-        grid-auto-flow: column;
-        justify-content: start;
-        overflow-y: hidden;
-    }
-
     #account-content-desk {
         margin-top: 50px;
-    }
-
-    #content-show-desktop {
-        width: calc(100% - 20px);
-    }
-
-    #content-show {
-        width: 100%;
     }
 
     #social-media-container-desktop {
@@ -460,12 +443,10 @@
         margin-left: 10px;
     }
 
+    
+
     @media screen and (max-width: 1184px) {
         .desktop {
-            display: none !important;
-        }
-
-        #content-show-desktop {
             display: none !important;
         }
 

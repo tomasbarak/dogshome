@@ -1,0 +1,84 @@
+<style>
+    #content-show {
+        width: fit-content;
+        height: 100%;
+        display: grid;
+        grid-gap: 25px;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    #content-show-desktop {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        width: 80% !important;
+        max-width: 1024px !important;
+        height: fit-content;
+        display: grid;
+        grid-gap: 25px;
+        grid-template-columns: repeat(5, 1fr);
+        overflow-x: scroll;
+        margin-top: 50px;
+        overflow-y: hidden;
+    }
+
+    #content-show-desktop::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    #content-show-desktop::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    #content-show-desktop::-webkit-scrollbar-thumb {
+        background: #079292;
+        border-radius: 15px;
+    }
+
+    #content-show-desktop::-webkit-scrollbar-thumb:hover {
+        background: #067a7a;
+    }
+
+
+    #content-show::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    #content-show::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    #content-show::-webkit-scrollbar-thumb {
+        background: #079292;
+        border-radius: 15px;
+    }
+
+    #content-show::-webkit-scrollbar-thumb:hover {
+        background: #067a7a;
+    }
+
+    .content-show-account {
+        flex-direction: row;
+        overflow-x: visible;
+        overflow-y: auto;
+        max-width: none;
+        margin-top: 25px;
+        height: auto !important;
+        width: 100% !important;
+        align-items: start;
+        grid-auto-flow: column;
+        justify-content: start;
+        overflow-y: hidden;
+    }
+    #content-show-desktop {
+        width: calc(100% - 20px);
+    }
+
+    #content-show {
+        width: 100%;
+    }
+    @media screen and (max-width: 1184px) {
+        #content-show-desktop {
+            display: none !important;
+        }
+    }
+</style>

@@ -1,0 +1,40 @@
+<style>
+    .dropdown-btn-container{
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        position: relative;
+        text-align: center;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    .arrow-line{
+        height: 2px;
+        width: 8px;
+        color: white;
+        background-color: white;
+    }
+    .dropdown-btn-container .arrow-line:nth-child(1){
+        transform: rotate(45deg) translateX(2px);
+        transition: all 0.15s ease-in-out;
+
+
+    }
+    .dropdown-btn-container .arrow-line:nth-child(2){
+        transform: rotate(-45deg) translateX(-2px);
+        transition: all 0.15s ease-in-out;
+
+    }
+
+    .dropdown-btn-container.clicked .arrow-line:nth-child(1){
+        transform: rotate(-45deg) translateX(2px);
+        transition: all 0.15s ease-in-out;
+    }
+    .dropdown-btn-container.clicked .arrow-line:nth-child(2){
+        transform: rotate(45deg) translateX(-2px);
+        transition: all 0.15s ease-in-out;
+
+    }
+</style>

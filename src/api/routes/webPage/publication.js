@@ -88,7 +88,13 @@ function init(app, firebaseAdmin) {
                             dewormed: filters.Dewormed || false,
                             shelterPubs: result,
                             refId: snapshotVal.RefId || '',
-                            locals: {active: -1},
+                            locals: {
+                                active: -1,
+                                navButtons: [
+                                    {name: 'Inicio', href: '/'}, 
+                                    {name: 'Alertas', href: '/alerts'}
+                                ]
+                            },
                         }
 
                         if (publications.length > 0) {
@@ -147,7 +153,13 @@ function init(app, firebaseAdmin) {
                             dewormed: filters.Dewormed || false,
                             refId: snapshotVal.RefId || '',
                             shelterPubs: result || [],
-                            locals: {active: -1},
+                            locals: {
+                                active: -1,
+                                navButtons: [
+                                    {name: 'Inicio', href: '/'}, 
+                                    {name: 'Alertas', href: '/alerts'}
+                                ]
+                            },
                         }
                         if (publications.length > 0) {
                             if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);

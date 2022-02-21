@@ -1,0 +1,123 @@
+<style>
+    * {
+        font-family: 'Lato', sans-serif;
+    }
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        min-height: 600px;
+    }
+    .first-half-container {
+        position: relative;
+        background-color: transparent;
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 25px 50px;
+    }
+
+    .create-title {
+        font-size: 2.5rem;
+        font-family: 'Lato', sans-serif;
+        color: white;
+        font-weight: bold;
+    }
+
+    .swal2-shown {
+        display: flex;
+        height: 100% !important;
+    }
+
+    #buttons-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+
+    #next-button {
+        transition: .5s;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: #079292;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        text-decoration: none;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, .75);
+        cursor: pointer;
+    }
+
+    #logout-button {
+        transition: .5s;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        font-size: 15px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #logout-button:hover {
+        transition: .5s;
+        color: rgb(200, 0, 0)
+    }
+
+    #next-button:hover {
+        transition: .5s;
+        background-color: rgb(17, 156, 156);
+        box-shadow: 0px 0px 10px rgba(7, 146, 146, .75);
+    }
+
+    #action-buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    #skip-button {
+        margin-bottom: 15px;
+        cursor: pointer;
+        margin-left: 24px;
+    }
+
+    #action-btn-subcontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    @media all and (max-height: 600px),
+    (max-width: 400px) {
+        .create-title {
+            font-size: 1.5rem !important;
+        }
+    }
+</style>

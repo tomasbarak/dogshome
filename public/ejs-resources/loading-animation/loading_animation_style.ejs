@@ -1,0 +1,32 @@
+<style>
+    .loading-visible {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: calc(100% - 60px);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        opacity: 1;
+        z-index: 101;
+    }
+    body{
+        overflow: hidden;
+    }
+    .loading-invisible {
+        display: flex;
+        transition: 0.5s;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: calc(100% - 60px);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        opacity: 0;
+        visibility: hidden
+    }
+</style>

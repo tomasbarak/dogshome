@@ -1,0 +1,111 @@
+<style>
+    .publication {
+        transition: 0.25s;
+        width: 240px;
+        height: 330px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.15) 2px 30px 48px -25px;
+        cursor: pointer;
+    }
+
+    .publication:hover {
+        transition: 0.25s;
+        box-shadow: rgba(0, 0, 0, 0.5) 2px 30px 48px -25px;
+    }
+
+    .publication-photo {
+        width: 100%;
+        height: 50%;
+        max-height: 50%;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-color: #f6f7f8;
+        background: linear-gradient(to right, #ffffff 8%, #d3d3d3 18%, #ffffff 33%);
+        background-size: 800px 104px;
+    }
+
+    .publication-desc-cont {
+        height: 40%;
+    }
+
+    .publication-name {
+        font-weight: 600;
+        text-align: center;
+        text-transform: none;
+        word-wrap: break-word;
+        color: #595959;
+        font-family: 'Lato', sans-serif;
+        font-size: 16px;
+        height: 25%;
+        margin: 0;
+    }
+
+    .publication-description {
+        font-size: 12px;
+        box-sizing: border-box;
+        padding: 0 10px;
+        font-weight: 400;
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        color: #545454;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+    }
+
+    .ref-name-cont {
+        display: flex;
+        height: 10%;
+        align-items: flex-end;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        padding: 8px;
+        font-size: 12px;
+        font-weight: lighter;
+        color: #079292;
+        font-family: Lato, sans-serif;
+    }
+
+    @keyframes placeHolderShimmer {
+        0% {
+            background-position: -800px 0
+        }
+
+        100% {
+            background-position: 800px 0
+        }
+    }
+
+    
+
+    @media screen and (max-width: 480px) {
+
+        .publication-description{
+            -webkit-line-clamp: 4;
+        }
+    }
+
+    @media screen and (max-width: 390px) {
+
+        .publication {
+            transition: 0.25s;
+            width: 240px;
+            height: 330px;
+        }
+        .publication-description{
+            -webkit-line-clamp: 5;
+        }
+    }
+</style>

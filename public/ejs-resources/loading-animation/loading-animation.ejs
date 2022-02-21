@@ -1,0 +1,22 @@
+<% var rootPath = '../../'; %>
+<%- include(rootPath + 'ejs-resources/loading-animation/loading_animation_style.ejs') %>
+<div id="loading-animation" class="loading-visible">
+    <lottie-player src="/animations/dog-walking.json" background="transparent" speed="1"
+        style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+</div>
+
+<script>
+    const setLoading = (isLoading) => {
+        if (isLoading === true) {
+            console.log("loading");
+            window.scrollTo(0, 0);
+            document.getElementById('loading-animation').className = 'loading-visible';
+        } else {
+            console.log("finalized loading");
+            document.body.style.overflow = "visible";
+            document.getElementById('loading-animation').className = 'loading-invisible';
+        }
+    }
+
+    setLoading(true)
+</script>

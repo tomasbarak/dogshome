@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <%- include('./head.ejs'); %>
-    <%- include('./stylesheets/publications/publications-style.ejs'); %>
-    <%- include('./stylesheets/publications/slider.ejs'); %>
-    <%- include('./stylesheets/main/style-mainpage.ejs'); %>
-    <%- include('./stylesheets/main/drawer-navigator-style.ejs'); %>
-    <%- include('./stylesheets/main/content-show.ejs'); %>
+    <% var rootPath = './' %> 
+    <%- include(rootPath + 'head.ejs'); %>
+    <%- include(rootPath + 'ejs-resources/publication/publication_style.ejs'); %>
+    <%- include(rootPath + 'ejs-resources/publication/publication_slider_style.ejs'); %>
 
     <title>DogsHome | <%= name %></title>
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
@@ -18,45 +16,15 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
 
-    <script src="/scripts/main/open-close-drawer.js"></script>
-    <script src="/scripts/main/basic-navigation.js"></script>
-    <script src="/scripts/publications/expand-menu.js"></script>
     <script src="/scripts/alerts/page-alerts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/themes/splide-default.min.css">
 </head>
 <body>
 
-<div id="search-bar">
-    <div class="top-bar-section-cont" style="flex-direction: row; align-items: center;">
-        <img src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt style="height: 50px; width: 50px; margin-right: 10px" class="">
+    <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs')%>
 
-        <a id="main-button" class="desktop-elements nav-buttons" onclick="window.location = '/inicio'">Inicio</a>
-        <a id="alerts-button" class="desktop-elements nav-buttons" onclick="navigateToAlerts()">Alertas</a>
-    </div>
-    <div class="top-bar-section-cont">
-        <form id="search-form">
-            <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
-                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
-                <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="searchPost()">search</span>
-            </div>
-        </form>
-    </div>
-    <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
-        <span class="material-icons-outlined" id="fav-button" style="color: #fff; cursor: pointer; margin: 0 10px; user-select: none;" onclick="expandMenu()">menu</span>
-        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="navigateToProfile()"></a>
-        <% if (isPrivate) {%>
-            <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl%>
-            alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
-            none; border-radius: 80px; object-fit: cover">
-        <% } else { %>
-            <img class="desktop-elements" id="profile-pic" onclick="window.location.href = '/perfil/<%= uid %>'" src=<%=photoUrl%>
-            alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
-            none; border-radius: 80px; object-fit: cover">
-        <% } %>   
-    </div>
-</div>
-    <%- include('./expandable-menu.ejs') %> 
+    <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
     <div id="all-container">
         <div id="post">
             <div style="flex-direction: row; display: flex; width: 100%; height: 100%">
@@ -295,77 +263,11 @@
 
     <!-- Add Firebase products that you want to use -->
     <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-auth.js"></script>
-    <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
     <script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
 
-    <script src="/scripts/profile/profile-settings-functions.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
 
-    <script>
-        function onSecondaryImageClick(id) {
-            document.getElementById(id).className = 'secondary-image-cont-selected';
-            var secondaryImagesCont = document.getElementById("post-images-selector");
-            var secondaryImagesArray = secondaryImagesCont.getElementsByTagName('div');
-            unselectOthersOnClick(id, secondaryImagesArray);
-            document.getElementById("post-image").src = document.getElementById(id).getElementsByTagName("img")[0].src;
-        }
-
-        function unselectOthersOnClick(exception_id, all_secondary_photos) {
-            for (let key in all_secondary_photos) {
-                if (all_secondary_photos[key].id !== exception_id) {
-                    all_secondary_photos[key].className = "secondary-image-cont-unselected";
-                }
-            }
-        }
-
-        function share(){
-            if(navigator.share){
-                navigator.share({url: window.location}).then(() => {
-                    console.log('Successful share');
-                }).catch((error) => {
-                    console.log('Error sharing', error);
-                });
-            }else{
-                window.prompt("Copiar link", window.location);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var main = new Splide('#splide-slider-main', {
-                type: 'slide',
-                rewind: true,
-                pagination: false,
-                arrows: false,
-                width: '100%',
-                height: '100%',
-                gap: 50,
-                perPage: 1,
-            })
-            var thumbnails = new Splide('#splide-slider', {
-                fixedWidth: 100,
-                fixedHeight: 60,
-                gap: 10,
-                rewind: true,
-                pagination: false,
-                cover: true,
-                isNavigation: true,
-                breakpoints: {
-                    800: {
-                        fixedWidth: 60,
-                        fixedHeight: 44,
-                    },
-                },
-                dragMinThreshold: {
-                        mouse: 50,
-                        touch: 10,
-                },
-            });
-
-            main.sync(thumbnails);
-            main.mount();
-            thumbnails.mount();
-        });
-    </script>
+    
     <% if (isPrivate) { %> 
         <%- include('./login-notification.ejs') %>
     <% } %> 
