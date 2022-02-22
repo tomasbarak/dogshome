@@ -14,26 +14,3 @@ function showSignOutAlert(){
         }
     })
 }
-function showPhoneVerificationSentMsg(message){
-    Swal.fire({
-        text: message,
-        icon: 'info',
-        confirmButtonColor: '#079292'
-    })
-}
-function showPhoneVerificationSuccess(msg){
-    Swal.fire({
-        text: msg,
-        icon: 'success',
-        confirmButtonColor: '#079292'
-    }).then(function (){
-        window.location = 'index.html'
-    })
-}
-function showPhoneVerificationWrong(msg){
-    Swal.fire({
-        text: msg,
-        icon: 'error',
-        confirmButtonColor: '#079292'
-    })
-}

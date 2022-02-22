@@ -12,6 +12,8 @@
         position: sticky;
         top: 0;
         left: 0;
+        font-family: 'Lato', sans-serif !important;
+        min-width: 100%;
     }
 
     #search-input,
@@ -95,6 +97,24 @@
         margin-right: 5px;
         cursor: pointer;
     }
+
+    #user-menu-image-container{
+        display: flex; 
+        flex-direction: row; 
+        align-items: center; 
+        justify-content: center; 
+        cursor: pointer;
+    }
+
+    .search-bar-display-name{
+        width: 75px; 
+        min-width: 50px; 
+        text-overflow: ellipsis; 
+        padding: 0 8px; 
+        overflow: hidden; 
+        white-space: nowrap;
+        color: white;
+    }
     @media screen and (max-width: 1184px) {
 
         #search-input,
@@ -118,7 +138,7 @@
         }
 
         .desktop-elements {
-            display: none;
+            display: none !important;
         }
     }
 

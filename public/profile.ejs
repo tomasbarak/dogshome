@@ -5,8 +5,7 @@
     <%- include(rootPath + 'head.ejs'); %>
     <%- include(rootPath + 'ejs-resources/profile/profile_style.ejs'); %>
 
-    <script src="/scripts/auth/sign-out.js"></script>
-    <script src="/scripts/alerts/page-alerts.js"></script>
+    
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Prompt&display=swap" rel="stylesheet">
     <title>Perfil</title>
@@ -59,12 +58,6 @@
                         <% } %>
                     </a>
                 </div>
-                <% if(isMine){ %>
-                    <div id="sign-out-btn" onclick="showSignOutAlert()" class="profile-action-button">
-                        <a>Cerrar sesión</a>
-                    </div>
-                    
-                <% } %>
             </div>
         </div>
         <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start;">
@@ -132,11 +125,7 @@
                 </section>
             </section>
             <section style="width: 50%; flex-direction: column; height: 143px; display: flex; align-items: center; justify-content: center;">
-                <% if (isMine && typeNum !== 1) {%> 
-                    <div style="margin-left: 102px; cursor: pointer; background-color: #079292; color: white; height: 50px; width: 125px; box-sizing: border-box; padding: 2px; font-size: 14px; border-radius: 5px; display: flex; align-items: center; justify-content: center;" onclick="createDraft()">
-                        <a>Crear publicación</a>
-                    </div>
-                <% } %> 
+
             </section>
         </div>
         
@@ -222,39 +211,6 @@
                     </div>
                 </div>
             <% } %> 
-            <% if (isMine) {%>
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: fit-content; padding: 15px 25px; box-sizing: border-box;">
-                    <div style="margin-left: 0; cursor: pointer; background-color: #079292; color: white; height: 50px; width: 125px; box-sizing: border-box; padding: 2px; font-size: 14px; border-radius: 5px; display: flex; align-items: center; justify-content: center;" onclick="createDraft()">
-                        <a>Crear publicación</a>
-                    </div>
-                </div>
-                
-                <script>
-                    const createDraft = () => {
-                        Swal.fire({
-                            title: 'Creando borrador',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                            allowEnterKey: false,
-                            showConfirmButton: false,
-                            didOpen: () => {
-                                Swal.showLoading();
-                            }
-                        })
-                        axios.post(`https://${window.location.host}/create/publication/draft`)
-                            .then(function (response) {
-                                const data = response.data || {};
-                                console.log(data);
-                                const id = data.id || '';
-                                const redirectPath = data.redirectPath || '';
-                                window.location.href = redirectPath;
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                    }
-                </script>
-            <% } %>
         </div>
         <% if (typeNum !== 1) { %> 
             <% if(publications.length > 0) {%>

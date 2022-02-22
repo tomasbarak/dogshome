@@ -55,8 +55,8 @@ function init(app) {
                             active: 0,
                             navButtons: [
                                 {name: 'Alertas', href: '/alertas'}
-                                
-                            ]
+                            ],
+                            userData: res.locals.userData,
                         }
                     });
                     client.close();

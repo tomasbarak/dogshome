@@ -1,0 +1,37 @@
+<% var rootPath = './' %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include(rootPath + "head.ejs") %> 
+    <%- include(rootPath + "ejs-resources/view-drafts/view_drafts_style.ejs") %> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borradores</title>
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+</head>
+<body>
+    <%- include(rootPath + 'ejs-resources/loading-animation/loading-animation.ejs') %> 
+
+    <%- include(rootPath + "ejs-resources/search-bar/search-bar.ejs") %> 
+
+    <%- include(rootPath + "ejs-resources/menu-mobile/expandable-menu.ejs") %> 
+
+    <% drafts.forEach( draft => { %>
+        <div class="draft-container">
+            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*" class="draft-image">
+            <div class="draft-name-description-container">
+                <a class="draft-name"><%= draft.Name = (draft.Name === undefined) ? "No especificado" : draft.Name;%></a>
+                <p class="draft-description"> <%= draft.SDescription = (draft.SDescription === undefined) ? "No especificado" : draft.SDescription;%></p>
+            </div>
+        </div>
+    <% }) %> 
+
+    <script>
+        window.onload = () => {
+            setLoading(false)
+        }
+    </script>
+</body>
+</html>

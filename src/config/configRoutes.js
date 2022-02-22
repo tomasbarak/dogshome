@@ -14,6 +14,7 @@ function config(app, firebaseadmin){
     require( appDir + '/src/api/routes/verifyEmail')                    .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/getImage')                       .init(app);
     require( appDir + '/src/api/generateApiToken')                      .init(app, firebaseadmin);
+    require( appDir + '/src/api/routes/publicationDraft')               .init(app);
 
     //WebPage routes
     require( appDir + '/src/api/routes/webPage/index')                  .init(app);
@@ -26,7 +27,8 @@ function config(app, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/verification')           .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/webPage/signout')                .init(app);
     require( appDir + '/src/api/routes/webPage/createPublication')      .init(app);
-    require( appDir + '/src/api/routes/publicationDraft')               .init(app);
+    require( appDir + '/src/api/routes/webPage/viewDrafts')             .init(app);
+
 
     //Github changes listener
     require( appDir + '/src/api/listeners/githubPushListener')          .listen(app);

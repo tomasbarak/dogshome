@@ -103,16 +103,26 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
 
                   }
                 } else {
+                  const collection = mongoDB.collection('Users');
                   const profileCreationAccessPath = ['/profile/creation', '/profile/creation/'];
-                  if (!profileCreationAccessPath.includes(pathArr)) {
-                    next();
-                    client.close();
 
-                  } else {
-                    res.redirect('/inicio');
+                  getMany(collection, { _id: 0}, {Id: decodedIdToken.uid}).then((snapshot) => {
+                    res.locals.userData = snapshot[0] || {};
+                    if (!profileCreationAccessPath.includes(pathArr)) {
+                      next();
+                      client.close();
+  
+                    } else {
+                      res.redirect('/inicio');
+                      client.close();
+  
+                    }
+                  }).catch((err) => {
+                    console.log(err);
+                    res.status(500).send(err);
                     client.close();
-
-                  }
+                  });
+                  
                 }
               } else {
                 res.locals.isVerified = false;

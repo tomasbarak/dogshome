@@ -79,7 +79,7 @@ function init(app) {
                                 navButtons: [
                                         {name: 'Inicio', href: '/'}, 
                                         {name: 'Alertas', href: '/alertas'}
-                                    ] 
+                                    ]
                                 }
                     };
 
@@ -135,9 +135,13 @@ function init(app) {
                                     navButtons: [
                                         {name: 'Inicio', href: '/'}, 
                                         {name: 'Alertas', href: '/alertas'}
-                                    ] 
+                                    ],
+                                    userData: res.locals.userData,
                                 }
                         };
+                        console.log(renderVar.locals);
+
+                        isMine ? renderVar.locals["dropdownActive"] = 0 : renderVar.locals["dropdownActive"] = undefined;
 
                         if (posts.length > 0) {
                             getMany(publicationsCollection, requestProjection, requestQuery).then((snapshot) => {
