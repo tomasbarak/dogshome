@@ -18,15 +18,6 @@ commitVersion = require('child_process')
   .execSync('git rev-parse HEAD')
   .toString().trim()
 
-//SSL Certificate
-var cert = fs.readFileSync(appDir + '/certs/certificate.crt');
-var key = fs.readFileSync(appDir + '/certs/private.key');
-
-var options = {
-  key: key,
-  cert: cert
-};
-
 
 let expressApp = require(appDir + '/src/config/expressConfig').config(express, cors);
 
@@ -35,7 +26,7 @@ const firebaseApp = require(appDir + '/src/config/firebaseConfig').config();
 const firebaseAdmin = require(appDir + '/src/config/firebaseAdminConfig').config();
 const database = require('firebase/database');
 
-var SecureServer = https.createServer(options, expressApp);
+var SecureServer = https.createServer(expressApp);
 
 console.log(logColor.debug, 'App started version: ' + commitVersion);
 
