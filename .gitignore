@@ -104,5 +104,9 @@ dist
 .tern-port
 
 #Uploads Folder
-
 uploads
+
+#Certificates
+certs
+
+

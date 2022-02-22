@@ -41,14 +41,16 @@
             alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
             none; border-radius: 80px; object-fit: cover">
         <% } else { %>
-            <div class="dropdown-btn-container desktop-elements">
-                <span class="arrow-line"></span>
-                <span class="arrow-line"></span>
+            <div id="user-menu-image-container" style="display: flex; flex-direction: row; align-items: center; justify-content: center; cursor: pointer;">
+                <div class="dropdown-btn-container desktop-elements">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-line"></span>
+                </div>
+                <img loading="lazy" class="desktop-elements" id="profile-pic"  src=<%=photoUrl %>
+                alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
+                none; border-radius: 80px; object-fit: cover">
             </div>
             <%- include(rootPath + 'ejs-resources/search-bar/dropdown-menu/dropdown-menu.ejs') %> 
-            <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="expandDropdownMenu()" src=<%=photoUrl %>
-            alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
-            none; border-radius: 80px; object-fit: cover">
         <% } %>   
         
     </div>
@@ -59,7 +61,7 @@
             $(this).toggleClass("is-active");
             expandMenu();
         });
-        $(".dropdown-btn-container").click(function () {
+        $("#user-menu-image-container").click(function () {
             $(".dropdown-btn-container").toggleClass("clicked");
             expandDropdownMenu();
         });
