@@ -27,10 +27,8 @@ function init(app, firebaseAdmin) {
             const accType = res.locals.accType || {};
             const accTypeNum = accType.TypeNum;
             const uid = res.locals.user.uid;
-            console.log('typeNum', accTypeNum);
             if (creationInstance > 0) {
                 if (creationInstance === 8 && accTypeNum === 1) {
-                    console.log('Creation instance', creationInstance);
                     creationInstance = 5;
                 } else if (creationInstance === 7 && accTypeNum === 1) {
                     creationInstance = 5;
@@ -71,7 +69,6 @@ function init(app, firebaseAdmin) {
         const isVerified = res.locals.isVerified;
         const creationInstance = res.locals.creationInstance;
         const user = res.locals.user || {};
-        console.log('isPrivate', isPrivate);
         if (!isPrivate) {
             if (isVerified) {
                 res.render(appDir + '/public/create-profile.ejs', {
@@ -418,7 +415,6 @@ function init(app, firebaseAdmin) {
         const allowedInstance = 5;
         if (allowedInstance === creationInstance) {
             const { short_description } = req.body;
-            console.log(short_description.length);
             if (short_description.length <= 141) {
                 connectClient(mongoURL).then((client) => {
                     const uid = res.locals.user.uid;

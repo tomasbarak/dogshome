@@ -102,7 +102,6 @@ function init(app){
                             const paramStep = String(req.body.step);
                             let newDraft = draft;
                             let filters = draft.Filters || {};
-                            console.log(paramStep);
                             if(paramStep == "back"){
                                 if(step > 1){
                                     newDraft["updatedAt"] = new Date();
@@ -161,7 +160,6 @@ function init(app){
                                         }
                                 }
                             }
-                            console.log(newDraft);
                             updateDraft(draftId, step, collection, newDraft, {refId: refId}).then( (result) => {
                                 res.send({ success: true, redirectPath: `/crear/publicacion/${draftId}` });
                                 client.close();

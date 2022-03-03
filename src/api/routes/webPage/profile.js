@@ -139,7 +139,6 @@ function init(app) {
                                     userData: res.locals.userData,
                                 }
                         };
-                        console.log(renderVar.locals);
 
                         isMine ? renderVar.locals["dropdownActive"] = 0 : renderVar.locals["dropdownActive"] = undefined;
 

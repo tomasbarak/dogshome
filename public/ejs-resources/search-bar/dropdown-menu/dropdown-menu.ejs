@@ -1,7 +1,6 @@
 <% var rootPath = '../../../' %> 
 <% var localPath = './' %> 
 <%- include(localPath + 'dropdown_menu_style.ejs') %> 
-<% console.log(typeof locals.userData) %> 
 <% var userData = locals.userData %>
 <% userData = (userData === undefined) ? {} : userData; %> 
 <% var myAccountType = userData.Type %> 

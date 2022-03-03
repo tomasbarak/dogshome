@@ -33,7 +33,6 @@ function init(app, firebaseAdmin) {
                 const collection = db.collection('api_keys')
                 let collectionName = 'api_tokens';
                 getAllCollection(collection).then(result => {
-                    console.log(result);
                 }).catch(err => {
                     console.log(err)
                 });;

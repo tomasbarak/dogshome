@@ -7,6 +7,8 @@ const http = require('http');
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
 const logColor = require(appDir + '/src/config/logColors');
+const logger = require("node-color-log");
+const argv = require("minimist")(process.argv.slice(2));
 const { connectClient, getMany,
   getOne, getAllCollection,
   saveOne, saveMany,
@@ -27,7 +29,6 @@ var options = {
   cert: cert
 };
 
-
 let expressApp = require(appDir + '/src/config/expressConfig').config(express, cors);
 
 //Firebase
@@ -37,18 +38,18 @@ const database = require('firebase/database');
 
 var SecureServer = https.createServer(options, expressApp);
 
-console.log(logColor.debug, 'App started version: ' + commitVersion);
+logger.fontColorLog('cyan', 'App started version: ' + commitVersion);
 
 var HttpServer = http.createServer(function (req, res) {
   res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}` });
   res.end();
 }).listen(80, function () {
-  console.log(logColor.success, 'HTTP Server listening on port 80')
+  logger.fontColorLog('green', 'HTTP Server listening on port 80');
 });
 
 SecureServer.listen(443, function () {
-  console.log(logColor.success, 'HTTPS Server listening on port 443');
-  console.log(logColor.warn, "Process id:" + process.pid)
+  logger.fontColorLog('green', 'HTTPS Server listening on port 443');
+  logger.fontColorLog('yellow', "Process id:" + process.pid)
 
   setupPreloadFunction(expressApp, firebaseAdmin);
 
@@ -75,7 +76,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       if (ip.substr(0, 7) == "::ffff:") {
         ip = ip.substr(7)
       }
-      console.log(`\x1b[36m${pathArr} \x1b[0m<-- \x1b[32m${ip}`);
+      logger.color("cyan").log(pathArr).joint().color("white").log(" <-- ").joint().color("green").log(ip)
       const freeAccessPath = ['/profile/image', '/profile/image/']
       if (!freeAccessPath.includes(pathArr)) {
         firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
