@@ -48,6 +48,7 @@ function init(app){
                                     Step: 1,
                                     RefId: refId,
                                     updatedAt: new Date(),
+                                    createdAt: new Date(),
                                 }
                         insertOne(collection, draft).then( (result) => {
                             res.send({

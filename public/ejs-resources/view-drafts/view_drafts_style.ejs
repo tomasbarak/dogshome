@@ -4,15 +4,26 @@
         flex-direction: row;
         justify-content: flex-start;
         width: 100%;
+        background-color: white;
         border-radius: 15px;
         height: 200px;
-        margin: 15px 0;
-        padding: 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
         font-family: 'Lato', sans-serif !important;
+        position: relative;
+        transition: box-shadow 0.25s;
+    }
+    .draft-container + .draft-container{
+        border-top: 1px solid #e6e6e6;
+        margin-top: 25px;
+    }
+    .draft-container:hover{
+        transition: box-shadow 0.25s;
+        box-shadow: rgba(0, 0, 0, 0.25) 2px 30px 48px -25px;    
     }
     .draft-image{
         width: 200px;
-        height: 200px;
+        height: 100%;
         border-radius: 15px;
         object-fit: cover;
     }
@@ -24,8 +35,19 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        width: 100%;
+        width: 50%;
+        box-sizing: border-box;
         height: 100%;
+        padding: 0 15px;
+    }
+    .draft-date-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
         padding: 0 15px;
     }
     .draft-name{
