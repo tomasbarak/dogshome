@@ -42,7 +42,7 @@ function init(app) {
                     const nameAndSurname_name =         nameAndSurname.name || ' ';
                     const nameAndSurname_surname =      nameAndSurname.surname || ' ';
                     const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
-
+                    console.log(result)
                     res.render(appDir + '/public/index', {
                         uid:            user.user_id,
                         displayName:    nameAndSurname_fullName || ' ',
@@ -64,7 +64,6 @@ function init(app) {
                 } else if (!isVerified) {
                     res.redirect('/verification');
                     client.close();
-
                 }
             }).catch((error) => {
                 console.log(error);

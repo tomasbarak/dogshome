@@ -71,7 +71,17 @@
 
     selectDropdownOption(Number('<%= optionActive %>'));
 </script>
-
+<script>
+    window.addEventListener('click', function (e) {
+        let dropdown = document.querySelector('#user-dropdown-container');
+        let userMenuImageContainer = document.querySelector('#user-menu-image-container');
+        if (dropdown.contains(e.target) || userMenuImageContainer.contains(e.target)) {
+            // Clicked in box
+        } else {
+            dropdown.classList.remove('dropdown-visible');
+        }
+    });
+</script>
 <script>
     const createDraft = () => {
         Swal.fire({

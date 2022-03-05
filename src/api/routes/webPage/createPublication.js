@@ -31,6 +31,8 @@ function init(app){
                 if(data.length > 0){   
                     snapshot = data[0] || {};
                     const step = snapshot.Step || 1;
+                    const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
+                    const provinceName = provincesArr[provincesArr.indexOf(snapshot.Province)]
                     res.render(appDir + '/public/create-publication', {
                         uid:            user.user_id,
                         displayName:    nameAndSurname_fullName || ' ',
@@ -40,6 +42,9 @@ function init(app){
                         isPrivate:      isPrivate,
                         step:           step,
                         draftId:        draftId,
+                        draftData:      {
+
+                        }
                     });
                     client.close();
                 }else{

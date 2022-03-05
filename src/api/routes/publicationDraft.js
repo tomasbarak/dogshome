@@ -133,7 +133,7 @@ function init(app){
                                         const description = req.body.description || '';
                                         if(description.length > 0){
                                             if(description.length <= 140){
-                                                newDraft["SDescription"] = String(description).toLowerCase();
+                                                newDraft["SDescription"] = String(description)[0].toUpperCase() + String(description).toLowerCase().slice(1);
                                                 newDraft["updatedAt"] = new Date();
                                                 newDraft["Step"] = 3;
                                             }else{
@@ -148,10 +148,13 @@ function init(app){
                                         }
                                         break;
                                     case 3:
-                                        const province = req.body.province || '';
+                                        const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
+                                        const province = req.body.province;
+
+                                        const provinceName = provincesArr[province];
 
                                         if(province.length > 0){
-                                            newDraft["Province"] = String(province).toLowerCase();
+                                            newDraft["Province"] = provinceName;
                                             newDraft["updatedAt"] = new Date();
                                             newDraft["Step"] = 4;
                                         }else{

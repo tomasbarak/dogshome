@@ -16,34 +16,42 @@
     <%- include(rootPath + "ejs-resources/search-bar/search-bar.ejs") %> 
 
     <%- include(rootPath + "ejs-resources/menu-mobile/expandable-menu.ejs") %> 
-
-    <% drafts.forEach( draft => { %>
-    <% var updatedAt = draft.updatedAt ? new Date (draft.updatedAt).toLocaleString("es-AR") : "No especificado" %> 
-    <% var createdAt = draft.createdAt ? new Date (draft.createdAt).toLocaleString("es-AR") : "No especificado" %> 
-    <% var draftName = draft.Name ? draft.Name : "No especificado"; %> 
-    <% var draftDescription = draft.SDescription ? draft.SDescription : "No especificado" %> 
-    <% var photoURL = draft.Photo ? draft.Photo : "/images/dog-image-not-found.png" %> 
-        <div class="draft-container">
-            <svg style="position: absolute; right: 30px; top: 15px; cursor: pointer; " onclick="window.location.href = '/actualizar/borrador/publicacion/<%= draft.Id %> '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg>
-            <svg style="position: absolute; right: 30px; top: calc(39px + 15px); cursor: pointer;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>            
-            <img src="<%= photoURL %>" class="draft-image">
-            <div class="draft-name-description-container">
-                <a class="draft-name"><%= draftName %></a>
-                <p class="draft-description"> <%= draftDescription %></p>
-            </div>
-            <div class="draft-date-container">
-                <a class="draft-created-date">
-                    <font style="color: #079292;">Creado: </font>
-                    <%= createdAt%>
-                </a>
-                <a class="draft-updated-date">
-                    <font style="color: #079292;">Actualizado: </font>
-                    <%= updatedAt%>
-                </a>
-            </div>
-        </div>
-    <% }) %> 
-
+    <div id="main-draft-container">
+        <% drafts.forEach( draft => { %>
+            <% var updatedAt = draft.updatedAt ? new Date (draft.updatedAt).toLocaleString("es-AR") : "No especificado" %> 
+            <% var createdAt = draft.createdAt ? new Date (draft.createdAt).toLocaleString("es-AR") : "No especificado" %> 
+            <% var draftName = draft.Name ? draft.Name : "No especificado"; %> 
+            <% var draftDescription = draft.SDescription ? draft.SDescription : "No especificado" %> 
+            <% var location = draft.Province ? `${draft.Province}, Argentina` : "No especificado" %> 
+            <% var photoURL = draft.Photo ? draft.Photo : "/images/dog-image-not-found.png" %> 
+                <div class="draft-container">
+                    <img src="<%= photoURL %>" class="draft-image">
+                    <div class="draft-action-btns-container">
+                        <svg class="draft-delete-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg>
+                        <svg class="draft-edit-btn" onclick="window.location.href = '/crear/publicacion/<%= draft.Id %>'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>            
+                    </div>
+                    <div class="draft-name-description-container">
+                        <a class="draft-name"><%= draftName %></a>
+                        <p class="draft-description"> <%= draftDescription %></p>
+                    </div>
+                    <div class="draft-date-container">
+                        <a class="draft-created-date">
+                            <font style="color: #079292;">Creado: </font>
+                            <%= createdAt%>
+                        </a>
+                        <a class="draft-updated-date">
+                            <font style="color: #079292;">Actualizado: </font>
+                            <%= updatedAt%>
+                        </a>
+        
+                        <a class="draft-location">
+                            <svg fill="#079292" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                            <font style="color: #079292; margin-left: 8px;"><%= location %></font>
+                        </a>
+                    </div>
+                </div>
+        <% }) %> 
+    </div>
     <script>
         window.onload = () => {
             setLoading(false)
