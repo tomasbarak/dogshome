@@ -75,7 +75,7 @@ function init(app) {
                         isPrivate: isPrivate,
                         userHref: `/signin`,
                         locals: {
-                                active: 3,
+                                active: isMine ? 2 : -1,
                                 navButtons: [
                                         {name: 'Inicio', href: '/'}, 
                                         {name: 'Alertas', href: '/alertas'}
@@ -131,7 +131,7 @@ function init(app) {
                             isPrivate: isPrivate,
                             userHref: !isMine ? `/perfil/${userId}` : `#`,
                             locals: {
-                                    active: 3,
+                                    active: isMine ? 2 : -1,
                                     navButtons: [
                                         {name: 'Inicio', href: '/'}, 
                                         {name: 'Alertas', href: '/alertas'}
