@@ -27,7 +27,6 @@
     }
 
     .draft-container+.draft-container {
-        border-top: 1px solid #e6e6e6;
         margin-top: 25px;
     }
 
@@ -157,9 +156,11 @@
             position: relative;
             transition: box-shadow 0.25s;
         }
-        .draft-container + .draft-container {
+
+        .draft-container+.draft-container {
             margin-top: 0;
         }
+
         .draft-delete-btn {
             cursor: pointer;
             fill: rgba(255, 0, 0, 0.75)

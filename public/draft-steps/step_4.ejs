@@ -1,0 +1,226 @@
+<style>
+    #dog-images-container{
+        --nav-bar-height: 60px;
+        --first-half-container-height: 50vh;
+        
+        position: absolute;
+        top: var(--first-half-container-height);
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 25px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+    }
+    * {
+        font-family: 'Lato', sans-serif;
+    }
+    input[type="file"] {
+        display: none;
+    }
+    label[for="file"]{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #079292;
+        font-size: 1.5rem;
+        border-radius: 8px;
+        background-position: center;
+        background-size: cover;
+    }
+    #dog-principal-image-container{
+        width: 100%;
+        height: 200px;
+        max-width: 630px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        position: relative;
+    }
+    #dog-secondary-images-container{
+        height: auto;
+        max-width: 630px;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        margin-bottom: 60px;
+    }
+    .secondary-image-container{
+        width: 150px;
+        height: 150px;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .images-title{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000;
+        width: 100%;
+        max-width: 630px;
+    }
+    .remove-image-btn{
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .25));
+        height: 18px;
+        width: 18px;
+        cursor: pointer;
+    }
+    .visible{
+        visibility: visible;
+    }
+    .hidden{
+        visibility: hidden;
+    }
+</style>
+<script>
+    const readFile = (file, imageToSet) => {
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            imageToSet.style.backgroundImage = `url(${e.target.result})`;
+            document.getElementById(`${imageToSet.id}-plus`).classList.toggle("visible")
+            document.getElementById(`${imageToSet.id}-plus`).classList.toggle("hidden")
+            document.getElementById(`${imageToSet.id}-cross`).classList.toggle("hidden")
+            document.getElementById(`${imageToSet.id}-cross`).classList.toggle("visible")
+        }
+
+        reader.readAsDataURL(file);
+
+    }
+    const clearInput = (input, label) => {
+        input.value = null;
+        label.style.backgroundImage = "";
+        document.getElementById(`${label.id}-plus`).classList.toggle("visible")
+        document.getElementById(`${label.id}-plus`).classList.toggle("hidden")
+        document.getElementById(`${label.id}-cross`).classList.toggle("hidden")
+        document.getElementById(`${label.id}-cross`).classList.toggle("visible")
+    }
+</script>
+<% const secImagesQ = 7 %> 
+<div class="first-half-container">
+    <h1 class="create-title">Subí imágenes del perro</h1>
+    <h1 style="color: white; font-size: 1.2rem;">(Hasta 8 en total)</h1>
+</div>
+<div id="dog-images-container">
+    <h1 class="images-title">Imágen de portada <font style="color:#079292">*</font></h1>
+    <div id="dog-principal-image-container">
+        <svg onclick="clearInput(document.getElementById('dog-image-principal-input'), document.getElementById('dog-image-input-principal-label'))" class="remove-image-btn hidden" id="dog-image-input-principal-label-cross" fill="rgba(255, 0, 0, 0.75)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12zm8.036-4.024a.75.75 0 00-1.06 1.06L10.939 12l-2.963 2.963a.75.75 0 101.06 1.06L12 13.06l2.963 2.964a.75.75 0 001.061-1.06L13.061 12l2.963-2.964a.75.75 0 10-1.06-1.06L12 10.939 9.036 7.976z"></path></svg>
+        <input value="" id="dog-image-principal-input" onchange="readFile(this.files[0], document.getElementById('dog-image-input-principal-label'))" type="file" name="file" accept="image/png, image/jpeg">
+        <label id="dog-image-input-principal-label" for="file">
+            <svg id="dog-image-input-principal-label-plus" class="visible" fill="rgba(0, 0, 0, 0.5)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M11.75 4.5a.75.75 0 01.75.75V11h5.75a.75.75 0 010 1.5H12.5v5.75a.75.75 0 01-1.5 0V12.5H5.25a.75.75 0 010-1.5H11V5.25a.75.75 0 01.75-.75z"></path></svg>
+        </label>
+    </div>
+    <h1 class="images-title">Imágenes secundarias <font style="color: #079292; font-size: .75rem;">(Opcional)</font></h1>
+    <div id="dog-secondary-images-container">
+        <% for (let i = 0; i < secImagesQ; i++) {%>
+            <div class="secondary-image-container">
+                <svg onclick="clearInput(document.getElementById('sec-image-input-<%= i %>'), document.getElementById('sec-image-label-<%= i %>'))" class="remove-image-btn hidden" id="sec-image-label-<%= i %>-cross" fill="rgba(255, 0, 0, 0.75)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12zm8.036-4.024a.75.75 0 00-1.06 1.06L10.939 12l-2.963 2.963a.75.75 0 101.06 1.06L12 13.06l2.963 2.964a.75.75 0 001.061-1.06L13.061 12l2.963-2.964a.75.75 0 10-1.06-1.06L12 10.939 9.036 7.976z"></path></svg>
+                <input id="sec-image-input-<%= i %>" class="dog-image-secondary-input" type="file" name="file" accept="image/png, image/jpeg">
+                <label id="sec-image-label-<%= i %>" class="dog-image-input-secondary-label" for="file">
+                    <svg id="sec-image-label-<%= i %>-plus" class="visible" fill="rgba(0, 0, 0, 0.5)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M11.75 4.5a.75.75 0 01.75.75V11h5.75a.75.75 0 010 1.5H12.5v5.75a.75.75 0 01-1.5 0V12.5H5.25a.75.75 0 010-1.5H11V5.25a.75.75 0 01.75-.75z"></path></svg>
+                </label>
+            </div>
+            <script>
+                document.getElementById('sec-image-label-<%= i %>').addEventListener('click', function () {
+                    document.getElementById('sec-image-input-<%= i %>').click();
+                });
+                document.getElementById('sec-image-input-<%= i %>').addEventListener('change', function () {
+                    readFile(this.files[0], document.getElementById('sec-image-label-<%= i %>'));
+                });
+                document.getElementById('sec-image-input-<%= i %>').addEventListener('', function () {
+
+                })
+            </script>
+        <% } %> 
+    </div>
+</div>
+
+<script>
+    const dogImageInput = document.getElementById('dog-image-principal-input');
+    const dogImageInputLabel = document.getElementById('dog-image-input-principal-label');
+    const dogSecImageInput = document.getElementsByClassName('dog-image-secondary-input');
+
+    dogImageInputLabel.addEventListener('click', () => {
+        dogImageInput.click();
+    });
+    const updateDraft = (draftId) => {
+
+        if (dogImageInput.value.length > 0) {
+            const images = new FormData();
+            images.append('principal', dogImageInput.files[0]);
+            for (let i = 0; i < dogSecImageInput.length; i++) {
+                images.append(`secondary_${i}`, dogSecImageInput[i].files[0]);
+            }
+            console.log(images);
+            Swal.fire({
+                title: 'Actualizando borrador',
+                text: 'Esperá un momento',
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+
+            });
+            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, images, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    window.location.reload();
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+                    });
+                }
+            }).catch(err => {
+                console.log(err);
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo',
+                    confirmButtonColor: '#079292'
+                });
+            });
+        } else {
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Debes subir al menos una imagen de portada',
+                confirmButtonColor: '#079292'
+            });
+        }
+
+    }
+
+    let inputs = document.getElementsByTagName('input');
+
+    for (let input in inputs) {
+        input.value = null;
+    }
+</script>

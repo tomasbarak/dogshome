@@ -42,7 +42,6 @@ function init(app) {
                     const nameAndSurname_name =         nameAndSurname.name || ' ';
                     const nameAndSurname_surname =      nameAndSurname.surname || ' ';
                     const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
-                    console.log(res.locals.userData)
                     res.render(appDir + '/public/index', {
                         uid:            user.user_id,
                         displayName:    nameAndSurname_fullName || ' ',

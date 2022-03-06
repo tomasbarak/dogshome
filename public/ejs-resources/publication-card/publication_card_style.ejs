@@ -48,6 +48,7 @@
     }
 
     .publication-description {
+        --lh: 1.2;
         font-size: 12px;
         box-sizing: border-box;
         padding: 0 10px;
@@ -55,6 +56,8 @@
         text-align: left;
         font-family: 'Lato', sans-serif;
         color: #545454;
+        line-height: var(--lh);
+        max-height: calc(var(--lh) * 5);
 
         overflow: hidden;
         text-overflow: ellipsis;
