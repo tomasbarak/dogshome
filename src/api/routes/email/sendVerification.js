@@ -24,11 +24,14 @@ function init(app, firebaseAdmin) {
                             res.status(200).send({ message: 'Email sent' });
 
                         }).catch((error) => {
+                        console.log(error);
+
                             res.status(401).send(error);
 
                         });
 
                     }).catch((error) => {
+                        console.log(error);
                         res.status(401).send(error);
                     });
                 } else {
