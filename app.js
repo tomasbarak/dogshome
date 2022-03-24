@@ -72,7 +72,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       res.header('Access-Control-Allow-Credentials', true);
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       let pathArr = req.url.split('/').slice(0, 3).join('/')
-      let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || '';
       if (ip.substr(0, 7) == "::ffff:") {
         ip = ip.substr(7)
       }

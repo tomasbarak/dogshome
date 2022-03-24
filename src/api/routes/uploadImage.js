@@ -6,13 +6,12 @@ const multer = require('multer');
 function init(app) {
     //multer options
     const storage = multer.diskStorage({
-        destination: 'uploads',
+        destination: 'uploads/profile/',
         //Set image file name as unique without original name
         filename: function (req, file, cb) {
             var re = /(?:\.([^.]+))?$/;
             let ext = re.exec(file.originalname)[1];
             cb(null, String(req.user_authenticated_id) + '.jpg');
-
         },
         limits: {
             fileSize: 1000000,
