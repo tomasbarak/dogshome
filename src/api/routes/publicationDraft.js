@@ -92,12 +92,11 @@ function init(app){
                 connectClient(mongoURL).then( (client) => {
                     const mongoDB = client.db(mongoDBName);
                     const collection = mongoDB.collection('PublicationDrafts');
-                    const requestProjection = { _id: 0, Id: 0, RefId: 0 };
+                    const requestProjection = { _id: 0 };
                     const requestQuery = { Id: draftId, RefId: refId};
 
                     getMany(collection, requestProjection, requestQuery).then((snapshot) => {
-                        
-                        if(snapshot.length > 0){
+                        if(snapshot.length > 0 && snapshot[0].RefId === refId){
                             const draft = snapshot[0];
                             let step = draft.Step || 1;
                             const paramStep = String(req.body.step);
@@ -107,6 +106,7 @@ function init(app){
                                 if(step > 1){
                                     newDraft["updatedAt"] = new Date();
                                     newDraft["Step"] = step - 1;
+                                    continueUpdating()
                                 }
                             }else{
                                 switch(step){
@@ -117,6 +117,7 @@ function init(app){
                                                 newDraft["Name"] = String(name).toLowerCase();
                                                 newDraft["updatedAt"] = new Date();
                                                 newDraft["Step"] = 2;
+                                                continueUpdating()
                                                 break;
                                             }else{
                                                 res.status(403).send({error: 'Name must be less than 24 characters.'});
@@ -146,6 +147,7 @@ function init(app){
                                             client.close();
                                             return;
                                         }
+                                        continueUpdating()
                                         break;
                                     case 3:
                                         const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
@@ -162,15 +164,53 @@ function init(app){
                                             client.close();
                                             return;
                                         }
+                                        continueUpdating()
+                                        break;
+                                    case 4:
+                                        const helpers = require('./helpers');
+                                        const multer = require('multer');
+                                        const path = require('path');
+                                        const storage = multer.diskStorage({
+                                            destination: function(req, file, cb) {
+                                                const fs = require('fs')
+                                                const savingPath = `uploads/drafts/${draftId}`
+                                                fs.mkdirSync(savingPath, { recursive: true })
+                                                cb(null, savingPath);
+                                            },
+                                        
+                                            filename: function(req, file, cb) {
+                                                cb(null, `image-${req.files.length}.jpg`);
+                                            }
+                                        });
+                                        let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).array('files');
+
+                                        upload(req, res, function(err) {
+
+                                            if(err){
+                                                res.status(500).send(err);
+                                                return;
+                                            }else{
+                                                newDraft["updatedAt"] = new Date();
+                                                newDraft["Step"] = 5;
+                                                continueUpdating()
+                                            }
+                                        });
+                                        break;
                                 }
                             }
-                            updateDraft(draftId, step, collection, newDraft, {refId: refId}).then( (result) => {
-                                res.send({ success: true, redirectPath: `/crear/publicacion/${draftId}` });
-                                client.close();
-                            }).catch( (err) => {
-                                console.log(err);
-                                client.close();
-                            });
+                            function continueUpdating(){
+                                updateDraft(draftId, step, collection, newDraft, {refId: refId}).then( (result) => {
+                                    res.send({ success: true, redirectPath: `/crear/publicacion/${draftId}` });
+                                    client.close();
+                                }).catch( (err) => {
+                                    console.log(err);
+                                    client.close();
+                                });
+                            }
+                            
+                        }else{
+                            res.status(403).send({error: 'You are not allowed to edit this draft.'});
+                            client.close();
                         }
 
                     }).catch((err) => {

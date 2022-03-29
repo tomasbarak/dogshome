@@ -158,7 +158,12 @@
     const dogImageInput = document.getElementById('dog-image-principal-input');
     const dogImageInputLabel = document.getElementById('dog-image-input-principal-label');
     const dogSecImageInput = document.getElementsByClassName('dog-image-secondary-input');
-
+    dogImageInput.files = null;
+    dogImageInput.value = null;
+    for (let i = 0; i < dogSecImageInput.length; i++) {
+        dogSecImageInput[i].files = null;
+        dogSecImageInput[i].value = null;
+    }
     dogImageInputLabel.addEventListener('click', () => {
         dogImageInput.click();
     });
@@ -166,9 +171,9 @@
 
         if (dogImageInput.value.length > 0) {
             const images = new FormData();
-            images.append('principal', dogImageInput.files[0]);
+            images.append('files', dogImageInput.files[0]);
             for (let i = 0; i < dogSecImageInput.length; i++) {
-                images.append(`secondary_${i}`, dogSecImageInput[i].files[0]);
+                images.append(`files`, dogSecImageInput[i].files[0]);
             }
             console.log(images);
             Swal.fire({
@@ -189,7 +194,7 @@
             }).then(res => {
                 console.log(res);
                 if (res.status === 200) {
-                    window.location.reload();
+                    //window.location.reload();
                 } else {
                     Swal.fire({
                         type: 'error',
