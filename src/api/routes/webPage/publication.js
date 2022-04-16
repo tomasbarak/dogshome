@@ -1,11 +1,16 @@
-const { dirname } = require('path');
-const appDir = dirname(require.main.filename);
-const { connectClient, getMany,
-    getOne, getAllCollection,
-    saveOne, saveMany,
-    deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
-const mongoURL = 'mongodb://localhost:27017/dogshome';
-const mongoDBName = 'dogshome';
+const { dirname } =     require('path');
+const appDir =          dirname(require.main.filename);
+const { connectClient, 
+        getMany,
+        getOne, 
+        getAllCollection,
+        saveOne, 
+        saveMany,
+        deleteOne, 
+        deleteMany, 
+        sanitize } =    require(appDir + '/src/api/mongodbFunctions.js');
+const mongoURL =        'mongodb://localhost:27017/dogshome';
+const mongoDBName =     'dogshome';
 
 function init(app, firebaseAdmin) {
     app.get(['/publicacion/:id', '/publicacion.html/:id'], (req, res) => {
