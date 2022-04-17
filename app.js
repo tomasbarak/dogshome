@@ -29,9 +29,9 @@ const { connectClient,
 const mongoURL =      'mongodb://localhost:27017/dogshome';
 const mongoDBName =   'dogshome';
 
-const commitVersion = require('child_process')
-                      .execSync('git rev-parse HEAD')
-                      .toString().trim()
+/*////const commitVersion = require('child_process')
+                      ////.execSync('git rev-parse HEAD')
+                      ////.toString().trim()*/
 
 //SSL Certificate
 var cert =    fs.readFileSync(appDir + '/certs/certificate.crt');
@@ -48,7 +48,7 @@ const database = require('firebase/database');
 
 var SecureServer = https.createServer(options, expressApp);
 
-logger.fontColorLog('cyan', 'App started version: ' + commitVersion);
+////logger.fontColorLog('cyan', 'App started version: ' + commitVersion);
 
 var HttpServer = http.createServer(function (req, res) {
   res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}` });

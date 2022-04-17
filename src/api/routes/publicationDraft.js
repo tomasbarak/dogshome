@@ -1,5 +1,5 @@
 /*
-    *FILE USED TO HANDLE PUBLICATION DRAFT ROUTES
+ *   FILE USED TO HANDLE PUBLICATION DRAFT ROUTES
  */
 
     const { dirname } = require('path');

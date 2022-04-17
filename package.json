@@ -36,7 +36,7 @@
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "libphonenumber-js": "^1.9.44",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "mongo-sanitize": "^1.1.0",
     "mongodb": "^4.3.1",
     "multer": "^1.4.4",
