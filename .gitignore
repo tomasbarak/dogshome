@@ -109,4 +109,6 @@ uploads
 #Certificates
 certs
 
+#Package Lock
+package-lock.json
 
