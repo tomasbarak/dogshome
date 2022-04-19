@@ -48,9 +48,14 @@ exports.resizeImages = async (req, res, next) => {
     req.files.map(async (file) => {
       const filename = file.originalname.replace(/\..+$/, '');
       const newFilename = `image-${req.files.indexOf(file) + 1}.jpeg`;
-      const draftImgDir = `${appDir}/uploads/drafts/${req.params.draftId}/`;
-      if(!fs.existsSync(`${appDir}/uploads/drafts/`)){
-        fs.mkdirSync(draftImgDir);
+      const draftImgDir = `${appDir}/uploads/drafts/${req.params.draftId}`;
+      if(!fs.existsSync(`${appDir}/uploads/drafts`)){
+        fs.mkdir(`${appDir}/uploads/drafts`, { recursive: true }, (err) => {
+          if(!fs.existsSync(draftImgDir)){
+            fs.mkdirSync(draftImgDir);
+          }
+        })
+      }else{
         if(!fs.existsSync(draftImgDir)){
           fs.mkdirSync(draftImgDir);
         }
