@@ -28,7 +28,7 @@ function init(app){
     app.get('/profile/drafts/:draftId/uploaded/image/:id', function(req, res){
         const id = req.params.id || '1';
         const draftId = req.params.draftId || '';
-        let filepath = `${appDir}/uploads/drafts/${draftId}/image-${id}.jpg`;
+        let filepath = `${appDir}/uploads/drafts/${draftId}/image-${id}.jpeg`;
 
         if(fs.existsSync(filepath)){
             res.sendFile(filepath);

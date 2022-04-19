@@ -16,7 +16,12 @@
         insertOne } =   require(appDir + '/src/api/mongodbFunctions.js');
     const mongoURL =    'mongodb://localhost:27017/dogshome';
     const mongoDBName = 'dogshome';
-    
+    const {
+        uploadImages,
+        resizeImages,
+        getResultImages,
+    } = require(appDir + '/src/api/routes/image-upload-handling/imageUpload.js');
+
     //Init draft routes
     function init(app){
     
@@ -64,7 +69,7 @@
                                 let ObjectId = require('mongodb').ObjectId;
                                 const objectId = new ObjectId();
                                 const draftId = objectId.toString();
-                                
+
                                 //Basic draft structure
                                 let draft = {
                                             _id:        objectId,
@@ -113,7 +118,7 @@
     
         
         //Define draft edition routes
-        app.post(['/update/publication/draft/:draftId/', '/actualizar/publicacion/borrador/:draftId/'], (req, res) => {
+        app.post(['/update/publication/draft/:draftId/', '/actualizar/publicacion/borrador/:draftId/'], (req, res, next) => {
             const isPrivate =   res.locals.isPrivate;
             const isVerified =  res.locals.isVerified || false;
             const user =        res.locals.user || {};
@@ -234,43 +239,7 @@
                                             
                                         //Handle draft step 4 (Dog Photos)
                                         case 4:
-                                            const helpers = require('./helpers');
-                                            const multer =  require('multer');
-                                            const path =    require('path');
-    
-                                            //Define multer storage
-                                            const storage = multer.diskStorage({
-    
-                                                //Set destination to uploaded drafts folder
-                                                destination: function(req, file, cb) {
-                                                    const fs = require('fs')
-                                                    const savingPath = `uploads/drafts/${draftId}`
-                                                    fs.mkdirSync(savingPath, { recursive: true })
-                                                    cb(null, savingPath);
-                                                },
-                                                
-                                                //Set file name
-                                                filename: function(req, file, cb) {
-                                                    cb(null, `image-${req.files.length}.jpg`);
-                                                }
-                                            });
-    
-                                            //Define multer upload
-                                            let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).array('files');
-    
-                                            //Handle multer upload
-                                            upload(req, res, function(err) {
-    
-                                                if(!err){
-                                                    newDraft["updatedAt"] = new Date();
-                                                    newDraft["Step"] =      5;
-    
-                                                    continueUpdating()
-                                                }else{
-                                                    res.status(500).send(err);
-                                                    return;
-                                                }
-                                            });
+                                            res.redirect(307, '/upload/draft/images/' + draftId);
                                             break;
                                     }
                                 }
@@ -284,6 +253,87 @@
                                         console.log(err);
                                         client.close();
                                     });
+                                }
+                                
+                            }else{
+                                res.status(403).send({error: 'You are not allowed to edit this draft.'});
+                                client.close();
+                            }
+    
+                        }).catch((err) => {
+                            console.log(err);
+                            res.status(500).send({error: err});
+                            client.close();
+                        });
+                    }).catch( (err) => {
+                        console.log(err);
+                        res.status(500).send({error: err});
+                
+                    });
+                }else{
+                    res.status(403).send({error: 'You are not verified.'});
+                }
+            }else{
+                res.status(403).send({error: 'You are not allowed to update drafts.'});
+            }
+        });
+
+        app.post('/upload/draft/images/:draftId', uploadImages, resizeImages, getResultImages, (req, res, next) => {
+            const isPrivate =   res.locals.isPrivate;
+            const isVerified =  res.locals.isVerified || false;
+            const user =        res.locals.user || {};
+            const draftId =     req.params.draftId || '';
+            const refId =       user.user_id || '';
+    
+            //Check if user is NOT in private mode
+            if(!isPrivate){
+    
+                //Check if user e-mail is verified
+                if(isVerified){
+    
+                    //Connect to mongodb client
+                    connectClient(mongoURL).then( (client) => {
+                        const mongoDB =             client.db(mongoDBName);
+                        const collection =          mongoDB.collection('PublicationDrafts');
+                        const requestProjection =   { _id: 0 };
+                        const requestQuery =        { Id: draftId, RefId: refId};
+    
+                        //Get required draft from "PublicationDrafts" collection
+                        getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+    
+                            //Check if draft exists
+                            if(snapshot.length > 0 && snapshot[0].RefId === refId){
+                                const draft =       snapshot[0];
+                                let step =          draft.Step || 1;
+                                const paramStep =   String(req.body.step);
+                                let newDraft =      draft;
+                                let filters =       draft.Filters || {};
+                                var filteredImages = req.body.images.filter(function(value, index, arr){ 
+                                    return value !== 'image-1.jpeg';
+                                });
+                                const urlImagesArr = formatImagesToURL(filteredImages);
+                                newDraft["updatedAt"] = new Date();
+                                newDraft["Step"] =      step + 1;
+                                newDraft["Images"] =    urlImagesArr;
+                                newDraft["Photo"] =     `https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/1`
+                                continueUpdating();
+                                //Method to save previously updated draft
+                                function continueUpdating(){
+                                    updateDraft(draftId, step, collection, newDraft, {refId: refId}).then( (result) => {
+                                        res.send({ success: true, redirectPath: `/crear/publicacion/${draftId}` });
+                                        client.close();
+                                    }).catch( (err) => {
+                                        console.log(err);
+                                        client.close();
+                                    });
+                                }
+
+                                function formatImagesToURL(imagesArr){
+                                    let images = [];
+                                    imagesArr.forEach( (image) => {
+                                        images.push(`https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/${imagesArr.indexOf(image) + 1}`);
+                                    });
+                                    return images;
                                 }
                                 
                             }else{

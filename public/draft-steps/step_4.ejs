@@ -173,7 +173,7 @@
             const images = new FormData();
             images.append('files', dogImageInput.files[0]);
             for (let i = 0; i < dogSecImageInput.length; i++) {
-                images.append(`files`, dogSecImageInput[i].files[0]);
+                images.append('files', dogSecImageInput[i].files[0]);
             }
             console.log(images);
             Swal.fire({
