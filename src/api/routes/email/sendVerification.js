@@ -1,7 +1,9 @@
+/*
+ *  FILE USED TO HANDLE EMAIL VERIFICATION FLOW 
+ */
+
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
-const logColor =        require(appDir + '/src/config/logColors');
-var fs =                require("fs");
 var ejs =               require("ejs");
 const { promisify } =   require('util');
 
@@ -11,21 +13,27 @@ function init(app, firebaseAdmin) {
         const isVerified =      res.locals.isVerified;
         const user =            res.locals.user;
         
+        //Check if user is logged in
         if(!isPrivate){
             const email =           user.email;
             const debug =           false;
 
+            //Check if user is already verified
             if (!isVerified) {
+
+                //Generate verification link if the app is not in debug mode
                 if (!debug) {
+
+                    //Generate verification link using Firebase Admin SDK
                     firebaseAdmin.auth().generateEmailVerificationLink(email).then((link) => {
                         const emailVerificationLink = link;
 
+                        //Send verification link to user email
                         sendEmail(email, emailVerificationLink).then((info) => {
                             res.status(200).send({ message: 'Email sent' });
 
                         }).catch((error) => {
-                        console.log(error);
-
+                            console.log(error);
                             res.status(401).send(error);
 
                         });
@@ -35,6 +43,8 @@ function init(app, firebaseAdmin) {
                         res.status(401).send(error);
                     });
                 } else {
+
+                    //Send sample verification link to user email
                     let emailVerificationLink = 'https://test.com';
 
                     sendEmail(email, emailVerificationLink).then((info) => {
@@ -56,6 +66,8 @@ function init(app, firebaseAdmin) {
     });
 }
 
+
+//Function to send e-mail using NodeMailer
 async function sendEmail(email, emailVerificationLink) {
     const nodemailer =      require('nodemailer');
     const transporter =     nodemailer.createTransport({
@@ -68,6 +80,7 @@ async function sendEmail(email, emailVerificationLink) {
                     }
     });
 
+    //Generate e-mail template using EJS
     const data =            await ejs.renderFile(appDir + '/public/mailTemplate.ejs', { link: emailVerificationLink }, { async: true });
     const mailOptions =     {
                                 from:       process.env.verificationEmail,
@@ -76,7 +89,8 @@ async function sendEmail(email, emailVerificationLink) {
                                 html:       data,
                                 priority:   'high'
                             };
-
+    
+    //Send e-mail using NodeMailer Transporter
     return await promisify(transporter.sendMail.bind(transporter))(mailOptions);
 }
 module.exports = { init };

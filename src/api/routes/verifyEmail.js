@@ -1,8 +1,13 @@
+/*
+ //     FILE USED TO HANDLE EMAIL VERIFICATION FLOW
+ !      WARNING: THIS FILE IS NOT USED IN THE APP
+ */
+
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
-const logColor =        require(appDir + '/src/config/logColors');
 
 function init(app, firebaseAdmin){
+
     app.get('/user/:uid/verify/', function(req, res){
         let token = String(req.headers.authtoken);
 

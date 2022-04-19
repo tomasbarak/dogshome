@@ -1,3 +1,8 @@
+/*
+//  FILE USED TO CONFIG FIREBASE SDK
+ !  WARNING: FIREBASE SDK IS NO LONGER USED IN THIS APP
+ */
+
 require('dotenv')       .config({path: './.env'});
 const initializeApp =   require('firebase/app').initializeApp;
 

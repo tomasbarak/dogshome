@@ -1,3 +1,7 @@
+/*
+ *  FILE USED TO INITIALIZE ALL APP ROUTES 
+ */
+
 const { dirname } =     require('path');
 const appDir =          dirname(require.main.filename);
 
@@ -11,7 +15,7 @@ function config(app, firebaseadmin){
     require( appDir + '/src/api/routes/accountDisplayName')             .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/email/sendVerification')         .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/accountPhotoUrl')                .init(app, firebaseadmin);
-    require( appDir + '/src/api/routes/verifyEmail')                    .init(app, firebaseadmin);
+////require( appDir + '/src/api/routes/verifyEmail')                    .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/getImage')                       .init(app);
     require( appDir + '/src/api/generateApiToken')                      .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/publicationDraft')               .init(app);

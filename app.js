@@ -14,7 +14,6 @@ const https =         require('https');
 const http =          require('http');
 const { dirname } =   require('path');
 const appDir =        dirname(require.main.filename);
-const logColor =      require(appDir + '/src/config/logColors');
 const logger =        require("node-color-log");
 const argv =          require("minimist")(process.argv.slice(2));
 const { connectClient, 
@@ -42,9 +41,7 @@ var options = { key: key,
 let expressApp = require(appDir + '/src/config/expressConfig').config(express, cors);
 
 //Firebase
-const firebaseApp = require(appDir + '/src/config/firebaseConfig').config();
 const firebaseAdmin = require(appDir + '/src/config/firebaseAdminConfig').config();
-const database = require('firebase/database');
 
 var SecureServer = https.createServer(options, expressApp);
 
