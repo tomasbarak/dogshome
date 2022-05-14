@@ -46,6 +46,8 @@ exports.resizeImages = async (req, res, next) => {
   req.body.images = [];
   await Promise.all(
     req.files.map(async (file) => {
+      //console.log(req.files.length);
+
       const filename = file.originalname.replace(/\..+$/, '');
       const newFilename = `image-${req.files.indexOf(file) + 1}.jpeg`;
       const draftImgDir = `${appDir}/uploads/drafts/${req.params.draftId}`;
