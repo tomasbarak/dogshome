@@ -8,6 +8,7 @@ var ejs =               require("ejs");
 const { promisify } =   require('util');
 
 function init(app, firebaseAdmin) {
+    require('dotenv').config();
     app.post('/verify/email/', function (req, res) {
         const isPrivate =       res.locals.isPrivate;
         const isVerified =      res.locals.isVerified;

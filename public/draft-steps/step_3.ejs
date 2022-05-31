@@ -1,4 +1,12 @@
 <style>
+    #container-all{
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
     #location-dropdown-container{
         width: 100%;
         height: 200px;
@@ -12,6 +20,14 @@
         right: 0;
         top: calc(60px + 50vh - 60px - 100px);
         flex-direction: row;
+    }
+    #localidad{
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: calc(60px + 50vh - 60px + 50px);
     }
     .dropdown-container {
         height: 60px;
@@ -35,7 +51,7 @@
     .dropdown-container + .dropdown-container{
         margin-left: 15px;
     }
-    #province-dropdown{
+    .dropdown{
         width: 100%;
         height: 100%;
         border: none;
@@ -66,19 +82,40 @@
 <div class="first-half-container">
     <h1 class="create-title">Seleccioná la ubicación</h1>
 </div>
-<div id="location-dropdown-container">
-    <div class="dropdown-container">
-        <a>Argentina</a>
+    <div id="location-dropdown-container">
+        <div class="dropdown-container">
+            <a>Argentina</a>
+        </div>
+        <div class="dropdown-container">
+            <select name="Provincia" class="dropdown" id="province-dropdown">
+                <option disabled="" selected="" value="">Provincia...</option>
+                <%- include('./provinces_options.ejs') %> 
+            </select>
+        </div>
     </div>
-    <div class="dropdown-container">
-        <select name="Provincia" id="province-dropdown">
-            <option disabled="" selected="" value="">Seleccionar...</option>
-            <%- include('./provinces_options.ejs') %> 
+    <div class="dropdown-container " id="localidad">
+        <select name="Provincia" class="dropdown" id="localidad-dropdown">
+            <option disabled="" selected="" value="">Localidad...</option>
         </select>
     </div>
-</div>
-
 <script>
+
+    document.querySelector('#province-dropdown').addEventListener('change', function(e){
+        const selector = e.target;
+        const index = selector.selectedIndex;
+        const province = selector.options[index].text;
+        axios.get(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${province}&aplanar=true&campos=nombre&max=1000&exacto=true`).then(function(response){
+            const localidades = response.data.localidades;
+            const localidadDropdown = document.querySelector('#localidad-dropdown');
+            console.log(localidades);
+            localidadDropdown.innerHTML = '';
+            localidadDropdown.innerHTML += `<option disabled="" selected="" value="">Localidad...</option>`;
+            localidades.forEach(function(localidad){
+                localidadDropdown.innerHTML += `<option value="${localidad.nombre}">${localidad.nombre}</option>`;
+            });
+        });
+    });
+
     const updateDraft = (draftId) => {
         Swal.fire({
             title: 'Actualizando borrador',

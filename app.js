@@ -71,13 +71,18 @@ SecureServer.listen(443, function () {
   });
   //require(appDir + '/src/cleaning/purgeUnverifiedUsers').init(firebaseAdmin)
 })
+
+const addCors = (res) => {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+}
+
 function setupPreloadFunction(expressApp, firebaseAdmin) {
   expressApp.use(function (req, res, next) {
 
     //Setup CORS headers
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    addCors(res);
 
     //Creating a MongoDB connection
     connectClient(mongoURL).then(client => {

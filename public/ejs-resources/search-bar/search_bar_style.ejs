@@ -35,6 +35,7 @@
     #search-form {
         padding: 0;
     }
+
     #search-input {
         box-shadow: none;
 
@@ -92,32 +93,39 @@
         display: flex;
         flex: none;
     }
-    #toggle-user-menu-btn{
+
+    #toggle-user-menu-btn {
         margin-right: 5px;
         cursor: pointer;
     }
 
-    #user-menu-image-container{
-        display: flex; 
-        flex-direction: row; 
-        align-items: center; 
-        justify-content: center; 
+    #user-menu-image-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
     }
 
-    .search-bar-display-name{
-        width: 75px; 
-        min-width: 50px; 
-        text-overflow: ellipsis; 
-        padding: 0 8px; 
-        overflow: hidden; 
+    .search-bar-display-name {
+        width: 75px;
+        min-width: 50px;
+        text-overflow: ellipsis;
+        padding: 0 8px;
+        overflow: hidden;
         white-space: nowrap;
         color: white;
-        -webkit-user-select: none;        
+        -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
     }
+
+    #logo-image-cont {
+        flex-direction: row;
+        align-items: center;
+    }
+
     @media screen and (max-width: 1184px) {
 
         #search-input,
@@ -143,12 +151,48 @@
         .desktop-elements {
             display: none !important;
         }
+
+        .top-bar-section-cont {
+            flex: 1;
+            justify-content: center;
+        }
+
+
+        #userSpace {
+            flex: none !important;
+            width: 40px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center;
+        }
+
+        #logo-image-cont {
+            max-width: 40px;
+            margin-right: 10px;
+        }
     }
 
     @media screen and (max-width: 645px) {
         .top-bar-section-cont {
-            width: auto;
             flex: 1;
+            justify-content: center;
+        }
+
+        #userSpace {
+            flex: none !important;
+            width: 40px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center;
+        }
+
+        #logo-image-cont {
+            max-width: 40px;
+            margin-right: 10px;
         }
     }
 
@@ -158,8 +202,7 @@
         #search-input-container,
         #search-form {
             height: 100%;
-            flex: 1;
-            max-width: 250px;
+            width: 100%;
             border-width: 0;
             padding-left: 10px;
             padding-right: 10px;
@@ -178,6 +221,21 @@
         #profile-pic {
             width: 30px;
             height: 30px;
+        }
+
+        #userSpace {
+            flex: none !important;
+            width: 40px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center;
+        }
+
+        #logo-image-cont {
+            max-width: 40px;
+            margin-right: 10px;
         }
     }
 </style>

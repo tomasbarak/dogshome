@@ -6,7 +6,7 @@
 <%- include(rootPath + 'ejs-resources/search-bar/dropdown_button_icon_style.ejs') %> 
 
 <div id="search-bar">
-    <div class="top-bar-section-cont" style="flex-direction: row; align-items: center;">
+    <div class="top-bar-section-cont" id="logo-image-cont">
         <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo" style="height: 40px; width: 40px; margin-right: 10px">
         <% nav_btns.forEach((button) => {%> 
             <a class="desktop-elements nav-buttons" onclick="window.location.href = '<%= button.href %>'"><%= button.name %></a>
