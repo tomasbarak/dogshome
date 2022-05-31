@@ -112,3 +112,5 @@ certs
 #Package Lock
 package-lock.json
 
+#firebase admin sdk
+firebase-adminsdk.json
