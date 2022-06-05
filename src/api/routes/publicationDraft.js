@@ -336,7 +336,7 @@
                                 function formatImagesToURL(imagesArr){
                                     let images = [];
                                     imagesArr.forEach( (image) => {
-                                        images.push(`https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/${imagesArr.indexOf(image) + 1}`);
+                                        images.push(`https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/${imagesArr.indexOf(image)}`);
                                     });
                                     return images;
                                 }
