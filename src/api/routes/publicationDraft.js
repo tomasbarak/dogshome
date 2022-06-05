@@ -87,18 +87,22 @@
                                         id: draftId,
                                         redirectPath: `/crear/publicacion/${draftId}`
                                     });
+                                    client.close();
                                 }).catch((err) => {
                                     console.log(err);
                                     res.status(500).send({error: err, success: false});
+                                    client.close();
                                 });
                             }else{
                                 //Send max drafts reached message
                                 res.status(403).send({error: 'You have reached the maximum number of drafts allowed.'});
+                                client.close();
                             }
                         }).catch((err) => {
                             //Max drafts check failed
                             console.log(err);
                             res.status(500).send({error: err, success: false});
+                            client.close();
                         });
                         
                     }).catch((err) => {
@@ -240,6 +244,7 @@
                                         //Handle draft step 4 (Dog Photos)
                                         case 4:
                                             res.redirect(307, '/upload/draft/images/' + draftId);
+                                            client.close();
                                             break;
                                     }
                                 }
