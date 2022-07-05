@@ -1,3 +1,4 @@
+⁹
 const multer = require('multer');
 const sharp = require('sharp');
 const fs = require('fs');
@@ -71,7 +72,7 @@ exports.resizeImages = async (req, res, next) => {
       }
 
       try{
-        await sharp(file.buffer).toFormat('jpeg').resize(1024).jpeg({ quality: 70 }).toFile(`${appDir}/uploads/drafts/${req.params.draftId}/${newFilename}`);
+        await sharp(file.buffer).toFormat('jpeg').resize(1024).withMetadata().jpeg({ quality: 70 }).toFile(`${appDir}/uploads/drafts/${req.params.draftId}/${newFilename}`);
       req.body.images.push(newFilename);
       }catch(err){
         console.error(err);
