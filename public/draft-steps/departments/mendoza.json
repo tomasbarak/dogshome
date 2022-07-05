@@ -1,0 +1,166 @@
+{
+    "cantidad": 18,
+    "departamentos": [
+        {
+            "centroide_lat": -32.8806541047985,
+            "centroide_lon": -68.8921657602392,
+            "id": "50007",
+            "nombre": "Capital",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -35.2178364156832,
+            "centroide_lon": -67.0804473289428,
+            "id": "50014",
+            "nombre": "General Alvear",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.9297600556689,
+            "centroide_lon": -68.8890844545155,
+            "id": "50021",
+            "nombre": "Godoy Cruz",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.8910429154042,
+            "centroide_lon": -68.7323728513948,
+            "id": "50028",
+            "nombre": "Guaymallén",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.1462075241433,
+            "centroide_lon": -68.4803420038399,
+            "id": "50035",
+            "nombre": "Junín",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.7114684971791,
+            "centroide_lon": -67.2475409227538,
+            "id": "50042",
+            "nombre": "La Paz",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.5247668775446,
+            "centroide_lon": -69.26717572394,
+            "id": "50049",
+            "nombre": "Las Heras",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.582585367751,
+            "centroide_lon": -67.8890727049671,
+            "id": "50056",
+            "nombre": "Lavalle",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.0382520812765,
+            "centroide_lon": -69.4437142136667,
+            "id": "50063",
+            "nombre": "Luján de Cuyo",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.9775099458466,
+            "centroide_lon": -68.6521739904164,
+            "id": "50070",
+            "nombre": "Maipú",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -36.1572730441871,
+            "centroide_lon": -69.3135099463311,
+            "id": "50077",
+            "nombre": "Malargüe",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.419707109754,
+            "centroide_lon": -68.6121759957283,
+            "id": "50084",
+            "nombre": "Rivadavia",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -34.0753663960754,
+            "centroide_lon": -69.0977010128957,
+            "id": "50091",
+            "nombre": "San Carlos",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -32.9088785853185,
+            "centroide_lon": -68.2844229443887,
+            "id": "50098",
+            "nombre": "San Martín",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -34.9445449681903,
+            "centroide_lon": -68.3826783125854,
+            "id": "50105",
+            "nombre": "San Rafael",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.6177946030973,
+            "centroide_lon": -67.9636620466005,
+            "id": "50112",
+            "nombre": "Santa Rosa",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.6223342938194,
+            "centroide_lon": -69.5078054633807,
+            "id": "50119",
+            "nombre": "Tunuyán",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        },
+        {
+            "centroide_lat": -33.2915070191465,
+            "centroide_lon": -69.3019667535127,
+            "id": "50126",
+            "nombre": "Tupungato",
+            "provincia_id": "50",
+            "provincia_nombre": "Mendoza"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Mendoza"
+    },
+    "total": 18
+}

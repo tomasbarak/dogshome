@@ -1,0 +1,126 @@
+{
+    "cantidad": 13,
+    "departamentos": [
+        {
+            "centroide_lat": -41.1330823086991,
+            "centroide_lon": -68.9063154547507,
+            "id": "62091",
+            "nombre": "25 de Mayo",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.9256367295503,
+            "centroide_lon": -67.4574905887938,
+            "id": "62049",
+            "nombre": "9 de julio",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.7917543082478,
+            "centroide_lon": -63.765086491035,
+            "id": "62007",
+            "nombre": "Adolfo Alsina",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -39.4101860186287,
+            "centroide_lon": -66.2062591058801,
+            "id": "62014",
+            "nombre": "Avellaneda",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -41.4981211976981,
+            "centroide_lon": -71.531077517069,
+            "id": "62021",
+            "nombre": "Bariloche",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.1487161833477,
+            "centroide_lon": -64.3048926460226,
+            "id": "62028",
+            "nombre": "Conesa",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -39.7016431663172,
+            "centroide_lon": -68.4845953824055,
+            "id": "62035",
+            "nombre": "El Cuy",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -38.5324900624312,
+            "centroide_lon": -67.554484164455,
+            "id": "62042",
+            "nombre": "General Roca",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -41.7398257356123,
+            "centroide_lon": -70.4011139544739,
+            "id": "62056",
+            "nombre": "Ñorquinco",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -39.4076832777441,
+            "centroide_lon": -64.4005868582138,
+            "id": "62063",
+            "nombre": "Pichi Mahuida",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.8875778145279,
+            "centroide_lon": -70.4626919728142,
+            "id": "62070",
+            "nombre": "Pilcaniyeu",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.9527925288953,
+            "centroide_lon": -65.3712468150427,
+            "id": "62077",
+            "nombre": "San Antonio",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        },
+        {
+            "centroide_lat": -40.9745810611866,
+            "centroide_lon": -66.3108866018754,
+            "id": "62084",
+            "nombre": "Valcheta",
+            "provincia_id": "62",
+            "provincia_nombre": "Río Negro"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Rio Negro"
+    },
+    "total": 13
+}

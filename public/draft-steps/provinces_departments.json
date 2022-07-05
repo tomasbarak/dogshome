@@ -1,0 +1,4764 @@
+{
+    "provinces": {
+        "Ciudad de Buenos Aires": {
+            "cantidad": 15,
+            "departamentos": [
+                {
+                    "centroide_lat": -34.6064218855511,
+                    "centroide_lon": -58.3715396530269,
+                    "id": "02007",
+                    "nombre": "Comuna 1",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6278516942726,
+                    "centroide_lon": -58.5028179980211,
+                    "id": "02070",
+                    "nombre": "Comuna 10",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6061369839531,
+                    "centroide_lon": -58.4967418386195,
+                    "id": "02077",
+                    "nombre": "Comuna 11",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5662276065396,
+                    "centroide_lon": -58.490428041078,
+                    "id": "02084",
+                    "nombre": "Comuna 12",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5542357921934,
+                    "centroide_lon": -58.4540058768299,
+                    "id": "02091",
+                    "nombre": "Comuna 13",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5738372943158,
+                    "centroide_lon": -58.4222211632133,
+                    "id": "02098",
+                    "nombre": "Comuna 14",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5918836701565,
+                    "centroide_lon": -58.4627740218828,
+                    "id": "02105",
+                    "nombre": "Comuna 15",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5857649937965,
+                    "centroide_lon": -58.3948918118195,
+                    "id": "02014",
+                    "nombre": "Comuna 2",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6138430816863,
+                    "centroide_lon": -58.4026514512217,
+                    "id": "02021",
+                    "nombre": "Comuna 3",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6420794257822,
+                    "centroide_lon": -58.3874550689885,
+                    "id": "02028",
+                    "nombre": "Comuna 4",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.617369923785,
+                    "centroide_lon": -58.4205721902857,
+                    "id": "02035",
+                    "nombre": "Comuna 5",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6168433901108,
+                    "centroide_lon": -58.4435682280605,
+                    "id": "02042",
+                    "nombre": "Comuna 6",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6365544143719,
+                    "centroide_lon": -58.4518868569844,
+                    "id": "02049",
+                    "nombre": "Comuna 7",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6745676187442,
+                    "centroide_lon": -58.461944281059,
+                    "id": "02056",
+                    "nombre": "Comuna 8",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6517602348111,
+                    "centroide_lon": -58.4991151516538,
+                    "id": "02063",
+                    "nombre": "Comuna 9",
+                    "provincia_id": "02",
+                    "provincia_nombre": "Ciudad Autónoma de Buenos Aires"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 100,
+                "orden": "nombre",
+                "provincia": "Ciudad Autonoma de Buenos Aires"
+            },
+            "total": 15
+        },
+        "Buenos Aires": {
+            "cantidad": 135,
+            "departamentos": [
+                {
+                    "centroide_lat": -35.5265113228112,
+                    "centroide_lon": -60.2301576569223,
+                    "id": "06854",
+                    "nombre": "25 de Mayo",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.481190578256,
+                    "centroide_lon": -60.9751157295027,
+                    "id": "06588",
+                    "nombre": "9 de Julio",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.1963357906582,
+                    "centroide_lon": -63.0560072843652,
+                    "id": "06007",
+                    "nombre": "Adolfo Alsina",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.9642254145303,
+                    "centroide_lon": -60.2490776485677,
+                    "id": "06014",
+                    "nombre": "Adolfo Gonzales Chaves",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.0363817959326,
+                    "centroide_lon": -60.2828693081193,
+                    "id": "06021",
+                    "nombre": "Alberti",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8355700988623,
+                    "centroide_lon": -58.3673978494737,
+                    "id": "06028",
+                    "nombre": "Almirante Brown",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.0113151746224,
+                    "centroide_lon": -60.0627625274553,
+                    "id": "06077",
+                    "nombre": "Arrecifes",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6782056572194,
+                    "centroide_lon": -58.341116892125,
+                    "id": "06035",
+                    "nombre": "Avellaneda",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.0347821696395,
+                    "centroide_lon": -58.442581327328,
+                    "id": "06042",
+                    "nombre": "Ayacucho",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.7857719233293,
+                    "centroide_lon": -59.69665215894,
+                    "id": "06049",
+                    "nombre": "Azul",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.5808546732895,
+                    "centroide_lon": -62.1656895327094,
+                    "id": "06056",
+                    "nombre": "Bahía Blanca",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.7142728188627,
+                    "centroide_lon": -58.2720776945726,
+                    "id": "06063",
+                    "nombre": "Balcarce",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.9321914567436,
+                    "centroide_lon": -59.4929504876902,
+                    "id": "06070",
+                    "nombre": "Baradero",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.585278315595,
+                    "centroide_lon": -59.8883008698795,
+                    "id": "06084",
+                    "nombre": "Benito Juárez",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8179736855733,
+                    "centroide_lon": -58.1552626920478,
+                    "id": "06091",
+                    "nombre": "Berazategui",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.909463480255,
+                    "centroide_lon": -57.8283887071779,
+                    "id": "06098",
+                    "nombre": "Berisso",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.2982217499893,
+                    "centroide_lon": -61.1496836148108,
+                    "id": "06105",
+                    "nombre": "Bolívar",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.0610928531071,
+                    "centroide_lon": -60.6042295511118,
+                    "id": "06112",
+                    "nombre": "Bragado",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.2221104711751,
+                    "centroide_lon": -58.1760719473086,
+                    "id": "06119",
+                    "nombre": "Brandsen",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.1381957287934,
+                    "centroide_lon": -58.8830222693056,
+                    "id": "06126",
+                    "nombre": "Campana",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.1450252367714,
+                    "centroide_lon": -58.6907790273655,
+                    "id": "06134",
+                    "nombre": "Cañuelas",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.1497065018665,
+                    "centroide_lon": -59.8548037960898,
+                    "id": "06140",
+                    "nombre": "Capitán Sarmiento",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.7496551260772,
+                    "centroide_lon": -61.3737522686863,
+                    "id": "06147",
+                    "nombre": "Carlos Casares",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.379488920773,
+                    "centroide_lon": -62.4295611893429,
+                    "id": "06154",
+                    "nombre": "Carlos Tejedor",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4067983092213,
+                    "centroide_lon": -59.8842434040917,
+                    "id": "06161",
+                    "nombre": "Carmen de Areco",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.041669400313,
+                    "centroide_lon": -57.6570625692977,
+                    "id": "06168",
+                    "nombre": "Castelli",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6184039263126,
+                    "centroide_lon": -60.3539279007252,
+                    "id": "06210",
+                    "nombre": "Chacabuco",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.6187689428966,
+                    "centroide_lon": -57.9043202817554,
+                    "id": "06217",
+                    "nombre": "Chascomús",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.9157089757004,
+                    "centroide_lon": -59.9584822196811,
+                    "id": "06224",
+                    "nombre": "Chivilcoy",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5526490761118,
+                    "centroide_lon": -58.5643145358763,
+                    "id": "06371",
+                    "nombre": "Ciudad Libertador San Martín",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.8860220920375,
+                    "centroide_lon": -61.0633674925405,
+                    "id": "06175",
+                    "nombre": "Colón",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.8488346485235,
+                    "centroide_lon": -61.8360446581448,
+                    "id": "06182",
+                    "nombre": "Coronel de Marina Leonardo Rosales",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.6704811465081,
+                    "centroide_lon": -61.0956539726773,
+                    "id": "06189",
+                    "nombre": "Coronel Dorrego",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.1477437843902,
+                    "centroide_lon": -61.2646589620305,
+                    "id": "06196",
+                    "nombre": "Coronel Pringles",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.5325532169014,
+                    "centroide_lon": -61.8893137767698,
+                    "id": "06203",
+                    "nombre": "Coronel Suárez",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.6405459243249,
+                    "centroide_lon": -61.891417127905,
+                    "id": "06231",
+                    "nombre": "Daireaux",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.3986615531875,
+                    "centroide_lon": -57.6326112997092,
+                    "id": "06238",
+                    "nombre": "Dolores",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8422541242657,
+                    "centroide_lon": -57.9789322377767,
+                    "id": "06245",
+                    "nombre": "Ensenada",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.3287181500871,
+                    "centroide_lon": -58.7711281467385,
+                    "id": "06252",
+                    "nombre": "Escobar",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8312099703342,
+                    "centroide_lon": -58.476969025414,
+                    "id": "06260",
+                    "nombre": "Esteban Echeverría",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.2951491690699,
+                    "centroide_lon": -59.1559117007684,
+                    "id": "06266",
+                    "nombre": "Exaltación de la Cruz",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8778729879112,
+                    "centroide_lon": -58.2586377649204,
+                    "id": "06274",
+                    "nombre": "Florencio Varela",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8738967496734,
+                    "centroide_lon": -62.4013534701346,
+                    "id": "06277",
+                    "nombre": "Florentino Ameghino",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.2027130466251,
+                    "centroide_lon": -58.0722485722113,
+                    "id": "06280",
+                    "nombre": "General Alvarado",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.0345220351902,
+                    "centroide_lon": -60.1333612561516,
+                    "id": "06287",
+                    "nombre": "General Alvear",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.237459671314,
+                    "centroide_lon": -61.2838006242346,
+                    "id": "06294",
+                    "nombre": "General Arenales",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.8349745328235,
+                    "centroide_lon": -58.6980461310919,
+                    "id": "06301",
+                    "nombre": "General Belgrano",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.6659831488299,
+                    "centroide_lon": -57.9957841120045,
+                    "id": "06308",
+                    "nombre": "General Guido",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.1532136536641,
+                    "centroide_lon": -57.2307866316173,
+                    "id": "06315",
+                    "nombre": "General Juan Madariaga",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.3557097661663,
+                    "centroide_lon": -61.3442438803068,
+                    "id": "06322",
+                    "nombre": "General La Madrid",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.9094258328137,
+                    "centroide_lon": -58.9958733938567,
+                    "id": "06329",
+                    "nombre": "General Las Heras",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.6518890129521,
+                    "centroide_lon": -56.9422695810513,
+                    "id": "06336",
+                    "nombre": "General Lavalle",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.4662020729313,
+                    "centroide_lon": -58.3900057061752,
+                    "id": "06343",
+                    "nombre": "General Paz",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6683135254839,
+                    "centroide_lon": -62.0397484845208,
+                    "id": "06351",
+                    "nombre": "General Pinto",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.9656760017008,
+                    "centroide_lon": -57.743144039076,
+                    "id": "06357",
+                    "nombre": "General Pueyrredón",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6503494927057,
+                    "centroide_lon": -58.9879503249052,
+                    "id": "06364",
+                    "nombre": "General Rodríguez",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.997569924782,
+                    "centroide_lon": -61.0501968347291,
+                    "id": "06385",
+                    "nombre": "General Viamonte",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7687371057529,
+                    "centroide_lon": -62.9535454567251,
+                    "id": "06392",
+                    "nombre": "General Villegas",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.8905500665858,
+                    "centroide_lon": -62.4187740896092,
+                    "id": "06399",
+                    "nombre": "Guaminí",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.2593312232241,
+                    "centroide_lon": -61.6600936665535,
+                    "id": "06406",
+                    "nombre": "Hipólito Yrigoyen",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5992140053733,
+                    "centroide_lon": -58.6496943606349,
+                    "id": "06408",
+                    "nombre": "Hurlingham",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6360018167543,
+                    "centroide_lon": -58.6887583352667,
+                    "id": "06410",
+                    "nombre": "Ituzaingó",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5118758903445,
+                    "centroide_lon": -58.7776710941743,
+                    "id": "06412",
+                    "nombre": "José C. Paz",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8758213531443,
+                    "centroide_lon": -58.5648395364287,
+                    "id": "06270",
+                    "nombre": "José M. Ezeiza",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.546128336039,
+                    "centroide_lon": -61.0054940705488,
+                    "id": "06413",
+                    "nombre": "Junín",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.6782018297724,
+                    "centroide_lon": -56.7189105094625,
+                    "id": "06420",
+                    "nombre": "La Costa",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7701647288569,
+                    "centroide_lon": -58.6254486939189,
+                    "id": "06427",
+                    "nombre": "La Matanza",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.0034938070318,
+                    "centroide_lon": -58.0180274992052,
+                    "id": "06441",
+                    "nombre": "La Plata",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7057824914432,
+                    "centroide_lon": -58.3954484986693,
+                    "id": "06434",
+                    "nombre": "Lanús",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.5155525089772,
+                    "centroide_lon": -60.7680626719213,
+                    "id": "06448",
+                    "nombre": "Laprida",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.0157017377305,
+                    "centroide_lon": -59.1769657671576,
+                    "id": "06455",
+                    "nombre": "Las Flores",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4979563497613,
+                    "centroide_lon": -61.61293092454,
+                    "id": "06462",
+                    "nombre": "Leandro N. Alem",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.8494190496267,
+                    "centroide_lon": -57.89575256553,
+                    "id": "06466",
+                    "nombre": "Lezama",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.070384883326,
+                    "centroide_lon": -61.6827618200122,
+                    "id": "06469",
+                    "nombre": "Lincoln",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.0897033467581,
+                    "centroide_lon": -58.6939656644915,
+                    "id": "06476",
+                    "nombre": "Lobería",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.2195598528609,
+                    "centroide_lon": -59.1458071242931,
+                    "id": "06483",
+                    "nombre": "Lobos",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7554708441214,
+                    "centroide_lon": -58.424078867213,
+                    "id": "06490",
+                    "nombre": "Lomas de Zamora",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5676194636906,
+                    "centroide_lon": -59.1585123543241,
+                    "id": "06497",
+                    "nombre": "Luján",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.1849498629024,
+                    "centroide_lon": -57.6863916156026,
+                    "id": "06505",
+                    "nombre": "Magdalena",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.8865728387855,
+                    "centroide_lon": -57.586173153195,
+                    "id": "06511",
+                    "nombre": "Maipú",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4873038284663,
+                    "centroide_lon": -58.7121329971982,
+                    "id": "06515",
+                    "nombre": "Malvinas Argentinas",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.4984341235843,
+                    "centroide_lon": -57.6436183302355,
+                    "id": "06518",
+                    "nombre": "Mar Chiquita",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.8137199832046,
+                    "centroide_lon": -58.8480634347315,
+                    "id": "06525",
+                    "nombre": "Marcos Paz",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6971944325993,
+                    "centroide_lon": -59.42081198401,
+                    "id": "06532",
+                    "nombre": "Mercedes",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7108867791705,
+                    "centroide_lon": -58.7418777656329,
+                    "id": "06539",
+                    "nombre": "Merlo",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.5103702936319,
+                    "centroide_lon": -58.7694635013319,
+                    "id": "06547",
+                    "nombre": "Monte",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.96257223668,
+                    "centroide_lon": -61.2904738793276,
+                    "id": "06553",
+                    "nombre": "Monte Hermoso",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.610617117824,
+                    "centroide_lon": -58.8109232680035,
+                    "id": "06560",
+                    "nombre": "Moreno",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.6491410653179,
+                    "centroide_lon": -58.6198433488168,
+                    "id": "06568",
+                    "nombre": "Morón",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.0304083582525,
+                    "centroide_lon": -59.429785480408,
+                    "id": "06574",
+                    "nombre": "Navarro",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.2555189703716,
+                    "centroide_lon": -59.1673660597249,
+                    "id": "06581",
+                    "nombre": "Necochea",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.8567012129546,
+                    "centroide_lon": -60.6707349373354,
+                    "id": "06595",
+                    "nombre": "Olavarría",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -40.1973260070881,
+                    "centroide_lon": -62.8529094080666,
+                    "id": "06602",
+                    "nombre": "Patagones",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.8833833438579,
+                    "centroide_lon": -61.9271985156994,
+                    "id": "06609",
+                    "nombre": "Pehuajó",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.2709141317271,
+                    "centroide_lon": -63.2257388675861,
+                    "id": "06616",
+                    "nombre": "Pellegrini",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.835815535365,
+                    "centroide_lon": -60.5450748689588,
+                    "id": "06623",
+                    "nombre": "Pergamino",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.2023512628961,
+                    "centroide_lon": -58.3408970254988,
+                    "id": "06630",
+                    "nombre": "Pila",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4481990221196,
+                    "centroide_lon": -58.9034413925773,
+                    "id": "06638",
+                    "nombre": "Pilar",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.1099458706882,
+                    "centroide_lon": -56.8696753966329,
+                    "id": "06644",
+                    "nombre": "Pinamar",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.9298313021932,
+                    "centroide_lon": -58.398091246683,
+                    "id": "06648",
+                    "nombre": "Presidente Perón",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.0746044477032,
+                    "centroide_lon": -63.0577463401906,
+                    "id": "06651",
+                    "nombre": "Puán",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.4261581087913,
+                    "centroide_lon": -57.3996034519105,
+                    "id": "06655",
+                    "nombre": "Punta Indio",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7350141996909,
+                    "centroide_lon": -58.2768874201614,
+                    "id": "06658",
+                    "nombre": "Quilmes",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.5872972390017,
+                    "centroide_lon": -60.0574845905723,
+                    "id": "06665",
+                    "nombre": "Ramallo",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.5722509524193,
+                    "centroide_lon": -58.9444061302172,
+                    "id": "06672",
+                    "nombre": "Rauch",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.5809627302368,
+                    "centroide_lon": -63.0945777162156,
+                    "id": "06679",
+                    "nombre": "Rivadavia",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.1926035952586,
+                    "centroide_lon": -60.7879706568364,
+                    "id": "06686",
+                    "nombre": "Rojas",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.4811110714388,
+                    "centroide_lon": -59.3595940527063,
+                    "id": "06693",
+                    "nombre": "Roque Pérez",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.7710550160995,
+                    "centroide_lon": -62.4351452974673,
+                    "id": "06700",
+                    "nombre": "Saavedra",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.6765966680226,
+                    "centroide_lon": -59.7037033020054,
+                    "id": "06707",
+                    "nombre": "Saladillo",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.6710137553167,
+                    "centroide_lon": -63.0491259803334,
+                    "id": "06721",
+                    "nombre": "Salliqueló",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.2708350525697,
+                    "centroide_lon": -60.305182566345,
+                    "id": "06714",
+                    "nombre": "Salto",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4377851586384,
+                    "centroide_lon": -59.4732938848478,
+                    "id": "06728",
+                    "nombre": "San Andrés de Giles",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.2206591685119,
+                    "centroide_lon": -59.5193792218302,
+                    "id": "06735",
+                    "nombre": "San Antonio de Areco",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.3886180658492,
+                    "centroide_lon": -59.5866369475028,
+                    "id": "06742",
+                    "nombre": "San Cayetano",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.1512700249506,
+                    "centroide_lon": -58.5459540333809,
+                    "id": "06749",
+                    "nombre": "San Fernando",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.4869499670191,
+                    "centroide_lon": -58.5372648522523,
+                    "id": "06756",
+                    "nombre": "San Isidro",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5520919648351,
+                    "centroide_lon": -58.6917055208826,
+                    "id": "06760",
+                    "nombre": "San Miguel",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.4825541340452,
+                    "centroide_lon": -60.292953731623,
+                    "id": "06763",
+                    "nombre": "San Nicolás",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.7819425849294,
+                    "centroide_lon": -59.7825917634816,
+                    "id": "06770",
+                    "nombre": "San Pedro",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -35.0704596398936,
+                    "centroide_lon": -58.4319219645129,
+                    "id": "06778",
+                    "nombre": "San Vicente",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.7485629683304,
+                    "centroide_lon": -59.7034737442182,
+                    "id": "06784",
+                    "nombre": "Suipacha",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.3356554181577,
+                    "centroide_lon": -59.181805577778,
+                    "id": "06791",
+                    "nombre": "Tandil",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.3471383108251,
+                    "centroide_lon": -60.1308804386321,
+                    "id": "06798",
+                    "nombre": "Tapalqué",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.3815893993371,
+                    "centroide_lon": -58.599453988125,
+                    "id": "06805",
+                    "nombre": "Tigre",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.3908002975414,
+                    "centroide_lon": -57.2746828657242,
+                    "id": "06812",
+                    "nombre": "Tordillo",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.255785801668,
+                    "centroide_lon": -62.2904249803924,
+                    "id": "06819",
+                    "nombre": "Tornquist",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.0564352739976,
+                    "centroide_lon": -62.6346332497416,
+                    "id": "06826",
+                    "nombre": "Trenque Lauquen",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -38.5116665533312,
+                    "centroide_lon": -60.2376664741026,
+                    "id": "06833",
+                    "nombre": "Tres Arroyos",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5959797363173,
+                    "centroide_lon": -58.5790926022347,
+                    "id": "06840",
+                    "nombre": "Tres de Febrero",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -36.4973152716526,
+                    "centroide_lon": -62.8634418902354,
+                    "id": "06847",
+                    "nombre": "Tres Lomas",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -34.5265131808416,
+                    "centroide_lon": -58.5044695897767,
+                    "id": "06861",
+                    "nombre": "Vicente López",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -37.3705193886837,
+                    "centroide_lon": -57.0658445979783,
+                    "id": "06868",
+                    "nombre": "Villa Gesell",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -39.1296648457138,
+                    "centroide_lon": -62.7268024308429,
+                    "id": "06875",
+                    "nombre": "Villarino",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                },
+                {
+                    "centroide_lat": -33.9971401820257,
+                    "centroide_lon": -59.1284709610169,
+                    "id": "06882",
+                    "nombre": "Zárate",
+                    "provincia_id": "06",
+                    "provincia_nombre": "Buenos Aires"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Buenos Aires"
+            },
+            "total": 135
+        },
+        "Catamarca": {
+            "cantidad": 16,
+            "departamentos": [
+                {
+                    "centroide_lat": -28.0189344685483,
+                    "centroide_lon": -65.9222983796596,
+                    "id": "10007",
+                    "nombre": "Ambato",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.9266675681635,
+                    "centroide_lon": -65.5038083174841,
+                    "id": "10014",
+                    "nombre": "Ancasti",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -27.5445087646164,
+                    "centroide_lon": -66.3560062057426,
+                    "id": "10021",
+                    "nombre": "Andalgalá",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -25.9455797002151,
+                    "centroide_lon": -67.6777645009401,
+                    "id": "10028",
+                    "nombre": "Antofagasta de la Sierra",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -27.1000545044873,
+                    "centroide_lon": -66.9223774125099,
+                    "id": "10035",
+                    "nombre": "Belén",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.9092326420174,
+                    "centroide_lon": -65.9015706538014,
+                    "id": "10042",
+                    "nombre": "Capayán",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.4104559393629,
+                    "centroide_lon": -65.8362002957174,
+                    "id": "10049",
+                    "nombre": "Capital",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.430382930044,
+                    "centroide_lon": -65.3599245662077,
+                    "id": "10056",
+                    "nombre": "El Alto",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.3329401551221,
+                    "centroide_lon": -65.7309008581155,
+                    "id": "10063",
+                    "nombre": "Fray Mamerto Esquiú",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -29.3952000610314,
+                    "centroide_lon": -65.1919504325436,
+                    "id": "10070",
+                    "nombre": "La Paz",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.1100496216627,
+                    "centroide_lon": -65.6738760483046,
+                    "id": "10077",
+                    "nombre": "Paclín",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.2055993966253,
+                    "centroide_lon": -66.4072986488285,
+                    "id": "10084",
+                    "nombre": "Pomán",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -26.7859032829476,
+                    "centroide_lon": -66.2618848691237,
+                    "id": "10091",
+                    "nombre": "Santa María",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.0814710804867,
+                    "centroide_lon": -65.3349462642257,
+                    "id": "10098",
+                    "nombre": "Santa Rosa",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -27.5405127310562,
+                    "centroide_lon": -67.9292408147481,
+                    "id": "10105",
+                    "nombre": "Tinogasta",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                },
+                {
+                    "centroide_lat": -28.5987132205968,
+                    "centroide_lon": -65.7071834454567,
+                    "id": "10112",
+                    "nombre": "Valle Viejo",
+                    "provincia_id": "10",
+                    "provincia_nombre": "Catamarca"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Catamarca"
+            },
+            "total": 16
+        },
+        "Chaco": {
+            "cantidad": 25,
+            "departamentos": [
+                {
+                    "centroide_lat": -27.3362384898477,
+                    "centroide_lon": -61.4747691940114,
+                    "id": "22036",
+                    "nombre": "12 de Octubre",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.1691720457957,
+                    "centroide_lon": -58.9595089153944,
+                    "id": "22126",
+                    "nombre": "1° de Mayo",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.6219112869485,
+                    "centroide_lon": -61.3295201872432,
+                    "id": "22039",
+                    "nombre": "2 de Abril",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.8190298006571,
+                    "centroide_lon": -60.0187693847422,
+                    "id": "22168",
+                    "nombre": "25 de Mayo",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.9455386975653,
+                    "centroide_lon": -61.2652576678175,
+                    "id": "22105",
+                    "nombre": "9 de Julio",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -25.747858341484,
+                    "centroide_lon": -61.9605236304385,
+                    "id": "22007",
+                    "nombre": "Almirante Brown",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.958636224259,
+                    "centroide_lon": -58.7093649014335,
+                    "id": "22014",
+                    "nombre": "Bermejo",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.1179308909271,
+                    "centroide_lon": -61.3088910569936,
+                    "id": "22028",
+                    "nombre": "Chacabuco",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.7871365610548,
+                    "centroide_lon": -60.4618654287039,
+                    "id": "22021",
+                    "nombre": "Comandante Fernández",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.8662498172761,
+                    "centroide_lon": -61.300959824592,
+                    "id": "22043",
+                    "nombre": "Fray Justo Santa María de Oro",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.849534277685,
+                    "centroide_lon": -61.071967717894,
+                    "id": "22049",
+                    "nombre": "General Belgrano",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.1409287639679,
+                    "centroide_lon": -59.3474877785089,
+                    "id": "22056",
+                    "nombre": "General Donovan",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -25.2137925689732,
+                    "centroide_lon": -61.337579887251,
+                    "id": "22063",
+                    "nombre": "General Güemes",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.736996206931,
+                    "centroide_lon": -60.7570241668236,
+                    "id": "22070",
+                    "nombre": "Independencia",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.3511465491091,
+                    "centroide_lon": -59.2606339567401,
+                    "id": "22077",
+                    "nombre": "Libertad",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.3785169756021,
+                    "centroide_lon": -59.4878778128786,
+                    "id": "22084",
+                    "nombre": "Libertador General San Martín",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.3210291409673,
+                    "centroide_lon": -60.4553482590556,
+                    "id": "22091",
+                    "nombre": "Maipú",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.7436812830101,
+                    "centroide_lon": -60.6581451476891,
+                    "id": "22098",
+                    "nombre": "Mayor Luis J. Fontana",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.2575511794731,
+                    "centroide_lon": -60.6806781684245,
+                    "id": "22112",
+                    "nombre": "O'Higgins",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.0468199682862,
+                    "centroide_lon": -59.7751691822068,
+                    "id": "22119",
+                    "nombre": "Presidencia de la Plaza",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.6685132272644,
+                    "centroide_lon": -60.1735021538447,
+                    "id": "22133",
+                    "nombre": "Quitilipi",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.7160106963678,
+                    "centroide_lon": -59.1157493078992,
+                    "id": "22140",
+                    "nombre": "San Fernando",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.3950475960133,
+                    "centroide_lon": -60.3646185068028,
+                    "id": "22147",
+                    "nombre": "San Lorenzo",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -26.8016874124461,
+                    "centroide_lon": -59.5196519224863,
+                    "id": "22154",
+                    "nombre": "Sargento Cabral",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                },
+                {
+                    "centroide_lat": -27.6598759889301,
+                    "centroide_lon": -59.8288687407326,
+                    "id": "22161",
+                    "nombre": "Tapenagá",
+                    "provincia_id": "22",
+                    "provincia_nombre": "Chaco"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Chaco"
+            },
+            "total": 25
+        },
+        "Chubut": {
+            "cantidad": 15,
+            "departamentos": [
+                {
+                    "centroide_lat": -42.4436350204267,
+                    "centroide_lon": -64.9332260287713,
+                    "id": "26007",
+                    "nombre": "Biedma",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -42.36635302228,
+                    "centroide_lon": -70.7120117319755,
+                    "id": "26014",
+                    "nombre": "Cushamen",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -45.282788434735,
+                    "centroide_lon": -67.7087570024311,
+                    "id": "26021",
+                    "nombre": "Escalante",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -44.4232685527937,
+                    "centroide_lon": -66.1300665443193,
+                    "id": "26028",
+                    "nombre": "Florentino Ameghino",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -43.070540741803,
+                    "centroide_lon": -71.4553756889394,
+                    "id": "26035",
+                    "nombre": "Futaleufú",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -43.2727624456965,
+                    "centroide_lon": -66.172162203297,
+                    "id": "26042",
+                    "nombre": "Gaiman",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -42.7490685142491,
+                    "centroide_lon": -68.802322331286,
+                    "id": "26049",
+                    "nombre": "Gastre",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -43.3234947781653,
+                    "centroide_lon": -70.3484257364086,
+                    "id": "26056",
+                    "nombre": "Languiñeo",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -43.8138432526407,
+                    "centroide_lon": -67.2400230074032,
+                    "id": "26063",
+                    "nombre": "Mártires",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -44.0301843800804,
+                    "centroide_lon": -68.6858628378391,
+                    "id": "26070",
+                    "nombre": "Paso de Indios",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -43.1372229709113,
+                    "centroide_lon": -65.0757246833498,
+                    "id": "26077",
+                    "nombre": "Rawson",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -45.3403562037762,
+                    "centroide_lon": -70.6400981523958,
+                    "id": "26084",
+                    "nombre": "Río Senguer",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -45.3450235273933,
+                    "centroide_lon": -69.0028353555711,
+                    "id": "26091",
+                    "nombre": "Sarmiento",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -44.2000353406651,
+                    "centroide_lon": -70.5768950488331,
+                    "id": "26098",
+                    "nombre": "Tehuelches",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                },
+                {
+                    "centroide_lat": -42.4389445468027,
+                    "centroide_lon": -67.1769071477022,
+                    "id": "26105",
+                    "nombre": "Telsen",
+                    "provincia_id": "26",
+                    "provincia_nombre": "Chubut"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Chubut"
+            },
+            "total": 15
+        },
+        "Cordoba": {
+            "cantidad": 26,
+            "departamentos": [
+                {
+                    "centroide_lat": -32.2027119466219,
+                    "centroide_lon": -64.6167170389735,
+                    "id": "14007",
+                    "nombre": "Calamuchita",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.4170686019036,
+                    "centroide_lon": -64.1832168468628,
+                    "id": "14014",
+                    "nombre": "Capital",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.1440502226475,
+                    "centroide_lon": -64.1528709889175,
+                    "id": "14021",
+                    "nombre": "Colón",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -30.6580631596452,
+                    "centroide_lon": -65.0774738750322,
+                    "id": "14028",
+                    "nombre": "Cruz del Eje",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -34.6170744283348,
+                    "centroide_lon": -64.3787603319835,
+                    "id": "14035",
+                    "nombre": "General Roca",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -32.5143341151357,
+                    "centroide_lon": -63.2562237062848,
+                    "id": "14042",
+                    "nombre": "General San Martín",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -30.3997182320053,
+                    "centroide_lon": -64.6094899792791,
+                    "id": "14049",
+                    "nombre": "Ischilín",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -33.329445846674,
+                    "centroide_lon": -63.6063356482423,
+                    "id": "14056",
+                    "nombre": "Juárez Celman",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -33.030846572143,
+                    "centroide_lon": -62.2767719720096,
+                    "id": "14063",
+                    "nombre": "Marcos Juárez",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.0355515814319,
+                    "centroide_lon": -65.4111896095111,
+                    "id": "14070",
+                    "nombre": "Minas",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.4634407170853,
+                    "centroide_lon": -65.4384772539188,
+                    "id": "14077",
+                    "nombre": "Pocho",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -34.1401111180237,
+                    "centroide_lon": -63.4187744697841,
+                    "id": "14084",
+                    "nombre": "Presidente Roque Sáenz Peña",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.2225592168079,
+                    "centroide_lon": -64.5861516801457,
+                    "id": "14091",
+                    "nombre": "Punilla",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -33.3308032176015,
+                    "centroide_lon": -64.494180483748,
+                    "id": "14098",
+                    "nombre": "Río Cuarto",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.0327992067991,
+                    "centroide_lon": -63.4385673505455,
+                    "id": "14105",
+                    "nombre": "Río Primero",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -30.032189401961,
+                    "centroide_lon": -63.2238214757827,
+                    "id": "14112",
+                    "nombre": "Río Seco",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.7330269369319,
+                    "centroide_lon": -63.4769207987931,
+                    "id": "14119",
+                    "nombre": "Río Segundo",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.707791961138,
+                    "centroide_lon": -65.1564069990554,
+                    "id": "14126",
+                    "nombre": "San Alberto",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -32.0753882467214,
+                    "centroide_lon": -65.1421073770609,
+                    "id": "14133",
+                    "nombre": "San Javier",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.2393990103815,
+                    "centroide_lon": -62.5260292405918,
+                    "id": "14140",
+                    "nombre": "San Justo",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -31.7112016051317,
+                    "centroide_lon": -64.3070593086884,
+                    "id": "14147",
+                    "nombre": "Santa María",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -29.7654579620613,
+                    "centroide_lon": -64.1428878947488,
+                    "id": "14154",
+                    "nombre": "Sobremonte",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -32.2877127172928,
+                    "centroide_lon": -63.7792479671775,
+                    "id": "14161",
+                    "nombre": "Tercero Arriba",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -30.7261313372803,
+                    "centroide_lon": -63.9842524222316,
+                    "id": "14168",
+                    "nombre": "Totoral",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -30.2222689247998,
+                    "centroide_lon": -63.8118051923902,
+                    "id": "14175",
+                    "nombre": "Tulumba",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                },
+                {
+                    "centroide_lat": -32.8784545187661,
+                    "centroide_lon": -62.7914258058015,
+                    "id": "14182",
+                    "nombre": "Unión",
+                    "provincia_id": "14",
+                    "provincia_nombre": "Córdoba"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Cordoba"
+            },
+            "total": 26
+        },
+        "Corrientes": {
+            "cantidad": 25,
+            "departamentos": [
+                {
+                    "centroide_lat": -28.4973936042369,
+                    "centroide_lon": -58.930436271179,
+                    "id": "18007",
+                    "nombre": "Bella Vista",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.4779720010057,
+                    "centroide_lon": -57.6113792118725,
+                    "id": "18014",
+                    "nombre": "Berón de Astrada",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.522187514513,
+                    "centroide_lon": -58.7627061875969,
+                    "id": "18021",
+                    "nombre": "Capital",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.4083953496766,
+                    "centroide_lon": -58.031384641798,
+                    "id": "18028",
+                    "nombre": "Concepción",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.6955178131115,
+                    "centroide_lon": -58.3248439252656,
+                    "id": "18035",
+                    "nombre": "Curuzu Cuatia",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.8961218833917,
+                    "centroide_lon": -58.6658439667722,
+                    "id": "18042",
+                    "nombre": "Empedrado",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.9854770547953,
+                    "centroide_lon": -59.2414216570581,
+                    "id": "18049",
+                    "nombre": "Esquina",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.7751848033313,
+                    "centroide_lon": -56.5115297991712,
+                    "id": "18056",
+                    "nombre": "General Alvear",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.7199243812297,
+                    "centroide_lon": -57.7876196199145,
+                    "id": "18063",
+                    "nombre": "General Paz",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.4514531616824,
+                    "centroide_lon": -59.255912536825,
+                    "id": "18070",
+                    "nombre": "Goya",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.3460562357383,
+                    "centroide_lon": -58.0713754415461,
+                    "id": "18077",
+                    "nombre": "Itatí",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.9114257175706,
+                    "centroide_lon": -56.7904763823004,
+                    "id": "18084",
+                    "nombre": "Ituzaingó",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.9879963080686,
+                    "centroide_lon": -58.9337155943843,
+                    "id": "18091",
+                    "nombre": "Lavalle",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.0163816801467,
+                    "centroide_lon": -58.1855624499057,
+                    "id": "18098",
+                    "nombre": "Mburucuyá",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.0645100901984,
+                    "centroide_lon": -57.818389954722,
+                    "id": "18105",
+                    "nombre": "Mercedes",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -30.2289552221138,
+                    "centroide_lon": -57.8702855877153,
+                    "id": "18112",
+                    "nombre": "Monte Caseros",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.5936355856024,
+                    "centroide_lon": -57.2996337303242,
+                    "id": "18119",
+                    "nombre": "Paso de los Libres",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.2124729464641,
+                    "centroide_lon": -58.6199065693295,
+                    "id": "18126",
+                    "nombre": "Saladas",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.3823055047941,
+                    "centroide_lon": -58.5174860021794,
+                    "id": "18133",
+                    "nombre": "San Cosme",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.6020473964888,
+                    "centroide_lon": -58.2685422687085,
+                    "id": "18140",
+                    "nombre": "San Luis del Palmar",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.8289705275493,
+                    "centroide_lon": -56.9315923506787,
+                    "id": "18147",
+                    "nombre": "San Martín",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -27.8758228176186,
+                    "centroide_lon": -57.409985810344,
+                    "id": "18154",
+                    "nombre": "San Miguel",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.7057979959044,
+                    "centroide_lon": -58.6130197699847,
+                    "id": "18161",
+                    "nombre": "San Roque",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -28.2311093523606,
+                    "centroide_lon": -56.222206072693,
+                    "id": "18168",
+                    "nombre": "Santo Tomé",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                },
+                {
+                    "centroide_lat": -29.9995445616697,
+                    "centroide_lon": -58.7950373826119,
+                    "id": "18175",
+                    "nombre": "Sauce",
+                    "provincia_id": "18",
+                    "provincia_nombre": "Corrientes"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Corrientes"
+            },
+            "total": 25
+        },
+        "Entre Rios": {
+            "cantidad": 17,
+            "departamentos": [
+                {
+                    "centroide_lat": -32.0114827529012,
+                    "centroide_lon": -58.3699129592754,
+                    "id": "30008",
+                    "nombre": "Colón",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -31.2902983723403,
+                    "centroide_lon": -58.237869689912,
+                    "id": "30015",
+                    "nombre": "Concordia",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -32.228040548998,
+                    "centroide_lon": -60.5239335894137,
+                    "id": "30021",
+                    "nombre": "Diamante",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -30.7348931499453,
+                    "centroide_lon": -58.1591541174073,
+                    "id": "30028",
+                    "nombre": "Federación",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -30.9924267797136,
+                    "centroide_lon": -58.8918600477837,
+                    "id": "30035",
+                    "nombre": "Federal",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -30.4139444642315,
+                    "centroide_lon": -58.7287958918597,
+                    "id": "30042",
+                    "nombre": "Feliciano",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -33.1199026931696,
+                    "centroide_lon": -59.6016234890441,
+                    "id": "30049",
+                    "nombre": "Gualeguay",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -33.0223492433906,
+                    "centroide_lon": -58.7857904865089,
+                    "id": "30056",
+                    "nombre": "Gualeguaychú",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -33.6241288152628,
+                    "centroide_lon": -58.9351580556436,
+                    "id": "30063",
+                    "nombre": "Islas del Ibicuy",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -30.8974563498339,
+                    "centroide_lon": -59.5004488104579,
+                    "id": "30070",
+                    "nombre": "La Paz",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -32.2187123475252,
+                    "centroide_lon": -59.7697019155424,
+                    "id": "30077",
+                    "nombre": "Nogoyá",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -31.6952294494435,
+                    "centroide_lon": -60.041174481445,
+                    "id": "30084",
+                    "nombre": "Paraná",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -31.5768835387468,
+                    "centroide_lon": -58.4863728567996,
+                    "id": "30088",
+                    "nombre": "San Salvador",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -32.3174117217417,
+                    "centroide_lon": -59.2672864855269,
+                    "id": "30091",
+                    "nombre": "Tala",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -32.4499666887673,
+                    "centroide_lon": -58.5822661421638,
+                    "id": "30098",
+                    "nombre": "Uruguay",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -32.7839424597327,
+                    "centroide_lon": -60.2180700309804,
+                    "id": "30105",
+                    "nombre": "Victoria",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                },
+                {
+                    "centroide_lat": -31.6477388963494,
+                    "centroide_lon": -59.0594708104081,
+                    "id": "30113",
+                    "nombre": "Villaguay",
+                    "provincia_id": "30",
+                    "provincia_nombre": "Entre Ríos"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Entre Rios"
+            },
+            "total": 17
+        },
+        "Formosa": {
+            "cantidad": 9,
+            "departamentos": [
+                {
+                    "centroide_lat": -24.0255563345755,
+                    "centroide_lon": -61.2828019983788,
+                    "id": "34007",
+                    "nombre": "Bermejo",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -25.9396352318956,
+                    "centroide_lon": -58.3773174492554,
+                    "id": "34014",
+                    "nombre": "Formosa",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -26.467587999102,
+                    "centroide_lon": -58.5654369092882,
+                    "id": "34021",
+                    "nombre": "Laishí",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -23.854855944809,
+                    "centroide_lon": -62.076891256733,
+                    "id": "34028",
+                    "nombre": "Matacos",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -24.8750609917942,
+                    "centroide_lon": -59.9585024741836,
+                    "id": "34035",
+                    "nombre": "Patiño",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -25.1053773070169,
+                    "centroide_lon": -58.6616277482245,
+                    "id": "34042",
+                    "nombre": "Pilagás",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -25.3700377167627,
+                    "centroide_lon": -58.062606265553,
+                    "id": "34049",
+                    "nombre": "Pilcomayo",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -25.7672893097833,
+                    "centroide_lon": -59.1592573575224,
+                    "id": "34056",
+                    "nombre": "Pirané",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                },
+                {
+                    "centroide_lat": -23.1201560396969,
+                    "centroide_lon": -62.1382049441497,
+                    "id": "34063",
+                    "nombre": "Ramón Lista",
+                    "provincia_id": "34",
+                    "provincia_nombre": "Formosa"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Formosa"
+            },
+            "total": 9
+        },
+        "Jujuy": {
+            "cantidad": 16,
+            "departamentos": [
+                {
+                    "centroide_lat": -22.9392350234639,
+                    "centroide_lon": -65.9346878202021,
+                    "id": "38007",
+                    "nombre": "Cochinoca",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.0893413107767,
+                    "centroide_lon": -65.4484768876505,
+                    "id": "38021",
+                    "nombre": "Dr. Manuel Belgrano",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.447823040536,
+                    "centroide_lon": -65.1011266142907,
+                    "id": "38014",
+                    "nombre": "El Carmen",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.0821382910047,
+                    "centroide_lon": -65.4089124214828,
+                    "id": "38028",
+                    "nombre": "Humahuaca",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.7855349092159,
+                    "centroide_lon": -64.8287565421131,
+                    "id": "38035",
+                    "nombre": "Ledesma",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.1949225444459,
+                    "centroide_lon": -65.1264498289923,
+                    "id": "38042",
+                    "nombre": "Palpalá",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -22.6216157957901,
+                    "centroide_lon": -66.5415733150047,
+                    "id": "38049",
+                    "nombre": "Rinconada",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.3467258804414,
+                    "centroide_lon": -65.4468528811404,
+                    "id": "38056",
+                    "nombre": "San Antonio",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.2985497355434,
+                    "centroide_lon": -64.8110140944895,
+                    "id": "38063",
+                    "nombre": "San Pedro",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -24.0075465739997,
+                    "centroide_lon": -64.4023110880998,
+                    "id": "38070",
+                    "nombre": "Santa Bárbara",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -22.137931595162,
+                    "centroide_lon": -66.227664877192,
+                    "id": "38077",
+                    "nombre": "Santa Catalina",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.5204314374652,
+                    "centroide_lon": -66.6617993267455,
+                    "id": "38084",
+                    "nombre": "Susques",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.560543852464,
+                    "centroide_lon": -65.3197513527091,
+                    "id": "38094",
+                    "nombre": "Tilcara",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.7434725633393,
+                    "centroide_lon": -65.696096204681,
+                    "id": "38098",
+                    "nombre": "Tumbaya",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -23.4670612447247,
+                    "centroide_lon": -65.0119194137172,
+                    "id": "38105",
+                    "nombre": "Valle Grande",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                },
+                {
+                    "centroide_lat": -22.2906705371725,
+                    "centroide_lon": -65.5669616842196,
+                    "id": "38112",
+                    "nombre": "Yaví",
+                    "provincia_id": "38",
+                    "provincia_nombre": "Jujuy"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Jujuy"
+            },
+            "total": 16
+        },
+        "La Pampa": {
+            "cantidad": 22,
+            "departamentos": [
+                {
+                    "centroide_lat": -37.0324956718132,
+                    "centroide_lon": -63.7788855690903,
+                    "id": "42007",
+                    "nombre": "Atreucó",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -38.6755832575061,
+                    "centroide_lon": -63.8968179856269,
+                    "id": "42014",
+                    "nombre": "Caleu Caleu",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.4980625981793,
+                    "centroide_lon": -64.198128304727,
+                    "id": "42021",
+                    "nombre": "Capital",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.5816678881383,
+                    "centroide_lon": -63.6648708546651,
+                    "id": "42028",
+                    "nombre": "Catriló",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.3954095124282,
+                    "centroide_lon": -66.5727556640635,
+                    "id": "42049",
+                    "nombre": "Chalileo",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -35.2272428701704,
+                    "centroide_lon": -63.6609121074931,
+                    "id": "42056",
+                    "nombre": "Chapaleufú",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.3978994715573,
+                    "centroide_lon": -67.6953932639542,
+                    "id": "42063",
+                    "nombre": "Chical Co",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.0315435775022,
+                    "centroide_lon": -64.5106030260375,
+                    "id": "42035",
+                    "nombre": "Conhelo",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -38.1797375458882,
+                    "centroide_lon": -66.3301334719636,
+                    "id": "42042",
+                    "nombre": "Curacó",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -37.4836474005921,
+                    "centroide_lon": -63.7813086707571,
+                    "id": "42070",
+                    "nombre": "Guatraché",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -37.9792340442423,
+                    "centroide_lon": -63.9544827643711,
+                    "id": "42077",
+                    "nombre": "Hucal",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -38.2616553827262,
+                    "centroide_lon": -65.0966303997922,
+                    "id": "42084",
+                    "nombre": "Lihuel Calel",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -37.2419021199786,
+                    "centroide_lon": -66.555232691641,
+                    "id": "42091",
+                    "nombre": "Limay Mahuida",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.4787683011276,
+                    "centroide_lon": -65.5329694083622,
+                    "id": "42098",
+                    "nombre": "Loventué",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -35.6796177582431,
+                    "centroide_lon": -63.6624891520267,
+                    "id": "42105",
+                    "nombre": "Maracó",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -37.4341807808756,
+                    "centroide_lon": -67.6049641366153,
+                    "id": "42112",
+                    "nombre": "Puelén",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.1306397823227,
+                    "centroide_lon": -63.663736169201,
+                    "id": "42119",
+                    "nombre": "Quemú Quemú",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -35.4015889145024,
+                    "centroide_lon": -64.8014904385407,
+                    "id": "42126",
+                    "nombre": "Rancul",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -35.2257917366713,
+                    "centroide_lon": -64.2102269263624,
+                    "id": "42133",
+                    "nombre": "Realicó",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -36.6621621527055,
+                    "centroide_lon": -64.6922110146556,
+                    "id": "42140",
+                    "nombre": "Toay",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -35.6318750123361,
+                    "centroide_lon": -64.2143766258097,
+                    "id": "42147",
+                    "nombre": "Trenel",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                },
+                {
+                    "centroide_lat": -37.3338794806846,
+                    "centroide_lon": -65.0828316677234,
+                    "id": "42154",
+                    "nombre": "Utracán",
+                    "provincia_id": "42",
+                    "provincia_nombre": "La Pampa"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "La Pampa"
+            },
+            "total": 22
+        },
+        "La Rioja": {
+            "cantidad": 18,
+            "departamentos": [
+                {
+                    "centroide_lat": -28.5330735278082,
+                    "centroide_lon": -66.7191515033817,
+                    "id": "46007",
+                    "nombre": "Arauco",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -29.4604898579358,
+                    "centroide_lon": -66.3525089002799,
+                    "id": "46014",
+                    "nombre": "Capital",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -28.8599829479001,
+                    "centroide_lon": -66.9185847556269,
+                    "id": "46021",
+                    "nombre": "Castro Barros",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -30.1677065304375,
+                    "centroide_lon": -65.9562869452052,
+                    "id": "46035",
+                    "nombre": "Chamical",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -29.3959374753391,
+                    "centroide_lon": -67.4278867891974,
+                    "id": "46042",
+                    "nombre": "Chilecito",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -29.449795605204,
+                    "centroide_lon": -68.3284822964489,
+                    "id": "46028",
+                    "nombre": "Coronel Felipe Varela",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -28.6973037998771,
+                    "centroide_lon": -67.5592920371088,
+                    "id": "46049",
+                    "nombre": "Famatina",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -30.3128975389814,
+                    "centroide_lon": -66.6630521188972,
+                    "id": "46056",
+                    "nombre": "General Ángel V. Peñaloza",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -30.5776916502152,
+                    "centroide_lon": -65.9316310510947,
+                    "id": "46063",
+                    "nombre": "General Belgrano",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -30.800959034536,
+                    "centroide_lon": -66.868104514456,
+                    "id": "46070",
+                    "nombre": "General Juan F. Quiroga",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -28.7904353562793,
+                    "centroide_lon": -68.6977547342214,
+                    "id": "46077",
+                    "nombre": "General Lamadrid",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -31.0066417359043,
+                    "centroide_lon": -66.0590548632025,
+                    "id": "46084",
+                    "nombre": "General Ocampo",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -31.6413069709194,
+                    "centroide_lon": -66.1459756728153,
+                    "id": "46091",
+                    "nombre": "General San Martín",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -30.1144612462884,
+                    "centroide_lon": -67.3355202231145,
+                    "id": "46105",
+                    "nombre": "Independencia",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -31.4205977732086,
+                    "centroide_lon": -66.6788621651991,
+                    "id": "46112",
+                    "nombre": "Rosario Vera Peñaloza",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -28.5433309063736,
+                    "centroide_lon": -67.1581530651936,
+                    "id": "46119",
+                    "nombre": "San Blas de Los Sauces",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -29.1585269700688,
+                    "centroide_lon": -67.0658836337793,
+                    "id": "46126",
+                    "nombre": "Sanagasta",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                },
+                {
+                    "centroide_lat": -28.3164203776524,
+                    "centroide_lon": -68.525398463115,
+                    "id": "46098",
+                    "nombre": "Vinchina",
+                    "provincia_id": "46",
+                    "provincia_nombre": "La Rioja"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "La Rioja"
+            },
+            "total": 18
+        },
+        "Mendoza": {
+            "cantidad": 18,
+            "departamentos": [
+                {
+                    "centroide_lat": -32.8806541047985,
+                    "centroide_lon": -68.8921657602392,
+                    "id": "50007",
+                    "nombre": "Capital",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -35.2178364156832,
+                    "centroide_lon": -67.0804473289428,
+                    "id": "50014",
+                    "nombre": "General Alvear",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.9297600556689,
+                    "centroide_lon": -68.8890844545155,
+                    "id": "50021",
+                    "nombre": "Godoy Cruz",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.8910429154042,
+                    "centroide_lon": -68.7323728513948,
+                    "id": "50028",
+                    "nombre": "Guaymallén",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.1462075241433,
+                    "centroide_lon": -68.4803420038399,
+                    "id": "50035",
+                    "nombre": "Junín",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.7114684971791,
+                    "centroide_lon": -67.2475409227538,
+                    "id": "50042",
+                    "nombre": "La Paz",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.5247668775446,
+                    "centroide_lon": -69.26717572394,
+                    "id": "50049",
+                    "nombre": "Las Heras",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.582585367751,
+                    "centroide_lon": -67.8890727049671,
+                    "id": "50056",
+                    "nombre": "Lavalle",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.0382520812765,
+                    "centroide_lon": -69.4437142136667,
+                    "id": "50063",
+                    "nombre": "Luján de Cuyo",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.9775099458466,
+                    "centroide_lon": -68.6521739904164,
+                    "id": "50070",
+                    "nombre": "Maipú",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -36.1572730441871,
+                    "centroide_lon": -69.3135099463311,
+                    "id": "50077",
+                    "nombre": "Malargüe",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.419707109754,
+                    "centroide_lon": -68.6121759957283,
+                    "id": "50084",
+                    "nombre": "Rivadavia",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -34.0753663960754,
+                    "centroide_lon": -69.0977010128957,
+                    "id": "50091",
+                    "nombre": "San Carlos",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -32.9088785853185,
+                    "centroide_lon": -68.2844229443887,
+                    "id": "50098",
+                    "nombre": "San Martín",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -34.9445449681903,
+                    "centroide_lon": -68.3826783125854,
+                    "id": "50105",
+                    "nombre": "San Rafael",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.6177946030973,
+                    "centroide_lon": -67.9636620466005,
+                    "id": "50112",
+                    "nombre": "Santa Rosa",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.6223342938194,
+                    "centroide_lon": -69.5078054633807,
+                    "id": "50119",
+                    "nombre": "Tunuyán",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                },
+                {
+                    "centroide_lat": -33.2915070191465,
+                    "centroide_lon": -69.3019667535127,
+                    "id": "50126",
+                    "nombre": "Tupungato",
+                    "provincia_id": "50",
+                    "provincia_nombre": "Mendoza"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Mendoza"
+            },
+            "total": 18
+        },
+        "Misiones": {
+            "cantidad": 17,
+            "departamentos": [
+                {
+                    "centroide_lat": -27.3786143623767,
+                    "centroide_lon": -54.634090486794,
+                    "id": "54119",
+                    "nombre": "25 de Mayo",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.8888038850636,
+                    "centroide_lon": -55.6782740306512,
+                    "id": "54007",
+                    "nombre": "Apóstoles",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.1478299707848,
+                    "centroide_lon": -54.802339249309,
+                    "id": "54014",
+                    "nombre": "Cainguás",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.4608502028348,
+                    "centroide_lon": -55.5826897694998,
+                    "id": "54021",
+                    "nombre": "Candelaria",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.5507848284827,
+                    "centroide_lon": -55.856845031149,
+                    "id": "54028",
+                    "nombre": "Capital",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.9311673936983,
+                    "centroide_lon": -55.4670364911295,
+                    "id": "54035",
+                    "nombre": "Concepción",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -26.3138449973517,
+                    "centroide_lon": -54.4407363386818,
+                    "id": "54042",
+                    "nombre": "Eldorado",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -25.9786262379125,
+                    "centroide_lon": -53.9636582644351,
+                    "id": "54049",
+                    "nombre": "General Manuel Belgrano",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.0262341090705,
+                    "centroide_lon": -54.2693679741111,
+                    "id": "54056",
+                    "nombre": "Guaraní",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -25.8747354912768,
+                    "centroide_lon": -54.4004185891377,
+                    "id": "54063",
+                    "nombre": "Iguazú",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.6306652578033,
+                    "centroide_lon": -55.3880677535388,
+                    "id": "54070",
+                    "nombre": "Leandro N. Alem",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -26.8931448853066,
+                    "centroide_lon": -54.9233629496583,
+                    "id": "54077",
+                    "nombre": "Libertador General San Martín",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -26.6579081276292,
+                    "centroide_lon": -54.5631774073677,
+                    "id": "54084",
+                    "nombre": "Montecarlo",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.4763636003081,
+                    "centroide_lon": -55.0712221116124,
+                    "id": "54091",
+                    "nombre": "Oberá",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.1765939564162,
+                    "centroide_lon": -55.3392901890006,
+                    "id": "54098",
+                    "nombre": "San Ignacio",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -27.7771031457714,
+                    "centroide_lon": -55.1674595934642,
+                    "id": "54105",
+                    "nombre": "San Javier",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                },
+                {
+                    "centroide_lat": -26.6299609405552,
+                    "centroide_lon": -53.9629779665021,
+                    "id": "54112",
+                    "nombre": "San Pedro",
+                    "provincia_id": "54",
+                    "provincia_nombre": "Misiones"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Misiones"
+            },
+            "total": 17
+        },
+        "Neuquen": {
+            "cantidad": 16,
+            "departamentos": [
+                {
+                    "centroide_lat": -39.1314863536049,
+                    "centroide_lon": -71.0463179632497,
+                    "id": "58007",
+                    "nombre": "Aluminé",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -38.0986455753996,
+                    "centroide_lon": -69.0127575196277,
+                    "id": "58014",
+                    "nombre": "Añelo",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -39.4807942918938,
+                    "centroide_lon": -70.4335593332799,
+                    "id": "58021",
+                    "nombre": "Catán Lil",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -36.8804936082292,
+                    "centroide_lon": -70.2862810211876,
+                    "id": "58042",
+                    "nombre": "Chos Malal",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -40.0529195538789,
+                    "centroide_lon": -70.2813499391274,
+                    "id": "58028",
+                    "nombre": "Collón Curá",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -38.8325294845843,
+                    "centroide_lon": -68.7930144598811,
+                    "id": "58035",
+                    "nombre": "Confluencia",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -39.7946776781363,
+                    "centroide_lon": -71.2590025540125,
+                    "id": "58049",
+                    "nombre": "Huiliches",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -40.3142303514009,
+                    "centroide_lon": -71.1842517277166,
+                    "id": "58056",
+                    "nombre": "Lácar",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -38.0659054264443,
+                    "centroide_lon": -70.3140568384535,
+                    "id": "58063",
+                    "nombre": "Loncopué",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -40.7743899197092,
+                    "centroide_lon": -71.4866965761944,
+                    "id": "58070",
+                    "nombre": "Los Lagos",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -36.8583892643308,
+                    "centroide_lon": -70.7836605070546,
+                    "id": "58077",
+                    "nombre": "Minas",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -37.6378798941082,
+                    "centroide_lon": -70.6777764142853,
+                    "id": "58084",
+                    "nombre": "Ñorquín",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -37.3984401348449,
+                    "centroide_lon": -69.4019520980894,
+                    "id": "58091",
+                    "nombre": "Pehuenches",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -39.4039894660668,
+                    "centroide_lon": -69.4271919918532,
+                    "id": "58098",
+                    "nombre": "Picún Leufú",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -38.5742697933456,
+                    "centroide_lon": -70.3729347665806,
+                    "id": "58105",
+                    "nombre": "Picunches",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                },
+                {
+                    "centroide_lat": -38.922044155846,
+                    "centroide_lon": -69.8222074301959,
+                    "id": "58112",
+                    "nombre": "Zapala",
+                    "provincia_id": "58",
+                    "provincia_nombre": "Neuquén"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Neuquen"
+            },
+            "total": 16
+        },
+        "Rio Negro": {
+            "cantidad": 13,
+            "departamentos": [
+                {
+                    "centroide_lat": -41.1330823086991,
+                    "centroide_lon": -68.9063154547507,
+                    "id": "62091",
+                    "nombre": "25 de Mayo",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.9256367295503,
+                    "centroide_lon": -67.4574905887938,
+                    "id": "62049",
+                    "nombre": "9 de julio",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.7917543082478,
+                    "centroide_lon": -63.765086491035,
+                    "id": "62007",
+                    "nombre": "Adolfo Alsina",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -39.4101860186287,
+                    "centroide_lon": -66.2062591058801,
+                    "id": "62014",
+                    "nombre": "Avellaneda",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -41.4981211976981,
+                    "centroide_lon": -71.531077517069,
+                    "id": "62021",
+                    "nombre": "Bariloche",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.1487161833477,
+                    "centroide_lon": -64.3048926460226,
+                    "id": "62028",
+                    "nombre": "Conesa",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -39.7016431663172,
+                    "centroide_lon": -68.4845953824055,
+                    "id": "62035",
+                    "nombre": "El Cuy",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -38.5324900624312,
+                    "centroide_lon": -67.554484164455,
+                    "id": "62042",
+                    "nombre": "General Roca",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -41.7398257356123,
+                    "centroide_lon": -70.4011139544739,
+                    "id": "62056",
+                    "nombre": "Ñorquinco",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -39.4076832777441,
+                    "centroide_lon": -64.4005868582138,
+                    "id": "62063",
+                    "nombre": "Pichi Mahuida",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.8875778145279,
+                    "centroide_lon": -70.4626919728142,
+                    "id": "62070",
+                    "nombre": "Pilcaniyeu",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.9527925288953,
+                    "centroide_lon": -65.3712468150427,
+                    "id": "62077",
+                    "nombre": "San Antonio",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                },
+                {
+                    "centroide_lat": -40.9745810611866,
+                    "centroide_lon": -66.3108866018754,
+                    "id": "62084",
+                    "nombre": "Valcheta",
+                    "provincia_id": "62",
+                    "provincia_nombre": "Río Negro"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Rio Negro"
+            },
+            "total": 13
+        },
+        "Salta": {
+            "cantidad": 23,
+            "departamentos": [
+                {
+                    "centroide_lat": -24.8751339637689,
+                    "centroide_lon": -63.8400961373676,
+                    "id": "66007",
+                    "nombre": "Anta",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.038234468241,
+                    "centroide_lon": -66.2030292859746,
+                    "id": "66014",
+                    "nombre": "Cachi",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -26.1255099823638,
+                    "centroide_lon": -65.8800888963475,
+                    "id": "66021",
+                    "nombre": "Cafayate",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.8902273126574,
+                    "centroide_lon": -65.2702656216248,
+                    "id": "66028",
+                    "nombre": "Capital",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.9885518325631,
+                    "centroide_lon": -65.4038423380142,
+                    "id": "66035",
+                    "nombre": "Cerrillos",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.1514718801816,
+                    "centroide_lon": -65.6059279182319,
+                    "id": "66042",
+                    "nombre": "Chicoana",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.7648231076768,
+                    "centroide_lon": -64.9560952507157,
+                    "id": "66049",
+                    "nombre": "General Güemes",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -22.7169492299382,
+                    "centroide_lon": -63.6627437658428,
+                    "id": "66056",
+                    "nombre": "General José de San Martín",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.7029508773623,
+                    "centroide_lon": -65.4445360285708,
+                    "id": "66063",
+                    "nombre": "Guachipas",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -22.8148374145959,
+                    "centroide_lon": -64.9202186004952,
+                    "id": "66070",
+                    "nombre": "Iruya",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.5623945143611,
+                    "centroide_lon": -65.4300986417702,
+                    "id": "66077",
+                    "nombre": "La Caldera",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -26.0838657971757,
+                    "centroide_lon": -65.1765900958914,
+                    "id": "66084",
+                    "nombre": "La Candelaria",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.1468804221181,
+                    "centroide_lon": -66.2073097573146,
+                    "id": "66091",
+                    "nombre": "La Poma",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.4475878403232,
+                    "centroide_lon": -65.5807612448506,
+                    "id": "66098",
+                    "nombre": "La Viña",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.6424364614968,
+                    "centroide_lon": -67.34403275869,
+                    "id": "66105",
+                    "nombre": "Los Andes",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.4251673018384,
+                    "centroide_lon": -64.588141248868,
+                    "id": "66112",
+                    "nombre": "Metán",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.5643605125424,
+                    "centroide_lon": -66.4549057919868,
+                    "id": "66119",
+                    "nombre": "Molinos",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -23.4987690402927,
+                    "centroide_lon": -64.1510163822065,
+                    "id": "66126",
+                    "nombre": "Orán",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -23.5128446678353,
+                    "centroide_lon": -62.8303776832343,
+                    "id": "66133",
+                    "nombre": "Rivadavia",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.8718676537564,
+                    "centroide_lon": -64.7278906135036,
+                    "id": "66140",
+                    "nombre": "Rosario de la Frontera",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -24.5462867797822,
+                    "centroide_lon": -65.8530871719889,
+                    "id": "66147",
+                    "nombre": "Rosario de Lerma",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -25.8276863599322,
+                    "centroide_lon": -66.1742423008628,
+                    "id": "66154",
+                    "nombre": "San Carlos",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                },
+                {
+                    "centroide_lat": -22.3958266942337,
+                    "centroide_lon": -64.8956351260047,
+                    "id": "66161",
+                    "nombre": "Santa Victoria",
+                    "provincia_id": "66",
+                    "provincia_nombre": "Salta"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Salta"
+            },
+            "total": 23
+        },
+        "San Juan": {
+            "cantidad": 19,
+            "departamentos": [
+                {
+                    "centroide_lat": -31.9896198487776,
+                    "centroide_lon": -67.8274038981039,
+                    "id": "70126",
+                    "nombre": "25 de Mayo",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.6458046846082,
+                    "centroide_lon": -68.3890526964703,
+                    "id": "70063",
+                    "nombre": "9 de Julio",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.2096344810555,
+                    "centroide_lon": -68.4519807662306,
+                    "id": "70007",
+                    "nombre": "Albardón",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.1922192642063,
+                    "centroide_lon": -68.1319625798128,
+                    "id": "70014",
+                    "nombre": "Angaco",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.453365238609,
+                    "centroide_lon": -69.8338001250755,
+                    "id": "70021",
+                    "nombre": "Calingasta",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.5330748483572,
+                    "centroide_lon": -68.5342856277406,
+                    "id": "70028",
+                    "nombre": "Capital",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.506381702579,
+                    "centroide_lon": -67.5458594420512,
+                    "id": "70035",
+                    "nombre": "Caucete",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.4874196948621,
+                    "centroide_lon": -68.5239289662613,
+                    "id": "70042",
+                    "nombre": "Chimbas",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -29.6066873518726,
+                    "centroide_lon": -69.437949892691,
+                    "id": "70049",
+                    "nombre": "Iglesia",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -30.3550759493245,
+                    "centroide_lon": -68.4412683481467,
+                    "id": "70056",
+                    "nombre": "Jáchal",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.7459555808161,
+                    "centroide_lon": -68.5842081096793,
+                    "id": "70070",
+                    "nombre": "Pocito",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.6865858135558,
+                    "centroide_lon": -68.4675631318926,
+                    "id": "70077",
+                    "nombre": "Rawson",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.5542325394479,
+                    "centroide_lon": -68.6416232535812,
+                    "id": "70084",
+                    "nombre": "Rivadavia",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.5285412012606,
+                    "centroide_lon": -68.2072931248825,
+                    "id": "70091",
+                    "nombre": "San Martín",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.5327173670967,
+                    "centroide_lon": -68.4634116809574,
+                    "id": "70098",
+                    "nombre": "Santa Lucía",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -32.073542322508,
+                    "centroide_lon": -68.691135621109,
+                    "id": "70105",
+                    "nombre": "Sarmiento",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.0904647062097,
+                    "centroide_lon": -68.8815821606005,
+                    "id": "70112",
+                    "nombre": "Ullum",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -30.7122962694155,
+                    "centroide_lon": -67.5323035648395,
+                    "id": "70119",
+                    "nombre": "Valle Fértil",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                },
+                {
+                    "centroide_lat": -31.6381980593912,
+                    "centroide_lon": -68.9555709233027,
+                    "id": "70133",
+                    "nombre": "Zonda",
+                    "provincia_id": "70",
+                    "provincia_nombre": "San Juan"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "San Juan"
+            },
+            "total": 19
+        },
+        "San Luis": {
+            "cantidad": 9,
+            "departamentos": [
+                {
+                    "centroide_lat": -32.1656565638277,
+                    "centroide_lon": -66.5422509844147,
+                    "id": "74007",
+                    "nombre": "Ayacucho",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -32.7356115411335,
+                    "centroide_lon": -66.7150069507327,
+                    "id": "74014",
+                    "nombre": "Belgrano",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -32.7269672116015,
+                    "centroide_lon": -65.1982374778981,
+                    "id": "74028",
+                    "nombre": "Chacabuco",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -33.1068820542746,
+                    "centroide_lon": -65.900790202998,
+                    "id": "74021",
+                    "nombre": "Coronel Pringles",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -33.8905514573194,
+                    "centroide_lon": -65.56285207424,
+                    "id": "74035",
+                    "nombre": "General Pedernera",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -35.369087077487,
+                    "centroide_lon": -65.8148193795656,
+                    "id": "74042",
+                    "nombre": "Gobernador Dupuy",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -33.9008795169272,
+                    "centroide_lon": -66.5025775641531,
+                    "id": "74056",
+                    "nombre": "Juan Martín de Pueyrredón",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -32.216548125306,
+                    "centroide_lon": -65.3939560584901,
+                    "id": "74049",
+                    "nombre": "Junín",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                },
+                {
+                    "centroide_lat": -32.5784192360116,
+                    "centroide_lon": -65.7095887724917,
+                    "id": "74063",
+                    "nombre": "Libertador General San Martín",
+                    "provincia_id": "74",
+                    "provincia_nombre": "San Luis"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "San Luis"
+            },
+            "total": 9
+        },
+        "Santa Cruz": {
+            "cantidad": 7,
+            "departamentos": [
+                {
+                    "centroide_lat": -49.9474837007267,
+                    "centroide_lon": -69.4469507225498,
+                    "id": "78007",
+                    "nombre": "Corpen Aike",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -47.3305185775707,
+                    "centroide_lon": -68.0290787062148,
+                    "id": "78014",
+                    "nombre": "Deseado",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -51.4134125040273,
+                    "centroide_lon": -70.5618155470895,
+                    "id": "78021",
+                    "nombre": "Güer Aike",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -49.8364881431632,
+                    "centroide_lon": -72.0654713338211,
+                    "id": "78028",
+                    "nombre": "Lago Argentino",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -46.8341030724218,
+                    "centroide_lon": -70.6314100141799,
+                    "id": "78035",
+                    "nombre": "Lago Buenos Aires",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -48.8383418225325,
+                    "centroide_lon": -68.4681621286703,
+                    "id": "78042",
+                    "nombre": "Magallanes",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                },
+                {
+                    "centroide_lat": -48.2873290186499,
+                    "centroide_lon": -71.1138374982594,
+                    "id": "78049",
+                    "nombre": "Río Chico",
+                    "provincia_id": "78",
+                    "provincia_nombre": "Santa Cruz"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Santa Cruz"
+            },
+            "total": 7
+        },
+        "Santa Fe": {
+            "cantidad": 19,
+            "departamentos": [
+                {
+                    "centroide_lat": -28.849605091735,
+                    "centroide_lon": -61.3983535538115,
+                    "id": "82077",
+                    "nombre": "9 de Julio",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -32.6103027395973,
+                    "centroide_lon": -61.7042951949086,
+                    "id": "82007",
+                    "nombre": "Belgrano",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -33.2214972343879,
+                    "centroide_lon": -61.5310164822665,
+                    "id": "82014",
+                    "nombre": "Caseros",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -31.2314149716439,
+                    "centroide_lon": -61.6569626868615,
+                    "id": "82021",
+                    "nombre": "Castellanos",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -31.0546413323001,
+                    "centroide_lon": -60.125807734045,
+                    "id": "82035",
+                    "nombre": "Garay",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -33.9251483443292,
+                    "centroide_lon": -61.9449986852751,
+                    "id": "82042",
+                    "nombre": "General López",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -28.6719704542176,
+                    "centroide_lon": -59.5266516978974,
+                    "id": "82049",
+                    "nombre": "General Obligado",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -32.7060836088838,
+                    "centroide_lon": -61.2733877091661,
+                    "id": "82056",
+                    "nombre": "Iriondo",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -31.4753563662874,
+                    "centroide_lon": -60.6694790125744,
+                    "id": "82063",
+                    "nombre": "La Capital",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -31.3153379046182,
+                    "centroide_lon": -61.1094808024842,
+                    "id": "82070",
+                    "nombre": "Las Colonias",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -33.1278557358532,
+                    "centroide_lon": -60.7108416659256,
+                    "id": "82084",
+                    "nombre": "Rosario",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -30.2283191431559,
+                    "centroide_lon": -61.360015159641,
+                    "id": "82091",
+                    "nombre": "San Cristóbal",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -30.1041461066388,
+                    "centroide_lon": -59.8980704738644,
+                    "id": "82098",
+                    "nombre": "San Javier",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -32.1537713586804,
+                    "centroide_lon": -61.0481265781191,
+                    "id": "82105",
+                    "nombre": "San Jerónimo",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -30.5304248150144,
+                    "centroide_lon": -60.4886940672765,
+                    "id": "82112",
+                    "nombre": "San Justo",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -32.9423146043516,
+                    "centroide_lon": -60.9615014674026,
+                    "id": "82119",
+                    "nombre": "San Lorenzo",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -32.0125797507259,
+                    "centroide_lon": -61.8082508211602,
+                    "id": "82126",
+                    "nombre": "San Martín",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -28.9699286424835,
+                    "centroide_lon": -60.4135430497849,
+                    "id": "82133",
+                    "nombre": "Vera",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                },
+                {
+                    "centroide_lat": -33.4855834326751,
+                    "centroide_lon": -60.85138406701,
+                    "id": "82028",
+                    "nombre": "Villa Constitución",
+                    "provincia_id": "82",
+                    "provincia_nombre": "Santa Fe"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Santa Fe"
+            },
+            "total": 19
+        },
+        "Santiago del Estero": {
+            "cantidad": 27,
+            "departamentos": [
+                {
+                    "centroide_lat": -29.2978682731406,
+                    "centroide_lon": -62.5153416521407,
+                    "id": "86007",
+                    "nombre": "Aguirre",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -26.5210512908819,
+                    "centroide_lon": -62.7274743405239,
+                    "id": "86014",
+                    "nombre": "Alberdi",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.6918181694465,
+                    "centroide_lon": -63.8815639978494,
+                    "id": "86021",
+                    "nombre": "Atamisqui",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.5553626652401,
+                    "centroide_lon": -63.2037665884943,
+                    "id": "86028",
+                    "nombre": "Avellaneda",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.4347067679294,
+                    "centroide_lon": -64.2098658068888,
+                    "id": "86035",
+                    "nombre": "Banda",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -29.0813959929051,
+                    "centroide_lon": -62.2187677325403,
+                    "id": "86042",
+                    "nombre": "Belgrano",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.8847652276316,
+                    "centroide_lon": -64.4356675404002,
+                    "id": "86049",
+                    "nombre": "Capital",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.7536335933641,
+                    "centroide_lon": -64.7638996164731,
+                    "id": "86063",
+                    "nombre": "Choya",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -25.9392514746819,
+                    "centroide_lon": -62.7304991775974,
+                    "id": "86056",
+                    "nombre": "Copo",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.3218567500252,
+                    "centroide_lon": -63.5796320220819,
+                    "id": "86070",
+                    "nombre": "Figueroa",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.5682847400822,
+                    "centroide_lon": -62.3388258455986,
+                    "id": "86077",
+                    "nombre": "General Taboada",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.9767710254958,
+                    "centroide_lon": -64.8711532150043,
+                    "id": "86084",
+                    "nombre": "Guasayán",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -26.899591169452,
+                    "centroide_lon": -64.2725159118858,
+                    "id": "86091",
+                    "nombre": "Jiménez",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.0394963430537,
+                    "centroide_lon": -62.5440138783592,
+                    "id": "86098",
+                    "nombre": "Juan F. Ibarra",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.6244804367569,
+                    "centroide_lon": -64.3107274308234,
+                    "id": "86105",
+                    "nombre": "Loreto",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -29.6150659886474,
+                    "centroide_lon": -62.7386805205781,
+                    "id": "86112",
+                    "nombre": "Mitre",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.2981373849478,
+                    "centroide_lon": -62.4633306370511,
+                    "id": "86119",
+                    "nombre": "Moreno",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -29.3040900587554,
+                    "centroide_lon": -64.0149932737063,
+                    "id": "86126",
+                    "nombre": "Ojo de Agua",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -26.2203346046951,
+                    "centroide_lon": -64.0912083069938,
+                    "id": "86133",
+                    "nombre": "Pellegrini",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -29.382302416388,
+                    "centroide_lon": -63.3535127711283,
+                    "id": "86140",
+                    "nombre": "Quebrachos",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.4854057246231,
+                    "centroide_lon": -64.7601873654679,
+                    "id": "86147",
+                    "nombre": "Río Hondo",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -30.0205633751884,
+                    "centroide_lon": -62.2804530355771,
+                    "id": "86154",
+                    "nombre": "Rivadavia",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -27.8539440726125,
+                    "centroide_lon": -63.9075092603179,
+                    "id": "86161",
+                    "nombre": "Robles",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.9187435892712,
+                    "centroide_lon": -63.3035949540839,
+                    "id": "86168",
+                    "nombre": "Salavina",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.1877612837658,
+                    "centroide_lon": -63.854114579231,
+                    "id": "86175",
+                    "nombre": "San Martín",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.1061147414005,
+                    "centroide_lon": -63.4461751488674,
+                    "id": "86182",
+                    "nombre": "Sarmiento",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                },
+                {
+                    "centroide_lat": -28.1888486587603,
+                    "centroide_lon": -64.2732683808708,
+                    "id": "86189",
+                    "nombre": "Silípica",
+                    "provincia_id": "86",
+                    "provincia_nombre": "Santiago del Estero"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Santiago del Estero"
+            },
+            "total": 27
+        },
+        "Tierra del Fuego": {
+            "cantidad": 5,
+            "departamentos": [
+                {
+                    "centroide_lat": -82.7834172335301,
+                    "centroide_lon": -50.6450428018267,
+                    "id": "94028",
+                    "nombre": "Antártida Argentina",
+                    "provincia_id": "94",
+                    "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+                },
+                {
+                    "centroide_lat": -52.8527307050346,
+                    "centroide_lon": -53.0409118433889,
+                    "id": "94021",
+                    "nombre": "Islas del Atlántico Sur",
+                    "provincia_id": "94",
+                    "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+                },
+                {
+                    "centroide_lat": -53.7462919872259,
+                    "centroide_lon": -68.1361046546959,
+                    "id": "94008",
+                    "nombre": "Río Grande",
+                    "provincia_id": "94",
+                    "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+                },
+                {
+                    "centroide_lat": -54.4245608958778,
+                    "centroide_lon": -67.5034849431886,
+                    "id": "94011",
+                    "nombre": "Tolhuin",
+                    "provincia_id": "94",
+                    "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+                },
+                {
+                    "centroide_lat": -54.7704623704114,
+                    "centroide_lon": -66.6837162279656,
+                    "id": "94015",
+                    "nombre": "Ushuaia",
+                    "provincia_id": "94",
+                    "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+            },
+            "total": 5
+        },
+        "Tucuman": {
+            "cantidad": 17,
+            "departamentos": [
+                {
+                    "centroide_lat": -26.5309358872581,
+                    "centroide_lon": -64.8198149704644,
+                    "id": "90007",
+                    "nombre": "Burruyacú",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.832724441173,
+                    "centroide_lon": -65.2174963397207,
+                    "id": "90084",
+                    "nombre": "Capital",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.2695777554986,
+                    "centroide_lon": -65.8110121945484,
+                    "id": "90021",
+                    "nombre": "Chicligasta",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.9182437174427,
+                    "centroide_lon": -64.9757343718485,
+                    "id": "90014",
+                    "nombre": "Cruz Alta",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.9759879123642,
+                    "centroide_lon": -65.4789798424484,
+                    "id": "90028",
+                    "nombre": "Famaillá",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.713461665638,
+                    "centroide_lon": -65.2554821697556,
+                    "id": "90035",
+                    "nombre": "Graneros",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.6058945987109,
+                    "centroide_lon": -65.7832035039246,
+                    "id": "90042",
+                    "nombre": "Juan Bautista Alberdi",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.793699696551,
+                    "centroide_lon": -65.5981413742508,
+                    "id": "90049",
+                    "nombre": "La Cocha",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.1918024636989,
+                    "centroide_lon": -65.0850078123385,
+                    "id": "90056",
+                    "nombre": "Leales",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.8624408970891,
+                    "centroide_lon": -65.4310597836071,
+                    "id": "90063",
+                    "nombre": "Lules",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.1106075164054,
+                    "centroide_lon": -65.6431429705926,
+                    "id": "90070",
+                    "nombre": "Monteros",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.450131903938,
+                    "centroide_lon": -65.7517295073354,
+                    "id": "90077",
+                    "nombre": "Río Chico",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -27.424163373399,
+                    "centroide_lon": -65.2918660955326,
+                    "id": "90091",
+                    "nombre": "Simoca",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.5914036518985,
+                    "centroide_lon": -65.8894957616981,
+                    "id": "90098",
+                    "nombre": "Tafí del Valle",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.6607281369398,
+                    "centroide_lon": -65.4634432127741,
+                    "id": "90105",
+                    "nombre": "Tafí Viejo",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.3432601177699,
+                    "centroide_lon": -65.4054839941384,
+                    "id": "90112",
+                    "nombre": "Trancas",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                },
+                {
+                    "centroide_lat": -26.7861906133402,
+                    "centroide_lon": -65.3424091314535,
+                    "id": "90119",
+                    "nombre": "Yerba Buena",
+                    "provincia_id": "90",
+                    "provincia_nombre": "Tucumán"
+                }
+            ],
+            "inicio": 0,
+            "parametros": {
+                "aplanar": true,
+                "campos": [
+                    "centroide.lon",
+                    "id",
+                    "provincia.nombre",
+                    "nombre",
+                    "provincia.id",
+                    "centroide.lat"
+                ],
+                "exacto": true,
+                "max": 1000,
+                "orden": "nombre",
+                "provincia": "Tucuman"
+            },
+            "total": 17
+        }
+    }
+}

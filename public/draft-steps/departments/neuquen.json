@@ -1,0 +1,150 @@
+{
+    "cantidad": 16,
+    "departamentos": [
+        {
+            "centroide_lat": -39.1314863536049,
+            "centroide_lon": -71.0463179632497,
+            "id": "58007",
+            "nombre": "Aluminé",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -38.0986455753996,
+            "centroide_lon": -69.0127575196277,
+            "id": "58014",
+            "nombre": "Añelo",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -39.4807942918938,
+            "centroide_lon": -70.4335593332799,
+            "id": "58021",
+            "nombre": "Catán Lil",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -36.8804936082292,
+            "centroide_lon": -70.2862810211876,
+            "id": "58042",
+            "nombre": "Chos Malal",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -40.0529195538789,
+            "centroide_lon": -70.2813499391274,
+            "id": "58028",
+            "nombre": "Collón Curá",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -38.8325294845843,
+            "centroide_lon": -68.7930144598811,
+            "id": "58035",
+            "nombre": "Confluencia",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -39.7946776781363,
+            "centroide_lon": -71.2590025540125,
+            "id": "58049",
+            "nombre": "Huiliches",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -40.3142303514009,
+            "centroide_lon": -71.1842517277166,
+            "id": "58056",
+            "nombre": "Lácar",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -38.0659054264443,
+            "centroide_lon": -70.3140568384535,
+            "id": "58063",
+            "nombre": "Loncopué",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -40.7743899197092,
+            "centroide_lon": -71.4866965761944,
+            "id": "58070",
+            "nombre": "Los Lagos",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -36.8583892643308,
+            "centroide_lon": -70.7836605070546,
+            "id": "58077",
+            "nombre": "Minas",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -37.6378798941082,
+            "centroide_lon": -70.6777764142853,
+            "id": "58084",
+            "nombre": "Ñorquín",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -37.3984401348449,
+            "centroide_lon": -69.4019520980894,
+            "id": "58091",
+            "nombre": "Pehuenches",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -39.4039894660668,
+            "centroide_lon": -69.4271919918532,
+            "id": "58098",
+            "nombre": "Picún Leufú",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -38.5742697933456,
+            "centroide_lon": -70.3729347665806,
+            "id": "58105",
+            "nombre": "Picunches",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        },
+        {
+            "centroide_lat": -38.922044155846,
+            "centroide_lon": -69.8222074301959,
+            "id": "58112",
+            "nombre": "Zapala",
+            "provincia_id": "58",
+            "provincia_nombre": "Neuquén"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Neuquen"
+    },
+    "total": 16
+}

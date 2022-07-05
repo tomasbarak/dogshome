@@ -32,6 +32,13 @@ function init(app){
 
         if(fs.existsSync(filepath)){
             res.sendFile(filepath);
+        }else{
+            //Send 404 error
+            res.status(404);
+            res.render(appDir + '/public/404', {
+                errorCode: "404",
+                errorMessage: "Imagen no encontrada",
+            });
         }
     });
     

@@ -42,10 +42,12 @@
                     <a style="font-size: 12px; color: #079292">Siguiendo</a>
                     <a id="profile-following" class="stats-content"><%= following %> </a>
                 </div>
-                <div class="single-stat-container">
-                    <a style="font-size: 12px; color: #079292">Publicaciones</a>
-                    <a id="profile-posts" class="stats-content"><%= postsCount %> </a>
-                </div>
+                <% if (typeNum === 2 || typeNum === 3) {%> 
+                    <div class="single-stat-container">
+                        <a style="font-size: 12px; color: #079292">Publicaciones</a>
+                        <a id="profile-posts" class="stats-content"><%= postsCount %> </a>
+                    </div>
+                <% } %> 
             </div>
             <div style="width: 200px; display: flex; align-items: center; justify-content: center"></div>
             <div style="width: calc(50% - 100px); height: 100%; display: flex; align-items: center; justify-content: center">

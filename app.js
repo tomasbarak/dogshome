@@ -89,7 +89,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
       const token =           req.cookies.session || ' ';
       const freeAccessPath =  ['/profile/image', '/profile/image/']
 
-      let pathArr =           req.url.split('/').slice(0, req.url.split('/').length).join('/')
+      let pathArr =           new URL(req.protocol + '://' + req.get('host') + req.originalUrl).pathname;
       let ip =                req.headers['x-forwarded-for'] || req.connection.remoteAddress || '';
 
       if (ip.substr(0, 7) == "::ffff:") {
