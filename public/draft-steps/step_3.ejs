@@ -259,7 +259,7 @@
                 });
             })
         }else{
-            let dep_name = province_departments[parsed_province].departamentos.map(value => { return value.nombre });
+            let dep_name = province_departments[parsed_province].map(value => { return value.nombre });
             $("#dep-input").autocomplete({
                     source: dep_name,
                     position: {  collision: "flip"  }
@@ -279,41 +279,81 @@
         })
     }
     const updateDraft = (draftId) => {
-        Swal.fire({
-            title: 'Actualizando borrador',
-            text: 'Esperá un momento',
-            didOpen: () => {
-                Swal.showLoading();
-            },
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-
-        });
-        axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
-            province: document.getElementById('province-dropdown').value,
-        }).then(res => {
-            console.log(res);
-            if(res.status === 200){
-                window.location.reload();
-            }else{
-                Swal.fire({
+        const province = document.getElementById('province-dropdown').value;
+        const provinceName = document.getElementById('province-dropdown').options[document.getElementById('province-dropdown').selectedIndex].text;
+        const parsed_province_name = provinceName.replaceAll(" ", "_").toLowerCase();
+        const department = document.getElementById('dep-input').value;
+        const parsed_department = department.replaceAll(" ", "_").toLowerCase();
+        const valid_department = province_departments["ciudad_de_buenos_aires"].map((value) => {return value.nombre.replaceAll(" ", "_").toLowerCase()}).includes(parsed_department);
+        const valid_province = province_departments[parsed_province_name] !== undefined
+        if(province >= 0 && department.length > 0 && valid_province && valid_department){
+            Swal.fire({
+                title: 'Actualizando borrador',
+                text: 'Esperá un momento',
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+            });
+            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+                province: document.getElementById('province-dropdown').value,
+                department: document.getElementById('dep-input').value,
+            }).then(res => {
+                if(res.status === 200){
+                    window.location.reload();
+                }else{
+                    Swal.fire({
                         type: 'error',
                         title: 'Oops...',
                         text: 'Algo salió mal, intenta de nuevo',
                         confirmButtonColor: '#079292'
+                    });
+                }
+            }).catch(err => {
+                console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo',
+                    confirmButtonColor: '#079292'
+                });
+            });
+        }else{
+            if(province < 0){
+                console.log(province)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná una provincia',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(department.length === 0){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ingresá un departamento',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(!valid_province){
+                console.log(province_departments[parsed_province_name]);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná una provincia válida',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(!valid_department){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná un departamento válido',
+                    confirmButtonColor: '#079292'
                 });
             }
-        }).catch(err => {
-            console.log(err);
-            Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Algo salió mal, intenta de nuevo',
-                        confirmButtonColor: '#079292'
-            });
-        });
-    }
+        }
+}
 
     
 </script>
