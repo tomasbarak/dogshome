@@ -22,7 +22,7 @@
             <% var createdAt = draft.createdAt ? new Date (draft.createdAt).toLocaleString("es-AR") : "No especificado" %> 
             <% var draftName = draft.Name ? draft.Name : "No especificado"; %> 
             <% var draftDescription = draft.SDescription ? draft.SDescription : "No especificado" %> 
-            <% var location = draft.Province ? `${draft.Province}, Argentina` : "No especificado" %> 
+            <% var location = draft.Province && draft.Department ? `${draft.Province} (${draft.Department}), Argentina` : "No especificado" %> 
             <% var photoURL = draft.Photo ? draft.Photo : "/images/dog-image-not-found.png" %> 
                 <div class="draft-container">
                     <img src="<%= photoURL %>" class="draft-image">
