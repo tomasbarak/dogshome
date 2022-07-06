@@ -223,18 +223,25 @@
     
                                         //Handle draft step 3 (Dog Location)
                                         case 3:
+                                            const raw_provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman'];
                                             const provincesArr = [ "ciudad_de_buenos_aires", "buenos_aires", "catamarca", "chaco", "chubut", "cordoba", "corrientes", "entre_rios", "formosa", "jujuy", "la_pampa", "la_rioja", "mendoza", "misiones", "neuquen", "rio_negro", "salta", "san_juan", "san_luis", "santa_cruz", "santa_fe", "santiago_del_estero", "tierra_del_fuego", "tucuman" ];
                                             const province =        req.body.province;
                                             const department =      String(req.body.department).toLowerCase().replace(/ /g, '_');
+                                            const provinceName_raw =    String(raw_provincesArr[province]);
                                             const provinceName =    String(provincesArr[province]).toLowerCase().replace(/ /g, '_');
-                                            const departmentArr = require(`../../../public/draft-steps/departments/${provinceName}.json`).departamentos.map((value) => {
-                                                return value.nombre.toLowerCase().replace(/ /g, '_');
+                                            const departmentArr_raw = require(`../../../public/draft-steps/departments/${provinceName}.json`).departamentos.map((value) => {
+                                                return value.nombre;
                                             });
+                                            const departmentArr = departmentArr_raw.map((value) => {
+                                                return value.toLowerCase().replace(/ /g, '_');
+                                            })
 
                                             //Check if the draft province is NOT empty and if the draft department is NOT empty and if the draft department is in the 
                                             if(province.length > 0 && department.length > 0 && departmentArr.includes(department)){
-                                                newDraft["Province"] =  provinceName;
-                                                newDraft["Department"] = department;
+                                                const department_index = departmentArr.indexOf(department);
+                                                const department_raw = departmentArr_raw[department_index];
+                                                newDraft["Province"] =  provinceName_raw;
+                                                newDraft["Department"] = department_raw;
                                                 newDraft["updatedAt"] = new Date();
                                                 newDraft["Step"] =      4;
                                                 continueUpdating()

@@ -245,7 +245,7 @@
         const index = selector.selectedIndex;
         const province = selector.options[index].text;
         const parsed_province = province.replaceAll(" ", "_").toLowerCase();
-
+        const department_input = document.getElementById('dep-input').value = '';
         if(!(parsed_province in province_departments)) {
             requestDepartments(parsed_province).then((response) => {
                 const data = response.data;
@@ -282,9 +282,10 @@
         const province = document.getElementById('province-dropdown').value;
         const provinceName = document.getElementById('province-dropdown').options[document.getElementById('province-dropdown').selectedIndex].text;
         const parsed_province_name = provinceName.replaceAll(" ", "_").toLowerCase();
-        const department = document.getElementById('dep-input').value;
+        const department = document.getElementById('dep-input').value.trim();
+        document.getElementById('dep-input').value = department;
         const parsed_department = department.replaceAll(" ", "_").toLowerCase();
-        const valid_department = province_departments["ciudad_de_buenos_aires"].map((value) => {return value.nombre.replaceAll(" ", "_").toLowerCase()}).includes(parsed_department);
+        const valid_department = province_departments[parsed_province_name].map((value) => {return value.nombre.replaceAll(" ", "_").toLowerCase()}).includes(parsed_department);
         const valid_province = province_departments[parsed_province_name] !== undefined
         if(province >= 0 && department.length > 0 && valid_province && valid_department){
             Swal.fire({
