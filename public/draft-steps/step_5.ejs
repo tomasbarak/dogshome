@@ -1,0 +1,139 @@
+<style>
+    #dog-filters-container {
+        --nav-bar-height: 60px;
+        --first-half-container-height: 50vh;
+
+        position: absolute;
+        top: var(--first-half-container-height);
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 25px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-rows: minmax(min-content, max-content);
+        gap: 25px;
+        align-items: flex-start;
+        justify-items: center;
+        overflow-y: auto;
+    }
+
+    .filter-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: #fff;
+        min-width: 150px;
+        min-height: 100px;
+        width: 300px;
+        height: fit-content;
+        border-radius: 8px;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        padding: 15px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-section-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    input + .filter-label {
+        margin-top: 10px;
+    }
+    .filter-label + input {
+        margin-top: 10px;
+    }
+
+    .filter-input {
+        width: 100%;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 5px;
+        outline: none;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+    .filter-input:focus {
+        transition: 0.3s;
+        border: 1px solid #079292;
+        box-shadow: 0px 0px 10px rgba(7, 146, 146, 0.1);
+    }
+
+    .filter-label {
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.75);
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<link rel="stylesheet" href="/stylesheets/external/color_palette_picker.css">
+<div class="first-half-container">
+    <h1 class="create-title">Ingresá las características del perro</h1>
+</div>
+<div id="dog-filters-container">
+    <div class="filter-section">
+        <a class="filter-section-title">Edad</a>
+        <label for="age-months" class="filter-label">Meses</label>
+        <input type="number" id="age-months" class="filter-input">
+        <label for="age-years" class="filter-label">Años</label>
+        <input type="number" id="age-years" class="filter-input">
+    </div>
+    <div class="filter-section">
+        <a class="filter-section-title">Características</a>
+        <label class="filter-label">Color</label>
+
+    </div>
+
+    <div class="filter-section">
+        <a class="filter-section-title">Características</a>
+        <label class="filter-label">Color</label>
+
+    </div>
+</div>
+<script src="/scripts/external/color_palette_picker.js"></script>
+<script>
+    function requestBreeds() {
+        return new Promise((resolve, reject) => {
+            axios.get(`https://${window.location.hostname}/draft-steps/dog_breeds.json`).then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                reject(error);
+            });
+        })
+    }
+
+    let colorPicker = new PalettePicker(["#ffffff", "#000000"])
+    colorPicker.show();
+
+
+    document.querySelector('#age-months').addEventListener('input', function (e) {
+        let ageMonths = e.target.value;
+        let ageYears = ageMonths / 12;
+        document.querySelector('#age-years').value = Math.round((ageYears + Number.EPSILON) * 100) / 100;
+    });
+    document.querySelector('#age-years').addEventListener('input', function (e) {
+        let ageYears = e.target.value;
+        let ageMonths = ageYears * 12;
+        document.querySelector('#age-months').value = ageMonths;
+    });
+
+</script>

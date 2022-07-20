@@ -1,0 +1,126 @@
+@keyframes opacity-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes opacity-out{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.palette-picker-background{
+    animation: opacity-in 0.1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9998;
+}
+
+
+
+.palette-picker{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    min-width: 250px;
+    max-height: 300px;
+    min-height: 200px;
+    height: 100%;
+    width: calc(100% - 50px);
+    background-color: #fff;
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+.palette-picker-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.palette-picker-header-title{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    color: #000;
+}
+
+.palette-picker-header-close{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 8px;
+    top: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.palette-picker-header-close > svg{
+    width: 20px;
+    height: 20px;
+    fill: #000;
+}
+
+.palette-picker-header-close:hover{
+    opacity: 0.5;
+}
+
+.palette-picker-body{
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 40px);
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(auto-fit, 40px);
+    grid-template-rows: repeat(auto-fit, 40px);
+    grid-gap: 15px;
+}
+
+.palette-picker-color-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #079292;
+    box-sizing: border-box;
+}

@@ -215,6 +215,12 @@
         <input type="text" placeholder="Departamento..." id="dep-input">
     </div>
 <script>
+    document.getElementById('dep-input').addEventListener('keyup', function(e) {
+        if (e.keyCode === 13) {
+            updateDraft("<%= draftId %>")
+        }
+    });
+    
     let province_departments = {};
 
     String.prototype.replaceAll = function(search, replacement) {
