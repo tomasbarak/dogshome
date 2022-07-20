@@ -331,7 +331,7 @@
                                 newDraft["updatedAt"] = new Date();
                                 newDraft["Step"] =      step + 1;
                                 newDraft["Images"] =    urlImagesArr;
-                                newDraft["Photo"] =     `https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/1`
+                                newDraft["Photo"] =     `/profile/drafts/${draftId}/uploaded/image/1`
                                 continueUpdating();
                                 //Method to save previously updated draft
                                 function continueUpdating(){
