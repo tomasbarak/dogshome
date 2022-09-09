@@ -97,10 +97,12 @@
 
         reader.onload = (e) => {
             imageToSet.style.backgroundImage = `url(${e.target.result})`;
-            document.getElementById(`${imageToSet.id}-plus`).classList.toggle("visible")
-            document.getElementById(`${imageToSet.id}-plus`).classList.toggle("hidden")
-            document.getElementById(`${imageToSet.id}-cross`).classList.toggle("hidden")
-            document.getElementById(`${imageToSet.id}-cross`).classList.toggle("visible")
+            document.getElementById(`${imageToSet.id}-plus`).classList.remove("visible")
+            document.getElementById(`${imageToSet.id}-plus`).classList.remove("hidden")
+            document.getElementById(`${imageToSet.id}-plus`).classList.add("hidden")
+            document.getElementById(`${imageToSet.id}-cross`).classList.remove("hidden")
+            document.getElementById(`${imageToSet.id}-cross`).classList.remove("visible")
+            document.getElementById(`${imageToSet.id}-cross`).classList.add("visible")
         }
 
         reader.readAsDataURL(file);
@@ -109,10 +111,12 @@
     const clearInput = (input, label) => {
         input.value = null;
         label.style.backgroundImage = "";
-        document.getElementById(`${label.id}-plus`).classList.toggle("visible")
-        document.getElementById(`${label.id}-plus`).classList.toggle("hidden")
-        document.getElementById(`${label.id}-cross`).classList.toggle("hidden")
-        document.getElementById(`${label.id}-cross`).classList.toggle("visible")
+        document.getElementById(`${label.id}-cross`).classList.remove("visible")
+        document.getElementById(`${label.id}-cross`).classList.remove("hidden")
+        document.getElementById(`${label.id}-cross`).classList.add("hidden")
+        document.getElementById(`${label.id}-plus`).classList.remove("hidden")
+        document.getElementById(`${label.id}-plus`).classList.remove("visible")
+        document.getElementById(`${label.id}-plus`).classList.add("visible")
     }
 </script>
 <% const secImagesQ = 7 %> 
