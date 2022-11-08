@@ -189,6 +189,94 @@
         margin-top: 10px;
     }
 
+    #habits-input-container {
+        height: 125px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: border .5s;
+    }
+
+    #habits-input-container:hover {
+        transition: border .5s;
+        border: 1.5px solid #079292;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #habits-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        font-weight: normal;
+        outline: none !important;
+        padding: 15px 15px 30px 15px;
+        box-sizing: border-box;
+        resize: none;
+    }
+
+    #habits-input-counter{
+        font-size: 0.7rem;
+        color: #079292;
+        font-weight: bold;
+        font-family: 'Lato', sans-serif;
+        margin-top: 15px;
+        width: 100%;
+        text-align: right;
+    }
+
+    #observations-input-container {
+        height: 125px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: border .5s;
+    }
+
+    #observations-input-container:hover {
+        transition: border .5s;
+        border: 1.5px solid #079292;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #observations-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        font-weight: normal;
+        outline: none !important;
+        padding: 15px 15px 30px 15px;
+        box-sizing: border-box;
+        resize: none;
+    }
+
+    #observations-input-counter{
+        font-size: 0.7rem;
+        color: #079292;
+        font-weight: bold;
+        font-family: 'Lato', sans-serif;
+        margin-top: 15px;
+        width: 100%;
+        text-align: right;
+    }
+
     @media screen and (max-width: 600px) {
         .ui-menu  {
             background: white;
@@ -316,13 +404,22 @@
     
     <div class="filter-column">
         <div class="filter-section">
-            <a class="filter-section-title">Características</a>
-            <label class="filter-label">Color</label>
+            <a class="filter-section-title">Hábitos</a>
+            <div id="habits-input-container">
+                <textarea name="habitos" id="habits-input" oninput="updateCounter('habits')"></textarea>
+            </div>
+            <a id="habits-input-counter">0/140</a>
+        </div>
+        <div class="filter-section">
+            <a class="filter-section-title">Observaciones</a>
+            <div id="observations-input-container">
+                <textarea name="observaciones" id="observations-input" oninput="updateCounter('observations')"></textarea>
+            </div>
+            <a id="observations-input-counter">0/140</a>
         </div>
     </div>
     
 </div>
-<script src="/scripts/external/color_palette_picker.js"></script>
 <script>
     function requestBreeds() {
         return new Promise((resolve, reject) => {
@@ -356,4 +453,90 @@
         document.querySelector('#age-months').value = ageMonths;
     });
 
+    const updateCounter = (counterName) => {
+        const counter = document.getElementById(`${counterName}-input-counter`);
+        const input = document.getElementById(`${counterName}-input`);
+        input.setAttribute('maxlength', 140);
+        counter.innerHTML = `${input.value.length}/140`;
+    }
+    window.onload = () => {updateCounter('habits'); updateCounter('observations')};
+</script>
+
+<script>
+    const updateDraft = (draftId) => {
+        const province = document.getElementById('province-dropdown').value;
+        const provinceName = document.getElementById('province-dropdown').options[document.getElementById('province-dropdown').selectedIndex].text;
+        const parsed_province_name = provinceName.replaceAll(" ", "_").toLowerCase();
+        const department = document.getElementById('dep-input').value.trim();
+        document.getElementById('dep-input').value = department;
+        const parsed_department = department.replaceAll(" ", "_").toLowerCase();
+        const valid_department = province_departments[parsed_province_name].map((value) => {return value.nombre.replaceAll(" ", "_").toLowerCase()}).includes(parsed_department);
+        const valid_province = province_departments[parsed_province_name] !== undefined
+        if(province >= 0 && department.length > 0 && valid_province && valid_department){
+            Swal.fire({
+                title: 'Actualizando borrador',
+                text: 'Esperá un momento',
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+            });
+            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+                province: document.getElementById('province-dropdown').value,
+                department: document.getElementById('dep-input').value,
+            }).then(res => {
+                if(res.status === 200){
+                    window.location.reload();
+                }else{
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+                    });
+                }
+            }).catch(err => {
+                console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo',
+                    confirmButtonColor: '#079292'
+                });
+            });
+        }else{
+            if(province < 0){
+                console.log(province)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná una provincia',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(department.length === 0){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ingresá un departamento',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(!valid_province){
+                console.log(province_departments[parsed_province_name]);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná una provincia válida',
+                    confirmButtonColor: '#079292'
+                });
+            }else if(!valid_department){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Seleccioná un departamento válido',
+                    confirmButtonColor: '#079292'
+                });
+            }
+        }
 </script>
