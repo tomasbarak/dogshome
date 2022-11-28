@@ -15,19 +15,20 @@ function throwEmailExistsError() {
 }
 
 function signUp(email, password, repeatPassword) {
-    Swal.fire({
-        title: 'Registrando',
-        text: 'Porfavor espere mientras registramos su cuenta',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false,
-        didOpen: () => {
-            Swal.showLoading()
-        },
-    });
-    
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+    const authDataCheck= checkAuthData(email, password, repeatPassword);
+    if (authDataCheck.status === 0) {
+        Swal.fire({
+            title: 'Registrando',
+            text: 'Porfavor espere mientras registramos su cuenta',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            didOpen: () => {
+                Swal.showLoading()
+            },
+        });
+        
+        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
             // Signed in
             var user = userCredential.user;
             user.getIdToken().then(function (idToken) {
@@ -38,16 +39,70 @@ function signUp(email, password, repeatPassword) {
             }).catch(function (error) {
                 console.error(error);
             });
-        })
-        .catch((error) => {
+        }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode === 'auth/email-already-in-use') {
                 throwEmailExistsError();
             }
         });
+    } else {
+        Swal.fire({
+            title: 'Error',
+            text: authDataCheck.message,
+            icon: 'error',
+            confirmButtonColor: '#d33',
+        })
+    }
 }
 
+function checkAuthData(email, password, repeatPassword) {
+    /*
+        if email is empty, returns 1 in object
+        if email is invalid, returns 2 in object
+        if password is empty, returns 3 in object
+        if password is invalid, returns 4 in object
+        if passwords are not equal, returns 5 in object
+        if all is ok, returns 0 in object
+    */
+    if (email.length === 0) {
+        return {
+            status: 1,
+            message: 'El email no puede estar vacío'
+        }
+    } else if (!isEmailValid(email)) {
+        return {
+            status: 2,
+            message: 'El email ingresado no es válido'
+        }
+    } else if (password.length === 0) {
+        return {
+            status: 3,
+            message: 'La contraseña no puede estar vacía'
+        }
+    } else if (checkPasswordStrength(password) === 'weak') {
+        return {
+            status: 4,
+            message: 'La contraseña debe tener al menos 8 caracteres alfanuméricos'
+        }
+    } else if (password !== repeatPassword) {
+        return {
+            status: 5,
+            message: 'Las contraseñas no coinciden'
+        }
+    }
+    return {
+        status: 0,
+        message: 'ok'
+    }
+
+}
+
+function isEmailValid(email) {
+    return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+}
+
+// function checkPasswordStrength
 function equalPasswordsChecker(passwordCheck, repeatPasswordCheck) {
     var repeatPasswordCheckIcon = document.getElementById('password-repeat-check-icon');
     if (passwordCheck.length !== 0 || repeatPasswordCheck.length !== 0) {

@@ -8,17 +8,51 @@ html, body {
     min-height: 500px;
     padding-bottom: 10px;
 }
+
 body.swal2-height-auto{
     height: 100% !important;
 }
+
 * {
     margin: 0;
     padding: 0;
     font-family: Lato, sans-serif;
 }
-#sign-in{
+
+.auth-page-header {
+    width: 100%; 
+    height: 200px; 
+    background-color: #079292; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.auth-page-header-logo{
+    font-family: libel-suit-rg, sans-serif;
+    position: absolute; 
+    left: 15px; 
+    top: 15px; 
+    width: auto; 
+    text-align: center; 
+    color: white; 
+    font-size: 24px; 
+    font-weight: normal;
+}
+
+.auth-page-header-label {
+    position: relative; 
+    width: 100%; 
+    text-align: center; 
+    color: white; 
+    font-family: Lato, sans-serif; 
+    font-size: 32px; 
+    font-weight: 600;
+}
+
+.auth-page-body {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 200px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,28 +62,81 @@ body.swal2-height-auto{
     z-index: 103;
 }
 
-#form{
-    width: fit-content;
-    max-width: 600px;
-    /*max-height: 1200px;*/
+.auth-page-form {
+    width: 100%;
+    max-width: 100%;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 25px;
     flex-direction: column;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     box-sizing: border-box;
-    padding: 0 15px;
-    /*padding-top: 300px;*/
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: fit-content;
+    box-sizing: border-box;
 }
-.input-container{
+
+.auth-page-form > .input-container{
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     font-size: 10pt;
     margin-bottom: 15px;
     margin-top: 10px;
+    height: fit-content;
 }
+
+.auth-page-form > .input-container > label{
+    font-size: 12pt;
+}
+
+.auth-page-change-method {
+    font-family: 'Lato', sans-serif; 
+    font-size: 1em; 
+    text-align: center; 
+    color: #079292;
+    margin-right: 15px;
+}
+
+.auth-page-form > .auth-btn-container {
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    flex-direction: row-reverse;
+    margin: 15px 0;
+    max-width: 350px;
+}
+
+.auth-btn-container > .auth-btn {
+    height: 50px;
+    width: 100px;
+    border-width: 0;
+    background-color: #079292;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.auth-page-form > .auth-btn-anonymous {
+    position: relative; 
+    text-decoration: none; 
+    height: 50px; 
+    color: rgba(0, 0, 0, 0.45); 
+    font-size: 10pt; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+}
+
 input{
     height: 50px;
     width: 25vw;
@@ -65,20 +152,7 @@ textarea:focus, input:focus{
     outline: none;
     border-color: #079292;
 }
-#sign-in-btn{
-    height: 50px;
-    width: 100px;
-    border-width: 0;
-    background-color: #079292;
-    border-radius: 5px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10pt;
-    text-decoration: none;
-    margin-bottom: 8px;
-}
+
 @font-face{font-family: 'libel-suit-rg'; src: url(../../fonts/libel-suit.otf) format('opentype');}
 
 #sign-in-title{
@@ -87,9 +161,6 @@ textarea:focus, input:focus{
     color: #d3d3d3;
 }
 
-.dogs-home-logo{
-    font-family: libel-suit-rg, sans-serif;
-}
 #upload-profile-image-button{
     height: 100px;
     width: 100px;
@@ -142,10 +213,17 @@ input[type=number] {
         height: 50px;
         width: 50vw;
     }
+
+    .auth-page-form > .auth-btn-container {
+        width: 50vw;
+    }
 }
 @media screen and (max-width: 480px){
     input{
         height: 50px;
+        width: 75vw;
+    }
+    .auth-page-form > .auth-btn-container {
         width: 75vw;
     }
     .verif-phone-number-single-cont{

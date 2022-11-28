@@ -42,8 +42,21 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.5);
     }
+
+    .page-header-logo {
+        font-family: libel-suit-rg, sans-serif;
+        position: absolute; 
+        left: 15px; 
+        top: 15px; 
+        width: auto; 
+        text-align: center; 
+        color: white; 
+        font-size: 24px; 
+        font-weight: normal;
+    }
+
+    @font-face{font-family: 'libel-suit-rg'; src: url(../../fonts/libel-suit.otf) format('opentype');}
 
     #page-body {
         width: 100%;
@@ -199,6 +212,7 @@
 <body>
     <div id="page-container">
         <div id="page-header">
+            <a class="page-header-logo">DogsHome</a>
             <a id="action-name"><%= action %> </a>
         </div>
         <div id="page-body">
