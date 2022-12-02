@@ -319,9 +319,9 @@
         <div class="filter-section" id="age-section">
             <a class="filter-section-title">Edad</a>
             <label for="age-years" class="filter-label">Años</label>
-            <input oninput="validity.valid||(value=0);" step="1" type="number" id="age-years" min="0" max="25" class="filter-input">
+            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="age-years" min="0" max="25" class="filter-input">
             <label for="age-months" class="filter-label">Meses</label>
-            <input oninput="validity.valid||(value=0);" step="1" type="number" id="age-months" min="0" max="11" class="filter-input">
+            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="age-months" min="0" max="11" class="filter-input">
             <label class="filter-label" style="color: #079292" id="age-final"></label>
         </div>
         <div class="filter-section" id="personality-section">
@@ -400,7 +400,7 @@
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Si</option>
-                <option value="3">No estoy seguro</option>
+                <option value="2">No estoy seguro</option>
             </select>
             <label class="filter-label">Castrado</label>
             <select name="castrated" class="dropdown" id="castrated-dropdown">
@@ -522,7 +522,7 @@
                 valid: false,
                 message: 'Por favor, ingrese la edad del perro.'
             }
-        } else if (ageMonths <= 0 || ageYears <= 0) {
+        } else if (ageMonths <= 0 && ageYears <= 0) {
             return {
                 valid: false,
                 message: 'El perro debe tener al menos 1 mes de edad.'

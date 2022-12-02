@@ -159,8 +159,8 @@
                                 const draft =       snapshot[0];
                                 let step =          draft.Step || 1;
                                 const paramStep =   String(req.body.step);
-                                let newDraft =      draft;
-    
+                                let newDraft =      Object.assign({}, draft);
+
                                 //Check if the user is requesting to go back to the previous step
                                 if(paramStep == "back"){
     
@@ -415,21 +415,28 @@
                                                 return;
                                             }
                                             newDraft["updatedAt"] =     new Date();
-                                            newDraft["Step"] =      6;
+                                            newDraft["Step"] =          6;
 
                                             continueUpdating();
                                             break;
                                         case 6:
                                             const publicationsCollection =  mongoDB.collection('Publications');
-                                            insertOne(publicationsCollection, draft, (err, result) => {
-                                                if(err) {
-                                                    console.log('Error inserting publication');
-                                                    res.status(500).send({error: 'Error inserting publication'});
+                                            insertOne(publicationsCollection, draft).then((result) => {
+                                                newDraft["updatedAt"] =     new Date();
+                                                newDraft["Step"] =          7;
+                                                const usersCollection =     mongoDB.collection('Users');
+                                                updateUsersPosts(refId, draftId, usersCollection).then((result) => {
+                                                    continueUpdating();
+                                                    return;
+                                                }).catch((error) => {
+                                                    res.status(500).send({error: 'Error in your request'});
                                                     client.close();
                                                     return;
-                                                }
-                                                res.status(200).send({result: 'Publication created'});
+                                                });
+                                            }).catch((error) => {
+                                                res.status(500).send({error: 'Error inserting publication'});
                                                 client.close();
+                                                return;
                                             });
                                             break;
                                             
@@ -446,7 +453,7 @@
                                         client.close();
                                     });
                                 }
-                                
+
                             }else{
                                 res.status(403).send({error: 'You are not allowed to edit this draft.'});
                                 client.close();
@@ -497,9 +504,7 @@
                             if(snapshot.length > 0 && snapshot[0].RefId === refId){
                                 const draft =       snapshot[0];
                                 let step =          draft.Step || 1;
-                                const paramStep =   String(req.body.step);
                                 let newDraft =      draft;
-                                let filters =       draft.Filters || {};
                                 var filteredImages = req.body.images.filter(function(value, index, arr){ 
                                     return value !== 'image-1.jpeg';
                                 });
@@ -521,9 +526,10 @@
                                 }
 
                                 function formatImagesToURL(imagesArr){
+                                    console.log(imagesArr);
                                     let images = [];
                                     imagesArr.forEach( (image) => {
-                                        images.push(`https://dogshome.com.ar/profile/drafts/${draftId}/uploaded/image/${imagesArr.indexOf(image)}`);
+                                        images.push(`/profile/drafts/${draftId}/uploaded/image/${imagesArr.indexOf(image) + 2}`);
                                     });
                                     return images;
                                 }
@@ -556,6 +562,21 @@
                 const requestProjection = { _id: 0 };
                 const requestQuery = { Id: draftId, RefId: data.refId};
                 const updateData = {$set: draft};
+                saveMany(collection, requestQuery, updateData).then( (result) => {
+                    resolve(result);
+                }).catch( (err) => {
+                    console.log(err);
+                    reject(err);
+                });
+                    
+            });
+        }
+
+        const updateUsersPosts = (userId, postId, collection) => {
+            return new Promise((resolve, reject) => {
+                const requestProjection = { _id: 0 };
+                const requestQuery = { Id: userId };
+                const updateData = {$push: {PostsIds: postId}};
                 saveMany(collection, requestQuery, updateData).then( (result) => {
                     resolve(result);
                 }).catch( (err) => {

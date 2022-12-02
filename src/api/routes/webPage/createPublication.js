@@ -31,22 +31,26 @@ function init(app){
                 if(data.length > 0){   
                     snapshot = data[0] || {};
                     const step = snapshot.Step || 1;
-                    const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
-                    const provinceName = provincesArr[provincesArr.indexOf(snapshot.Province)]
-                    res.render(appDir + '/public/create-publication', {
-                        uid:            user.user_id,
-                        displayName:    nameAndSurname_fullName || ' ',
-                        name:           nameAndSurname_name || ' ',
-                        surname:        nameAndSurname_surname || ' ',
-                        photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                        isPrivate:      isPrivate,
-                        step:           step,
-                        draftId:        draftId,
-                        draftData:      {
+                    if(step < 7) {
+                        const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
+                        const provinceName = provincesArr[provincesArr.indexOf(snapshot.Province)]
+                        res.render(appDir + '/public/create-publication', {
+                            uid:            user.user_id,
+                            displayName:    nameAndSurname_fullName || ' ',
+                            name:           nameAndSurname_name || ' ',
+                            surname:        nameAndSurname_surname || ' ',
+                            photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                            isPrivate:      isPrivate,
+                            step:           step,
+                            draftId:        draftId,
+                            draftData:      {
 
-                        }
-                    });
-                    client.close();
+                            }
+                        });
+                        client.close();
+                    } else {
+                        res.redirect('/publicacion/' + draftId);
+                    }
                 }else{
                     res.render(appDir + '/public/404', {
                         errorCode: '404',
