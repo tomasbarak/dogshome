@@ -1,0 +1,62 @@
+<style>
+    .last-half-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 15px;
+        top: 50vh;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        background-color: white;
+    }
+    #finished-image {
+        width: auto;
+        height: 100%;
+    }
+</style>
+
+<div class="first-half-container">
+    <h1 class="create-title">¡Estás a un solo paso de publicar!</h1>
+</div>
+<div class="last-half-container">
+    <img id="finished-image" src="/images/draft_finished.svg" alt="Draft finished">
+</div>
+<script>
+    const updateDraft = (draftId) => {
+        Swal.fire({
+            title: 'Publicando borrador',
+            text: 'Esperá un momento',
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+
+        });
+        axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`).then(res => {
+            if(res.status === 200){
+                window.location.reload();
+            }else{
+                Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+            Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+            });
+        });
+    }
+</script>

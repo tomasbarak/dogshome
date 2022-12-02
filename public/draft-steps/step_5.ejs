@@ -316,14 +316,15 @@
 </div>
 <div id="dog-filters-container">
     <div class="filter-column">
-        <div class="filter-section">
+        <div class="filter-section" id="age-section">
             <a class="filter-section-title">Edad</a>
-            <label for="age-months" class="filter-label">Meses</label>
-            <input type="number" id="age-months" class="filter-input">
             <label for="age-years" class="filter-label">Años</label>
-            <input type="number" id="age-years" class="filter-input">
+            <input oninput="validity.valid||(value=0);" step="1" type="number" id="age-years" min="0" max="25" class="filter-input">
+            <label for="age-months" class="filter-label">Meses</label>
+            <input oninput="validity.valid||(value=0);" step="1" type="number" id="age-months" min="0" max="11" class="filter-input">
+            <label class="filter-label" style="color: #079292" id="age-final"></label>
         </div>
-        <div class="filter-section">
+        <div class="filter-section" id="personality-section">
             <a class="filter-section-title">Personalidad</a>
             <label class="filter-label">Amigable con gatos</label>
             <select name="cat-friendly" class="dropdown" id="cat-friendly-dropdown">
@@ -350,8 +351,14 @@
     </div>
     
     <div class="filter-column">
-        <div class="filter-section">
+        <div class="filter-section" id="physical-characteristics-section">
             <a class="filter-section-title">Características físicas</a>
+            <label class="filter-label">Sexo</label>
+            <select name="Sex" class="dropdown" id="sex-dropdown">
+                <option disabled="" selected="" value="">Sexo...</option>
+                <option value="0">Macho</option>
+                <option value="1">Hembra</option>
+            </select>
             <label class="filter-label">Color (aproximado)</label>
             <select name="Color" class="dropdown" id="color-dropdown">
                 <option disabled="" selected="" value="">Color...</option>
@@ -371,12 +378,14 @@
                 <option value="3">Grande</option>
                 <option value="4">Muy grande</option>
             </select>
+            <label for="age-months" class="filter-label">Peso (kg.)</label>
+            <input oninput="validity.valid||(value=0);" type="number" id="weight-input" placeholder="Ingresar peso en kg..." step=".01" min="0" max="99" class="filter-input">
             <label class="filter-label">Raza</label>
             <div class="text-search-container " id="departamento">
                 <input onfocus="$('#breed-input').autocomplete('search', this.value)" type="text" placeholder="Escribir raza..." id="breed-input" class="filter-input">
             </div>
         </div>
-        <div class="filter-section">
+        <div class="filter-section" id="health-section">
             <a class="filter-section-title">Salud</a>
             <label class="filter-label">Vacunado</label>
             <select name="vaccinated" class="dropdown" id="vaccinated-dropdown">
@@ -403,14 +412,14 @@
     </div>
     
     <div class="filter-column">
-        <div class="filter-section">
+        <div class="filter-section" id="habits-section">
             <a class="filter-section-title">Hábitos</a>
             <div id="habits-input-container">
                 <textarea name="habitos" id="habits-input" oninput="updateCounter('habits')"></textarea>
             </div>
             <a id="habits-input-counter">0/140</a>
         </div>
-        <div class="filter-section">
+        <div class="filter-section" id="observations-section">
             <a class="filter-section-title">Observaciones</a>
             <div id="observations-input-container">
                 <textarea name="observaciones" id="observations-input" oninput="updateCounter('observations')"></textarea>
@@ -433,24 +442,66 @@
 
     requestBreeds().then((raw_res) => {
         let data = raw_res.data;
+        window.breeds = data;
 
         $("#breed-input").autocomplete({
             source: data,
-            position: {  collision: "flip"  }
+            position: {  collision: "flip"  },
+            minLength: 0,
+        }).focus(function () {
+            $(this).autocomplete("search");
         });
     })
     
-
+    const setAgeFinalLabel = (ageYears, ageMonths) => {
+        const ageFinalLabel = document.querySelector('#age-final');
+        ageYears = Number(ageYears);
+        ageMonths = Number(ageMonths);
+        if(ageMonths > 0 || ageYears > 0) {
+            if(ageYears > 0 && ageMonths > 0) {
+                if(ageYears > 1){
+                    if(ageMonths > 1){
+                        ageFinalLabel.innerHTML = `${ageYears} años y ${ageMonths} meses`;
+                    } else {
+                        ageFinalLabel.innerHTML = `${ageYears} años y ${ageMonths} mes`;
+                    }
+                } else {
+                    if(ageMonths > 1){
+                        ageFinalLabel.innerHTML = `${ageYears} año y ${ageMonths} meses`;
+                    } else {
+                        ageFinalLabel.innerHTML = `${ageYears} año y ${ageMonths} mes`;
+                    }
+                }
+            } else if(ageYears > 0) {
+                if(ageYears > 1) {
+                    ageFinalLabel.innerHTML = `${ageYears} años`;
+                } else {
+                    ageFinalLabel.innerHTML = `${ageYears} año`;
+                }
+            } else {
+                if(ageMonths > 1) {
+                    ageFinalLabel.innerHTML = `${ageMonths} meses`;
+                } else {
+                    ageFinalLabel.innerHTML = `${ageMonths} mes`;
+                }
+            }
+        } else {
+            ageFinalLabel.innerHTML = '';
+        }
+    }
 
     document.querySelector('#age-months').addEventListener('input', function (e) {
-        let ageMonths = e.target.value;
-        let ageYears = ageMonths / 12;
-        document.querySelector('#age-years').value = Math.round((ageYears + Number.EPSILON) * 100) / 100;
+        const ageYears = document.querySelector('#age-years').value;
+        const ageMonths = e.target.value;
+
+        setAgeFinalLabel(ageYears, ageMonths);
     });
+
     document.querySelector('#age-years').addEventListener('input', function (e) {
-        let ageYears = e.target.value;
-        let ageMonths = ageYears * 12;
-        document.querySelector('#age-months').value = ageMonths;
+        const ageYears = e.target.value;
+        const ageMonths = document.querySelector('#age-months').value;
+        
+        setAgeFinalLabel(ageYears, ageMonths);
     });
 
     const updateCounter = (counterName) => {
@@ -460,19 +511,267 @@
         counter.innerHTML = `${input.value.length}/140`;
     }
     window.onload = () => {updateCounter('habits'); updateCounter('observations')};
+
+    function checkAgeFilterSection() {
+        const ageSection = document.getElementById('age-section');
+        const ageMonths = document.getElementById('age-months').value;
+        const ageYears = document.getElementById('age-years').value;
+
+        if (ageMonths.length <= 0 || ageYears.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, ingrese la edad del perro.'
+            }
+        } else if (ageMonths <= 0 || ageYears <= 0) {
+            return {
+                valid: false,
+                message: 'El perro debe tener al menos 1 mes de edad.'
+            }
+        } else if(ageMonths > 360 || ageYears > 30) {
+            return {
+                valid: false,
+                message: 'El perro no puede tener más de 30 años de edad.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    ageMonths: ageMonths,
+                    ageYears: ageYears
+                }
+            }
+        }
+    }
+
+    function checkPersonalityFilterSection() {
+        const personalitySection = document.getElementById('personality-section');
+        const catFriendly = document.getElementById('cat-friendly-dropdown').value;
+        const dogFriendly = document.getElementById('dog-friendly-dropdown').value;
+        const childFriendly = document.getElementById('child-friendly-dropdown').value;
+
+        document.getElementById('cat-friendly-dropdown').selected = document.getElementById('cat-friendly-dropdown').defaultSelected;
+
+        console.log(catFriendly, dogFriendly, childFriendly);
+        
+        if(catFriendly.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro es amigable con los gatos.'
+            }
+        } else if(dogFriendly.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro es amigable con otros perros.'
+            }
+        } else if(childFriendly.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro es amigable con los niños.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    catFriendly: catFriendly,
+                    dogFriendly: dogFriendly,
+                    childFriendly: childFriendly
+                }
+            }
+        }
+    }
+
+    function checkPhysicalCharacteristicsFilterSection() {
+        const physicalCharacteristicsSection = document.getElementById('physical-characteristics-section');
+        const sex = document.getElementById('sex-dropdown').value;
+        const color = document.getElementById('color-dropdown').value;
+        const size = document.getElementById('size-dropdown').value;
+        const weight = document.getElementById('weight-input').value;
+        const breed = document.getElementById('breed-input').value;
+
+        if(sex.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione el sexo del perro.'
+            }
+        } else if(color.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione el color del perro.'
+            }
+        } else if(size.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione el tamaño del perro.'
+            }
+        }else if(weight.length <= 0){
+            return {
+                valid: false,
+                message: 'Por favor, ingrese el peso del perro.'
+            }
+        }else if(weight > 99){
+            return {
+                valid: false,
+                message: 'El peso del perro no puede ser mayor a 99 kg.'
+            }
+        } else if(weight <= 0){
+            return {
+                valid: false,
+                message: 'El peso del perro debe ser mayor a 0 kg.'
+            }
+        }else if(breed.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, ingrese la raza del perro.'
+            }
+        } else if(!window.breeds.includes(breed)) {
+            return {
+                valid: false,
+                message: 'Por favor, ingrese una raza válida.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    sex: sex,
+                    color: color,
+                    size: size,
+                    weight: weight,
+                    breed: breed
+                }
+            }
+        }
+    }
+
+    function checkHealthFilterSection() {
+        const healthSection = document.getElementById('health-section');
+        const vaccinated = document.getElementById('vaccinated-dropdown').value;
+        const dewormed = document.getElementById('dewormed-dropdown').value;
+        const castrated = document.getElementById('castrated-dropdown').value;
+
+        if(vaccinated.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro está vacunado.'
+            }
+        } else if(dewormed.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro está desparasitado.'
+            }
+        } else if(castrated.length <= 0) {
+            return {
+                valid: false,
+                message: 'Por favor, seleccione si el perro está castrado.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    vaccinated: vaccinated,
+                    dewormed: dewormed,
+                    castrated: castrated
+                }
+            }
+        }
+    }
+    
+    function checkHabitsFilterSection() {
+        const habitsSection = document.getElementById('habits-section');
+        const habits = document.getElementById('habits-input').value;
+
+        if(habits.length <= 30) {
+            return {
+                valid: false,
+                message: 'Por favor, ingrese al menos 30 caracteres en los hábitos del perro.'
+            }
+        } else if(habits.length > 140) {
+            return {
+                valid: false,
+                message: 'El campo de hábitos no puede tener más de 140 caracteres.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    habits: habits
+                }
+            }
+        }
+    }
+
+    function checkObservationsFilterSection() {
+        const observationsSection = document.getElementById('observations-section');
+        const observations = document.getElementById('observations-input').value;
+
+        if(observations.length <= 30) {
+            return {
+                valid: false,
+                message: 'Por favor, ingrese al menos 30 caracteres en las observaciones del perro.'
+            }
+        } else if(observations.length > 140) {
+            return {
+                valid: false,
+                message: 'El campo de observaciones no puede tener más de 140 caracteres.'
+            }
+        } else {
+            return {
+                valid: true,
+                message: '',
+                values: {
+                    observations: observations
+                }
+            }
+        }
+    }
 </script>
 
 <script>
     const updateDraft = (draftId) => {
-community@dogshome.com.ar        const province = document.getElementById('province-dropdown').value;
-        const provinceName = document.getElementById('province-dropdown').options[document.getElementById('province-dropdown').selectedIndex].text;
-        const parsed_province_name = provinceName.replaceAll(" ", "_").toLowerCase();
-        const department = document.getElementById('dep-input').value.trim();
-        document.getElementById('dep-input').value = department;
-        const parsed_department = department.replaceAll(" ", "_").toLowerCase();
-        const valid_department = province_departments[parsed_province_name].map((value) => {return value.nombre.replaceAll(" ", "_").toLowerCase()}).includes(parsed_department);
-        const valid_province = province_departments[parsed_province_name] !== undefined
-        if(province >= 0 && department.length > 0 && valid_province && valid_department){
+        const checks = [
+            checkAgeFilterSection(),
+            checkPersonalityFilterSection(),
+            checkPhysicalCharacteristicsFilterSection(),
+            checkHealthFilterSection(),
+            checkHabitsFilterSection(),
+            checkObservationsFilterSection()
+        ];
+        
+        let allValid = true;
+
+        const allValuesFromChecksObj = checks.reduce((acc, check) => {
+            if(!check.valid) {
+                allValid = false;
+                return acc;
+            } else {
+                return {
+                    ...acc,
+                    ...check.values
+                }
+            }
+        }, {});
+
+        console.log(allValuesFromChecksObj);
+
+        checks.every(check => {
+            if(!check.valid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: check.message
+                });
+                allValid = false;
+                return false;
+            }
+            return true;
+        });
+
+
+        if(allValid) {
             Swal.fire({
                 title: 'Actualizando borrador',
                 text: 'Esperá un momento',
@@ -483,9 +782,9 @@ community@dogshome.com.ar        const province = document.getElementById('provi
                 allowEscapeKey: false,
                 allowEnterKey: false,
             });
+
             axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
-                province: document.getElementById('province-dropdown').value,
-                department: document.getElementById('dep-input').value,
+                filters: allValuesFromChecksObj
             }).then(res => {
                 if(res.status === 200){
                     window.location.reload();
@@ -507,36 +806,6 @@ community@dogshome.com.ar        const province = document.getElementById('provi
                 });
             });
         }else{
-            if(province < 0){
-                console.log(province)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Seleccioná una provincia',
-                    confirmButtonColor: '#079292'
-                });
-            }else if(department.length === 0){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Ingresá un departamento',
-                    confirmButtonColor: '#079292'
-                });
-            }else if(!valid_province){
-                console.log(province_departments[parsed_province_name]);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Seleccioná una provincia válida',
-                    confirmButtonColor: '#079292'
-                });
-            }else if(!valid_department){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Seleccioná un departamento válido',
-                    confirmButtonColor: '#079292'
-                });
-            }
         }
+    };
 </script>

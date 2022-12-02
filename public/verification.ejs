@@ -48,6 +48,7 @@
                     confirmButtonText: 'Continuar',
                     confirmButtonColor: '#079292',
                     allowOutsideClick: false,
+                    heightAuto: false,
                     allowEscapeKey: false,
 
                 }).then((result) => {
@@ -66,6 +67,7 @@
                         title: 'Enviando correo de verificación',
                         html: 'Por favor espere...',
                         allowEscapeKey: false,
+                        heightAuto: false,
                         allowOutsideClick: false,
                         didOpen: () => {
                             Swal.showLoading()
@@ -83,6 +85,7 @@
                                         text: 'Se ha enviado un correo electrónico a ' + user.email + ' para verificar su cuenta.',
                                         confirmButtonText: 'Verificar',
                                         confirmButtonColor: '#079292',
+                                        heightAuto: false,
                                         allowEscapeKey: false,
                                         allowOutsideClick: false,
                                         icon: 'success'
@@ -96,6 +99,7 @@
                                         icon: 'error',
                                         confirmButtonText: 'Intentar de nuevo',
                                         confirmButtonColor: '#079292',
+                                        heightAuto: false,
                                         allowEscapeKey: false,
                                         allowOutsideClick: false,
                                     }).then(function () {
@@ -113,6 +117,7 @@
                                     confirmButtonText: 'Intentar de nuevo',
                                     confirmButtonColor: '#079292',
                                     allowOutsideClick: false,
+                                    heightAuto: false,
                                     allowEscapeKey: false,
                                 }).then(function () {
                                     window.location.reload();

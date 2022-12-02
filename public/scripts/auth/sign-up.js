@@ -9,6 +9,7 @@ function throwEmailExistsError() {
         title: 'Error',
         text: 'Parece que el email ingresado ya existe',
         icon: 'error',
+        heightAuto: false,
         confirmButtonColor: '#d33',
     }
     )
@@ -23,6 +24,7 @@ function signUp(email, password, repeatPassword) {
             allowOutsideClick: false,
             allowEscapeKey: false,
             allowEnterKey: false,
+            heightAuto: false,
             didOpen: () => {
                 Swal.showLoading()
             },
@@ -48,6 +50,7 @@ function signUp(email, password, repeatPassword) {
         });
     } else {
         Swal.fire({
+            heightAuto: false,
             title: 'Error',
             text: authDataCheck.message,
             icon: 'error',

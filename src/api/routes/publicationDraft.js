@@ -66,30 +66,39 @@
                         checkMaxCreated(collection, refId).then((allowed) => {
                             //If user has not reached the max number of drafts go ahead
                             if(allowed){
-                                let ObjectId = require('mongodb').ObjectId;
-                                const objectId = new ObjectId();
-                                const draftId = objectId.toString();
+                                const usersCollection = mongoDB.collection('Users');
 
-                                //Basic draft structure
-                                let draft = {
-                                            _id:        objectId,
-                                            Id:         draftId,
-                                            Step:       1,
-                                            RefId:      refId,
-                                            updatedAt:  new Date(),
-                                            createdAt:  new Date(),
-                                        }
-    
-                                //Insert basic draft into "PublicationDrafts" collection
-                                insertOne(collection, draft).then( (result) => {
-                                    res.send({
-                                        success: true,
-                                        id: draftId,
-                                        redirectPath: `/crear/publicacion/${draftId}`
+                                //Get user data
+                                getOne(usersCollection, { _id: 0 }, { Id: refId }).then((user_snap) => {
+                                    console.log(user_snap);
+                                    let ObjectId = require('mongodb').ObjectId;
+                                    const objectId = new ObjectId();
+                                    const draftId = objectId.toString();
+                                    //Basic draft structure
+                                    let draft = {
+                                                _id:        objectId,
+                                                Id:         draftId,
+                                                Step:       1,
+                                                RefId:      refId,
+                                                Refugio:    user_snap.RefName,
+                                                updatedAt:  new Date(),
+                                                createdAt:  new Date(),
+                                            }
+        
+                                    //Insert basic draft into "PublicationDrafts" collection
+                                    insertOne(collection, draft).then( (result) => {
+                                        res.send({
+                                            success: true,
+                                            id: draftId,
+                                            redirectPath: `/crear/publicacion/${draftId}`
+                                        });
+                                        client.close();
+                                    }).catch((err) => {
+                                        console.log(err);
+                                        res.status(500).send({error: err, success: false});
+                                        client.close();
                                     });
-                                    client.close();
                                 }).catch((err) => {
-                                    console.log(err);
                                     res.status(500).send({error: err, success: false});
                                     client.close();
                                 });
@@ -151,7 +160,6 @@
                                 let step =          draft.Step || 1;
                                 const paramStep =   String(req.body.step);
                                 let newDraft =      draft;
-                                let filters =       draft.Filters || {};
     
                                 //Check if the user is requesting to go back to the previous step
                                 if(paramStep == "back"){
@@ -257,6 +265,174 @@
                                             res.redirect(307, '/upload/draft/images/' + draftId);
                                             client.close();
                                             break;
+                                        case 5:
+                                            const breeds = require(appDir + '/public/draft-steps/breeds/breeds.json');
+
+                                            const ageMonths = Number(req.body.filters.ageMonths);
+                                            const ageYears = Number(req.body.filters.ageYears);
+                                            const breed = req.body.filters.breed;
+                                            const castrated = req.body.filters.castrated;
+                                            const catFriendly = req.body.filters.catFriendly;
+                                            const childFriendly = req.body.filters.childFriendly;
+                                            const color = req.body.filters.color;
+                                            const dewormed = req.body.filters.dewormed;
+                                            const dogFriendly = req.body.filters.dogFriendly;
+                                            const habits = req.body.filters.habits;
+                                            const observations = req.body.filters.observations;
+                                            const sex = req.body.filters.sex;
+                                            const size = req.body.filters.size;
+                                            const vaccinated = req.body.filters.vaccinated;
+                                            const weight = req.body.filters.weight;
+
+                                            console.log(ageMonths, ageYears, breed, castrated, catFriendly, childFriendly, color, dewormed, dogFriendly, habits, observations);
+
+                                            if(ageMonths <= 11 && ageYears <= 25) {
+                                                newDraft["Filters"] = {};
+                                                newDraft["Filters"]["Age"] = {};
+                                                newDraft["Filters"]["Age"]["Months"] = ageMonths;
+                                                newDraft["Filters"]["Age"]["Years"] = ageYears;
+                                            } else {
+                                                console.log('Error in age');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(breeds.includes(breed)) {
+                                                newDraft["Filters"]["Breed"] = breed;
+                                            }else {
+                                                console.log('Error in breed');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(castrated == 0 || castrated == 1) {
+                                                newDraft["Filters"]["Castrated"] = !!castrated;
+                                            }else {
+                                                console.log('Error in castrated');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(catFriendly == 0 || catFriendly == 1 || catFriendly == 2) {
+                                                newDraft["Filters"]["CatFriendly"] = [false, true, "No estoy seguro"][catFriendly];
+                                            }else {
+                                                console.log('Error in catFriendly');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(childFriendly == 0 || childFriendly == 1 || childFriendly == 2) {
+                                                newDraft["Filters"]["KidsFriendly"] = [false, true, "No estoy seguro"][childFriendly];
+                                            }else {
+                                                console.log('Error in childFriendly');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(color == 0 || color == 1 || color == 2 || color == 3 || color == 4 || color == 5) {
+                                                newDraft["Filters"]["Color"] = ["Blanco", "Gris", "Negro", "Marrón", "Colorado", "Mixto"][color];
+                                            } else {
+                                                console.log('Error in color');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(dewormed == 0 || dewormed == 1 || dewormed == 2) {
+                                                newDraft["Filters"]["Dewormed"] = [false, true, "No estoy seguro"][dewormed];
+                                            } else {
+                                                console.log('Error in dewormed');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(dogFriendly == 0 || dogFriendly == 1 || dogFriendly == 2) {
+                                                newDraft["Filters"]["DogFriendly"] = [false, true, "No estoy seguro"][dogFriendly];
+                                            } else {
+                                                console.log('Error in dogFriendly');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(habits.length <= 140 && habits.length >= 30) {
+                                                newDraft["Filters"]["Habits"] = habits;
+                                            } else {
+                                                console.log('Error in habits');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(observations.length <= 140 && observations.length >= 30) {
+                                                newDraft["Filters"]["Observations"] = observations;
+                                            } else {
+                                                console.log('Error in observations');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(sex == 0 || sex == 1) {
+                                                newDraft["Filters"]["Sex"] = !!sex;
+                                            } else {
+                                                console.log('Error in sex');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(size == 0 || size == 1 || size == 2 || size == 3 || size == 4) { 
+                                                newDraft["Filters"]["Size"] = ["Muy pequeño", "Pequeño", "Mediano", "Grande", "Muy grande"][size];
+                                            } else {
+                                                console.log('Error in size');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(vaccinated == 0 || vaccinated == 1 || vaccinated == 2 || vaccinated == 3) {
+                                                newDraft["Filters"]["Vaccinated"] = ["No vacunado", "Vacunación incompleta", "Vacunación completa", "No estoy seguro"][vaccinated];
+                                            } else {
+                                                console.log('Error in vaccinated');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+
+                                            if(weight < 100 && weight > 0) {
+                                                newDraft["Filters"]["Weight"] = weight;
+                                            } else {
+                                                console.log('Error in weight');
+                                                res.status(400).send({error: 'Error in your request'});
+                                                client.close();
+                                                return;
+                                            }
+                                            newDraft["updatedAt"] =     new Date();
+                                            newDraft["Step"] =      6;
+
+                                            continueUpdating();
+                                            break;
+                                        case 6:
+                                            const publicationsCollection =  mongoDB.collection('Publications');
+                                            insertOne(publicationsCollection, draft, (err, result) => {
+                                                if(err) {
+                                                    console.log('Error inserting publication');
+                                                    res.status(500).send({error: 'Error inserting publication'});
+                                                    client.close();
+                                                    return;
+                                                }
+                                                res.status(200).send({result: 'Publication created'});
+                                                client.close();
+                                            });
+                                            break;
+                                            
                                     }
                                 }
     
