@@ -6,13 +6,13 @@
     <%- include(rootPath + 'ejs-resources/publication/publication_style.ejs'); %>
     <%- include(rootPath + 'ejs-resources/publication/publication_slider_style.ejs'); %>
 
-    <title>DogsHome | <%= name %></title>
+    <title>DogsHome | <%= String(name).charAt(0).toUpperCase() + String(name).slice(1) %></title>
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
 
-    <meta property="og:title" content="Dogshome | <%= name %>">
+    <meta property="og:title" content="Dogshome | <%= String(name).charAt(0).toUpperCase() + String(name).slice(1) %>">
     <meta property="og:url" content="https://dogshome.com.ar/publicacion/<%= pubId %>"/>
     <meta property="og:description" content="<%= description %>">
-    <meta property="og:image" content="<%= String(photo).charAt(0).toUpperCase() + String(photo).slice(1) %> ">
+    <meta property="og:image" content="<%= photo %> ">
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
 
