@@ -25,6 +25,18 @@ const getMany = (collection, projection = {}, query = {}) =>{
     });
 }
 
+const getManyWithLimit = (collection, projection = {}, query = {}, limit = 10, skip = 0) => {
+    return new Promise((resolve, reject) => {
+        collection.find(query).project(projection).limit(limit).skip(skip).toArray((err, result) => {
+            if(err){
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        });
+    });
+}
+
 const getOne = (collection, projection = {}, query = {}) => {
     return new Promise((resolve, reject) => {
         
@@ -122,4 +134,4 @@ const sanitize = (data) => {
     }
     return String(sanitized);
 }
-module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize, insertOne };
+module.exports = { connectClient, getMany, getOne, getAllCollection, saveOne, saveMany, deleteOne, deleteMany, sanitize, insertOne, getManyWithLimit };

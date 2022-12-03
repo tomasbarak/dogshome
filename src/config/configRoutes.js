@@ -11,6 +11,7 @@ function config(app, firebaseadmin){
     require( appDir + '/src/api/routes/accountProfile')                 .init(app);
     require( appDir + '/src/api/routes/accountStats')                   .init(app);
     require( appDir + '/src/api/routes/allPublications')                .init(app);
+    require( appDir + '/src/api/routes/publicationsPagination')         .init(app);
     require( appDir + '/src/api/routes/publicationById')                .init(app);
     require( appDir + '/src/api/routes/accountDisplayName')             .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/email/sendVerification')         .init(app, firebaseadmin);

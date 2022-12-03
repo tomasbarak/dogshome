@@ -35,26 +35,9 @@
         <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
         <section id="content">
             <section id="content-show">
-                <% publications.forEach(function(post){%>
-                    <div class="publication"
-                        onclick="{let uid = '<%= post[0].Id %>'; window.location = '/publicacion/' + uid}">
-                        <img loading="lazy" src=<%=post[0].Photo %> alt class="publication-photo">
-                        <div class="publication-desc-cont">
-                            <h1 class="publication-name">
-                                <%= post[0].Name %>
-                            </h1>
-                            <p class="publication-description">
-                                <%= post[0].SDescription %>
-                            </p>
-                        </div>
-                        <div class="ref-name-cont">
-                            <a>
-                                <%= post[0].Refugio %>
-                            </a>
-                        </div>
-                    </div>
-                <%});%>
+                
             </section>
+            <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
         </section>
         <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
     </section>
@@ -75,15 +58,117 @@
     <script src="/scripts/auth/sign-out.js"></script>
     <script>
         var width;
+        let currentPage = 1;
+        let lockPostPageLoading = false;
         window.onresize = function () {
             width = this.innerWidth;
             if (width > 1024) {
                 document.getElementById("expandible-menu").className = 'expandible-menu-invisible';
             }
         }
-        window.onload = () => {
-            setLoading(false)
+
+        function getPublicationsPage(page) {
+            return new Promise((resolve, reject) => {
+                axios.get('/api/publications/page/' + page).then((response) => {
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                });
+            })
         }
+
+        function addPublications(publicationArray) {
+            publicationArray.forEach(function (post) {
+                let publicationContainer = document.getElementById('content-show');
+                let publication = document.createElement('div');
+                publication.className = 'publication';
+                publication.onclick = function () {
+                    let uid = post.Id;
+                    window.location = '/publicacion/' + uid;
+                }
+                let publicationPhoto = document.createElement('img');
+                publicationPhoto.className = 'publication-photo';
+                publicationPhoto.src = post.Photo;
+                publicationPhoto.alt = '';
+                publicationPhoto.loading = 'lazy';
+                publication.appendChild(publicationPhoto);
+                let publicationDescCont = document.createElement('div');
+                publicationDescCont.className = 'publication-desc-cont';
+                let publicationName = document.createElement('h1');
+                publicationName.className = 'publication-name';
+                publicationName.innerText = post.Name;
+                publicationDescCont.appendChild(publicationName);
+                let publicationDescription = document.createElement('p');
+                publicationDescription.className = 'publication-description';
+                publicationDescription.innerText = post.SDescription;
+                publicationDescCont.appendChild(publicationDescription);
+                publication.appendChild(publicationDescCont);
+                let refNameCont = document.createElement('div');
+                refNameCont.className = 'ref-name-cont';
+                let refName = document.createElement('a');
+                refName.innerText = post.Refugio;
+                refNameCont.appendChild(refName);
+                publication.appendChild(refNameCont);
+                publicationContainer.appendChild(publication);
+            });
+            return;
+        }
+
+        function setLoadingPage(isLoading) {
+            if (isLoading) {
+                document.getElementById('page-loading').className = 'page-loading-visible';
+            } else {
+                document.getElementById('page-loading').className = 'page-loading-invisible';
+            }
+        }
+
+        async function hasMorePages() {
+            return new Promise((resolve, reject) => {
+                axios.get('/api/publications/hasPage/' + (currentPage + 1)).then((response) => {
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                });
+            })
+            
+        }
+        window.onload = () => {
+            getPublicationsPage(currentPage).then((response) => {
+                addPublications(response);
+                setLoading(false)
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement;
+
+            if (scrollTop + clientHeight >= scrollHeight - 660 && !lockPostPageLoading) {
+                lockPostPageLoading = true;
+                hasMorePages().then((res) => {
+                    if(res) {
+                        currentPage++;
+                        setLoadingPage(true);
+                        getPublicationsPage(currentPage).then((response) => {
+                            addPublications(response);
+                            setLoadingPage(false);
+                            lockPostPageLoading = false;
+                        }).catch((error) => {
+                            lockPostPageLoading = false;
+                            console.log(error);
+                        });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    lockPostPageLoading = false;
+                });
+            }
+        });
     </script>
     <% if (isPrivate) { %> 
         <%- include('./login-notification.ejs') %>

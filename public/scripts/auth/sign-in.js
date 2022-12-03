@@ -16,6 +16,7 @@ function signIn(email, password) {
             },
             allowOutsideClick: false,
             allowEscapeKey: false,
+            heightAuto: false,
             allowEnterKey: false,
         });
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -45,6 +46,7 @@ function signIn(email, password) {
                         title: 'Error',
                         text: 'El correo o la contraseña son incorrectos',
                         icon: 'error',
+                        heightAuto: false,
                         confirmButtonText: 'Reintentar',
                         confirmButtonColor: '#079292'
                     });
@@ -52,6 +54,7 @@ function signIn(email, password) {
                     Swal.fire({
                         title: 'Error',
                         text: 'El correo no es válido',
+                        heightAuto: false,
                         icon: 'error',
                         confirmButtonText: 'Reintentar',
                         confirmButtonColor: '#079292'
@@ -60,6 +63,7 @@ function signIn(email, password) {
                     Swal.fire({
                         title: 'Error',
                         text: 'Ha ocurrido un error',
+                        heightAuto: false,
                         icon: 'error',
                         confirmButtonText: 'Reintentar',
                         confirmButtonColor: '#079292'
