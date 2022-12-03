@@ -22,6 +22,7 @@
     <script src="/scripts/main/basic-navigation.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
     <%- include(rootPath + 'ejs-resources/index/index_style.ejs'); %>
+    <%- include(rootPath + 'ejs-resources/index/filters_style.ejs'); %>
 
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
     <link rel="canonical" href="https://dogshome.com.ar">
@@ -33,11 +34,15 @@
     <section id="main">
         <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
         <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
+        
         <section id="content">
+            <div id="filters-container">
+                <svg id="filters-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="25"><path d="M15 2.75a.75.75 0 01-.75.75h-4a.75.75 0 010-1.5h4a.75.75 0 01.75.75zm-8.5.75v1.25a.75.75 0 001.5 0v-4a.75.75 0 00-1.5 0V2H1.75a.75.75 0 000 1.5H6.5zm1.25 5.25a.75.75 0 000-1.5h-6a.75.75 0 000 1.5h6zM15 8a.75.75 0 01-.75.75H11.5V10a.75.75 0 11-1.5 0V6a.75.75 0 011.5 0v1.25h2.75A.75.75 0 0115 8zm-9 5.25v-2a.75.75 0 00-1.5 0v1.25H1.75a.75.75 0 000 1.5H4.5v1.25a.75.75 0 001.5 0v-2zm9 0a.75.75 0 01-.75.75h-6a.75.75 0 010-1.5h6a.75.75 0 01.75.75z"></path></svg>
+            </div>
             <section id="content-show">
                 
             </section>
-            <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+            <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
         </section>
         <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
     </section>
@@ -75,6 +80,10 @@
                     reject(error);
                 });
             })
+        }
+
+        function clearContent() {
+            document.getElementById("content-show").innerHTML = "";
         }
 
         function addPublications(publicationArray) {
