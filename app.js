@@ -47,15 +47,8 @@ var SecureServer = https.createServer(options, expressApp);
 
 ////logger.fontColorLog('cyan', 'App started version: ' + commitVersion);
 
-var HttpServer = http.createServer(function (req, res) {
-  res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}` });
-  res.end();
-}).listen(80, function () {
-  logger.fontColorLog('green', 'HTTP Server listening on port 80');
-});
-
-SecureServer.listen(443, function () {
-  logger.fontColorLog('green', 'HTTPS Server listening on port 443');
+SecureServer.listen(8443, function () {
+  logger.fontColorLog('green', 'HTTPS Server listening on port 8443');
   logger.fontColorLog('yellow', "Process id:" + process.pid)
 
   setupPreloadFunction(expressApp, firebaseAdmin);
