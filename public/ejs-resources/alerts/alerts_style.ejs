@@ -1,0 +1,95 @@
+<style>
+    #map-container {
+        height: calc(100vh - 60px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    #map {
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .dropdown-container {
+        height: 60px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: border .5s;
+        font-size: 1.25rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        font-weight: normal;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .text-search-container{
+        height: 60px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: border .5s;
+        font-size: 1.25rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        font-weight: normal;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #province-dropdown-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+    }
+
+    #department-selector-container {
+        position: absolute;
+        top: 10px;
+        right: calc(10px + 200px + 10px);
+        z-index: 2;
+    }
+
+    .dropdown{
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.25rem;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        background-color: transparent;
+        font-weight: normal;
+        outline: none !important;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        #province-dropdown-container {
+            top: 10px;
+            right: 10px;
+        }
+
+        #department-selector-container {
+            top: calc(10px + 60px + 10px);
+            right: 10px;
+        }
+    }
+</style>

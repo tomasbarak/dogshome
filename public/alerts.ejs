@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% var rootPath = './'; %>
+    <!-- Include ejs head.ejs from file-->
+    <%- include('./head.ejs'); %>
+    <title>DogsHome | Alertas</title>
+
+    <meta property="og:title" content="DogsHome | Alertas"/>
+    <meta property="og:url" content="https://dogshome.com.ar/alertas"/>
+    <meta property="og:description" content="DogsHome, descubrí alertas en tu zona">
+    <meta property="og:image" content="https://dogshome.com.ar/profile/image/uploaded/dogshomelogo.jpg">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+
+    <script src="/scripts/main/basic-navigation.js"></script>
+    <script src="/scripts/auth/sign-out.js"></script>
+
+    <%- include(rootPath + 'ejs-resources/alerts/alerts_style.ejs'); %>
+
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+    <link rel="canonical" href="https://dogshome.com.ar/alertas">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+</head>
+<body>
+    <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
+    <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %>
+
+    <div id="map-container">
+        <div id="province-dropdown-container" class="dropdown-container">
+            <select name="Provincia" class="dropdown" id="province-dropdown">
+                <option disabled="" selected="" value="">Provincia...</option>
+                <%- include(rootPath + 'draft-steps/provinces_options.ejs') %> 
+            </select>
+        </div>
+        <div id="department-selector-container" class="text-search-container"></div>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        var map = L.map('map').setView([-34.5662276065396, -58.490428041078], 13);
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19,
+            minZoom: 5,
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'        }).addTo(map);
+    
+    </script>
+
+    <script>
+        const provinceDropdown = document.getElementById('province-dropdown');
+        provinceDropdown.selectedIndex = undefined;
+        let provinces = [];
+        let provinces_geojson = {};
+        fetch('./ejs-resources/alerts/provinces.json')
+        .then(response => response.json())
+        .then(data => {
+            provinces = data;
+
+            //Change map lat/long and zoom when province is selected
+            provinceDropdown.addEventListener('change', (event) => {
+                console.log(provinceDropdown.options[provinceDropdown.selectedIndex].text);
+                const province = provinces.find(province => province.nombre == provinceDropdown.options[provinceDropdown.selectedIndex].text);
+                const province_name = province.nombre;
+                console.log(province);
+                //Remove all feature layer from map
+                map.eachLayer(function (layer) {
+                    if (layer instanceof L.GeoJSON) {
+                        map.removeLayer(layer);
+                    }
+                });
+
+                if(provinces_geojson[province_name]) {
+                    map.flyToBounds(provinces_geojson[province_name].getBounds(), {
+                        duration: 1
+                    });
+                    provinces_geojson[province_name].addTo(map);
+                } else {
+                    fetch(`./ejs-resources/alerts/Arg_Boundaries/${province_name}/${province_name}.geojson`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        let provinceGeojson = L.geoJSON(data, {
+                            style: function(feature) {
+                                switch (feature.properties.boundary) {
+                                    case 'administrative': return {color: "#079292", fillOpacity: 0.1};
+                                }
+                            }
+                        });
+                        provinces_geojson[province_name] = provinceGeojson;
+                        provinceGeojson.addTo(map);
+                        map.flyToBounds(provinceGeojson.getBounds(), {
+                            duration: 1
+                        });
+                    }).catch(error => console.log(error));
+                }
+            });
+        })
+        .catch(error => console.log(error));
+
+        
+    </script>
+</body>
+</html>

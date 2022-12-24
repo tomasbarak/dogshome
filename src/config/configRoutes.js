@@ -23,6 +23,7 @@ function config(app, firebaseadmin){
 
     //WebPage routes
     require( appDir + '/src/api/routes/webPage/index')                  .init(app);
+    require( appDir + '/src/api/routes/webPage/alerts')                 .init(app);
     require( appDir + '/src/api/routes/webPage/profile')                .init(app);
     require( appDir + '/src/api/routes/webPage/publication')            .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/create/profile/create-profile')  .init(app, firebaseadmin);
