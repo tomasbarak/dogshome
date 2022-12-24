@@ -194,7 +194,7 @@
 
             });
 
-            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, images, {
+            axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`, images, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

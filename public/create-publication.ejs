@@ -49,7 +49,7 @@
                 allowEnterKey: false,
 
             });
-            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+            axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`, {
                 step: 'back',
             }).then(res => {
                 if(res.status === 200){

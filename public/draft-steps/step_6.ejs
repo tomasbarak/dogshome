@@ -38,7 +38,7 @@
             allowEnterKey: false,
 
         });
-        axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`).then(res => {
+        axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`).then(res => {
             if(res.status === 200){
                 window.location.reload();
             }else{

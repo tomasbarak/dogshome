@@ -277,7 +277,7 @@
     function requestDepartments(province){
         const parsed_province = province.replaceAll(" ", "_").toLowerCase();
         return new Promise((resolve, reject) => {
-            axios.get(`https://${window.location.hostname}/draft-steps/departments/${parsed_province}.json`).then(function (response) {
+            axios.get(`https://${window.location.host}/draft-steps/departments/${parsed_province}.json`).then(function (response) {
                 resolve(response);
             }).catch(function (error) {
                 reject(error);
@@ -304,7 +304,7 @@
                 allowEscapeKey: false,
                 allowEnterKey: false,
             });
-            axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+            axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`, {
                 province: document.getElementById('province-dropdown').value,
                 department: document.getElementById('dep-input').value,
             }).then(res => {

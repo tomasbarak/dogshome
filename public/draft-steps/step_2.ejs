@@ -78,7 +78,7 @@
             allowEnterKey: false,
 
         });
-        axios.post(`https://${window.location.hostname}/update/publication/draft/${draftId}/`, {
+        axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`, {
             description: document.getElementById('dog-desc-input').value.trim(),
         }).then(res => {
             console.log(res);

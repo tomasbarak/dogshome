@@ -43,7 +43,7 @@ function init(app) {
                     photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
                     isPrivate:      false,
                     locals: {
-                        active: 0,
+                        active: 1,
                         navButtons: [
                             {name: 'Inicio', href: '/'}
                         ],
