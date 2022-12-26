@@ -1,0 +1,542 @@
+[
+    {
+        "id": 2580751,
+        "name": "Partido de Adolfo Alsina"
+    },
+    {
+        "id": 2598392,
+        "name": "Partido de Veinticinco de Mayo"
+    },
+    {
+        "id": 2571745,
+        "name": "Partido de Nueve de Julio"
+    },
+    {
+        "id": 2597664,
+        "name": "Partido de Adolfo Gonzales Chaves"
+    },
+    {
+        "id": 2559862,
+        "name": "Partido de Alberti"
+    },
+    {
+        "id": 2402606,
+        "name": "Partido de Almirante Brown"
+    },
+    {
+        "id": 2455558,
+        "name": "Partido de Arrecifes"
+    },
+    {
+        "id": 2146109,
+        "name": "Partido de Avellaneda"
+    },
+    {
+        "id": 2612454,
+        "name": "Partido de Ayacucho"
+    },
+    {
+        "id": 2609604,
+        "name": "Partido de Azul"
+    },
+    {
+        "id": 2582799,
+        "name": "Partido de Bahía Blanca"
+    },
+    {
+        "id": 2599725,
+        "name": "Partido de Balcarce"
+    },
+    {
+        "id": 2453281,
+        "name": "Partido de Baradero"
+    },
+    {
+        "id": 2607483,
+        "name": "Partido de Benito Juárez"
+    },
+    {
+        "id": 1719022,
+        "name": "Partido de General San Martín"
+    },
+    {
+        "id": 2345171,
+        "name": "Partido de Berazategui"
+    },
+    {
+        "id": 2435142,
+        "name": "Partido de Berisso"
+    },
+    {
+        "id": 2597622,
+        "name": "Partido de Bolívar"
+    },
+    {
+        "id": 2559813,
+        "name": "Partido de Bragado"
+    },
+    {
+        "id": 2499213,
+        "name": "Partido de Brandsen"
+    },
+    {
+        "id": 2451540,
+        "name": "Partido de Campana"
+    },
+    {
+        "id": 2498288,
+        "name": "Partido de Cañuelas"
+    },
+    {
+        "id": 2455548,
+        "name": "Partido de Capitán Sarmiento"
+    },
+    {
+        "id": 2571699,
+        "name": "Partido de Carlos Casares"
+    },
+    {
+        "id": 2564066,
+        "name": "Partido de Carlos Tejedor"
+    },
+    {
+        "id": 2463037,
+        "name": "Partido de Carmen de Areco"
+    },
+    {
+        "id": 2613311,
+        "name": "Partido de Castelli"
+    },
+    {
+        "id": 2479591,
+        "name": "Partido de Chacabuco"
+    },
+    {
+        "id": 2516826,
+        "name": "Partido de Chascomús"
+    },
+    {
+        "id": 2484220,
+        "name": "Partido de Chivilcoy"
+    },
+    {
+        "id": 2459899,
+        "name": "Partido de Colón"
+    },
+    {
+        "id": 2584648,
+        "name": "Partido de Coronel de Marina Leonardo Rosales"
+    },
+    {
+        "id": 2589847,
+        "name": "Partido de Coronel Dorrego"
+    },
+    {
+        "id": 2592479,
+        "name": "Partido de Coronel Pringles"
+    },
+    {
+        "id": 2594942,
+        "name": "Partido de Coronel Suárez"
+    },
+    {
+        "id": 2595082,
+        "name": "Partido de Daireaux"
+    },
+    {
+        "id": 2616801,
+        "name": "Partido de Dolores"
+    },
+    {
+        "id": 2401891,
+        "name": "Partido de Ensenada"
+    },
+    {
+        "id": 2443300,
+        "name": "Partido de Escobar"
+    },
+    {
+        "id": 2401204,
+        "name": "Partido de Esteban Echeverría"
+    },
+    {
+        "id": 2452336,
+        "name": "Partido de Exaltación de la Cruz"
+    },
+    {
+        "id": 2404193,
+        "name": "Partido de Florencio Varela"
+    },
+    {
+        "id": 2557534,
+        "name": "Partido de Florentino Ameghino"
+    },
+    {
+        "id": 2621700,
+        "name": "Partido de General Alvarado"
+    },
+    {
+        "id": 2599047,
+        "name": "Partido de General Alvear"
+    },
+    {
+        "id": 2475018,
+        "name": "Partido de General Arenales"
+    },
+    {
+        "id": 2599608,
+        "name": "Partido de General Belgrano"
+    },
+    {
+        "id": 2614831,
+        "name": "Partido de General Guido"
+    },
+    {
+        "id": 2621593,
+        "name": "Partido de General Madariaga"
+    },
+    {
+        "id": 2597520,
+        "name": "Partido de General Lamadrid"
+    },
+    {
+        "id": 1934039,
+        "name": "Partido de General Las Heras"
+    },
+    {
+        "id": 2621565,
+        "name": "Partido de General Lavalle"
+    },
+    {
+        "id": 2512688,
+        "name": "Partido de General Paz"
+    },
+    {
+        "id": 2554695,
+        "name": "Partido de General Pinto"
+    },
+    {
+        "id": 2621716,
+        "name": "Partido de General Pueyrredón"
+    },
+    {
+        "id": 2431653,
+        "name": "Partido de General Rodríguez"
+    },
+    {
+        "id": 2559810,
+        "name": "Partido de General Viamonte"
+    },
+    {
+        "id": 2557559,
+        "name": "Partido de General Villegas"
+    },
+    {
+        "id": 2593543,
+        "name": "Partido de Guaminí"
+    },
+    {
+        "id": 2580596,
+        "name": "Partido de Hipólito Yrigoyen"
+    },
+    {
+        "id": 2026612,
+        "name": "Partido de Hurlingham"
+    },
+    {
+        "id": 2018776,
+        "name": "Partido de Ituzaingó"
+    },
+    {
+        "id": 2430431,
+        "name": "Partido de José C. Paz"
+    },
+    {
+        "id": 2447377,
+        "name": "Partido de Ezeiza"
+    },
+    {
+        "id": 2519224,
+        "name": "Partido de Junín"
+    },
+    {
+        "id": 2621507,
+        "name": "Partido de La Costa"
+    },
+    {
+        "id": 1749088,
+        "name": "Partido de La Matanza"
+    },
+    {
+        "id": 2499263,
+        "name": "Partido de La Plata"
+    },
+    {
+        "id": 1421519,
+        "name": "Partido de Lanús"
+    },
+    {
+        "id": 2598224,
+        "name": "Partido de Laprida"
+    },
+    {
+        "id": 2611521,
+        "name": "Partido de Las Flores"
+    },
+    {
+        "id": 2554600,
+        "name": "Partido de Leandro N. Alem"
+    },
+    {
+        "id": 2516844,
+        "name": "Partido de Lezama"
+    },
+    {
+        "id": 2559673,
+        "name": "Partido de Lincoln"
+    },
+    {
+        "id": 2599688,
+        "name": "Partido de Lobería"
+    },
+    {
+        "id": 2497992,
+        "name": "Partido de Lobos"
+    },
+    {
+        "id": 2400639,
+        "name": "Partido de Lomas de Zamora"
+    },
+    {
+        "id": 2355138,
+        "name": "Partido de Luján"
+    },
+    {
+        "id": 2512537,
+        "name": "Partido de Magdalena"
+    },
+    {
+        "id": 2616837,
+        "name": "Partido de Maipú"
+    },
+    {
+        "id": 2430452,
+        "name": "Partido de Malvinas Argentinas"
+    },
+    {
+        "id": 2621605,
+        "name": "Partido de Mar Chiquita"
+    },
+    {
+        "id": 2354919,
+        "name": "Partido de Marcos Paz"
+    },
+    {
+        "id": 2457634,
+        "name": "Partido de Mercedes"
+    },
+    {
+        "id": 2431612,
+        "name": "Partido de Merlo"
+    },
+    {
+        "id": 2512599,
+        "name": "Partido de Monte"
+    },
+    {
+        "id": 2584665,
+        "name": "Partido de Monte Hermoso"
+    },
+    {
+        "id": 2431386,
+        "name": "Partido de Moreno"
+    },
+    {
+        "id": 1767342,
+        "name": "Partido de Morón"
+    },
+    {
+        "id": 2484110,
+        "name": "Partido de Navarro"
+    },
+    {
+        "id": 2598290,
+        "name": "Partido de Necochea"
+    },
+    {
+        "id": 2607600,
+        "name": "Partido de Olavarría"
+    },
+    {
+        "id": 2582656,
+        "name": "Partido de Patagones"
+    },
+    {
+        "id": 2565320,
+        "name": "Partido de Pehuajó"
+    },
+    {
+        "id": 2563454,
+        "name": "Partido de Pellegrini"
+    },
+    {
+        "id": 2459663,
+        "name": "Partido de Pergamino"
+    },
+    {
+        "id": 2612278,
+        "name": "Partido de Pila"
+    },
+    {
+        "id": 2621525,
+        "name": "Partido de Pinamar"
+    },
+    {
+        "id": 2403624,
+        "name": "Partido de Presidente Perón"
+    },
+    {
+        "id": 2581390,
+        "name": "Partido de Puan"
+    },
+    {
+        "id": 2512592,
+        "name": "Partido de Punta Indio"
+    },
+    {
+        "id": 2068012,
+        "name": "Partido de Quilmes"
+    },
+    {
+        "id": 2455424,
+        "name": "Partido de Ramallo"
+    },
+    {
+        "id": 2612035,
+        "name": "Partido de Rauch"
+    },
+    {
+        "id": 2563415,
+        "name": "Partido de Rivadavia"
+    },
+    {
+        "id": 2474121,
+        "name": "Partido de Rojas"
+    },
+    {
+        "id": 2598812,
+        "name": "Partido de Roque Pérez"
+    },
+    {
+        "id": 2592550,
+        "name": "Partido de Saavedra"
+    },
+    {
+        "id": 2598907,
+        "name": "Partido de Saladillo"
+    },
+    {
+        "id": 2565000,
+        "name": "Partido de Salliqueló"
+    },
+    {
+        "id": 2461232,
+        "name": "Partido de Salto"
+    },
+    {
+        "id": 2456577,
+        "name": "Partido de San Andrés de Giles"
+    },
+    {
+        "id": 2456452,
+        "name": "Partido de San Antonio de Areco"
+    },
+    {
+        "id": 2590286,
+        "name": "Partido de San Cayetano"
+    },
+    {
+        "id": 2443418,
+        "name": "Partido de San Fernando"
+    },
+    {
+        "id": 1769044,
+        "name": "Partido de San Isidro"
+    },
+    {
+        "id": 2430369,
+        "name": "Partido de San Miguel"
+    },
+    {
+        "id": 2453690,
+        "name": "Partido de San Nicolás"
+    },
+    {
+        "id": 2453543,
+        "name": "Partido de San Pedro"
+    },
+    {
+        "id": 2498924,
+        "name": "Partido de San Vicente"
+    },
+    {
+        "id": 2484090,
+        "name": "Partido de Suipacha"
+    },
+    {
+        "id": 2607680,
+        "name": "Partido de Tandil"
+    },
+    {
+        "id": 2609492,
+        "name": "Partido de Tapalqué"
+    },
+    {
+        "id": 2411762,
+        "name": "Partido de Tigre"
+    },
+    {
+        "id": 2616944,
+        "name": "Partido de Tordillo"
+    },
+    {
+        "id": 2586980,
+        "name": "Partido de Tornquist"
+    },
+    {
+        "id": 2564357,
+        "name": "Partido de Trenque Lauquen"
+    },
+    {
+        "id": 2590085,
+        "name": "Partido de Tres Arroyos"
+    },
+    {
+        "id": 2564922,
+        "name": "Partido de Tres Lomas"
+    },
+    {
+        "id": 1767378,
+        "name": "Partido de Tres de Febrero"
+    },
+    {
+        "id": 2752665,
+        "name": "Partido de Vicente López"
+    },
+    {
+        "id": 2621531,
+        "name": "Partido de Villa Gesell"
+    },
+    {
+        "id": 2582585,
+        "name": "Partido de Villarino"
+    },
+    {
+        "id": 2452288,
+        "name": "Partido de Zárate"
+    },
+    {
+        "id": 2431954,
+        "name": "Partido del Pilar"
+    }
+]

@@ -1,0 +1,62 @@
+{
+    "cantidad": 5,
+    "departamentos": [
+        {
+            "centroide_lat": -82.7834172335301,
+            "centroide_lon": -50.6450428018267,
+            "id": "94028",
+            "nombre": "Antártida Argentina",
+            "provincia_id": "94",
+            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        },
+        {
+            "centroide_lat": -52.8527307050346,
+            "centroide_lon": -53.0409118433889,
+            "id": "94021",
+            "nombre": "Islas del Atlántico Sur",
+            "provincia_id": "94",
+            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        },
+        {
+            "centroide_lat": -53.7462919872259,
+            "centroide_lon": -68.1361046546959,
+            "id": "94008",
+            "nombre": "Río Grande",
+            "provincia_id": "94",
+            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        },
+        {
+            "centroide_lat": -54.4245608958778,
+            "centroide_lon": -67.5034849431886,
+            "id": "94011",
+            "nombre": "Tolhuin",
+            "provincia_id": "94",
+            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        },
+        {
+            "centroide_lat": -54.7704623704114,
+            "centroide_lon": -66.6837162279656,
+            "id": "94015",
+            "nombre": "Ushuaia",
+            "provincia_id": "94",
+            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+    },
+    "total": 5
+}

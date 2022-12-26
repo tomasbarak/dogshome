@@ -1,0 +1,78 @@
+{
+    "cantidad": 7,
+    "departamentos": [
+        {
+            "centroide_lat": -49.9474837007267,
+            "centroide_lon": -69.4469507225498,
+            "id": "78007",
+            "nombre": "Corpen Aike",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -47.3305185775707,
+            "centroide_lon": -68.0290787062148,
+            "id": "78014",
+            "nombre": "Deseado",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -51.4134125040273,
+            "centroide_lon": -70.5618155470895,
+            "id": "78021",
+            "nombre": "Güer Aike",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -49.8364881431632,
+            "centroide_lon": -72.0654713338211,
+            "id": "78028",
+            "nombre": "Lago Argentino",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -46.8341030724218,
+            "centroide_lon": -70.6314100141799,
+            "id": "78035",
+            "nombre": "Lago Buenos Aires",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -48.8383418225325,
+            "centroide_lon": -68.4681621286703,
+            "id": "78042",
+            "nombre": "Magallanes",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        },
+        {
+            "centroide_lat": -48.2873290186499,
+            "centroide_lon": -71.1138374982594,
+            "id": "78049",
+            "nombre": "Río Chico",
+            "provincia_id": "78",
+            "provincia_nombre": "Santa Cruz"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Santa Cruz"
+    },
+    "total": 7
+}

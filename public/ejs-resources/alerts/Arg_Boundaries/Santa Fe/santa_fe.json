@@ -1,0 +1,174 @@
+{
+    "cantidad": 19,
+    "departamentos": [
+        {
+            "centroide_lat": -28.849605091735,
+            "centroide_lon": -61.3983535538115,
+            "id": "82077",
+            "nombre": "9 de Julio",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -32.6103027395973,
+            "centroide_lon": -61.7042951949086,
+            "id": "82007",
+            "nombre": "Belgrano",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -33.2214972343879,
+            "centroide_lon": -61.5310164822665,
+            "id": "82014",
+            "nombre": "Caseros",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -31.2314149716439,
+            "centroide_lon": -61.6569626868615,
+            "id": "82021",
+            "nombre": "Castellanos",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -31.0546413323001,
+            "centroide_lon": -60.125807734045,
+            "id": "82035",
+            "nombre": "Garay",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -33.9251483443292,
+            "centroide_lon": -61.9449986852751,
+            "id": "82042",
+            "nombre": "General López",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -28.6719704542176,
+            "centroide_lon": -59.5266516978974,
+            "id": "82049",
+            "nombre": "General Obligado",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -32.7060836088838,
+            "centroide_lon": -61.2733877091661,
+            "id": "82056",
+            "nombre": "Iriondo",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -31.4753563662874,
+            "centroide_lon": -60.6694790125744,
+            "id": "82063",
+            "nombre": "La Capital",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -31.3153379046182,
+            "centroide_lon": -61.1094808024842,
+            "id": "82070",
+            "nombre": "Las Colonias",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -33.1278557358532,
+            "centroide_lon": -60.7108416659256,
+            "id": "82084",
+            "nombre": "Rosario",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -30.2283191431559,
+            "centroide_lon": -61.360015159641,
+            "id": "82091",
+            "nombre": "San Cristóbal",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -30.1041461066388,
+            "centroide_lon": -59.8980704738644,
+            "id": "82098",
+            "nombre": "San Javier",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -32.1537713586804,
+            "centroide_lon": -61.0481265781191,
+            "id": "82105",
+            "nombre": "San Jerónimo",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -30.5304248150144,
+            "centroide_lon": -60.4886940672765,
+            "id": "82112",
+            "nombre": "San Justo",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -32.9423146043516,
+            "centroide_lon": -60.9615014674026,
+            "id": "82119",
+            "nombre": "San Lorenzo",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -32.0125797507259,
+            "centroide_lon": -61.8082508211602,
+            "id": "82126",
+            "nombre": "San Martín",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -28.9699286424835,
+            "centroide_lon": -60.4135430497849,
+            "id": "82133",
+            "nombre": "Vera",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        },
+        {
+            "centroide_lat": -33.4855834326751,
+            "centroide_lon": -60.85138406701,
+            "id": "82028",
+            "nombre": "Villa Constitución",
+            "provincia_id": "82",
+            "provincia_nombre": "Santa Fe"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Santa Fe"
+    },
+    "total": 19
+}

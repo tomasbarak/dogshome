@@ -1,0 +1,142 @@
+{
+    "cantidad": 15,
+    "departamentos": [
+        {
+            "centroide_lat": -42.4436350204267,
+            "centroide_lon": -64.9332260287713,
+            "id": "26007",
+            "nombre": "Biedma",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -42.36635302228,
+            "centroide_lon": -70.7120117319755,
+            "id": "26014",
+            "nombre": "Cushamen",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -45.282788434735,
+            "centroide_lon": -67.7087570024311,
+            "id": "26021",
+            "nombre": "Escalante",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -44.4232685527937,
+            "centroide_lon": -66.1300665443193,
+            "id": "26028",
+            "nombre": "Florentino Ameghino",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -43.070540741803,
+            "centroide_lon": -71.4553756889394,
+            "id": "26035",
+            "nombre": "Futaleufú",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -43.2727624456965,
+            "centroide_lon": -66.172162203297,
+            "id": "26042",
+            "nombre": "Gaiman",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -42.7490685142491,
+            "centroide_lon": -68.802322331286,
+            "id": "26049",
+            "nombre": "Gastre",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -43.3234947781653,
+            "centroide_lon": -70.3484257364086,
+            "id": "26056",
+            "nombre": "Languiñeo",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -43.8138432526407,
+            "centroide_lon": -67.2400230074032,
+            "id": "26063",
+            "nombre": "Mártires",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -44.0301843800804,
+            "centroide_lon": -68.6858628378391,
+            "id": "26070",
+            "nombre": "Paso de Indios",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -43.1372229709113,
+            "centroide_lon": -65.0757246833498,
+            "id": "26077",
+            "nombre": "Rawson",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -45.3403562037762,
+            "centroide_lon": -70.6400981523958,
+            "id": "26084",
+            "nombre": "Río Senguer",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -45.3450235273933,
+            "centroide_lon": -69.0028353555711,
+            "id": "26091",
+            "nombre": "Sarmiento",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -44.2000353406651,
+            "centroide_lon": -70.5768950488331,
+            "id": "26098",
+            "nombre": "Tehuelches",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        },
+        {
+            "centroide_lat": -42.4389445468027,
+            "centroide_lon": -67.1769071477022,
+            "id": "26105",
+            "nombre": "Telsen",
+            "provincia_id": "26",
+            "provincia_nombre": "Chubut"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Chubut"
+    },
+    "total": 15
+}
