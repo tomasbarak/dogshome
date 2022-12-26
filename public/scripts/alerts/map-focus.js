@@ -35,16 +35,16 @@ function focusDepartment(province_name, department, map) {
     console.log(department_name);
 
 
-    if(departments_geojson[department_name]) {
+    if(departments_geojson[String(province_name + department_name)]) {
         deleteAllGeoJsonLayers(map);
-        addGeoJsonLayer(map, departments_geojson[department_name]);
-        flyToBounds(map, departments_geojson[department_name].getBounds());
+        addGeoJsonLayer(map, departments_geojson[String(province_name + department_name)]);
+        flyToBounds(map, departments_geojson[String(province_name + department_name)].getBounds());
 
     } else {
         getDepartmentBoundaries(province_name, department_name).then(bounds => {
             deleteAllGeoJsonLayers(map);
             const geojson_layer = addGeoJsonBounds(map, bounds, feature_style.boundaries.province);
-            departments_geojson[department_name] = geojson_layer;
+            departments_geojson[String(province_name + department_name)] = geojson_layer;
             flyToBounds(map, geojson_layer.getBounds());
 
         }).catch(error => console.log(error));
