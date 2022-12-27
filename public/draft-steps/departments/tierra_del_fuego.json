@@ -2,22 +2,6 @@
     "cantidad": 5,
     "departamentos": [
         {
-            "centroide_lat": -82.7834172335301,
-            "centroide_lon": -50.6450428018267,
-            "id": "94028",
-            "nombre": "Antártida Argentina",
-            "provincia_id": "94",
-            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
-        },
-        {
-            "centroide_lat": -52.8527307050346,
-            "centroide_lon": -53.0409118433889,
-            "id": "94021",
-            "nombre": "Islas del Atlántico Sur",
-            "provincia_id": "94",
-            "provincia_nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
-        },
-        {
             "centroide_lat": -53.7462919872259,
             "centroide_lon": -68.1361046546959,
             "id": "94008",
