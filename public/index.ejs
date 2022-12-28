@@ -176,8 +176,6 @@
             })
             
         }
-        setLoading(false)
-
         window.onload = () => {
             getPublicationsPage(currentPage).then((response) => {
                 addPublications(response);
