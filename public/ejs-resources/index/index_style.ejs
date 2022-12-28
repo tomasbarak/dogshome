@@ -21,14 +21,32 @@
         padding-top: 0;
     }
 
-    #content-show {
+    #content-show-ads {
+        display: flex;
+        flex-direction: row;
         width: 100%;
+        height: 100%;
+        justify-content: center;
+    }
+
+    .ads-container {
+        width: 25%;
+        height: 100%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        max-width: 150px;
+    }
+
+    #content-show {
+        width: 50%;
         height: 100%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 15px;
         max-width: 1515px;
+        flex: 1;
     }
 
     .page-loading-visible {
