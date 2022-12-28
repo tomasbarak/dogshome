@@ -1,6 +1,6 @@
 <% var rootPath = '../../'; %>
 <%- include(rootPath + 'ejs-resources/loading-animation/loading_animation_style.ejs') %>
-<div id="loading-animation" class="loading-invisible">
+<div id="loading-animation" class="loading-visible">
     <lottie-player src="/animations/dog-walking.json" background="transparent" speed="1"
         style="width: 200px; height: 200px;" loop autoplay></lottie-player>
 </div>
@@ -18,5 +18,5 @@
         }
     }
 
-    //setLoading(true)
+    setLoading(true)
 </script>
