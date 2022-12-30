@@ -1,0 +1,11 @@
+<% var rootPath = '../../'; %>
+
+<section id="chat">
+    <%- include(rootPath + 'ejs-resources/chat/chat_list.ejs') %>
+    <div id="chat-view-container">
+        <div id="chat-name-container" class="invisible">
+            <h1 id="chat-name"></h1>
+        </div>
+        <%- include(rootPath + 'ejs-resources/chat/chat_view.ejs') %>
+    </div>
+</section>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% var rootPath = './'; %>
+    <!-- Include ejs head.ejs from file-->
+    <%- include('./head.ejs'); %>
+
+    <title>DogsHome | Chat</title>
+    <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
+                                      con algunas funcionalidades extras, como localizar perros perdidos, reportar perros perdidos, area de noticias,
+                                      y mucho más. Visitá DogsHome para enterarte de todo." data-head-react="true">
+
+
+    <meta property="og:title" content="DogsHome | Chat"/>
+    <meta property="og:url" content="https://dogshome.com.ar/chat"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <script src="/scripts/main/basic-navigation.js"></script>
+    <script src="/scripts/auth/sign-out.js"></script>
+    <%- include(rootPath + 'ejs-resources/chat/chat_style.ejs'); %>
+
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+    <link rel="canonical" href="https://dogshome.com.ar/chat">
+</head>
+<body>
+    <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
+    <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
+    
+    <section id="main">
+        <%- include(rootPath + 'ejs-resources/chat/chat.ejs') %>
+    </section>
+</body>
+</html>
