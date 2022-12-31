@@ -10,7 +10,7 @@
     </div>
 
     <script>
-        axios.get(`https://${window.location.hostname}:8843/allChats`, {
+        axios.get(`https://${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}/allChats`, {
             headers: {
                 'Authorization': localStorage.getItem('session')
             },
@@ -30,7 +30,7 @@
                 chatContainer.id = chat.chat_id;
                 chatContainer.onclick = function () {
                     window.location.href
-                        = `https://${window.location.hostname}:8843/chat/${chat.id}`;
+                        = `https://${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}/chat/${chat.id}`;
                 };
 
                 const chatImage = document.createElement('img');
