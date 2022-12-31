@@ -5,4 +5,22 @@
     <div id="chat-list-title">
         <h1>Chats</h1>
     </div>
+    <div id="no-chats-text">
+        <p>Cuando tengas chats activos, aparecerán aquí.</p>
+    </div>
+
+    <script>
+        axios.get('https://localhost:8843/allChats', {
+            headers: {
+                'Authorization': localStorage.getItem('session')
+            },
+            withCredentials: window.location.hostname !== 'localhost'
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script>
 </section>

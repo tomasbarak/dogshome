@@ -2,6 +2,7 @@
     "id": "ObjectID",
     "user_id": "user_uuid",
     "chat_id": "publication_id",
+    "shelter_id": "user_uuid",
     "text": "text",
     "created_at": "2019-01-01T00:00:00.000Z"
 }
