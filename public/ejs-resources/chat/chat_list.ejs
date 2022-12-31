@@ -10,7 +10,7 @@
     </div>
 
     <script>
-        axios.get('https://localhost:8843/allChats', {
+        axios.get(`https://${window.location.host}/allChats`, {
             headers: {
                 'Authorization': localStorage.getItem('session')
             },
