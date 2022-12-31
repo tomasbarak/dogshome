@@ -5,22 +5,76 @@
     <div id="chat-list-title">
         <h1>Chats</h1>
     </div>
-    <div id="no-chats-text">
+    <div id="no-chats-text" class="invisible">
         <p>Cuando tengas chats activos, aparecerán aquí.</p>
     </div>
 
     <script>
-        axios.get(`https://${window.location.host}/allChats`, {
+        axios.get(`https://${window.location.hostname}:8843/allChats`, {
             headers: {
                 'Authorization': localStorage.getItem('session')
             },
             withCredentials: window.location.hostname !== 'localhost'
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
+        }).then(function (response) {
+            const chats = response.data;
+            if (chats.length > 0) {
+                document.getElementById('no-chats-text').className = "invisible";
+            } else {
+                document.getElementById('no-chats-text').className = "";
+            }
+            console.log(chats);
+
+            chats.forEach(chat => {
+                const chatContainer = document.createElement('div');
+                chatContainer.className = "chat-list-item-container";
+                chatContainer.id = chat.chat_id;
+                chatContainer.onclick = function () {
+                    window.location.href
+                        = `https://${window.location.hostname}:8843/chat/${chat.id}`;
+                };
+
+                const chatImage = document.createElement('img');
+                chatImage.className = "chat-list-item-image";
+                chatImage.src = chat.shelter.Photo ? chat.shelter.Photo : "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
+
+                const chatInfoContainer = document.createElement("div");
+                chatInfoContainer.className = "chat-list-item-info-container";
+
+                const chatName = document.createElement('h1');
+                chatName.className = "chat-list-item-name";
+                chatName.innerText = chat.shelter.RefName;
+                
+                const chatLastMessage = document.createElement('p');
+                chatLastMessage.className = "chat-list-item-last-message";
+                chatLastMessage.innerText = chat.lastMessage;
+
+                // const toggleButtonContainer = document.createElement('div');
+                // toggleButtonContainer.className = "chat-list-item-toggle-button-container";
+
+                // const toggleButton = document.createElement('svg');
+                // toggleButton.className = "chat-list-item-toggle-button";
+                // toggleButton.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                // toggleButton.setAttribute('viewBox', '0 0 24 24');
+                // toggleButton.setAttribute('width', '24');
+                // toggleButton.setAttribute('height', '24');
+
+                // const toggleButtonPath = document.createElement('path');
+                // toggleButtonPath.setAttribute('d', "M5.22 8.72a.75.75 0 011.06 0L12 14.44l5.72-5.72a.751.751 0 011.042.018.751.751 0 01.018 1.042l-6.25 6.25a.75.75 0 01-1.06 0L5.22 9.78a.75.75 0 010-1.06z")
+
+                // toggleButton.appendChild(toggleButtonPath);
+                // toggleButtonContainer.appendChild(toggleButton);
+
+                
+                chatInfoContainer.appendChild(chatName);
+                chatInfoContainer.appendChild(chatLastMessage);
+                chatContainer.appendChild(chatImage);
+                chatContainer.appendChild(chatInfoContainer);
+                // chatContainer.appendChild(toggleButtonContainer);
+                document.getElementById('chat-list').appendChild(chatContainer);
             });
+
+        }).catch(function (error) {
+            console.log(error);
+        });
     </script>
 </section>
