@@ -17,8 +17,7 @@ function init(app, firebaseAdmin) {
             .then(
                 (sessionCookie) => {
                     // Set cookie policy for session cookie.
-                    const options = { maxAge: expiresIn, httpOnly: true, Secure: true, SameSite: 'None', Path: '/', Domain: '.dogshome.com.ar'};
-                    res.cookie('session', sessionCookie, options);
+                    res.headers["Set-Cookie"] = "session=" + sessionCookie + "; HttpOnly; Secure; SameSite=none; Path=/; Domain=.dogshome.com.ar"
                     res.redirect('/');
                 },
                 (error) => {
