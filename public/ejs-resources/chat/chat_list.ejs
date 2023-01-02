@@ -1,137 +1,42 @@
 <% var rootPath = '../../'; %>
 
 <%- include(rootPath + "ejs-resources/chat/chat_list_style.ejs") %> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Tocca.js/2.0.4/Tocca.min.js"></script>
-<section id="chat-list">
-    <div id="chat-list-title">
-        <h1>Chats</h1>
+<section id="chat-list" class="">
+    <div id="shelter-list-container">
+        <div id="chat-list-title">
+            <h1>Chats</h1>
+        </div>
+        <div id="no-chats-text" class="invisible">
+            <p>Cuando tengas chats activos, aparecerán aquí.</p>
+        </div>
     </div>
-    <div id="no-chats-text" class="invisible">
-        <p>Cuando tengas chats activos, aparecerán aquí.</p>
+    <div id="chat-list-toggle-btn-container" class="">
+        <svg id="chat-list-toggle-btn" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M5.22 8.72a.75.75 0 011.06 0L12 14.44l5.72-5.72a.751.751 0 011.042.018.751.751 0 01.018 1.042l-6.25 6.25a.75.75 0 01-1.06 0L5.22 9.78a.75.75 0 010-1.06z"></path>
+        </svg>
     </div>
+    
 
     <script>
-        const axiosOptions = {
-            headers: {
-                'Authorization': window.location.hostname == "localhost" ?  localStorage.getItem('session') : ""
-            },
-            withCredentials: window.location.hostname !== 'localhost'
-        }
-        axios.get(`https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}/chat/shelters`, 
-            axiosOptions
-        ).then(function (response) {
-            const shelters = response.data;
+        document.getElementById("chat-list-toggle-btn-container").addEventListener("click", function() {
+            document.getElementById("chat-list").classList.toggle("toggled");
+            document.getElementById("chat-list-toggle-btn-container").classList.toggle("toggled");
+        })
+
+        Chats.Actions.getShelters().then((shelters) => {
             if (shelters.length > 0) {
                 document.getElementById('no-chats-text').className = "invisible";
             } else {
                 document.getElementById('no-chats-text').className = "";
             }
-            console.log(shelters);
 
-            shelters.forEach(shelter => {
-                axios.get(`https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}/chat/shelter/${shelter.shelter_id}`, 
-                    axiosOptions
-                ).then(function (response) {
-                    console.log(response.data);
-                    const shelterContainer = document.createElement('div');
-                    shelterContainer.className = "shelter-list-item-container";
-                    shelterContainer.id = shelter.shelter_id;
-
-                    const shelterImage = document.createElement('img');
-                    shelterImage.className = "shelter-list-item-image";
-                    shelterImage.src = shelter.shelter_photo ? shelter.shelter_photo : "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
-
-                    const shelterInfoContainer = document.createElement("div");
-                    shelterInfoContainer.className = "shelter-list-item-info-container";
-
-                    const shelterName = document.createElement('h1');
-                    shelterName.className = "shelter-list-item-name";
-                    shelterName.innerText = shelter.shelter_name;
-                    
-                    const toggleButtonContainer = document.createElement('div');
-                    toggleButtonContainer.className = "shelter-list-item-toggle-button-container";
-
-                    const toggleButton = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    toggleButton.className = "shelter-list-item-toggle-button";
-                    toggleButton.setAttribute('viewBox', '0 0 24 24');
-                    toggleButton.setAttribute('width', '24');
-                    toggleButton.setAttribute('height', '24');
-
-                    const toggleButtonPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    toggleButtonPath.setAttribute('d', "M5.22 8.72a.75.75 0 011.06 0L12 14.44l5.72-5.72a.751.751 0 011.042.018.751.751 0 01.018 1.042l-6.25 6.25a.75.75 0 01-1.06 0L5.22 9.78a.75.75 0 010-1.06z")
-
-                    toggleButton.appendChild(toggleButtonPath);
-                    toggleButtonContainer.appendChild(toggleButton);
-
-                    shelterInfoContainer.appendChild(shelterImage);
-                    shelterInfoContainer.appendChild(shelterName);
-                    shelterInfoContainer.appendChild(toggleButtonContainer);
-                    shelterContainer.appendChild(shelterInfoContainer);
-                    const chatList = document.getElementById('chat-list');
-                    chatList.appendChild(shelterContainer);
-                    $(chatList).on("swipeleft", function(e) {
-                        console.log(e);
-                        alert("swipeleft");
-                    })
-                    
-                    //SubList
-                    const chatsContainer = document.createElement('div');
-                    chatsContainer.className = "shelter-list-item-chats-container invisible";
-                    chatsContainer.id = `chats-container-${shelter.shelter_id}`;
-                    shelterContainer.appendChild(chatsContainer);
-
-                    const chats = response.data;
+            shelters.forEach(({ shelter_id, shelter_photo, shelter_name }) => {
+                Chats.Actions.getChatsByShelter(shelter_id).then(function (chats) {
+                    Chats.UI.addShelterItemToList({ shelter_id, shelter_photo, shelter_name });
 
                     chats.forEach(chat => {
-                        const chatContainer = document.createElement('div');
-                        chatContainer.className = "shelter-list-item-chat-container";
-                        chatContainer.id = chat.chat_id;
-                        chatContainer.onclick = function () {
-                            window.location.href
-                                = `https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}/chat/${chat.chat_id}`;
-                        };
-
-                        const chatImage = document.createElement('img');
-                        chatImage.className = "shelter-list-item-chat-image";
-                        chatImage.src = chat.chat_photo ? chat.chat_photo : "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
-
-                        const chatInfoContainer = document.createElement("div");
-                        chatInfoContainer.className = "shelter-list-item-chat-info-container";
-
-                        const chatName = document.createElement('h1');
-                        chatName.className = "shelter-list-item-chat-name";
-                        chatName.innerText = chat.chat_name;
-                        
-                        const chatLastMessage = document.createElement('p');
-                        chatLastMessage.className = "shelter-list-item-chat-last-message";
-                        chatLastMessage.innerText = chat.lastMessage;
-
-                        chatInfoContainer.appendChild(chatName);
-                        chatInfoContainer.appendChild(chatLastMessage);
-                        chatContainer.appendChild(chatImage);
-                        chatContainer.appendChild(chatInfoContainer);
-                        chatsContainer.appendChild(chatContainer);
+                        Chats.UI.addChatToShelterList(chat, document.getElementById(`chats-container-${shelter_id}`));
                     });
-
-                    shelterContainer.appendChild(chatsContainer);
-
-                    shelterContainer.onclick = function () {
-                        const chatsContainer = document.getElementById(`${shelter.shelter_id}`);
-                        const toggleBtnContainer = document.getElementById(`${shelter.shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter.shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
-                        const chatListContainerToggled = document.getElementById(`chats-container-${shelter.shelter_id}`);
-                        if (chatsContainer.className.includes("toggled")) {
-                            chatsContainer.className = "shelter-list-item-container";
-                            toggleBtnContainer.className = "shelter-list-item-toggle-button-container";
-                        } else {
-                            let extendedHeight = chatListContainerToggled.scrollHeight;
-                            document.querySelector(":root").style.setProperty(`--${shelter.shelter_id}-extended-height`, `${extendedHeight + 60}px`);
-                            document.styleSheets[14].insertRule(`#${shelter.shelter_id}.toggled {max-height: var(--${shelter.shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
-                            chatsContainer.className = "shelter-list-item-container toggled";
-                            toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
-
-                        }
-                    }
-
                 }).catch(function (error) {
                     console.log(error);
                 });
