@@ -28,6 +28,35 @@ const Chats = {
                     reject(error);
                 });
             })
+        },
+        getChatMessages: (shelter_id, chat_id) => {
+            return new Promise((resolve, reject) => {
+                const url = `${api_host}/chat/shelter/${shelter_id}/publication/${chat_id}/page/1`
+                axios.get(url, requestOptions).then((response) => {
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                });
+            })
+        }
+    },
+    Events: {
+        onChatClick: (shelter_id, chat_id, shelter_name, shelter_photo, chat_title, chat_photo) => {
+            Chats.UI.setChatHeader(shelter_photo, shelter_name, chat_photo, chat_title);
+            Chats.Actions.getChatMessages(shelter_id, chat_id).then((messages) => {
+                const chatNotSelected = document.getElementById("chat-not-selected");
+                chatNotSelected.classList.add("invisible");
+                //Change created_at to date
+                const msgContainer = document.getElementById('chat-content');
+                messages.reverse().forEach((message) => {
+                    message["shelter_photo"] = shelter_photo;
+                    Chats.UI.addMessageToChat(message, msgContainer);
+                });
+                
+                console.log(messages);
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     },
     UI: {
@@ -126,6 +155,56 @@ const Chats = {
             chatContainer.appendChild(chatImage);
             chatContainer.appendChild(chatInfoContainer);
             chatsContainer.appendChild(chatContainer);
+
+            chatContainer.addEventListener('click', () => {
+                Chats.Events.onChatClick(chat.shelter_id, chat.chat_id, chat.shelter_name, chat.shelter_photo, chat.chat_name, chat.chat_photo);
+            });
+        },
+        setChatHeader: (shelter_photo, shelter_name, chat_photo, chat_name) => {
+            const chatHeader = document.getElementById("chat-header-inf");
+            const chatShelterImage = document.getElementById("chat-header-inf-shelter-img");
+            const chatShelterName = document.getElementById("chat-header-inf-shelter-name");
+            const chatImage = document.getElementById("chat-header-inf-chat-img");
+            const chatName = document.getElementById("chat-header-inf-chat-title");
+
+            chatShelterImage.src = shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
+            chatShelterName.innerText = shelter_name;
+            chatImage.src = chat_photo;
+            chatName.innerText = chat_name;
+        },
+
+        addMessageToChat: (message, chatContainer) => {
+            const isSender = message.user_id === message.sender_id;
+
+            const contentContainer = document.createElement('div');
+            contentContainer.id = message.created_at;
+            contentContainer.className = isSender ? "chat-content-message-container sent" : "chat-content-message-container received";
+
+            if(!isSender){
+                const messageImage = document.createElement('img');
+                messageImage.className = "chat-content-message-image";
+                messageImage.src = message.shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
+                
+                contentContainer.appendChild(messageImage);
+            }
+
+            const messageContainer = document.createElement('div');
+            messageContainer.className = "chat-message-container";
+
+            const messageText = document.createElement('p');
+            messageText.className = "chat-content-message-text";
+            messageText.innerText = message.text;
+
+            const messageTimestamp = document.createElement("a")
+            messageTimestamp.className = "chat-content-message-timestamp";
+            let date = new Date(message.created_at);
+            //If the message was sent today, show the time, otherwise show the date
+            messageTimestamp.innerText = date.toLocaleDateString() === new Date().toLocaleDateString() ? date.toLocaleTimeString() : date.toLocaleDateString();
+            
+            messageContainer.appendChild(messageText);
+            messageContainer.appendChild(messageTimestamp);
+            contentContainer.appendChild(messageContainer);
+            chatContainer.appendChild(contentContainer);
         }
     }
 }

@@ -20,5 +20,173 @@
         transform: translate(-50%, -50%);
     }
 
-    
+    #chat-not-selected.invisible {
+        display: none;
+    }
+
+    #chat-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #chat-header {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 60px;
+        background-color: #fff;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    #chat-header-inf {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+    }
+
+    #chat-header-inf-shelter-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 1px solid #079292;
+    }
+
+    #chat-header-inf-shelter-name {
+        font-size: 16px;
+        font-weight: 500;
+        color: #9e9e9e;
+        transition: max-width 0.5s ease;
+        max-width: 25px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    #chat-header-inf-shelter-name:hover {
+        max-width: 100px;
+        transition: max-width 0.5s ease;
+    }
+
+    #chat-header-inf-chat-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: #079292;
+    }
+
+    #chat-header-inf-chat-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 1px solid #079292;
+    }
+
+    #chat-body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        overflow: hidden;
+    }
+
+    #chat-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        max-height: calc(100vh - 121px);
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .chat-content-message-container {
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .chat-content-message-container.received {
+        justify-content: flex-start;
+    }
+
+    .chat-content-message-container.sent {
+        justify-content: flex-end;
+    }
+
+    .chat-content-message-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 1px solid #079292;
+    }
+
+    .chat-message-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: fit-content;
+        height: fit-content;
+        min-height: 60px;
+        max-width: 70%;
+        min-width: 30%;
+        border-radius: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .chat-content-message-container.sent > .chat-message-container {
+        background-color: #079292;
+    }
+
+    .chat-content-message-container.received > .chat-message-container {
+        background-color: #e5e5ea;
+    }
+
+    .chat-content-message-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        word-break: break-word;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat-content-message-timestamp {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
 </style>

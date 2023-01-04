@@ -35,6 +35,9 @@
                     Chats.UI.addShelterItemToList({ shelter_id, shelter_photo, shelter_name });
 
                     chats.forEach(chat => {
+                        chat["shelter_id"] = shelter_id;
+                        chat["shelter_name"] = shelter_name;
+                        chat["shelter_photo"] = shelter_photo;
                         Chats.UI.addChatToShelterList(chat, document.getElementById(`chats-container-${shelter_id}`));
                     });
                 }).catch(function (error) {
