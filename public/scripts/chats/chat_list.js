@@ -7,6 +7,10 @@ const requestOptions = {
 
 const api_host = `https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}`;
 
+let current_chat_id = null;
+let current_shelter_id = null;
+let current_page = 1;
+
 const Chats = {
     Actions: {
         getShelters: () => {
@@ -29,28 +33,35 @@ const Chats = {
                 });
             })
         },
-        getChatMessages: (shelter_id, chat_id) => {
+        getChatMessages: (shelter_id, chat_id, page) => {
             return new Promise((resolve, reject) => {
-                const url = `${api_host}/chat/shelter/${shelter_id}/publication/${chat_id}/page/1`
+                const url = `${api_host}/chat/shelter/${shelter_id}/publication/${chat_id}/page/${page}`
                 axios.get(url, requestOptions).then((response) => {
                     resolve(response.data);
                 }).catch((error) => {
                     reject(error);
                 });
             })
-        }
+        },
     },
     Events: {
         onChatClick: (shelter_id, chat_id, shelter_name, shelter_photo, chat_title, chat_photo) => {
             Chats.UI.setChatHeader(shelter_photo, shelter_name, chat_photo, chat_title);
+            current_chat_id = chat_id;
+            current_shelter_id = shelter_id;
+            current_page = 1;
             Chats.Actions.getChatMessages(shelter_id, chat_id).then((messages) => {
                 const chatNotSelected = document.getElementById("chat-not-selected");
                 chatNotSelected.classList.add("invisible");
                 //Change created_at to date
                 const msgContainer = document.getElementById('chat-content');
-                messages.reverse().forEach((message) => {
+                msgContainer.innerHTML = "";
+                messages.forEach((message) => {
                     message["shelter_photo"] = shelter_photo;
-                    Chats.UI.addMessageToChat(message, msgContainer);
+                    const i = messages.indexOf(message);
+                    const previous_msg = messages[i + 1];
+                    console.log(message, previous_msg);
+                    Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
                 });
                 
                 console.log(messages);
@@ -173,19 +184,23 @@ const Chats = {
             chatName.innerText = chat_name;
         },
 
-        addMessageToChat: (message, chatContainer) => {
+        addMessageToChat: (message, chatContainer, previous_msg) => {
+            console.log(previous_msg.user_id !== message.user_id)
             const isSender = message.user_id === message.sender_id;
 
             const contentContainer = document.createElement('div');
             contentContainer.id = message.created_at;
             contentContainer.className = isSender ? "chat-content-message-container sent" : "chat-content-message-container received";
 
-            if(!isSender){
+            if(!isSender && previous_msg.sender_id !== message.sender_id){
                 const messageImage = document.createElement('img');
                 messageImage.className = "chat-content-message-image";
                 messageImage.src = message.shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
-                
                 contentContainer.appendChild(messageImage);
+            } else {
+                const emptyImageContainer = document.createElement('div');
+                emptyImageContainer.className = "chat-content-message-empty-image";
+                contentContainer.appendChild(emptyImageContainer);
             }
 
             const messageContainer = document.createElement('div');
@@ -199,7 +214,18 @@ const Chats = {
             messageTimestamp.className = "chat-content-message-timestamp";
             let date = new Date(message.created_at);
             //If the message was sent today, show the time, otherwise show the date
-            messageTimestamp.innerText = date.toLocaleDateString() === new Date().toLocaleDateString() ? date.toLocaleTimeString() : date.toLocaleDateString();
+            messageTimestamp.innerText = date.toLocaleTimeString([], {
+                hour: '2-digit', 
+                minute:'2-digit', 
+                timeZone: 'America/Argentina/Buenos_Aires',
+                hour12: false
+            })
+            // + " " + date.toLocaleDateString('es-AR', {
+            //     day: '2-digit',
+            //     month: '2-digit',
+            //     year: '2-digit',
+            //     timeZone: 'America/Argentina/Buenos_Aires'
+            // });
             
             messageContainer.appendChild(messageText);
             messageContainer.appendChild(messageTimestamp);

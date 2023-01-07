@@ -18,4 +18,38 @@
             </div>
         </dvi>
     </div>
+
+    <script>
+        let lockPostPageLoading = false;
+        const chat_content = document.getElementById("chat-content");
+
+        chat_content.addEventListener('scroll', () => {
+            let {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = chat_content;
+
+            console.log(-scrollTop + clientHeight, scrollHeight - 660);
+
+            if (-scrollTop + clientHeight >= scrollHeight && !lockPostPageLoading) {
+                lockPostPageLoading = true;
+                Chats.Actions.getChatMessages(current_shelter_id, current_chat_id, current_page + 1).then((res) => {
+                    if(res.length > 0) {
+                        current_page++;
+                        res.forEach((message) => {
+                            const i = res.indexOf(message);
+                            const previous_msg = res[i + 1];
+                            Chats.UI.addMessageToChat(message, chat_content, previous_msg == undefined ? {} : previous_msg);
+                        });
+                        let {scrollTop, scrollHeight, clientHeight} = chat_content;
+                        lockPostPageLoading = false;
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    lockPostPageLoading = false;
+                });
+            }
+        });
+    </script>
 </section>
