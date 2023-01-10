@@ -205,7 +205,9 @@ const Chats = {
         addMessageToChat: (message, chatContainer, previous_msg) => {
             console.log(previous_msg.user_id !== message.user_id)
             const isSender = message.user_id === message.sender_id;
-
+            let date = new Date(message.created_at);
+            let previous_msg_date = new Date(previous_msg.created_at);
+            const isSameDate = date.toLocaleDateString() === previous_msg_date.toLocaleDateString()
             const contentContainer = document.createElement('div');
             contentContainer.id = message.created_at;
             contentContainer.className = isSender ? "chat-content-message-container sent" : "chat-content-message-container received";
@@ -216,7 +218,7 @@ const Chats = {
                 messageImage.src = message.shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
                 contentContainer.appendChild(messageImage);
             } else {
-                contentContainer.classList.add("same-user-msg")
+                isSameDate ? contentContainer.classList.add("same-user-msg") : contentContainer.classList.remove("same-user-msg");
                 const emptyImageContainer = document.createElement('div');
                 emptyImageContainer.className = "chat-content-message-empty-image";
                 contentContainer.appendChild(emptyImageContainer);
@@ -231,7 +233,6 @@ const Chats = {
 
             const messageTimestamp = document.createElement("a")
             messageTimestamp.className = "chat-content-message-timestamp";
-            let date = new Date(message.created_at);
             //If the message was sent today, show the time, otherwise show the date
             messageTimestamp.innerText = date.toLocaleTimeString([], {
                 hour: '2-digit', 
@@ -245,12 +246,11 @@ const Chats = {
             //     year: '2-digit',
             //     timeZone: 'America/Argentina/Buenos_Aires'
             // });
-            let previous_msg_date = new Date(previous_msg.created_at);
-            
+
             const dateSeparatorContainer = document.createElement("div");
 
             //Create date separator if the message was sent on a different day
-            if(date.toLocaleDateString() !== previous_msg_date.toLocaleDateString()){
+            if(!isSameDate){
                 const days = ["Dom.", "Lun.", "Mar.", "Mie.", "Jue.", "Vie.", "Sab."];
                 dateSeparatorContainer.className = "chat-content-date-separator-container";
 
