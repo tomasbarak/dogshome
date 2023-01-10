@@ -50,6 +50,7 @@ const Chats = {
             current_chat_id = chat_id;
             current_shelter_id = shelter_id;
             current_page = 1;
+            document.getElementById("chat-loading-container").className = "visible";
             Chats.Actions.getChatMessages(shelter_id, chat_id).then((messages) => {
                 const chatNotSelected = document.getElementById("chat-not-selected");
                 chatNotSelected.classList.add("invisible");
@@ -64,6 +65,8 @@ const Chats = {
                     Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
                 });
                 
+                document.getElementById("chat-loading-container").className = "invisible";
+
                 console.log(messages);
             }).catch((error) => {
                 console.log(error);

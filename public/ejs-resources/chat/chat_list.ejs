@@ -9,6 +9,9 @@
         <div id="no-chats-text" class="invisible">
             <p>Cuando tengas chats activos, aparecerán aquí.</p>
         </div>
+        <div id="shelter-list-loading" class="invisible">
+            <lottie-player src="/animations/chat_loading.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
     </div>
     <div id="chat-list-toggle-btn-container" class="">
         <svg id="chat-list-toggle-btn" viewBox="0 0 24 24" width="24" height="24">
@@ -16,13 +19,13 @@
         </svg>
     </div>
     
-
     <script>
         document.getElementById("chat-list-toggle-btn-container").addEventListener("click", function() {
             document.getElementById("chat-list").classList.toggle("toggled");
             document.getElementById("chat-list-toggle-btn-container").classList.toggle("toggled");
         })
-
+        document.getElementById("shelter-list-loading").className = "";
+        
         Chats.Actions.getShelters().then((shelters) => {
             if (shelters.length > 0) {
                 document.getElementById('no-chats-text').className = "invisible";
@@ -32,6 +35,7 @@
 
             shelters.forEach(({ shelter_id, shelter_photo, shelter_name }) => {
                 Chats.Actions.getChatsByShelter(shelter_id).then(function (chats) {
+                    document.getElementById('shelter-list-loading').className = "invisible";
                     Chats.UI.addShelterItemToList({ shelter_id, shelter_photo, shelter_name });
 
                     chats.forEach(chat => {
