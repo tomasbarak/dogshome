@@ -255,7 +255,7 @@ const Chats = {
 
                 const dateSeparator = document.createElement("a");
                 dateSeparator.className = "chat-content-date-separator";
-                
+
                 if(date.getFullYear() === previous_msg_date.getFullYear()){
                     dateSeparator.innerText = `${days[date.getDay()]} ${date.getDate()} de ${String(date.toLocaleString('es-AR', { month: 'long' })).charAt(0).toUpperCase() + String(date.toLocaleString('es-AR', { month: 'long' })).slice(1)}`;
                 } else {
@@ -263,13 +263,13 @@ const Chats = {
                 }
 
                 dateSeparatorContainer.appendChild(dateSeparator);
-                chatContainer.appendChild(dateSeparatorContainer);
             }
 
             messageContainer.appendChild(messageText);
             messageContainer.appendChild(messageTimestamp);
             contentContainer.appendChild(messageContainer);
             chatContainer.appendChild(contentContainer);
+            chatContainer.appendChild(dateSeparatorContainer);
         }
     }
 }
