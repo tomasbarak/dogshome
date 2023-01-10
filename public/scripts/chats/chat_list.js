@@ -216,6 +216,7 @@ const Chats = {
                 messageImage.src = message.shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
                 contentContainer.appendChild(messageImage);
             } else {
+                contentContainer.classList.add("same-user-msg")
                 const emptyImageContainer = document.createElement('div');
                 emptyImageContainer.className = "chat-content-message-empty-image";
                 contentContainer.appendChild(emptyImageContainer);
