@@ -245,7 +245,27 @@ const Chats = {
             //     year: '2-digit',
             //     timeZone: 'America/Argentina/Buenos_Aires'
             // });
-            
+            let previous_msg_date = new Date(previous_msg.created_at);
+
+            //Create date separator if the message was sent on a different day
+            if(date.toLocaleDateString() !== previous_msg_date.toLocaleDateString()){
+                const days = ["Dom.", "Lun.", "Mar.", "Mie.", "Jue.", "Vie.", "Sab."];
+                const dateSeparatorContainer = document.createElement("div");
+                dateSeparatorContainer.className = "chat-content-date-separator-container";
+
+                const dateSeparator = document.createElement("a");
+                dateSeparator.className = "chat-content-date-separator";
+                
+                if(date.getFullYear() === previous_msg_date.getFullYear()){
+                    dateSeparator.innerText = `${days[date.getDay()]} ${date.getDate()} de ${String(date.toLocaleString('es-AR', { month: 'long' })).charAt(0).toUpperCase() + String(date.toLocaleString('es-AR', { month: 'long' })).slice(1)}`;
+                } else {
+                    dateSeparator.innerText = `${days[date.getDay()]} ${date.getDate()} de ${String(date.toLocaleString('es-AR', { month: 'long' })).charAt(0).toUpperCase() + String(date.toLocaleString('es-AR', { month: 'long' })).slice(1)} de ${date.getFullYear()}`;
+                }
+
+                dateSeparatorContainer.appendChild(dateSeparator);
+                chatContainer.appendChild(dateSeparatorContainer);
+            }
+
             messageContainer.appendChild(messageText);
             messageContainer.appendChild(messageTimestamp);
             contentContainer.appendChild(messageContainer);
