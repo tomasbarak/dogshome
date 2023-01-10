@@ -13,6 +13,18 @@ let current_page = 1;
 
 const Chats = {
     Actions: {
+        toggleSidebar: () => {
+            document.getElementById("chat-list").classList.toggle("toggled");
+            document.getElementById("chat-list-toggle-btn-container").classList.toggle("toggled");
+        },
+        openSidebar: () => {
+            document.getElementById("chat-list").classList.remove("toggled");
+            document.getElementById("chat-list-toggle-btn-container").classList.remove("toggled");
+        },
+        closeSidebar: () => {
+            document.getElementById("chat-list").classList.add("toggled");
+            document.getElementById("chat-list-toggle-btn-container").classList.add("toggled");
+        },
         getShelters: () => {
             return new Promise((resolve, reject) => {
                 const url = `${api_host}/chat/shelters`
@@ -47,6 +59,8 @@ const Chats = {
     Events: {
         onChatClick: (shelter_id, chat_id, shelter_name, shelter_photo, chat_title, chat_photo) => {
             Chats.UI.setChatHeader(shelter_photo, shelter_name, chat_photo, chat_title);
+            Chats.Actions.closeSidebar();
+            document.getElementById("chat-header-inf").className = "";
             current_chat_id = chat_id;
             current_shelter_id = shelter_id;
             current_page = 1;
@@ -66,6 +80,7 @@ const Chats = {
                 });
                 
                 document.getElementById("chat-loading-container").className = "invisible";
+                document.getElementById("chat-footer").className = "";
 
                 console.log(messages);
             }).catch((error) => {

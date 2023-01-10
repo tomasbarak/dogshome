@@ -21,8 +21,7 @@
     
     <script>
         document.getElementById("chat-list-toggle-btn-container").addEventListener("click", function() {
-            document.getElementById("chat-list").classList.toggle("toggled");
-            document.getElementById("chat-list-toggle-btn-container").classList.toggle("toggled");
+            Chats.Actions.toggleSidebar();
         })
         document.getElementById("shelter-list-loading").className = "";
         

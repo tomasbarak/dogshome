@@ -91,6 +91,15 @@
         width: 100%;
         height: 100%;
         padding: 0 10px;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.5s ease;
+    }
+
+    #chat-header-inf.invisible {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
     }
 
     #chat-header-inf-shelter-img {
@@ -150,7 +159,7 @@
         justify-content: flex-start;
         width: 100%;
         height: 100%;
-        max-height: calc(100vh - 121px);
+        max-height: calc(100vh - 201px);
         flex: 1;
         overflow-x: hidden;
         overflow-y: auto;
@@ -248,5 +257,66 @@
         color: #fff;
         margin: 0;
         padding: 0;
+    }
+
+    #chat-footer {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        box-sizing: border-box;
+        padding: 0 50px;
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    #chat-footer.invisible {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    #chat-footer-input {
+        width: 100%;
+        height: 50px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        outline: none;
+        transition: all 0.5s ease;
+    }
+
+    #chat-footer-input:focus {
+        border: 1px solid #079292;
+        transition: all 0.5s ease;
+    }
+
+    #chat-footer-send-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        background-color: #079292;
+        margin-left: 10px;
+    }
+
+    #chat-footer-send-btn:hover {
+        cursor: pointer;
+    }
+
+    #chat-footer-send-btn > svg {
+        width: 16px;
+        height: 16px;
+        fill: #fff;
     }
 </style>
