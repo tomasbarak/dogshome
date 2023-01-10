@@ -246,11 +246,12 @@ const Chats = {
             //     timeZone: 'America/Argentina/Buenos_Aires'
             // });
             let previous_msg_date = new Date(previous_msg.created_at);
+            
+            const dateSeparatorContainer = document.createElement("div");
 
             //Create date separator if the message was sent on a different day
             if(date.toLocaleDateString() !== previous_msg_date.toLocaleDateString()){
                 const days = ["Dom.", "Lun.", "Mar.", "Mie.", "Jue.", "Vie.", "Sab."];
-                const dateSeparatorContainer = document.createElement("div");
                 dateSeparatorContainer.className = "chat-content-date-separator-container";
 
                 const dateSeparator = document.createElement("a");
