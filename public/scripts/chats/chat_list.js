@@ -86,6 +86,20 @@ const Chats = {
             }).catch((error) => {
                 console.log(error);
             });
+        },
+        onSendMsg: () => {
+            const msg = document.getElementById("chat-input").value;
+            if (msg != "") {
+                const msgContainer = document.getElementById('chat-content');
+                const msgObj = {
+                    shelter_id: current_shelter_id,
+                    publication_id: current_chat_id,
+                    message: msg
+                }
+                Chats.UI.addMessageToChat(msgObj, msgContainer);
+                document.getElementById("chat-input").value = "";
+                Chats.Actions.sendMsg(msgObj);
+            }
         }
     },
     UI: {
