@@ -20,12 +20,14 @@
     </div>
     
     <script>
+        let global_shelters = [];
         document.getElementById("chat-list-toggle-btn-container").addEventListener("click", function() {
             Chats.Actions.toggleSidebar();
         })
         document.getElementById("shelter-list-loading").className = "";
         
         Chats.Actions.getShelters().then((shelters) => {
+            global_shelters = shelters;
             if (shelters.length > 0) {
                 document.getElementById('no-chats-text').className = "invisible";
             } else {

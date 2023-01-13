@@ -10,6 +10,8 @@ const api_host = `https://${window.location.hostname == "localhost" ? "" : "api.
 let current_chat_id = null;
 let current_shelter_id = null;
 let current_page = 1;
+let current_last_message = null;
+let remote_typing_timeout = null;
 
 const Chats = {
     Actions: {
@@ -55,12 +57,24 @@ const Chats = {
                 });
             })
         },
+        sendMsg: (message) => {
+            return new Promise((resolve, reject) => {
+                const url = `${api_host}/chat/shelter/${message.shelter_id}/publication/${message.chat_id}/`
+                axios.post(url, message, requestOptions).then((response) => {
+                    resolve(response.data);
+                }).catch((error) => {
+                    reject(error);
+                });
+            })
+        }
     },
     Events: {
         onChatClick: (shelter_id, chat_id, shelter_name, shelter_photo, chat_title, chat_photo) => {
             Chats.UI.setChatHeader(shelter_photo, shelter_name, chat_photo, chat_title);
             Chats.Actions.closeSidebar();
             document.getElementById("chat-header-inf").className = "";
+            socket.off(`typing-${current_chat_id}`);
+            socket.off(`new-message-${current_chat_id}`);
             current_chat_id = chat_id;
             current_shelter_id = shelter_id;
             current_page = 1;
@@ -71,6 +85,8 @@ const Chats = {
                 //Change created_at to date
                 const msgContainer = document.getElementById('chat-content');
                 msgContainer.innerHTML = "";
+                current_last_message = messages[0];
+
                 messages.forEach((message) => {
                     message["shelter_photo"] = shelter_photo;
                     const i = messages.indexOf(message);
@@ -82,24 +98,64 @@ const Chats = {
                 document.getElementById("chat-loading-container").className = "invisible";
                 document.getElementById("chat-footer").className = "";
 
+                socket.on(`typing-${chat_id}`, () => {
+                    Chats.Events.onRemoteTyping();
+                })
+
+                socket.on(`new-message-${current_chat_id}`, (msg) => {
+                    Chats.Events.onNewMessage(msg);
+                })
+
                 console.log(messages);
             }).catch((error) => {
                 console.log(error);
             });
         },
         onSendMsg: () => {
-            const msg = document.getElementById("chat-input").value;
+            const msg = document.getElementById("chat-footer-input").value;
             if (msg != "") {
+                const shelter = global_shelters.filter( s => {return s.shelter_id == current_shelter_id})[0];
                 const msgContainer = document.getElementById('chat-content');
+                const date = new Date();
                 const msgObj = {
                     shelter_id: current_shelter_id,
-                    publication_id: current_chat_id,
-                    message: msg
+                    chat_id: current_chat_id,
+                    text: msg,
+                    created_at: date.toISOString(),
+                    is_shelter: shelter.is_shelter,
                 }
-                Chats.UI.addMessageToChat(msgObj, msgContainer);
-                document.getElementById("chat-input").value = "";
-                Chats.Actions.sendMsg(msgObj);
+                Chats.UI.addMessageToChat(msgObj, msgContainer, current_last_message, { append: false });
+                document.getElementById("chat-footer-input").value = "";
+                Chats.Actions.sendMsg(msgObj).then( res => {
+                    console.log("message sent", res)
+                }).catch( err => {
+                    console.log("error sending message", err);
+                });
             }
+        },
+        onTyping: () => {
+            socket.emit("typing", {
+                shelter_id: current_shelter_id,
+                chat_id: current_chat_id
+            });
+        },
+        onRemoteTyping: () => {
+            console.log("remote_typing")
+            const footer_higher = document.getElementById("footer-higher");
+            footer_higher.className = "typing";
+
+            if(remote_typing_timeout) {
+                clearTimeout(remote_typing_timeout);
+                remote_typing_timeout = null;
+            }
+
+            remote_typing_timeout = setTimeout(() => {
+                footer_higher.className = "";
+            }, 3000);
+
+        },
+        onNewMessage: (msg) => {
+            console.log("new message");
         }
     },
     UI: {
@@ -216,7 +272,7 @@ const Chats = {
             chatName.innerText = chat_name;
         },
 
-        addMessageToChat: (message, chatContainer, previous_msg) => {
+        addMessageToChat: (message, chatContainer, previous_msg, options = { append: true }) => {
             console.log(previous_msg.user_id !== message.user_id)
             const isSender = message.user_id === message.sender_id;
             let date = new Date(message.created_at);
@@ -283,8 +339,17 @@ const Chats = {
             messageContainer.appendChild(messageText);
             messageContainer.appendChild(messageTimestamp);
             contentContainer.appendChild(messageContainer);
-            chatContainer.appendChild(contentContainer);
-            chatContainer.appendChild(dateSeparatorContainer);
+
+            if(options.append) {
+                chatContainer.appendChild(contentContainer);
+                chatContainer.appendChild(dateSeparatorContainer);
+            } else {
+                chatContainer.insertBefore(dateSeparatorContainer, chatContainer.firstChild);
+                chatContainer.insertBefore(contentContainer, chatContainer.firstChild);
+            }
+
+            current_last_message = message;
+            
         }
     }
 }

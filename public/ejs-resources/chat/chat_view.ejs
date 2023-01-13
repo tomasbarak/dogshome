@@ -17,15 +17,19 @@
         </div>
         <div id="chat-body">
             <div id="chat-content">
-                
             </div>
         </div>
 
         <div id="chat-footer" class="invisible">
-            <div class="left-space"></div>
-            <input id="chat-footer-input" type="text" placeholder="Escriba un mensaje...">
-            <div id="chat-footer-send-btn" >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+            <div id="footer-higher">
+                <lottie-player class="remote-typing-animation" src="/animations/chat_typing.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            </div>
+            <div id="footer-lower">
+                <div class="left-space"></div>
+                <input id="chat-footer-input" type="text" placeholder="Escriba un mensaje...">
+                <div id="chat-footer-send-btn" >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+                </div>
             </div>
         </div>
     </div>
@@ -33,6 +37,17 @@
     <script>
         let lockPostPageLoading = false;
         const chat_content = document.getElementById("chat-content");
+        const chat_input = document.getElementById("chat-footer-input");
+
+        chat_input.addEventListener('keydown', (e) => {
+            if(e.key == "Enter") {
+                Chats.Events.onSendMsg();
+            } else {
+                Chats.Events.onTyping();
+            }
+        });
+
+        
 
         chat_content.addEventListener('scroll', () => {
             let {

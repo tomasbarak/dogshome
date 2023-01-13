@@ -159,7 +159,7 @@
         justify-content: flex-start;
         width: 100%;
         height: 100%;
-        max-height: calc(100vh - 201px);
+        max-height: calc(100vh - 241px);
         flex: 1;
         overflow-x: hidden;
         overflow-y: auto;
@@ -290,14 +290,14 @@
     }
 
     #chat-footer {
-        height: 80px;
+        height: fit-content;
+        max-height: 120px;
         width: 100%;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
         box-sizing: border-box;
-        padding: 0 50px;
         visibility: visible;
         opacity: 1;
         transition: all 0.5s ease;
@@ -306,7 +306,45 @@
     #chat-footer.invisible {
         visibility: hidden;
         opacity: 0;
-        transition: all 0.5s ease;
+        transition: all 0.s ease;
+    }
+
+    #footer-higher {
+        max-height: 0;
+        height: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 0 40px;
+        transition: max-height 0.2s ease;
+    }
+
+    #footer-higher.typing {
+        max-height: 40px;
+        transition: max-height 0.2s ease;
+    }
+
+    .remote-typing-animation {
+        height: 100px;
+        width: 100px;
+
+        /* Mirror */
+        transform: scaleX(-1) scaleY(-1);
+    }
+
+    #footer-lower {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        box-sizing: border-box;
+        padding: 0 50px;
     }
 
     #chat-footer-input {
@@ -352,13 +390,11 @@
 
     @media screen and (max-width: 768px) {
         #chat-footer {
-            padding: 0 25px;
         }
     }
 
     @media screen and (max-width: 400px) {
         #chat-footer {
-            padding: 0 15px;
         }
     }
 </style>

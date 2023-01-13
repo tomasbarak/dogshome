@@ -23,17 +23,41 @@
     <%- include(rootPath + 'ejs-resources/chat/chat_style.ejs'); %>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Tocca.js/2.0.4/Tocca.min.js"></script>
-
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
     <link rel="canonical" href="https://dogshome.com.ar/chat">
 </head>
 <body>
+    <script>
+        var socket = io(window.location.host === "localhost:8443" ? "wss://localhost:8888" : "wss://sockets.dogshome.com.ar", {
+            withCredentials: true,
+        });
+
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+        });
+
+        socket.on("connect", () => {
+            console.log("Connected to server");
+        });
+
+        socket.on("disconnect", () => {
+            console.log("Disconnected from server");
+        });
+
+        socket.on("connect_failed", () => {
+            console.log("Connection failed");
+        });
+    </script>
+    
     <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
     <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
     
     <section id="main">
         <%- include(rootPath + 'ejs-resources/chat/chat.ejs') %>
     </section>
+
+    
 </body>
 </html>
