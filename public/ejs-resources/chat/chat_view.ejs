@@ -43,6 +43,7 @@
         send_btn.addEventListener('click', (e) => {
             e.preventDefault();
             Chats.Events.onSendMsg();
+            chat_input.focus();
         });
 
         chat_input.addEventListener('keydown', (e) => {
