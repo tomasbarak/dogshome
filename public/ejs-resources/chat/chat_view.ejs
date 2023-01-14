@@ -38,6 +38,12 @@
         let lockPostPageLoading = false;
         const chat_content = document.getElementById("chat-content");
         const chat_input = document.getElementById("chat-footer-input");
+        const send_btn = document.getElementById("chat-footer-send-btn");
+
+        send_btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            Chats.Events.onSendMsg();
+        });
 
         chat_input.addEventListener('keydown', (e) => {
             if(e.key == "Enter") {
