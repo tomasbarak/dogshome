@@ -91,7 +91,6 @@ const Chats = {
                     message["shelter_photo"] = shelter_photo;
                     const i = messages.indexOf(message);
                     const previous_msg = messages[i + 1];
-                    console.log(message, previous_msg);
                     Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
                 });
                 
@@ -106,7 +105,6 @@ const Chats = {
                     Chats.Events.onNewMessage(msg);
                 })
 
-                console.log(messages);
             }).catch((error) => {
                 console.log(error);
             });
@@ -140,7 +138,6 @@ const Chats = {
             });
         },
         onRemoteTyping: () => {
-            console.log("remote_typing")
             const footer_higher = document.getElementById("footer-higher");
             footer_higher.className = "typing";
 
@@ -155,7 +152,12 @@ const Chats = {
 
         },
         onNewMessage: (msg) => {
-            console.log("new message");
+            console.log("new message", msg, msg.sender_id, current_shelter_id);
+            if(msg.sender_id == current_shelter_id) {
+                Chats.UI.addMessageToChat(msg, document.getElementById('chat-content'), current_last_message, { append: false });
+            } else {
+                console.log("MSG Received by other user")
+            }
         }
     },
     UI: {
@@ -200,10 +202,6 @@ const Chats = {
             shelterContainer.appendChild(shelterInfoContainer);
             const chatList = document.getElementById('shelter-list-container');
             chatList.appendChild(shelterContainer);
-            $(chatList).on("swipeleft", function (e) {
-                console.log(e);
-                alert("swipeleft");
-            })
 
             const chatsContainer = document.createElement('div');
             chatsContainer.className = "shelter-list-item-chats-container invisible";
@@ -273,7 +271,6 @@ const Chats = {
         },
 
         addMessageToChat: (message, chatContainer, previous_msg, options = { append: true }) => {
-            console.log(previous_msg.user_id !== message.user_id)
             const isSender = message.user_id === message.sender_id;
             let date = new Date(message.created_at);
             let previous_msg_date = new Date(previous_msg.created_at);
