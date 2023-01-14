@@ -274,6 +274,7 @@ const Chats = {
             const isSender = message.user_id === message.sender_id;
             let date = new Date(message.created_at);
             let previous_msg_date = new Date(previous_msg.created_at);
+            console.log(date, previous_msg_date)
             const isSameDate = date.toLocaleDateString() === previous_msg_date.toLocaleDateString()
             const contentContainer = document.createElement('div');
             contentContainer.id = message.created_at;
@@ -318,6 +319,7 @@ const Chats = {
 
             //Create date separator if the message was sent on a different day
             if(!isSameDate){
+                console.log("not same date", date, previous_msg_date)
                 const days = ["Dom.", "Lun.", "Mar.", "Mie.", "Jue.", "Vie.", "Sab."];
                 dateSeparatorContainer.className = "chat-content-date-separator-container";
 
