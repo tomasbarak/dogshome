@@ -12,6 +12,7 @@ let current_shelter_id = null;
 let current_page = 1;
 let current_last_message = null;
 let remote_typing_timeout = null;
+let global_chat_messages = [];
 
 const Chats = {
     Actions: {
@@ -346,9 +347,6 @@ const Chats = {
                 chatContainer.insertBefore(dateSeparatorContainer, chatContainer.firstChild);
                 chatContainer.insertBefore(contentContainer, chatContainer.firstChild);
             }
-
-            current_last_message = message;
-            
         }
     }
 }
