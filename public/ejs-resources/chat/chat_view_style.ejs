@@ -159,7 +159,7 @@
         justify-content: flex-start;
         width: 100%;
         height: 100%;
-        max-height: calc(100vh - 281px);
+        max-height: calc(100vh - 241px);
         flex: 1;
         overflow-x: hidden;
         overflow-y: auto;
@@ -310,6 +310,7 @@
     }
 
     #footer-higher {
+        max-height: 0;
         height: 40px;
         width: 100%;
         display: flex;
@@ -319,13 +320,12 @@
         box-sizing: border-box;
         overflow: hidden;
         padding: 0 40px;
-        opacity: 0;
         transition: max-height 0.2s ease;
     }
 
     #footer-higher.typing {
-        opacity: 1;
-        transition: all 0.5s ease;
+        max-height: 40px;
+        transition: max-height 0.2s ease;
     }
 
     .remote-typing-animation {
