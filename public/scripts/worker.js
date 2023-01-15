@@ -11,7 +11,6 @@ const urlB64ToUint8Array = base64String => {
 
 const saveSubscription = async subscription => {
     const SERVER_URL = 'https://notifications.dogshome.com.ar/subscribe'
-    console.log(subscription);
     const response = await fetch(SERVER_URL, {
         method: 'POST',
         headers: {
@@ -43,9 +42,20 @@ self.addEventListener('activate', async () => {
     });
 });
 
+const showLocalNotification = (title, body, icon, url, swRegistration) => {
+    const options = {
+        body: body,
+        icon: icon,
+        url: url
+    }
+    
+    swRegistration.showNotification(title, options);
+}
+
 self.addEventListener('push', function (event) {
     if (event.data) {
-        console.log('This push event has data: ', event.data.text());
+        const jsonData = event.data.json();
+        showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
     } else {
         console.log('This push event has no data.');
     }
