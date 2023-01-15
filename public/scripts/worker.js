@@ -18,7 +18,8 @@ const saveSubscription = async subscription => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(subscription),
-        withCredentials: true
+        withCredentials: true,
+        credentials: 'include'
     }).catch(err => console.error(err))
     return response.json()
 }
@@ -30,20 +31,16 @@ self.addEventListener('activate', async () => {
     const options = {applicationServerKey, userVisibleOnly: true}
     console.log(options);
 
-    let subscription;
-    try {
-        subscription = await self.registration.pushManager.subscribe(options);
+    self.registration.pushManager.subscribe(options).then(subscription => {
         console.log(subscription);
-    } catch (err) {
+        saveSubscription(subscription).then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.error(err);
+        });
+    }).catch(err => {
         console.error(err);
-    }
-
-    try {
-        const response = await saveSubscription(subscription);
-        console.log(response);
-    } catch (err) {
-        console.error(err);
-    }
+    });
 });
 
 self.addEventListener('push', function (event) {
