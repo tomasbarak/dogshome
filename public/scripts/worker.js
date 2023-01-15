@@ -23,12 +23,19 @@ const saveSubscription = async subscription => {
 }
 
 self.addEventListener('activate', async () => {
+    const applicationServerKey = urlB64ToUint8Array("BIuQZD7wIPWept54SFP6hRxlv0rvFlkJaqcfPmZrqElOuAGxm98RGs5QBLnIPtkZWD-d2WnACiyfJaN-5jwcYrE");
+    console.log(applicationServerKey);
+
     try {
-        const applicationServerKey = urlB64ToUint8Array("BIuQZD7wIPWept54SFP6hRxlv0rvFlkJaqcfPmZrqElOuAGxm98RGs5QBLnIPtkZWD-d2WnACiyfJaN-5jwcYrE")
-        const options = {applicationServerKey, userVisibleOnly: true}
         const subscription = await self.registration.pushManager.subscribe(options);
-        console.log(JSON.stringify(subscription));
+        console.log(subscription);
+    } catch (err) {
+        console.error(err);
+    }
+
+    try {
         const response = await saveSubscription(subscription);
+        console.log(response);
     } catch (err) {
         console.error(err);
     }
