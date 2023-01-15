@@ -16,6 +16,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
     
+    <script src="/scripts/chats/notifications.js"></script>
     <script src="/scripts/main/basic-navigation.js"></script>
     <script src="/scripts/auth/sign-out.js"></script>
     <script src="/scripts/chats/chat_list.js"></script>
@@ -40,6 +41,7 @@
 
         socket.on("connect", () => {
             console.log("Connected to server");
+            main();
         });
 
         socket.on("disconnect", () => {
@@ -49,6 +51,7 @@
         socket.on("connect_failed", () => {
             console.log("Connection failed");
         });
+
     </script>
     
     <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
