@@ -11,6 +11,7 @@ const urlB64ToUint8Array = base64String => {
 
 const saveSubscription = async subscription => {
     const SERVER_URL = 'https://notifications.dogshome.com.ar/subscribe'
+    console.log(subscription);
     const response = await fetch(SERVER_URL, {
         method: 'POST',
         headers: {
