@@ -132,6 +132,7 @@ const Chats = {
                     messages.forEach((message) => {
                         const i = messages.indexOf(message);
                         const previous_msg = messages[i + 1];
+                        console.log(previous_msg)
                         Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
                     });
 
