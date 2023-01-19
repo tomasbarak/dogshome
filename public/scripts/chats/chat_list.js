@@ -5,14 +5,13 @@ const requestOptions = {
     withCredentials: window.location.hostname !== 'localhost'
 }
 
-const api_host = `https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}`;
-
+// const api_host = `https://${window.location.hostname == "localhost" ? "" : "api."}${window.location.hostname}:${window.location.hostname == "localhost" ? "8843" : ''}`;
+const api_host = `https://api.${window.location.hostname}`;
 let current_chat_id = null;
 let current_shelter_id = null;
 let current_page = 1;
 let current_last_message = null;
 let remote_typing_timeout = null;
-let global_chat_messages = [];
 
 const Chats = {
     Actions: {
@@ -67,16 +66,106 @@ const Chats = {
                     reject(error);
                 });
             })
+        },
+
+        selectChat: (shelter_id, chat_id) => {
+            const shelter_container = document.getElementById(shelter_id);
+            const chat_container = document.getElementById(chat_id);
+            
+            const all_shelter_containers = document.getElementsByClassName("shelter-list-item-container");
+            const all_chat_containers = document.getElementsByClassName("shelter-list-item-chat-container");
+
+            for (let i = 0; i < all_shelter_containers.length; i++) {
+                all_shelter_containers[i].className = "shelter-list-item-container";
+                all_shelter_containers[i].getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+            }
+
+            for (let i = 0; i < all_chat_containers.length; i++) {
+                const chat_container = all_chat_containers[i];
+                chat_container.classList.remove("selected");
+            }
+
+            const chatsContainer = document.getElementById(`${shelter_id}`);
+            const toggleBtnContainer = document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+            const chatListContainerToggled = document.getElementById(`chats-container-${shelter_id}`);
+            let extendedHeight = chatListContainerToggled.scrollHeight;
+            document.querySelector(":root").style.setProperty(`--${shelter_id}-extended-height`, `${extendedHeight + 60}px`);
+            document.styleSheets[14].insertRule(`#${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
+            chatsContainer.className = "shelter-list-item-container toggled";
+            toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
+
+            chat_container.classList.add("selected");
         }
     },
     Events: {
+        onWindowLoad: () => {
+            const getQueryParams = () => {
+                const qs = window.location.search.substr(1);
+                const params = {};
+                if (qs != "") {
+                    qs.split("&").forEach((param) => {
+                        const [key, value] = param.split("=");
+                        params[key] = value;
+                    });
+                }
+
+                return params;
+            }
+
+            const queryParams = getQueryParams();
+            if (queryParams.cid != undefined && queryParams.sid != undefined) {
+                const chatNotSelected = document.getElementById("chat-not-selected");
+                const chatLoading = document.getElementById("chat-loading-container");
+                chatLoading.className = "visible";
+                chatNotSelected.classList.add("invisible");
+                Chats.Actions.selectChat(queryParams.sid, queryParams.cid);
+                const selected_chat = global_chats.find((chat) => chat.chat_id == queryParams.cid);
+                Chats.UI.setChatHeader(selected_chat.shelter_photo, selected_chat.shelter_name, selected_chat.chat_photo, selected_chat.chat_name);
+                document.getElementById("chat-header-inf").className = "";
+                        
+                Chats.Actions.getChatMessages(queryParams.sid, queryParams.cid, 1).then((messages) => {
+                    chatLoading.className = "invisible";
+                    Chats.Actions.toggleSidebar();
+                    const msgContainer = document.getElementById('chat-content');
+                    msgContainer.innerHTML = "";
+                    current_last_message = messages[0];
+                    messages.forEach((message) => {
+                        const i = messages.indexOf(message);
+                        const previous_msg = messages[i + 1];
+                        Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
+                    });
+
+                    document.getElementById("chat-loading-container").className = "invisible";
+                    document.getElementById("chat-footer").className = "";
+                    current_shelter_id = queryParams.sid;
+
+                    Chats.Events.onChatLoad(queryParams.cid);
+                });
+            }
+
+        },
+        onShelterClick: (shelter_id) => {
+            const chatsContainer = document.getElementById(`${shelter_id}`);
+            const toggleBtnContainer = document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+            const chatListContainerToggled = document.getElementById(`chats-container-${shelter_id}`);
+            if (chatsContainer.className.includes("toggled")) {
+                chatsContainer.className = "shelter-list-item-container";
+                toggleBtnContainer.className = "shelter-list-item-toggle-button-container";
+            } else {
+                let extendedHeight = chatListContainerToggled.scrollHeight;
+                document.querySelector(":root").style.setProperty(`--${shelter_id}-extended-height`, `${extendedHeight + 60}px`);
+                document.styleSheets[14].insertRule(`#${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
+                chatsContainer.className = "shelter-list-item-container toggled";
+                toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
+            }
+        },
         onChatClick: (shelter_id, chat_id, shelter_name, shelter_photo, chat_title, chat_photo) => {
+            Chats.Actions.selectChat(shelter_id, chat_id);
+            window.history.pushState({}, "", `?sid=${shelter_id}&cid=${chat_id}`);
             Chats.UI.setChatHeader(shelter_photo, shelter_name, chat_photo, chat_title);
             Chats.Actions.closeSidebar();
             document.getElementById("chat-header-inf").className = "";
-            socket.off(`typing-${current_chat_id}`);
-            socket.off(`new-message-${current_chat_id}`);
-            current_chat_id = chat_id;
+            
             current_shelter_id = shelter_id;
             current_page = 1;
             document.getElementById("chat-loading-container").className = "visible";
@@ -94,26 +183,33 @@ const Chats = {
                     const previous_msg = messages[i + 1];
                     Chats.UI.addMessageToChat(message, msgContainer, previous_msg == undefined ? {} : previous_msg);
                 });
-                
+
                 document.getElementById("chat-loading-container").className = "invisible";
                 document.getElementById("chat-footer").className = "";
 
-                socket.on(`typing-${chat_id}`, () => {
-                    Chats.Events.onRemoteTyping();
-                })
-
-                socket.on(`new-message-${current_chat_id}`, (msg) => {
-                    Chats.Events.onNewMessage(msg);
-                })
-
+                Chats.Events.onChatLoad(chat_id);
             }).catch((error) => {
                 console.log(error);
             });
         },
+        onChatLoad: (chat_id) => {
+            socket.off(`typing-${current_chat_id}`);
+            socket.off(`new-message-${current_chat_id}`);
+
+            current_chat_id = chat_id;
+
+            socket.on(`typing-${chat_id}`, () => {
+                Chats.Events.onRemoteTyping();
+            })
+
+            socket.on(`new-message-${current_chat_id}`, (msg) => {
+                Chats.Events.onNewMessage(msg);
+            })
+        },
         onSendMsg: () => {
             const msg = document.getElementById("chat-footer-input").value;
             if (msg != "") {
-                const shelter = global_shelters.filter( s => {return s.shelter_id == current_shelter_id})[0];
+                const shelter = global_shelters.filter(s => { return s.shelter_id == current_shelter_id })[0];
                 const msgContainer = document.getElementById('chat-content');
                 const date = new Date();
                 const msgObj = {
@@ -125,9 +221,9 @@ const Chats = {
                 }
                 Chats.UI.addMessageToChat(msgObj, msgContainer, current_last_message, { append: false });
                 document.getElementById("chat-footer-input").value = "";
-                Chats.Actions.sendMsg(msgObj).then( res => {
-                    console.log("message sent", res)
-                }).catch( err => {
+                Chats.Actions.sendMsg(msgObj).then(res => {
+                    //Message successfully sent
+                }).catch(err => {
                     console.log("error sending message", err);
                 });
             }
@@ -142,7 +238,7 @@ const Chats = {
             const footer_higher = document.getElementById("footer-higher");
             footer_higher.className = "typing";
 
-            if(remote_typing_timeout) {
+            if (remote_typing_timeout) {
                 clearTimeout(remote_typing_timeout);
                 remote_typing_timeout = null;
             }
@@ -153,8 +249,7 @@ const Chats = {
 
         },
         onNewMessage: (msg) => {
-            console.log("new message", msg, msg.sender_id, current_shelter_id);
-            if(msg.sender_id == current_shelter_id) {
+            if (msg.sender_id == current_shelter_id) {
                 Chats.UI.addMessageToChat(msg, document.getElementById('chat-content'), current_last_message, { append: false });
             } else {
                 console.log("MSG Received by other user")
@@ -211,22 +306,9 @@ const Chats = {
 
             shelterContainer.appendChild(chatsContainer);
 
-            shelterInfoContainer.onclick = function () {
-                const chatsContainer = document.getElementById(`${shelter_id}`);
-                const toggleBtnContainer = document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
-                const chatListContainerToggled = document.getElementById(`chats-container-${shelter_id}`);
-                if (chatsContainer.className.includes("toggled")) {
-                    chatsContainer.className = "shelter-list-item-container";
-                    toggleBtnContainer.className = "shelter-list-item-toggle-button-container";
-                } else {
-                    let extendedHeight = chatListContainerToggled.scrollHeight;
-                    document.querySelector(":root").style.setProperty(`--${shelter_id}-extended-height`, `${extendedHeight + 60}px`);
-                    document.styleSheets[14].insertRule(`#${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
-                    chatsContainer.className = "shelter-list-item-container toggled";
-                    toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
-
-                }
-            }
+            shelterInfoContainer.onclick = () => {
+                Chats.Events.onShelterClick(shelter_id)
+            };
         },
         addChatToShelterList: (chat, chatsContainer) => {
             const chatContainer = document.createElement('div');
@@ -255,7 +337,12 @@ const Chats = {
             chatsContainer.appendChild(chatContainer);
 
             chatContainer.addEventListener('click', () => {
-                Chats.Events.onChatClick(chat.shelter_id, chat.chat_id, chat.shelter_name, chat.shelter_photo, chat.chat_name, chat.chat_photo);
+                if(chatContainer.className.includes("selected")){
+                    Chats.Actions.toggleSidebar();
+                    return;
+                } else {
+                    Chats.Events.onChatClick(chat.shelter_id, chat.chat_id, chat.shelter_name, chat.shelter_photo, chat.chat_name, chat.chat_photo);
+                }
             });
         },
         setChatHeader: (shelter_photo, shelter_name, chat_photo, chat_name) => {
@@ -275,13 +362,12 @@ const Chats = {
             const isSender = message.user_id === message.sender_id;
             let date = new Date(message.created_at);
             let previous_msg_date = new Date(previous_msg.created_at);
-            console.log(date, previous_msg_date)
             const isSameDate = date.toLocaleDateString() === previous_msg_date.toLocaleDateString()
             const contentContainer = document.createElement('div');
             contentContainer.id = message.created_at;
             contentContainer.className = isSender ? "chat-content-message-container sent" : "chat-content-message-container received";
 
-            if(!isSender && previous_msg.sender_id !== message.sender_id){
+            if (!isSender && previous_msg.sender_id !== message.sender_id) {
                 const messageImage = document.createElement('img');
                 messageImage.className = "chat-content-message-image";
                 messageImage.src = message.shelter_photo || "https://dogshome.com.ar/profile/image/uploaded/default-user-image.png";
@@ -304,8 +390,8 @@ const Chats = {
             messageTimestamp.className = "chat-content-message-timestamp";
             //If the message was sent today, show the time, otherwise show the date
             messageTimestamp.innerText = date.toLocaleTimeString([], {
-                hour: '2-digit', 
-                minute:'2-digit', 
+                hour: '2-digit',
+                minute: '2-digit',
                 timeZone: 'America/Argentina/Buenos_Aires',
                 hour12: false
             })
@@ -319,15 +405,14 @@ const Chats = {
             const dateSeparatorContainer = document.createElement("div");
 
             //Create date separator if the message was sent on a different day
-            if(!isSameDate){
-                console.log("not same date", date, previous_msg_date)
+            if (!isSameDate) {
                 const days = ["Dom.", "Lun.", "Mar.", "Mie.", "Jue.", "Vie.", "Sab."];
                 dateSeparatorContainer.className = "chat-content-date-separator-container";
 
                 const dateSeparator = document.createElement("a");
                 dateSeparator.className = "chat-content-date-separator";
 
-                if(date.getFullYear() === previous_msg_date.getFullYear()){
+                if (date.getFullYear() === previous_msg_date.getFullYear()) {
                     dateSeparator.innerText = `${days[date.getDay()]} ${date.getDate()} de ${String(date.toLocaleString('es-AR', { month: 'long' })).charAt(0).toUpperCase() + String(date.toLocaleString('es-AR', { month: 'long' })).slice(1)}`;
                 } else {
                     dateSeparator.innerText = `${days[date.getDay()]} ${date.getDate()} de ${String(date.toLocaleString('es-AR', { month: 'long' })).charAt(0).toUpperCase() + String(date.toLocaleString('es-AR', { month: 'long' })).slice(1)} de ${date.getFullYear()}`;
@@ -340,7 +425,7 @@ const Chats = {
             messageContainer.appendChild(messageTimestamp);
             contentContainer.appendChild(messageContainer);
 
-            if(options.append) {
+            if (options.append) {
                 chatContainer.appendChild(contentContainer);
                 chatContainer.appendChild(dateSeparatorContainer);
             } else {

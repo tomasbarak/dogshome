@@ -21,6 +21,7 @@
     
     <script>
         let global_shelters = [];
+        let global_chats = [];
         document.getElementById("chat-list-toggle-btn-container").addEventListener("click", function() {
             Chats.Actions.toggleSidebar();
         })
@@ -36,6 +37,8 @@
 
             shelters.forEach(({ shelter_id, shelter_photo, shelter_name }) => {
                 Chats.Actions.getChatsByShelter(shelter_id).then(function (chats) {
+                    global_chats = global_chats.concat(chats);
+
                     document.getElementById('shelter-list-loading').className = "invisible";
                     Chats.UI.addShelterItemToList({ shelter_id, shelter_photo, shelter_name });
 
@@ -45,6 +48,8 @@
                         chat["shelter_photo"] = shelter_photo;
                         Chats.UI.addChatToShelterList(chat, document.getElementById(`chats-container-${shelter_id}`));
                     });
+        
+                    Chats.Events.onWindowLoad()
                 }).catch(function (error) {
                     console.log(error);
                 });

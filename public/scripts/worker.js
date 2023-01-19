@@ -10,7 +10,7 @@ const urlB64ToUint8Array = base64String => {
 }
 
 const saveSubscription = async subscription => {
-    const SERVER_URL = 'https://notifications.dogshome.com.ar/subscribe'
+    const SERVER_URL = `https://notifications.${self.location.hostname}/subscribe`;
     const response = await fetch(SERVER_URL, {
         method: 'POST',
         headers: {
@@ -27,7 +27,7 @@ self.addEventListener('activate', async () => {
     const applicationServerKey = urlB64ToUint8Array("BIuQZD7wIPWept54SFP6hRxlv0rvFlkJaqcfPmZrqElOuAGxm98RGs5QBLnIPtkZWD-d2WnACiyfJaN-5jwcYrE");
     console.log(applicationServerKey);
 
-    const options = {applicationServerKey, userVisibleOnly: true}
+    const options = { applicationServerKey, userVisibleOnly: true }
     console.log(options);
 
     self.registration.pushManager.subscribe(options).then(subscription => {
@@ -48,15 +48,51 @@ const showLocalNotification = (title, body, icon, url, swRegistration) => {
         icon: icon,
         url: url
     }
-    
+
     swRegistration.showNotification(title, options);
+}
+
+async function checkClientIsVisible() {
+    const windowClients = await clients.matchAll({
+        type: "window",
+        includeUncontrolled: true,
+    });
+
+    for (var i = 0; i < windowClients.length; i++) {
+        if (windowClients[i].visibilityState === "visible") {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 self.addEventListener('push', function (event) {
     if (event.data) {
         const jsonData = event.data.json();
-        showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
+        checkClientIsVisible().then(isVisible => {
+            if (!isVisible) {
+                showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
+            }
+        }).catch(err => {
+            console.error(err);
+        });
     } else {
         console.log('This push event has no data.');
     }
+});
+
+self.addEventListener('notificationclick', function (event) {
+    event.notification.close();
+    console.log(event.notification);
+    event.waitUntil(clients.matchAll({
+        type: "window"
+    }).then((clientList) => {
+        for (const client of clientList) {
+            if (client.url === event.notification.url && 'focus' in client)
+                return client.focus();
+        }
+        if (clients.openWindow)
+            return clients.openWindow(event.notification.url);
+    }));
 });

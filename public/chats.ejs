@@ -31,7 +31,7 @@
 </head>
 <body>
     <script>
-        var socket = io(window.location.host === "localhost:8443" ? "wss://localhost:8888" : "wss://sockets.dogshome.com.ar", {
+        var socket = io(`wss://sockets.${window.location.hostname}`, {
             withCredentials: true,
         });
 
