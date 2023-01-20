@@ -46,7 +46,8 @@ const showLocalNotification = (title, body, icon, url, swRegistration) => {
     const options = {
         body: body,
         icon: icon,
-        url: url
+        badge: "https://dogshome.com.ar/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png",
+        url: url,
     }
 
     swRegistration.showNotification(title, options);
@@ -69,8 +70,7 @@ async function checkClientIsVisible() {
 
 self.addEventListener('push', function (event) {
     if (event.data) {
-        const jsonData = event.data.json();
-        console.log(jsonData);
+        const jsonData = JSON.parse(event.data.json());
         checkClientIsVisible().then(isVisible => {
             if (!isVisible) {
                 showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
