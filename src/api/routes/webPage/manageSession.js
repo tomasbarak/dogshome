@@ -19,9 +19,38 @@ function init(app, firebaseAdmin) {
             .createSessionCookie(idToken, { expiresIn })
             .then(
                 (sessionCookie) => {
-                    // Set cookie policy for session cookie.
-                    res.set("Set-Cookie", `session=${sessionCookie}; HttpOnly; Secure; SameSite=none; Path=/; Domain=${req.headers.host === 'localhost.test' ? ".localhost.test" : ".dogshome.com.ar"}; Max-Age=${expiresIn}`);
-                    res.redirect('/');
+                    const subscription = req.body.subscription;
+
+                    if(subscription) {
+                        firebaseAdmin.auth().verifySessionCookie(sessionCookie, true /** checkRevoked */).then((decodedIdToken) => {
+                            const user_id = decodedIdToken.uid;
+
+                            mdb.connectClient(mongoURL).then( (client) => {
+                                const collection = client.db(mongoDBName).collection('Subscriptions');
+                                const subscription_to_save = {
+                                    user_id: user_id,
+                                    push_subscription: subscription
+                                };
+
+                                mdb.saveOne(collection, subscription_to_save, subscription_to_save).then( (result) => {
+                                    res.set("Set-Cookie", `session=${sessionCookie}; HttpOnly; Secure; SameSite=none; Path=/; Domain=${req.headers.host === 'localhost.test' ? ".localhost.test" : ".dogshome.com.ar"}; Max-Age=${expiresIn}`);
+                                    res.redirect('/');
+                                }).catch( (error) => {
+                                    res.status(500).send({
+                                        error: error
+                                    });
+                                });
+                            }).catch((error) => {
+                                reject(error);
+                            });
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                    } else {
+                        res.set("Set-Cookie", `session=${sessionCookie}; HttpOnly; Secure; SameSite=none; Path=/; Domain=${req.headers.host === 'localhost.test' ? ".localhost.test" : ".dogshome.com.ar"}; Max-Age=${expiresIn}`);
+                        res.redirect('/');
+                    }
+                    
                 },
                 (error) => {
                     res.status(401).send(error);
@@ -43,8 +72,8 @@ function init(app, firebaseAdmin) {
             mdb.connectClient(mongoURL).then(client => {
                 const mongoDB = client.db(mongoDBName);
                 const subscriptionsCollection = mongoDB.collection('Subscriptions');
-                let requestQuery = { "Subscription.endpoint": pushEndpoint, "Id": user.uid };
-                mdb.deleteOne(subscriptionsCollection, requestQuery).then(result => {
+                let requestQuery = { "push_subscription.endpoint": pushEndpoint, "user_id": user.uid };
+                mdb.deleteMany(subscriptionsCollection, requestQuery).then(result => {
                     console.log(result);
                     firebaseAdmin.auth().revokeRefreshTokens(user.uid).then(() => {
                         res.send('Logged out');

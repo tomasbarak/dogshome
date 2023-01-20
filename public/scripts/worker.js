@@ -20,7 +20,7 @@ const saveSubscription = async subscription => {
         withCredentials: true,
         credentials: 'include'
     }).catch(err => console.error(err))
-    return response.json()
+    return response;
 }
 
 self.addEventListener('activate', async () => {
@@ -98,4 +98,36 @@ self.addEventListener('notificationclick', function (event) {
         if (clients.openWindow)
             return clients.openWindow(event.notification.data.url);
     }));
+});
+
+const updateSubscription = async subscription => {
+    const SERVER_URL = `https://notifications.${self.location.hostname}/update-subscription`;
+    const response = await fetch(SERVER_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            old_subscription: subscription.oldSubscription,
+            new_subscription: subscription.newSubscription
+        }),
+        withCredentials: true,
+        credentials: 'include'
+    }).catch(err => console.error(err))
+    return response.json()
+}
+    
+
+self.addEventListener("pushsubscriptionchange", function (event) {
+    console.log("[Service Worker]: 'pushsubscriptionchange' event fired.");
+    event.waitUntil(
+        self.registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlB64ToUint8Array("BIuQZD7wIPWept54SFP6hRxlv0rvFlkJaqcfPmZrqElOuAGxm98RGs5QBLnIPtkZWD")
+        })
+        .then(function (newSubscription) {
+            console.log("[Service Worker]: New subscription: ", newSubscription);
+            return saveSubscription(newSubscription);
+        })
+    );
 });

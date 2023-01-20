@@ -7,6 +7,37 @@ function enter(email, password){
 }
 
 function signIn(email, password) {
+
+    const getPushSubscription = async () => {
+        //check if service worker is supported
+        if (!('serviceWorker' in navigator)) {
+            throw new Error('No Service Worker support!');
+        }
+        if (!('PushManager' in window)) {
+            throw new Error('No Push API Support!');
+        }
+        //check if permission is granted
+        const permission = window.Notification.permission;
+        if (permission !== 'granted') {
+            throw new Error('Permission not granted for Notification');
+        }
+    
+        //register service worker
+        const registrations = await navigator.serviceWorker.getRegistrations() ;
+        //Check if there is any registration
+        if (registrations.length === 0) {
+            throw new Error('No Service Worker is registered!');
+        }
+        const registration = registrations[0];
+        //get subscription
+        const subscription = await registration.pushManager.getSubscription();
+        if (subscription) {
+            return subscription;
+        } else {
+            return null;
+        }
+    }
+    
     if (email.length > 0 && password.length > 0) {
         Swal.fire({
             title: 'Espere por favor',
@@ -22,13 +53,23 @@ function signIn(email, password) {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Signed in
-                var user = userCredential.user;
+                let user = userCredential.user;
 
-                user.getIdToken(true).then(function (idToken) {
-                    // Send token to your backend via HTTPS
-                    axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
-                        window.location.href = "/";
-                    })
+                user.getIdToken(true).then(async function (idToken) {
+                    try {
+                        const subscription = await getPushSubscription();
+                        axios.post("/sessionLogin", { idToken: idToken, subscription: subscription }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(function (response) {
+                            window.location.href = "/";
+                        })
+                    } catch (error) {
+                        axios.post("/sessionLogin", { idToken: idToken, subscription: null }).then(function (response) {
+                            window.location.href = "/";
+                        })
+                    }
                 }).catch(function (error) {
                     console.error(error);
                 });

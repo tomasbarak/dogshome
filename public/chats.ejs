@@ -41,7 +41,6 @@
 
         socket.on("connect", () => {
             console.log("Connected to server");
-            main();
         });
 
         socket.on("disconnect", () => {
@@ -51,6 +50,8 @@
         socket.on("connect_failed", () => {
             console.log("Connection failed");
         });
+
+        main();
 
     </script>
     
