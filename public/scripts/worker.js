@@ -70,6 +70,7 @@ async function checkClientIsVisible() {
 self.addEventListener('push', function (event) {
     if (event.data) {
         const jsonData = event.data.json();
+        console.log(jsonData);
         checkClientIsVisible().then(isVisible => {
             if (!isVisible) {
                 showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
