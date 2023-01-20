@@ -1,3 +1,31 @@
+let notifications = {};
+async function openDB(callback) {
+    // ask to open the db
+    const openRequest = self.indexedDB.open(dbName, version);
+     
+    openRequest.onerror = function (event) {
+      console.log(
+        "Everyhour isn't allowed to use IndexedDB?!" + event.target.errorCode
+      );
+    };
+    
+    // upgrade needed is called when there is a new version of you db schema that has been defined
+    openRequest.onupgradeneeded = function (event) {
+      db = event.target.result;
+  
+      if (!db.objectStoreNames.contains(storeName)) {
+        // if there's no store of 'storeName' create a new object store
+        db.createObjectStore(storeName, { keyPath: "key" }); //some use keyPath: "id" (basically the primary key) - unsure why yet
+      }
+    };
+    
+    openRequest.onsuccess = function (event) {
+      db = event.target.result;
+      if (callback) {
+        callback();
+      }
+    };
+  }
 const urlB64ToUint8Array = base64String => {
     const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
     const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
@@ -42,7 +70,7 @@ self.addEventListener('activate', async () => {
     });
 });
 
-const showLocalNotification = (title, body, icon, url, swRegistration) => {
+const showLocalNotification = (title, body, icon, url, tag, swRegistration) => {
     const options = {
         body: body,
         icon: icon,
@@ -50,6 +78,8 @@ const showLocalNotification = (title, body, icon, url, swRegistration) => {
         data: {
             url: url
         },
+        tag: tag,
+        renotify: true
     }
 
     swRegistration.showNotification(title, options);
@@ -75,7 +105,16 @@ self.addEventListener('push', function (event) {
         const jsonData = JSON.parse(event.data.json());
         checkClientIsVisible().then(isVisible => {
             if (!isVisible) {
-                showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, self.registration);
+                console.log(jsonData.tag, notifications[jsonData.tag])
+                if(notifications[jsonData.tag] !== undefined && notifications[jsonData.tag].length > 0){
+                    notifications[jsonData.tag].push(jsonData.body);
+                } else {
+                    notifications[jsonData.tag] = [jsonData.body];
+                }
+
+                const body = notifications[jsonData.tag].join('\n');
+
+                showLocalNotification(jsonData.title, jsonData.body, jsonData.icon, jsonData.url, jsonData.tag, self.registration);
             }
         }).catch(err => {
             console.error(err);
