@@ -47,7 +47,9 @@ const showLocalNotification = (title, body, icon, url, swRegistration) => {
         body: body,
         icon: icon,
         badge: "https://dogshome.com.ar/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png",
-        url: url,
+        data: {
+            url: url
+        },
     }
 
     swRegistration.showNotification(title, options);
@@ -94,6 +96,6 @@ self.addEventListener('notificationclick', function (event) {
                 return client.focus();
         }
         if (clients.openWindow)
-            return clients.openWindow(event.notification.url);
+            return clients.openWindow(event.notification.data.url);
     }));
 });
