@@ -157,12 +157,15 @@
     }
 
     const startNewChat = (chat_id, shelter_id) => {
+        document.getElementById("chat-loader-container").classList.add("show");
         axios.post(`https://api.${window.location.hostname}/chat/new/shelter/${shelter_id}/publication/${chat_id}/`, {}, {
             withCredentials: true
         }).then((response) => {
-            window.location.href = `/chat/?sid=${shelter_id}&cid=${chat_id}`;
+            window.location.href = `/chats?sid=${shelter_id}&cid=${chat_id}`;
         }).catch((error) => {
             console.log(error);
+        }).finally(() => {
+            document.getElementById("chat-loader-container").classList.remove("show");
         });
     }
 
