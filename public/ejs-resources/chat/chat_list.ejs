@@ -36,6 +36,7 @@
             }
 
             shelters.forEach(({ shelter_id, shelter_photo, shelter_name }) => {
+                console.log(shelter_id, shelter_photo, shelter_name);
                 Chats.Actions.getChatsByShelter(shelter_id).then(function (chats) {
                     global_chats = global_chats.concat(chats);
 
@@ -48,8 +49,12 @@
                         chat["shelter_photo"] = shelter_photo;
                         Chats.UI.addChatToShelterList(chat, document.getElementById(`chats-container-${shelter_id}`));
                     });
+
+                    if (shelters[shelters.length - 1].shelter_id == shelter_id) {
+                        console.log("Last shelter loaded")
+                        Chats.Events.onWindowLoad()
+                    }
         
-                    Chats.Events.onWindowLoad()
                 }).catch(function (error) {
                     console.log(error);
                 });

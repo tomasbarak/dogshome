@@ -69,7 +69,7 @@ const Chats = {
         },
 
         selectChat: (shelter_id, chat_id) => {
-            const shelter_container = document.getElementById(shelter_id);
+            const shelter_container = document.getElementById(`shelter-${shelter_id}`);
             const chat_container = document.getElementById(chat_id);
             
             const all_shelter_containers = document.getElementsByClassName("shelter-list-item-container");
@@ -77,7 +77,7 @@ const Chats = {
 
             for (let i = 0; i < all_shelter_containers.length; i++) {
                 all_shelter_containers[i].className = "shelter-list-item-container";
-                all_shelter_containers[i].getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+                all_shelter_containers[i].getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`shelter-${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
             }
 
             for (let i = 0; i < all_chat_containers.length; i++) {
@@ -85,13 +85,13 @@ const Chats = {
                 chat_container.classList.remove("selected");
             }
 
-            const chatsContainer = document.getElementById(`${shelter_id}`);
-            const toggleBtnContainer = document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+            const chatsContainer = document.getElementById(`shelter-${shelter_id}`);
+            const toggleBtnContainer = document.getElementById(`shelter-${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`shelter-${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
             const chatListContainerToggled = document.getElementById(`chats-container-${shelter_id}`);
             let extendedHeight = chatListContainerToggled.scrollHeight;
             document.querySelector(":root").style.setProperty(`--${shelter_id}-extended-height`, `${extendedHeight + 60}px`);
-            document.styleSheets[14].insertRule(`#${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
-            chatsContainer.className = "shelter-list-item-container toggled";
+            document.styleSheets[14].insertRule(`#shelter-${shelter_id}.toggled{max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
+            chatsContainer.className = `shelter-list-item-container toggled`;
             toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
 
             chat_container.classList.add("selected");
@@ -146,8 +146,8 @@ const Chats = {
 
         },
         onShelterClick: (shelter_id) => {
-            const chatsContainer = document.getElementById(`${shelter_id}`);
-            const toggleBtnContainer = document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
+            const chatsContainer = document.getElementById(`shelter-${shelter_id}`);
+            const toggleBtnContainer = document.getElementById(`shelter-${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container")[0] || document.getElementById(`shelter-${shelter_id}`).getElementsByClassName("shelter-list-item-toggle-button-container toggled")[0];
             const chatListContainerToggled = document.getElementById(`chats-container-${shelter_id}`);
             if (chatsContainer.className.includes("toggled")) {
                 chatsContainer.className = "shelter-list-item-container";
@@ -155,8 +155,8 @@ const Chats = {
             } else {
                 let extendedHeight = chatListContainerToggled.scrollHeight;
                 document.querySelector(":root").style.setProperty(`--${shelter_id}-extended-height`, `${extendedHeight + 60}px`);
-                document.styleSheets[14].insertRule(`#${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
-                chatsContainer.className = "shelter-list-item-container toggled";
+                document.styleSheets[14].insertRule(`#shelter-${shelter_id}.toggled {max-height: var(--${shelter_id}-extended-height); transition: max-height 0.75s ease;}`)
+                chatsContainer.className = `shelter-list-item-container toggled`;
                 toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
             }
         },
@@ -265,7 +265,7 @@ const Chats = {
         }) => {
             const shelterContainer = document.createElement('div');
             shelterContainer.className = "shelter-list-item-container";
-            shelterContainer.id = shelter_id;
+            shelterContainer.id = `shelter-${shelter_id}`;
 
             const shelterImage = document.createElement('img');
             shelterImage.className = "shelter-list-item-image";
@@ -359,7 +359,7 @@ const Chats = {
             chatName.innerText = chat_name;
         },
 
-        addMessageToChat: (message, chatContainer, previous_msg, options = { append: true }) => {
+        addMessageToChat: (message, chatContainer, previous_msg={}, options = { append: true }) => {
             const isSender = message.user_id === message.sender_id;
             let date = new Date(message.created_at);
             let previous_msg_date = new Date(previous_msg.created_at);

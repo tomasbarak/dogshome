@@ -156,6 +156,16 @@
         }
     }
 
+    const startNewChat = (chat_id, shelter_id) => {
+        axios.post(`https://api.${window.location.hostname}/chat/new/shelter/${shelter_id}/publication/${chat_id}/`, {}, {
+            withCredentials: true
+        }).then((response) => {
+            window.location.href = `/chat/?sid=${shelter_id}&cid=${chat_id}`;
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         var main = new Splide('#splide-slider-main', {
             type: 'slide',
