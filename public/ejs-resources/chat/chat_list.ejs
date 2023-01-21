@@ -51,8 +51,25 @@
                     });
 
                     if (shelters[shelters.length - 1].shelter_id == shelter_id) {
-                        console.log("Last shelter loaded")
-                        Chats.Events.onWindowLoad()
+                        const selector = `#shelter-${shelter_id}, #chat-${chats[chats.length - 1].chat_id}`
+                        let loaded = false 
+                        if (document.querySelectorAll(selector)[0] && document.querySelectorAll(selector)[1]) {
+                            loaded ? null : Chats.Events.onWindowLoad()
+                            loaded = true
+                        }
+
+                        const observer = new MutationObserver(mutations => {
+                            if (document.querySelectorAll(selector)[0] && document.querySelectorAll(selector)[1]) {
+                                loaded ? null : Chats.Events.onWindowLoad()
+                                loaded = true
+                                observer.disconnect();
+                            }
+                        });
+
+                        observer.observe(document.body, {
+                            childList: true,
+                            subtree: true
+                        });
                     }
         
                 }).catch(function (error) {

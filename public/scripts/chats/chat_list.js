@@ -70,7 +70,7 @@ const Chats = {
 
         selectChat: (shelter_id, chat_id) => {
             const shelter_container = document.getElementById(`shelter-${shelter_id}`);
-            const chat_container = document.getElementById(chat_id);
+            const chat_container = document.getElementById(`chat-${chat_id}`);
             
             const all_shelter_containers = document.getElementsByClassName("shelter-list-item-container");
             const all_chat_containers = document.getElementsByClassName("shelter-list-item-chat-container");
@@ -95,6 +95,59 @@ const Chats = {
             toggleBtnContainer.className = "shelter-list-item-toggle-button-container toggled";
 
             chat_container.classList.add("selected");
+        },
+
+        closeChat: () => {
+            const chatNotSelected = document.getElementById("chat-not-selected");
+            const chatLoading = document.getElementById("chat-loading-container");
+            const chatContainer = document.getElementById("chat-container");
+            chatLoading.className = "invisible";
+            chatNotSelected.classList.remove("invisible");
+            chatContainer.classList.add("invisible");
+
+            const all_shelter_containers = document.getElementsByClassName("shelter-list-item-container");
+            const all_chat_containers = document.getElementsByClassName("shelter-list-item-chat-container");
+
+            for (let i = 0; i < all_shelter_containers.length; i++) {
+                all_shelter_containers[i].className = "shelter-list-item-container";
+            }
+
+            for (let i = 0; i < all_chat_containers.length; i++) {
+                const chat_container = all_chat_containers[i];
+                chat_container.classList.remove("selected");
+            }
+
+            const chatContent = document.getElementById("chat-content");
+            chatContent.innerHTML = "";
+
+            const chatInput = document.getElementById("chat-footer-input");
+            chatInput.value = "";
+
+            const chatShelterImage = document.getElementById("chat-header-inf-shelter-img");
+            chatShelterImage.src = "";
+
+            const chatShelterName = document.getElementById("chat-header-inf-shelter-name");
+            chatShelterName.innerHTML = "";
+
+            const chatImage= document.getElementById("chat-header-inf-chat-img");
+            chatImage.src = "";
+
+            const chatTitle = document.getElementById("chat-header-inf-chat-title");
+            chatTitle.innerHTML = "";
+
+            const chatFooter = document.getElementById("chat-footer");
+            chatFooter.className = "invisible";
+
+            document.getElementById("chat-header-inf").className = "invisible";
+
+            window.history.pushState({}, "", "/chats/");
+
+            current_chat_id = null;
+            current_shelter_id = null;
+            current_last_message = null;
+            current_page = 1;
+            Chats.Actions.openSidebar();
+
         }
     },
     Events: {
@@ -125,7 +178,7 @@ const Chats = {
                         
                 Chats.Actions.getChatMessages(queryParams.sid, queryParams.cid, 1).then((messages) => {
                     chatLoading.className = "invisible";
-                    Chats.Actions.toggleSidebar();
+                    Chats.Actions.closeSidebar();
                     const msgContainer = document.getElementById('chat-content');
                     msgContainer.innerHTML = "";
                     current_last_message = messages[0];
@@ -314,7 +367,7 @@ const Chats = {
         addChatToShelterList: (chat, chatsContainer) => {
             const chatContainer = document.createElement('div');
             chatContainer.className = "shelter-list-item-chat-container";
-            chatContainer.id = chat.chat_id;
+            chatContainer.id = `chat-${chat.chat_id}`;
 
             const chatImage = document.createElement('img');
             chatImage.className = "shelter-list-item-chat-image";
@@ -357,6 +410,7 @@ const Chats = {
             chatShelterName.innerText = shelter_name;
             chatImage.src = chat_photo;
             chatName.innerText = chat_name;
+            console.log(current_shelter_id, current_chat_id)
         },
 
         addMessageToChat: (message, chatContainer, previous_msg={}, options = { append: true }) => {

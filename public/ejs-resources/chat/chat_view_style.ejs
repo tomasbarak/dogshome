@@ -108,6 +108,7 @@
         border-radius: 50%;
         margin-right: 10px;
         border: 1px solid #079292;
+        cursor: pointer;
     }
 
     #chat-header-inf-shelter-name {
@@ -119,6 +120,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        cursor: pointer;
     }
 
     #chat-header-inf-shelter-name:hover {
@@ -130,6 +132,7 @@
         font-size: 16px;
         font-weight: 500;
         color: #079292;
+        cursor: pointer;
     }
 
     #chat-header-inf-chat-img {
@@ -139,6 +142,36 @@
         margin-left: 10px;
         margin-right: 10px;
         border: 1px solid #079292;
+        cursor: pointer;
+    }
+
+    #close-chat-btn-container {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+    }
+
+    #close-chat-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    #close-chat-btn > svg {
+        fill: #000;
+        transition: fill 0.2s ease; 
+    }
+
+    #close-chat-btn:hover > svg {
+        fill: #9e9e9e;
+        transition: fill 0.2s ease;
     }
 
     #chat-body {
