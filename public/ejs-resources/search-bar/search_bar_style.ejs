@@ -29,7 +29,6 @@
         box-sizing: border-box;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
         overflow-x: hidden;
-
     }
 
     #search-form {
@@ -93,7 +92,22 @@
         display: flex;
         flex: none;
     }
+    #notifications-icon-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin: 0 15px;
+        visibility: visible;
+    }
 
+    #notifications-icon {
+        width: 24px;
+        height: 24px;
+        fill: white;
+        cursor: pointer;
+    }
     #toggle-user-menu-btn {
         margin-right: 5px;
         cursor: pointer;
@@ -160,10 +174,10 @@
 
         #userSpace {
             flex: none !important;
-            width: 40px;
+            width: fit-content;
             margin-left: 10px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row-reverse;
             justify-content: center !important;
             align-items: center;
         }
@@ -178,6 +192,10 @@
         .top-bar-section-cont {
             flex: 1;
             justify-content: center;
+        }
+
+        #notifications-icon-container {
+            display: none;
         }
 
         #userSpace {

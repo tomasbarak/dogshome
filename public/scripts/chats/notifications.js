@@ -19,8 +19,18 @@ const requestNotificationPermission = async () => {
     }
 }
 
-const main = async () => {
-    check();
-    const swRegistration = await registerServiceWorker();
-    const permission = await requestNotificationPermission();
+const isNotificationAllowed = () => {
+    return window.Notification.permission === 'granted';
+}
+
+const allowNotifications = async () => {
+    try {
+        check();
+        const swRegistration = await registerServiceWorker();
+        const permission = await requestNotificationPermission();
+        return true;
+    } catch {
+        return false;
+    }
+    
 }
