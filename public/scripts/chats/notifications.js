@@ -26,8 +26,8 @@ const isNotificationAllowed = () => {
 const allowNotifications = async () => {
     try {
         check();
-        const swRegistration = await registerServiceWorker();
         const permission = await requestNotificationPermission();
+        const swRegistration = await registerServiceWorker();
         return true;
     } catch {
         return false;
