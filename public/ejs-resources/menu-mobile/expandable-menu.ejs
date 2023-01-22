@@ -1,4 +1,7 @@
 <% var rootPath = '../../'; %>
+<% var userData = locals.userData %>
+<% userData = (userData === undefined) ? {} : userData; %> 
+
 <script src="/scripts/auth/sign-out.js"></script>
 <script src="/scripts/alerts/page-alerts.js"></script>
 <%- include(rootPath + 'ejs-resources/menu-mobile/menu_style.ejs') %> 
@@ -6,9 +9,11 @@
     <div class="expandible-menu-option-cont" id="name-option-exp-menu">
         <img loading="lazy" class="" id="profile-pic-exp-menu" src=<%=photoUrl %> alt="profile pic" style="height: 55px; width:
         55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
-        <a id="exp-menu-name">
-            <%= displayName %>
-        </a>
+        <div id="exp-menu-name-container">
+            <a id="exp-menu-name"> <%= displayName %> </a>
+            <a id="exp-menu-email"> <%= userData.Email %> </a>
+        </div>
+        
 
         <% if (!isPrivate) {%>
             <div id="notifications-icon-container-menu">

@@ -123,6 +123,8 @@ const Chats = {
             const chatInput = document.getElementById("chat-footer-input");
             chatInput.value = "";
 
+            document.getElementById("chat-header-inf").className = "invisible";
+
             const chatShelterImage = document.getElementById("chat-header-inf-shelter-img");
             chatShelterImage.src = "";
 
@@ -138,7 +140,6 @@ const Chats = {
             const chatFooter = document.getElementById("chat-footer");
             chatFooter.className = "invisible";
 
-            document.getElementById("chat-header-inf").className = "invisible";
 
             window.history.pushState({}, "", "/chats/");
 
