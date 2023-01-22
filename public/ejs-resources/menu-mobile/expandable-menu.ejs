@@ -1,6 +1,6 @@
 <% var rootPath = '../../'; %>
-<% var userData = locals.userData %>
-<% userData = (userData === undefined) ? {} : userData; %> 
+<% var menuUserData = locals.userData %>
+<% menuUserData = (menuUserData === undefined) ? {} : menuUserData; %> 
 
 <script src="/scripts/auth/sign-out.js"></script>
 <script src="/scripts/alerts/page-alerts.js"></script>
@@ -11,7 +11,7 @@
         55px; cursor: pointer; margin-right: 10px; user-select: none; border-radius: 80px; object-fit: cover">
         <div id="exp-menu-name-container">
             <a id="exp-menu-name"> <%= displayName %> </a>
-            <a id="exp-menu-email"> <%= userData.Email %> </a>
+            <a id="exp-menu-email"> <%= menuUserData.Email %> </a>
         </div>
         
 

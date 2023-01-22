@@ -169,6 +169,40 @@
         });
     }
 
+    const saveFavorite = (publication_id) => {
+        document.getElementById("favorite-loader-container").classList.add("show");
+
+        axios.post(`https://api.${window.location.hostname}/user/profile/favorites/new`, {
+            postId: publication_id
+        }, {
+            withCredentials: true
+        }).then((response) => {
+            document.getElementById("favorite-btn").classList.add("hide");
+            document.getElementById("unfavorite-btn").classList.remove("hide");
+        }).catch((error) => {
+            console.log(error);
+        }).finally(() => {
+            document.getElementById("favorite-loader-container").classList.remove("show");
+        });
+    }
+
+    const deleteFavorite = (publication_id) => {
+        document.getElementById("unfavorite-loader-container").classList.add("show");
+
+        axios.post(`https://api.${window.location.hostname}/user/profile/favorites/delete`, {
+            postId: publication_id
+        }, {
+            withCredentials: true
+        }).then((response) => {
+            document.getElementById("unfavorite-btn").classList.add("hide");
+            document.getElementById("favorite-btn").classList.remove("hide");
+        }).catch((error) => {
+            console.log(error);
+        }).finally(() => {
+            document.getElementById("unfavorite-loader-container").classList.remove("show");
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         var main = new Splide('#splide-slider-main', {
             type: 'slide',

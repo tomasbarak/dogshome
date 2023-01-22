@@ -140,7 +140,7 @@ function setupPreloadFunction(expressApp, firebaseAdmin) {
                   getMany(collection, { _id: 0}, {Id: decodedIdToken.uid}).then((snapshot) => {
                     snapshot[0].Email = decodedIdToken.email;
                     res.locals.userData = snapshot[0] || {};
-
+                    console.log(res.locals.userData)
                     //If user is trying to access to profile creation page redirect to index page
                     if (profileCreationAccessPath.includes(pathArr)) {
                       res.redirect('/inicio');
