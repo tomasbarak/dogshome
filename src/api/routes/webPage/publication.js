@@ -61,71 +61,82 @@ function init(app, firebaseAdmin) {
                     requestQuery = { Id: { $in: publications } };
 
                     firebaseAdmin.auth().verifySessionCookie(token, true /** checkRevoked */).then((decodedIdToken) => {
-                        const parsedDisplayName = JSON.parse(decodedIdToken.name);
-                        const renderVar = {
-                            allPhotos: allPhotosArray || [],
-                            photo: pubPhoto || ' ',
-                            secPhotos: secPhotosArray || [],
-                            photoUrl: decodedIdToken.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
-                            myName: parsedDisplayName.nameAndSurname.name,
-                            uid: decodedIdToken.user_id || ' ',
-                            mySurname: parsedDisplayName.nameAndSurname.surname,
-                            displayName: parsedDisplayName.nameAndSurname.displayName || ' ',
-                            name: snapshotVal.Name || '',
-                            owner: snapshotVal.Owner || '',
-                            pubId: snapshotVal.Id || '',
-                            description: snapshotVal.SDescription || '',
-                            ShelterName: snapshotVal.Refugio || '',
-                            province: snapshotVal.Provincia || '',
-                            isPrivate: false,
-                            castrated: filters.Castrated || false,
-                            catfriendly: filters.CatFriendly || false,
-                            dogfriendly: filters.DogFriendly || false,
-                            kidsfriendly: filters.KidsFriendly || false,
-                            color: filters.Color || 'No especificado',
-                            size: filters.Size || 'No especificado',
-                            ageInMonths: age.Months || 'No especificado',
-                            ageInYears: age.Years || 'No especificado',
-                            breed: filters.Breed || 'No especificado',
-                            observations: filters.Observations || 'No especificado',
-                            vaccinated: filters.Vaccinated || false,
-                            treatments: filters.Treatments || '',
-                            dewormed: filters.Dewormed || false,
-                            shelterPubs: result,
-                            refId: snapshotVal.RefId || '',
-                            locals: {
-                                active: -1,
-                                navButtons: [
-                                    {name: 'Inicio', href: '/'}, 
-                                    {name: 'Alertas', href: '/alerts'}
-                                ]
-                            },
-                        }
+                        const favorites_collection = mongoDB.collection('Favorites');
+                        const favorites_requestProjection = { _id: 0 };
+                        const favorites_requestQuery = { user_id: decodedIdToken.uid, publication_id: pubId };
 
-                        if (publications.length > 0) {
-                            if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);
+                        getOne(favorites_collection, favorites_requestProjection, favorites_requestQuery).then((favorite) => {
+                            const parsedDisplayName = JSON.parse(decodedIdToken.name);
+                            const renderVar = {
+                                allPhotos: allPhotosArray || [],
+                                photo: pubPhoto || ' ',
+                                secPhotos: secPhotosArray || [],
+                                photoUrl: decodedIdToken.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',
+                                myName: parsedDisplayName.nameAndSurname.name,
+                                uid: decodedIdToken.user_id || ' ',
+                                mySurname: parsedDisplayName.nameAndSurname.surname,
+                                displayName: parsedDisplayName.nameAndSurname.displayName || ' ',
+                                isFavorite: favorite ? true : false,
+                                name: snapshotVal.Name || '',
+                                owner: snapshotVal.Owner || '',
+                                pubId: snapshotVal.Id || '',
+                                description: snapshotVal.SDescription || '',
+                                ShelterName: snapshotVal.Refugio || '',
+                                province: snapshotVal.Provincia || '',
+                                isPrivate: false,
+                                castrated: filters.Castrated || false,
+                                catfriendly: filters.CatFriendly || false,
+                                dogfriendly: filters.DogFriendly || false,
+                                kidsfriendly: filters.KidsFriendly || false,
+                                color: filters.Color || 'No especificado',
+                                size: filters.Size || 'No especificado',
+                                ageInMonths: age.Months || 'No especificado',
+                                ageInYears: age.Years || 'No especificado',
+                                breed: filters.Breed || 'No especificado',
+                                observations: filters.Observations || 'No especificado',
+                                vaccinated: filters.Vaccinated || false,
+                                treatments: filters.Treatments || '',
+                                dewormed: filters.Dewormed || false,
+                                shelterPubs: result,
+                                refId: snapshotVal.RefId || '',
+                                locals: {
+                                    active: -1,
+                                    navButtons: [
+                                        {name: 'Inicio', href: '/'}, 
+                                        {name: 'Alertas', href: '/alerts'}
+                                    ]
+                                },
+                            }
+
+                            if (publications.length > 0) {
+                                if (publications.indexOf(pubId) > -1) publications.splice(publications.indexOf(pubId), 1);
 
 
 
-                            getMany(collection, requestProjection, requestQuery).then((snapshot) => {
-                                snapshot.forEach(element => {
-                                    result.push(element);
+                                getMany(collection, requestProjection, requestQuery).then((snapshot) => {
+                                    snapshot.forEach(element => {
+                                        result.push(element);
+                                    });
+                                    res.render(appDir + '/public/publication', renderVar);
+                                    client.close();
+
+                                }).catch((err) => {
+                                    console.log(err);
+                                    res.status(500).send(err);
+                                    client.close();
+
                                 });
-                                res.render(appDir + '/public/publication', renderVar);
+                            } else {
+                                renderVar.shelterPubs = [];
+                                res.render(appDir + '/public/publication', renderVar)
                                 client.close();
 
-                            }).catch((err) => {
-                                console.log(err);
-                                res.status(500).send(err);
-                                client.close();
-
-                            });
-                        } else {
-                            renderVar.shelterPubs = [];
-                            res.render(appDir + '/public/publication', renderVar)
+                            }
+                        }).catch((err) => {
+                            console.log(err);
+                            res.status(500).send(err);
                             client.close();
-
-                        }
+                        });
                     }).catch((error) => {
                         const renderPrivVar = {
                             allPhotos: allPhotosArray || [],
