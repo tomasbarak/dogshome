@@ -35,6 +35,7 @@ function config(app, firebaseadmin){
     require( appDir + '/src/api/routes/webPage/signout')                .init(app);
     require( appDir + '/src/api/routes/webPage/createPublication')      .init(app);
     require( appDir + '/src/api/routes/webPage/viewDrafts')             .init(app);
+    require( appDir + '/src/api/routes/webPage/favorites')              .init(app);
 
 
     //Github changes listener

@@ -15,22 +15,15 @@ function init(app, firebasAdmin) {
 
         connectClient(mongoURL).then(client => {
             const mongoDB =         client.db(mongoDBName);
-
-            if (isPrivate) {
-                res.render(appDir + '/public/chats', {
-                    uid:            '',
-                    displayName:    'Cuenta Privada',
-                    name:           'Cuenta',
-                    surname:        'Privada',
-                    photoUrl:       'https://dogshome.com.ar/profile/image/uploaded/default-private-user-image.png',
-                    isPrivate:      true,
-                    locals: {
-                        active: 6,
-                        dropdownActive: 4,
-                    }
+            if(isPrivate || !isVerified){
+                res.render(appDir + '/public/404', {
+                    errorCode: "404",
+                    errorMessage: "Página no encontrada",
                 });
+            } else if (!isVerified) {
+                res.redirect('/verification');
                 client.close();
-            } else if (isVerified) {
+            } else{
                 let name =                          user.name || '{}';
                 let parsedDisplayName =             JSON.parse(name);
                 const nameAndSurname =              parsedDisplayName.nameAndSurname || {};
@@ -56,9 +49,6 @@ function init(app, firebasAdmin) {
                 });
                 client.close();
 
-            } else if (!isVerified) {
-                res.redirect('/verification');
-                client.close();
             }
         }).catch(err => {
             console.log(err);

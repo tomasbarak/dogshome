@@ -1,0 +1,200 @@
+<% var rootPath = './' %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include(rootPath + "head.ejs") %>
+    <%- include(rootPath + "ejs-resources/favorites/favorites_style.ejs") %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+</head>
+<body>
+    <%- include(rootPath + 'ejs-resources/loading-animation/loading-animation.ejs') %> 
+    <%- include(rootPath + "ejs-resources/search-bar/search-bar.ejs") %> 
+    <%- include(rootPath + "ejs-resources/menu-mobile/expandable-menu.ejs") %> 
+    <div id="favorites-header">
+        <h1>Favoritos</h1>
+    </div>
+
+    <div id="favorites-container">
+        <!-- <div class="favorite-container">
+            <img src="" class="favorite-image">
+
+            <div class="content-container">
+
+                <div class="top-container">
+                    <div class="favorite-name-description-container">
+                        <a class="favorite-name"></a>
+                        <p class="favorite-description"></p>
+                    </div>
+                </div>
+
+                <div class="bottom-container">
+                    <div class="favorite-action-btns-container">
+                        <svg class="favorite-delete-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    <script>
+
+        let currentPage = 1;
+        let lockPostPageLoading = false;
+
+        function getFavoritesPage(page) {
+            return new Promise((resolve, reject) => {
+                fetch(`https://api.${window.location.hostname}/user/profile/favorites/${page}`, {
+                    credentials: 'include'
+                }).then(response => response.json()).then(favorites => {
+                    resolve(favorites)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        }
+
+        function addFavorite(favorite) {
+            const favorite_container = document.createElement('div')
+            favorite_container.classList.add('favorite-container')
+
+            const favorite_image = document.createElement('img')
+            favorite_image.classList.add('favorite-image')
+            favorite_image.src = favorite.Photo
+
+            const content_container = document.createElement('div')
+            content_container.classList.add('content-container')
+
+            const top_container = document.createElement('div')
+            top_container.classList.add('top-container')
+
+            const favorite_name_description_container = document.createElement('div')
+            favorite_name_description_container.classList.add('favorite-name-description-container')
+
+            const favorite_name = document.createElement('a')
+            favorite_name.classList.add('favorite-name')
+            favorite_name.innerText = favorite.Name
+
+            const favorite_description = document.createElement('p')
+            favorite_description.classList.add('favorite-description')
+            favorite_description.innerText = favorite.SDescription
+
+            const bottom_container = document.createElement('div')
+            bottom_container.classList.add('bottom-container')
+
+            const favorite_action_btns_container = document.createElement('div')
+            favorite_action_btns_container.classList.add('favorite-action-btns-container')
+
+            const favorite_delete_btn = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+            favorite_delete_btn.classList.add('favorite-delete-btn')
+            favorite_delete_btn.setAttributeNS(null, 'viewBox', '0 0 16 16')
+            favorite_delete_btn.setAttributeNS(null, 'width', '24')
+            favorite_delete_btn.setAttributeNS(null, 'height', '24')
+
+            const favorite_delete_btn_path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+            favorite_delete_btn_path.setAttributeNS(null, 'fill-rule', 'evenodd')
+            favorite_delete_btn_path.setAttributeNS(null, 'd', 'M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z');
+
+            const shelter_name_container = document.createElement('div')
+            shelter_name_container.classList.add('shelter-name-container')
+
+            const shelter_name = document.createElement('a')
+            shelter_name.classList.add('shelter-name')
+            shelter_name.innerText = favorite.Refugio
+
+            favorite_delete_btn.appendChild(favorite_delete_btn_path)
+            favorite_action_btns_container.appendChild(favorite_delete_btn)
+            shelter_name_container.appendChild(shelter_name)
+            bottom_container.appendChild(shelter_name_container)
+            bottom_container.appendChild(favorite_action_btns_container)
+            favorite_name_description_container.appendChild(favorite_name)
+            favorite_name_description_container.appendChild(favorite_description)
+            top_container.appendChild(favorite_name_description_container)
+            content_container.appendChild(top_container)
+            content_container.appendChild(bottom_container)
+            favorite_container.appendChild(favorite_image)
+            favorite_container.appendChild(content_container)
+
+            document.getElementById('favorites-container').appendChild(favorite_container)
+
+            favorite_delete_btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                fetch(`https://api.${window.location.hostname}/user/profile/favorites/delete`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        postId: favorite.Id
+                    })
+                })
+                    .then(response => {
+                        if (response.status == 200) {
+                            favorite_container.remove();
+                        }
+                    })
+            });
+
+            favorite_container.addEventListener('click', () => {
+                window.open(`/publicacion/${favorite.Id}`, '_blank');
+            })
+
+            shelter_name_container.addEventListener('click', () => {
+                window.open(`/perfil/${favorite.RefId}`, '_blank');
+            })
+        }
+
+        function setLoadingPage(isLoading) {
+            if (isLoading) {
+                document.getElementById('page-loading').className = 'page-loading-visible';
+            } else {
+                document.getElementById('page-loading').className = 'page-loading-invisible';
+            }
+        }
+
+        window.onload = () => {
+            getFavoritesPage(currentPage).then(favorites => {
+                favorites.forEach(favorite => {
+                    addFavorite(favorite)
+                })
+                setLoading(false);
+            });
+        }
+
+        document.getElementById("favorites-container").addEventListener('scroll', () => {
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement;
+
+            if (scrollTop + clientHeight >= scrollHeight - 660 && !lockPostPageLoading) {
+                lockPostPageLoading = true;
+                setLoadingPage(true);
+                getFavoritesPage(currentPage + 1).then((favorites) => {
+                    if(favorites.length > 0) {
+                        console.log(favorites);
+                        currentPage++;
+                        favorites.forEach(favorite => {
+                            addFavorite(favorite)
+                        })
+                        setLoadingPage(false);
+                        lockPostPageLoading = false;
+                    } else {
+                        setLoadingPage(false);
+                    }
+                }).catch((error) => {
+                    setLoadingPage(false);
+                    console.log(error);
+                    lockPostPageLoading = false;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

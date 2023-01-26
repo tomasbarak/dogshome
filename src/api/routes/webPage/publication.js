@@ -104,7 +104,8 @@ function init(app, firebaseAdmin) {
                                     navButtons: [
                                         {name: 'Inicio', href: '/'}, 
                                         {name: 'Alertas', href: '/alerts'}
-                                    ]
+                                    ],
+                                    userData: res.locals.userData
                                 },
                             }
 
