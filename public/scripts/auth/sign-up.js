@@ -15,9 +15,52 @@ function throwEmailExistsError() {
     )
 }
 
+// function signUp(email, password, repeatPassword) {
+//     const authDataCheck= checkAuthData(email, password, repeatPassword);
+//     if (authDataCheck.status === 0) {
+//         Swal.fire({
+//             title: 'Registrando',
+//             text: 'Porfavor espere mientras registramos su cuenta',
+//             allowOutsideClick: false,
+//             allowEscapeKey: false,
+//             allowEnterKey: false,
+//             heightAuto: false,
+//             didOpen: () => {
+//                 Swal.showLoading()
+//             },
+//         });
+        
+//         firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+//             // Signed in
+//             var user = userCredential.user;
+//             user.getIdToken().then(function (idToken) {
+//                 // Send token to your backend via HTTPS
+//                 axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
+//                     window.location.href = "/";
+//                 })
+//             }).catch(function (error) {
+//                 console.error(error);
+//             });
+//         }).catch((error) => {
+//             var errorCode = error.code;
+//             var errorMessage = error.message;
+//             if (errorCode === 'auth/email-already-in-use') {
+//                 throwEmailExistsError();
+//             }
+//         });
+//     } else {
+//         Swal.fire({
+//             heightAuto: false,
+//             title: 'Error',
+//             text: authDataCheck.message,
+//             icon: 'error',
+//             confirmButtonColor: '#d33',
+//         })
+//     }
+// }
+
 function signUp(email, password, repeatPassword) {
-    const authDataCheck= checkAuthData(email, password, repeatPassword);
-    if (authDataCheck.status === 0) {
+    if(checkAuthData(email, password, repeatPassword).status === 0) {
         Swal.fire({
             title: 'Registrando',
             text: 'Porfavor espere mientras registramos su cuenta',
@@ -29,25 +72,25 @@ function signUp(email, password, repeatPassword) {
                 Swal.showLoading()
             },
         });
-        
-        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-            // Signed in
-            var user = userCredential.user;
-            user.getIdToken().then(function (idToken) {
-                // Send token to your backend via HTTPS
-                axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
-                    window.location.href = "/";
-                })
-            }).catch(function (error) {
-                console.error(error);
-            });
+        axios.post(`https://api.${window.location.hostname}/auth/register`, {
+            email: email,
+            password: password,
+        }).then((response) => {
+            Swal.fire({
+                title: 'Enviado!',
+                text: 'Se ha enviado un correo electrónico a ' + email + ' para verificar su cuenta',
+                icon: 'success',
+                heightAuto: false,
+                confirmButtonColor: '#3085d6',
+            }).then(() => {
+                window.location.href = '/signin'
+            })
         }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/email-already-in-use') {
+            console.log(error)
+            if (error.response.data.error === 'Email already exists') {
                 throwEmailExistsError();
             }
-        });
+        })
     } else {
         Swal.fire({
             heightAuto: false,
