@@ -4,7 +4,7 @@ const axios = require('axios');
 
 function init(app, firebaseAdmin) {
     //Setting up login route
-    app.get(['/signup.html', '/signup'], (req, res) => {
+    app.get(['/signup.html', '/signup', '/register', '/register.html'], (req, res) => {
         const token = req.cookies.session || ' ';
         
         if(token){

@@ -32,35 +32,32 @@ async function signOut() {
         }
     }
 
+    const headers = { 'Content-Type': 'application/json' }
+
     try {
         const subscription = await getPushSubscription();
-        if (subscription) {
-            const endpoint = subscription.endpoint;
-            const body = { pushEndpoint: endpoint }
-            const headers = { 'Content-Type': 'application/json' }
-    
-            axios.post("/sessionLogout", body, {
-                headers: headers
-            }).then(function (response) {
-                window.location.href = "/signin";
-            })
-        } else {
-            const body = { pushEndpoint: null }
-            const headers = { 'Content-Type': 'application/json' }
+        const endpoint = subscription ? subscription.endpoint : null;
+        
+        const body = { pushEndpoint: endpoint }
 
-            axios.post("/sessionLogout", body, {
-                headers: headers
-            }).then(function (response) {
-                window.location.href = "/signin";
-            });
-        }
+        axios.post(`https://api.${window.location.hostname}/auth/logout`, body, {
+            headers: headers,
+            withCredentials: true
+        }).then(() => {
+            window.location.href = '/login';
+        }).catch(function (error) {
+            console.log(error);
+        });
     } catch (err) {
-        const headers = { 'Content-Type': 'application/json' }
+        const body = { pushEndpoint: null }
 
-        axios.post("/sessionLogout", {}, {
-            headers: headers
-        }).then(function (response) {
-            window.location.href = "/signin";
+        axios.post(`https://api.${window.location.hostname}/auth/logout`, body, {
+            headers: headers,
+            withCredentials: true
+        }).then((response) => {
+            window.location.href = '/login';
+        }).catch(function (error) {
+            console.log(error);
         });
     }
     

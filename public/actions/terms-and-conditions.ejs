@@ -42,11 +42,8 @@
                         Swal.showLoading();
                     }
                 });
-                axios.post(`https://${window.location.host}/sessionLogout`).then(function (response) {
-                    window.location = '/signin';
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                
+                signOut();
             })
         }).catch(function (error) {
             Swal.fire({

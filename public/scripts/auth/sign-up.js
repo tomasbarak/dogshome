@@ -15,50 +15,6 @@ function throwEmailExistsError() {
     )
 }
 
-// function signUp(email, password, repeatPassword) {
-//     const authDataCheck= checkAuthData(email, password, repeatPassword);
-//     if (authDataCheck.status === 0) {
-//         Swal.fire({
-//             title: 'Registrando',
-//             text: 'Porfavor espere mientras registramos su cuenta',
-//             allowOutsideClick: false,
-//             allowEscapeKey: false,
-//             allowEnterKey: false,
-//             heightAuto: false,
-//             didOpen: () => {
-//                 Swal.showLoading()
-//             },
-//         });
-        
-//         firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-//             // Signed in
-//             var user = userCredential.user;
-//             user.getIdToken().then(function (idToken) {
-//                 // Send token to your backend via HTTPS
-//                 axios.post("/sessionLogin", { idToken: idToken }).then(function (response) {
-//                     window.location.href = "/";
-//                 })
-//             }).catch(function (error) {
-//                 console.error(error);
-//             });
-//         }).catch((error) => {
-//             var errorCode = error.code;
-//             var errorMessage = error.message;
-//             if (errorCode === 'auth/email-already-in-use') {
-//                 throwEmailExistsError();
-//             }
-//         });
-//     } else {
-//         Swal.fire({
-//             heightAuto: false,
-//             title: 'Error',
-//             text: authDataCheck.message,
-//             icon: 'error',
-//             confirmButtonColor: '#d33',
-//         })
-//     }
-// }
-
 function signUp(email, password, repeatPassword) {
     if(checkAuthData(email, password, repeatPassword).status === 0) {
         Swal.fire({
@@ -83,7 +39,7 @@ function signUp(email, password, repeatPassword) {
                 heightAuto: false,
                 confirmButtonColor: '#3085d6',
             }).then(() => {
-                window.location.href = '/signin'
+                window.location.href = '/login'
             })
         }).catch((error) => {
             console.log(error)

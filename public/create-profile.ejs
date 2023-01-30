@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar perfil</title>
     <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
-    
+    <script src="/scripts/auth/sign-out.js"></script>
 </head>
 <style>
     body,
@@ -230,33 +230,11 @@
                     <a id="next-button" onclick="sendData()">Siguiente</a>
                 </div>
             </div>
-            <a id="logout-button" onclick="logout()">Cerrar sesión</a>
+            <a id="logout-button" onclick="signOut()">Cerrar sesión</a>
         </div>
     </div>
 </body>
-<script>
-    function logout(){
-        Swal.fire({
-            title: 'Cerrando Sesión',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            heightAuto: false,
-            showConfirmButton: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        })
-        axios.post(`https://${window.location.host}/sessionLogout`)
-            .then(function (response) {
-                Swal.close();
-                window.location = '/signin';
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-</script>
+
 <% if (canGoBack) { %>
     <script>
         function goBack() {

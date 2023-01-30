@@ -50,78 +50,102 @@ function signIn(email, password) {
             heightAuto: false,
             allowEnterKey: false,
         });
-        // firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
-        //     // Signed in
-        //     let user = userCredential.user;
+        firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+            // Signed in
+            let user = userCredential.user;
 
-        //     user.getIdToken(true).then(async function (idToken) {
-        //         try {
-        //             const subscription = await getPushSubscription();
-        //             axios.post("/sessionLogin", { idToken: idToken, subscription: subscription }, {
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 }
-        //             }).then(function (response) {
-        //                 window.location.href = "/";
-        //             })
-        //         } catch (error) {
-        //             axios.post("/sessionLogin", { idToken: idToken, subscription: null }).then(function (response) {
-        //                 window.location.href = "/";
-        //             })
-        //         }
-        //     }).catch(function (error) {
-        //         console.error(error);
-        //     });
-        //     console.log("Inicio de sesion exitoso");
-
-        //     localStorage.setItem("userDataMail", email);
-        //     console.log(email);
-        // }).catch((error) => {
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     console.log("Error: " + errorMessage, errorCode);
-        //     if (errorCode == 'auth/wrong-password' || errorCode == 'auth/user-not-found') {
-        //         Swal.fire({
-        //             title: 'Error',
-        //             text: 'El correo o la contraseña son incorrectos',
-        //             icon: 'error',
-        //             heightAuto: false,
-        //             confirmButtonText: 'Reintentar',
-        //             confirmButtonColor: '#079292'
-        //         });
-        //     } else if (errorCode == 'auth/invalid-email') {
-        //         Swal.fire({
-        //             title: 'Error',
-        //             text: 'El correo no es válido',
-        //             heightAuto: false,
-        //             icon: 'error',
-        //             confirmButtonText: 'Reintentar',
-        //             confirmButtonColor: '#079292'
-        //         });
-        //     }else {
-        //         Swal.fire({
-        //             title: 'Error',
-        //             text: 'Ha ocurrido un error',
-        //             heightAuto: false,
-        //             icon: 'error',
-        //             confirmButtonText: 'Reintentar',
-        //             confirmButtonColor: '#079292'
-        //         });
-        //     }
-        // });
-
-        axios.post(`https://api.${window.location.hostname}/auth/login`, {
-            email: email,
-            password: password
-        }, {
-            headers: {
-                'Content-Type': 'application/json'
+            user.getIdToken(true).then(async function (idToken) {
+                try {
+                    const subscription = await getPushSubscription();
+                    axios.post(`https://api.${window.location.hostname}/auth/login`, {
+                        idToken: idToken,
+                        subscription: subscription
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials: true
+                    }).then(function (response) {
+                        if(response.status == 200) {
+                            window.location.href = '/';
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ha ocurrido un error',
+                                heightAuto: false,
+                                icon: 'error',
+                                confirmButtonText: 'Reintentar',
+                                confirmButtonColor: '#079292'
+                            });
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } catch (error) {
+                    axios.post(`https://api.${window.location.hostname}/auth/login`, {
+                        idToken: idToken,
+                        subscription: null
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials: true
+                    }).then(function (response) {
+                        if(response.status == 200) {
+                            window.location.href = '/';
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ha ocurrido un error',
+                                heightAuto: false,
+                                icon: 'error',
+                                confirmButtonText: 'Reintentar',
+                                confirmButtonColor: '#079292'
+                            });
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            }).catch(function (error) {
+                console.error(error);
+            });
+            localStorage.setItem("userDataMail", email);
+        }).catch((error) => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log("Error: " + errorMessage, errorCode);
+            if (errorCode == 'auth/wrong-password' || errorCode == 'auth/user-not-found') {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El correo o la contraseña son incorrectos',
+                    icon: 'error',
+                    heightAuto: false,
+                    confirmButtonText: 'Reintentar',
+                    confirmButtonColor: '#079292'
+                });
+            } else if (errorCode == 'auth/invalid-email') {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El correo no es válido',
+                    heightAuto: false,
+                    icon: 'error',
+                    confirmButtonText: 'Reintentar',
+                    confirmButtonColor: '#079292'
+                });
+            }else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Ha ocurrido un error',
+                    heightAuto: false,
+                    icon: 'error',
+                    confirmButtonText: 'Reintentar',
+                    confirmButtonColor: '#079292'
+                });
             }
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
         });
+
+        
     }
 
 }

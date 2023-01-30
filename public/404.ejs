@@ -6,6 +6,7 @@
 
   <title><%= errorMessage %></title>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <script src="/scripts/auth/sign-out.js"></script>
 </head>
 
 <style>
@@ -127,30 +128,7 @@
   <img src="/images/DogsHomeLogo-ReDesign (White&Final).png" width="50px" height="50px"
     style="position: absolute; bottom: 0; right: 0;" alt />
     <% if (!isPrivate) { %>
-      <a onclick="logout()" style="color: red; text-decoration: none; font-size: 1.25em; position: absolute; cursor: pointer; bottom: 15px; left: 15px; font-family: 'Lato', sans-serif;" id="logout-button">Cerrar sesión</a>
-      <script>
-        function logout(){
-          //Make a loading dialog with swal
-          Swal.fire({
-            title: 'Cerrando sesión',
-            allowOutsideClick: false,
-            showCancelButton: false,
-            showConfirmButton: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            heightAuto: false,
-            didOpen: () => {
-              Swal.showLoading();
-            }
-
-          })
-          axios.post(`https://${window.location.host}/sessionLogout`).then(res => {
-            window.location.href = '/signin';
-          }).catch(err => {
-            console.log(err);
-          });
-        }
-      </script>
+      <a onclick="signOut()" style="color: red; text-decoration: none; font-size: 1.25em; position: absolute; cursor: pointer; bottom: 15px; left: 15px; font-family: 'Lato', sans-serif;" id="logout-button">Cerrar sesión</a>
     <% } %>
 </body>
 
