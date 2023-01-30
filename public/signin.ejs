@@ -29,7 +29,7 @@
     <img id="dogshome-logo" src="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png" alt="DogsHome Logo">
     <a id="dogshome-name">DogsHome</a>
 
-    <svg id="wave" viewBox="0 0 320 1440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="wave" viewBox="0 0 320 1440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <g id="Layer_1">
         <title>Layer 1</title>
         <g id="svg_1" transform="rotate(90, 159.909, 719.709)">
@@ -39,7 +39,13 @@
       </g>
     </svg>
 
+    
+
     <div id="sign-in-form" class="auth-page-form">
+      <div id="loading-container">
+        <div class="loader-4 btn-loading" id="loading"><span></span></div>
+      </div>
+
       <h1 class="auth-form-title"> Iniciá sesión </h1>
 
       <div class="input-container">
@@ -54,7 +60,7 @@
       </div>
 
       <div class="auth-btn-container">
-        <a href="#" id="sign-in-btn" class="auth-btn" onclick="signIn(document.getElementById('mail').value, document.getElementById('password').value)">Iniciar sesión</a>
+        <a href="#" id="sign-in-btn" class="auth-btn">Iniciar sesión</a>
         <a href="/register" class="auth-page-change-method">¿No tenes cuenta? Registrate</a>
       </div>
 
@@ -82,6 +88,42 @@
   </script>
 
   <script src="scripts/auth/sign-in.js"></script>
+
+  <script>
+    function loading(show) {
+      const loading = document.getElementById('loading-container');
+      if (show) {
+        loading.classList.add("visible")
+      } else {
+        loading.classList.remove("visible")
+      }
+    }
+  </script>
+
+  <script>
+    const login_btn = document.getElementById('sign-in-btn');
+
+    login_btn.addEventListener('click', () => {
+      loading(true);
+
+      const mail = document.getElementById('mail').value;
+      const password = document.getElementById('password').value;
+
+      signIn(mail, password).then(() => {
+        loading(false);
+        window.location.href = "/inicio";
+      }).catch((error) => {
+        loading(false);
+        swal.fire({
+          title: 'Error',
+          text: error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#079292'
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
