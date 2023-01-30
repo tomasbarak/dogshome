@@ -110,7 +110,6 @@
       const password = document.getElementById('password').value;
 
       signIn(mail, password).then(() => {
-        loading(false);
         window.location.href = "/inicio";
       }).catch((error) => {
         loading(false);
