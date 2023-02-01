@@ -1,10 +1,24 @@
-function sendEmailVerification(user) {
-    //console.log(user);
-    //se envio la verificacion
-    saveFirstBlankData()
-    user.sendEmailVerification().then(function (){
-        document.getElementById('EmailSentTo').innerText = 'Email enviado a ' + user.email;
-    }).catch(function (error){
-       //ocurrio un error
+function refreshUser(idToken) {
+    return new Promise((resolve, reject) => {
+        signInWithIdToken(idToken).then(() => {
+            resolve();
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+        
+}
+
+function sendEmailVerification() {
+    return new Promise((resolve, reject) => {
+        axios.post('/verify/email').then(function(response) {
+            if(response.status == 200) {
+                resolve();
+            } else {
+                reject("Ha ocurrido un error");
+            }
+        }).catch(function(error) {
+            reject(error.response);
+        })
     });
 }

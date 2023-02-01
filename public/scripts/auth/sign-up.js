@@ -16,44 +16,77 @@ function throwEmailExistsError() {
 }
 
 function signUp(email, password, repeatPassword) {
-    const canRegister = checkAuthData(email, password, repeatPassword).status === 0;
-    if(canRegister) {
-        Swal.fire({
-            title: 'Registrando',
-            text: 'Porfavor espere mientras registramos su cuenta',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            heightAuto: false,
-            didOpen: () => {
-                Swal.showLoading()
-            },
-        });
-        axios.post(`https://api.${window.location.hostname}/auth/register`, {
-            email: email,
-            password: password,
-        }).then((response) => {
-            Swal.fire({
-                title: 'Enviado!',
-                text: 'Se ha enviado un correo electrónico a ' + email + ' para verificar su cuenta',
-                icon: 'success',
-                heightAuto: false,
-                confirmButtonColor: '#3085d6',
-            }).then(() => {
-                window.location.href = '/login'
-            })
-        }).catch((error) => {
-            console.log(error)
-            if (error.response.data.error === 'Email already exists') {
-                throwEmailExistsError();
-            }
-        })
-    } else {
-        const error = checkAuthData(email, password, repeatPassword);
-        console.log(error);
-        hideAllErrors();
-        showError(error.message, error.target_id);
-    }
+        const canRegister = checkAuthData(email, password, repeatPassword).status === 0;
+        if(canRegister) {
+            return new Promise((resolve, reject) => {
+                axios.post(`https://api.${window.location.hostname}/auth/register`, {
+                    email: email,
+                    password: password,
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    withCredentials: true
+                }).then((response) => {
+                    firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential) => {
+                        let user = userCredential.user;
+        
+                        user.getIdToken(true).then(async function (idToken) {
+                            try {
+                                const subscription = await getPushSubscription();
+                                axios.post(`https://api.${window.location.hostname}/auth/login`, {
+                                    idToken: idToken,
+                                    subscription: subscription
+                                }, {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    withCredentials: true
+                                }).then(function (response) {
+                                    if(response.status == 200) {
+                                        resolve();
+                                    } else {
+                                        reject("Ha ocurrido un error");
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            } catch (error) {
+                                axios.post(`https://api.${window.location.hostname}/auth/login`, {
+                                    idToken: idToken,
+                                    subscription: null
+                                }, {
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    withCredentials: true
+                                }).then(function (response) {
+                                    if(response.status == 200) {
+                                        resolve();
+                                    } else {
+                                        reject("Ha ocurrido un error");
+                                    }
+                                }).catch(function (error) {
+                                    reject(error);                            
+                                });
+                            }
+                        }).catch(function (error) {
+                            reject(error);
+                        });
+                    }).catch((error) => {
+                        reject(error.code)
+                    });
+                }).catch((error) => {
+                    console.log(error.response.data);
+                    reject(error.response.data);
+                })
+            });
+
+        } else {
+            const error = checkAuthData(email, password, repeatPassword);
+            hideAllErrors();
+            showError(error.message, error.target_id);
+        }
 }
 
 function checkAuthData(email, password, repeatPassword) {
