@@ -16,7 +16,8 @@ function throwEmailExistsError() {
 }
 
 function signUp(email, password, repeatPassword) {
-    if(checkAuthData(email, password, repeatPassword).status === 0) {
+    const canRegister = checkAuthData(email, password, repeatPassword).status === 0;
+    if(canRegister) {
         Swal.fire({
             title: 'Registrando',
             text: 'Porfavor espere mientras registramos su cuenta',
@@ -48,13 +49,10 @@ function signUp(email, password, repeatPassword) {
             }
         })
     } else {
-        Swal.fire({
-            heightAuto: false,
-            title: 'Error',
-            text: authDataCheck.message,
-            icon: 'error',
-            confirmButtonColor: '#d33',
-        })
+        const error = checkAuthData(email, password, repeatPassword);
+        console.log(error);
+        hideAllErrors();
+        showError(error.message, error.target_id);
     }
 }
 
@@ -70,27 +68,32 @@ function checkAuthData(email, password, repeatPassword) {
     if (email.length === 0) {
         return {
             status: 1,
-            message: 'El email no puede estar vacío'
+            message: 'El email no puede estar vacío',
+            target_id: 'mail'
         }
     } else if (!isEmailValid(email)) {
         return {
             status: 2,
-            message: 'El email ingresado no es válido'
+            message: 'El email ingresado no es válido',
+            target_id: 'mail'
         }
     } else if (password.length === 0) {
         return {
             status: 3,
-            message: 'La contraseña no puede estar vacía'
+            message: 'La contraseña no puede estar vacía',
+            target_id: 'password'
         }
     } else if (checkPasswordStrength(password) === 'weak') {
         return {
             status: 4,
-            message: 'La contraseña debe tener al menos 8 caracteres alfanuméricos'
+            message: 'La contraseña debe tener al menos 8 caracteres alfanuméricos',
+            target_id: 'password'
         }
     } else if (password !== repeatPassword) {
         return {
             status: 5,
-            message: 'Las contraseñas no coinciden'
+            message: 'Las contraseñas no coinciden',
+            target_id: 'password-repeat'
         }
     }
     return {
@@ -131,5 +134,52 @@ function setPasswordsVisibility(actualEyePath) {
 
         document.getElementById('password').type = 'password';
         document.getElementById('password-repeat').type = 'password';
+    }
+}
+
+
+function showErrorLabel(msg, target_id) {
+    const target = document.getElementById(`${target_id}-error-container`);
+    const target_msg = document.getElementById(`${target_id}-error-msg`);
+    target_msg.innerHTML = msg;
+
+    target.classList.add("visible");
+}
+
+function hideErrorLabel(target_id) {
+    const target = document.getElementById(`${target_id}-error-container`);
+    target.classList.remove("visible");
+
+    const target_msg = document.getElementById(`${target_id}-error-msg`);
+    target_msg.innerHTML = "";
+}
+
+function highlightErrorInput(target_id) {
+    const target = document.getElementById(target_id);
+    target.classList.add("errored");
+}
+
+function unhighlightErrorInput(target_id) {
+    const target = document.getElementById(target_id);
+    target.classList.remove("errored");
+}
+
+function showError(msg, target_id) {
+    highlightErrorInput(target_id);
+    showErrorLabel(msg, target_id);
+}
+
+function hideError(target_id) {
+    hideErrorLabel(target_id);
+    unhighlightErrorInput(target_id);
+}
+
+function hideAllErrors() {
+    const errorLabels = document.getElementsByClassName("error-label-container");
+
+    for (let i = 0; i < errorLabels.length; i++) {
+        const target_id = errorLabels[i].id.replace("-error-container", "")
+        console.log(target_id);
+        hideError(target_id);
     }
 }

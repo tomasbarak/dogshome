@@ -2,49 +2,50 @@
 <html lang="en">
 
 <head>
-    <% var rootPath = './'; %>
-    <!-- Include ejs head.ejs from file-->
-    <%- include('./head.ejs'); %>
+  <% var rootPath = './'; %>
+  <!-- Include ejs head.ejs from file-->
+  <%- include('./head.ejs'); %>
 
-    <title>DogsHome | Inicio</title>
-    <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
+  <title>DogsHome | Inicio</title>
+  <meta name="description" content="Adoptá y ayudá a los perros que más lo nececitan con DogsHome. DogsHome es un sitio de adopción de perros online,
                                       con algunas funcionalidades extras, como localizar perros perdidos, reportar perros perdidos, area de noticias,
                                       y mucho más. Visitá DogsHome para enterarte de todo." data-head-react="true">
 
 
-    <meta property="og:title" content="DogsHome | Inicio"/>
-    <meta property="og:url" content="https://dogshome.com.ar"/>
-    <meta property="og:description" content="DogsHome, adoptá ya">
-    <meta property="og:image" content="https://dogshome.com.ar/profile/image/uploaded/dogshomelogo.jpg">
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
-    
-    <script src="/scripts/main/basic-navigation.js"></script>
-    <script src="/scripts/auth/sign-out.js"></script>
-    <%- include(rootPath + 'ejs-resources/index/index_style.ejs'); %>
-    <%- include(rootPath + 'ejs-resources/index/filters_style.ejs'); %>
+  <meta property="og:title" content="DogsHome | Inicio" />
+  <meta property="og:url" content="https://dogshome.com.ar" />
+  <meta property="og:description" content="DogsHome, adoptá ya">
+  <meta property="og:image" content="https://dogshome.com.ar/profile/image/uploaded/dogshomelogo.jpg">
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
 
-    <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
-    <link rel="canonical" href="https://dogshome.com.ar">
+  <script src="/scripts/main/basic-navigation.js"></script>
+  <script src="/scripts/auth/sign-out.js"></script>
+  <%- include(rootPath + 'ejs-resources/index/index_style.ejs'); %>
+  <%- include(rootPath + 'ejs-resources/index/filters_style.ejs'); %>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7008107843388819"
-     crossorigin="anonymous"></script>
+  <link rel="icon" href="/images/DogsHomeLogo-ReDesign%20(Colorified&Final).png">
+  <link rel="canonical" href="https://dogshome.com.ar">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7008107843388819" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <%- include(rootPath + 'ejs-resources/loading-animation/loading-animation.ejs') %> 
+  <%- include(rootPath + 'ejs-resources/loading-animation/loading-animation.ejs') %>
 
-    <section id="main">
-        <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
-        <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
-        
-        <section id="content">
-            <div id="filters-container">
-                <svg id="filters-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="25"><path d="M15 2.75a.75.75 0 01-.75.75h-4a.75.75 0 010-1.5h4a.75.75 0 01.75.75zm-8.5.75v1.25a.75.75 0 001.5 0v-4a.75.75 0 00-1.5 0V2H1.75a.75.75 0 000 1.5H6.5zm1.25 5.25a.75.75 0 000-1.5h-6a.75.75 0 000 1.5h6zM15 8a.75.75 0 01-.75.75H11.5V10a.75.75 0 11-1.5 0V6a.75.75 0 011.5 0v1.25h2.75A.75.75 0 0115 8zm-9 5.25v-2a.75.75 0 00-1.5 0v1.25H1.75a.75.75 0 000 1.5H4.5v1.25a.75.75 0 001.5 0v-2zm9 0a.75.75 0 01-.75.75h-6a.75.75 0 010-1.5h6a.75.75 0 01.75.75z"></path></svg>
-            </div>
+  <section id="main">
+    <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %>
+    <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %>
 
-            <div id="content-show-ads">
-                <!-- <ins class="adsbygoogle"
+    <section id="content">
+      <div id="filters-container">
+        <svg id="filters-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="25">
+          <path d="M15 2.75a.75.75 0 01-.75.75h-4a.75.75 0 010-1.5h4a.75.75 0 01.75.75zm-8.5.75v1.25a.75.75 0 001.5 0v-4a.75.75 0 00-1.5 0V2H1.75a.75.75 0 000 1.5H6.5zm1.25 5.25a.75.75 0 000-1.5h-6a.75.75 0 000 1.5h6zM15 8a.75.75 0 01-.75.75H11.5V10a.75.75 0 11-1.5 0V6a.75.75 0 011.5 0v1.25h2.75A.75.75 0 0115 8zm-9 5.25v-2a.75.75 0 00-1.5 0v1.25H1.75a.75.75 0 000 1.5H4.5v1.25a.75.75 0 001.5 0v-2zm9 0a.75.75 0 01-.75.75h-6a.75.75 0 010-1.5h6a.75.75 0 01.75.75z"></path>
+        </svg>
+      </div>
+
+      <div id="content-show-ads">
+        <!-- <ins class="adsbygoogle"
                 data-ad-client="ca-pub-7008107843388819"
                 data-ad-test="on"
                 data-ad-slot="3658544994"
@@ -54,9 +55,9 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                 </script> -->
 
-                <section id="content-show"></section>
+        <section id="content-show"></section>
 
-                <!-- <ins class="adsbygoogle"
+        <!-- <ins class="adsbygoogle"
                 data-ad-client="ca-pub-7008107843388819"
                 data-ad-test="on"
                 data-ad-slot="3658544994"
@@ -67,148 +68,155 @@
                         (adsbygoogle = window.adsbygoogle || []).push({})
                     });
                 </script> -->
-            </div>
+      </div>
 
-            <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
-        </section>
-        <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
+      <lottie-player id="page-loading" class="page-loading-invisible" src="/animations/dog-walking.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
     </section>
+    <img src=<%=photoUrl %> alt id="profile-image-mobile" style="display: none !important;">
+  </section>
 
-    <!--Firebase Scripts -->
+  <!--Firebase Scripts -->
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-app.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-auth.js"></script>
-    <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
-    <script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
-    <script src="https://dogshome-6af88.web.app/__/firebase/8.8.0/firebase-app-check.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-auth.js"></script>
+  <script src="https://dogshome-6af88.web.app/__/firebase/8.6.5/firebase-database.js"></script>
+  <script src="https://dogshome-6af88.web.app/__/firebase/init.js"></script>
+  <script src="https://dogshome-6af88.web.app/__/firebase/8.8.0/firebase-app-check.js"></script>
 
-    <script src="/scripts/auth/sign-out.js"></script>
-    <script>
-        var width;
-        let currentPage = 1;
-        let lockPostPageLoading = false;
-        window.onresize = function () {
-            width = this.innerWidth;
-            if (width > 1024) {
-                document.getElementById("expandible-menu").className = 'expandible-menu-invisible';
-            }
-        }
+  <script src="/scripts/auth/sign-out.js"></script>
+  <script>
+    var width;
+    let currentPage = 1;
+    let lockPostPageLoading = false;
+    window.onresize = function() {
+      width = this.innerWidth;
+      if (width > 1024) {
+        document.getElementById("expandible-menu").className = 'expandible-menu-invisible';
+      }
+    }
 
-        function getPublicationsPage(page) {
-            return new Promise((resolve, reject) => {
-                axios.get('/api/publications/page/' + page).then((response) => {
-                    resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
-                });
-            })
-        }
-
-        function clearContent() {
-            document.getElementById("content-show").innerHTML = "";
-        }
-
-        function addPublications(publicationArray) {
-            publicationArray.forEach(function (post) {
-                let publicationContainer = document.getElementById('content-show');
-                let publication = document.createElement('div');
-                publication.className = 'publication';
-                publication.onclick = function () {
-                    let uid = post.Id;
-                    window.location = '/publicacion/' + uid;
-                }
-                let publicationPhoto = document.createElement('img');
-                publicationPhoto.className = 'publication-photo';
-                publicationPhoto.src = post.Photo;
-                publicationPhoto.alt = '';
-                publicationPhoto.loading = 'lazy';
-                publication.appendChild(publicationPhoto);
-                let publicationDescCont = document.createElement('div');
-                publicationDescCont.className = 'publication-desc-cont';
-                let publicationName = document.createElement('h1');
-                publicationName.className = 'publication-name';
-                publicationName.innerText = post.Name;
-                publicationDescCont.appendChild(publicationName);
-                let publicationDescription = document.createElement('p');
-                publicationDescription.className = 'publication-description';
-                publicationDescription.innerText = post.SDescription;
-                publicationDescCont.appendChild(publicationDescription);
-                publication.appendChild(publicationDescCont);
-                let refNameCont = document.createElement('div');
-                refNameCont.className = 'ref-name-cont';
-                let refName = document.createElement('a');
-                refName.innerText = post.Refugio;
-                refNameCont.appendChild(refName);
-                publication.appendChild(refNameCont);
-                publicationContainer.appendChild(publication);
-            });
-            return;
-        }
-
-        function setLoadingPage(isLoading) {
-            if (isLoading) {
-                document.getElementById('page-loading').className = 'page-loading-visible';
-            } else {
-                document.getElementById('page-loading').className = 'page-loading-invisible';
-            }
-        }
-
-        async function hasMorePages() {
-            return new Promise((resolve, reject) => {
-                axios.get('/api/publications/hasPage/' + (currentPage + 1)).then((response) => {
-                    resolve(response.data);
-                }).catch((error) => {
-                    reject(error);
-                });
-            })
-            
-        }
-        window.onload = () => {
-            getPublicationsPage(currentPage).then((response) => {
-                addPublications(response);
-                setLoading(false)
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
-
-        window.addEventListener('scroll', () => {
-            const {
-                scrollTop,
-                scrollHeight,
-                clientHeight
-            } = document.documentElement;
-
-            if (scrollTop + clientHeight >= scrollHeight - 660 && !lockPostPageLoading) {
-                lockPostPageLoading = true;
-                hasMorePages().then((res) => {
-                    if(res) {
-                        currentPage++;
-                        setLoadingPage(true);
-                        getPublicationsPage(currentPage).then((response) => {
-                            addPublications(response);
-                            setLoadingPage(false);
-                            lockPostPageLoading = false;
-                        }).catch((error) => {
-                            lockPostPageLoading = false;
-                            console.log(error);
-                        });
-                    }
-                }).catch((error) => {
-                    console.log(error);
-                    lockPostPageLoading = false;
-                });
-            }
+    function getPublicationsPage(page) {
+      return new Promise((resolve, reject) => {
+        axios.get('/api/publications/page/' + page).then((response) => {
+          resolve(response.data);
+        }).catch((error) => {
+          reject(error);
         });
-    </script>
-    <% if (isPrivate) { %> 
-        <%- include('./login-notification.ejs') %>
-    <% } %> 
+      })
+    }
+
+    function clearContent() {
+      document.getElementById("content-show").innerHTML = "";
+    }
+
+    function addPublications(publicationArray) {
+      publicationArray.forEach(function(post) {
+        let publicationContainer = document.getElementById('content-show');
+
+        let publication = document.createElement('div');
+        publication.className = 'publication';
+        publication.onclick = function() {
+          let uid = post.Id;
+          window.location = '/publicacion/' + uid;
+        }
+
+        let publicationPhoto = document.createElement('img');
+        publicationPhoto.className = 'publication-photo';
+        publicationPhoto.src = post.Photo;
+        publicationPhoto.alt = '';
+        publicationPhoto.loading = 'lazy';
+        publication.appendChild(publicationPhoto);
+
+        let publicationDescCont = document.createElement('div');
+        publicationDescCont.className = 'publication-desc-cont';
+
+        let publicationName = document.createElement('h1');
+        publicationName.className = 'publication-name';
+        publicationName.innerText = post.Name;
+        publicationDescCont.appendChild(publicationName);
+        
+        let publicationDescription = document.createElement('p');
+        publicationDescription.className = 'publication-description';
+        publicationDescription.innerText = post.SDescription;
+        publicationDescCont.appendChild(publicationDescription);
+        publication.appendChild(publicationDescCont);
+        
+        let refNameCont = document.createElement('div');
+        refNameCont.className = 'ref-name-cont';
+        
+        let refName = document.createElement('a');
+        refName.innerText = post.Refugio;
+        refNameCont.appendChild(refName);
+        publication.appendChild(refNameCont);
+        publicationContainer.appendChild(publication);
+      });
+      return;
+    }
+
+    function setLoadingPage(isLoading) {
+      if (isLoading) {
+        document.getElementById('page-loading').className = 'page-loading-visible';
+      } else {
+        document.getElementById('page-loading').className = 'page-loading-invisible';
+      }
+    }
+
+    async function hasMorePages() {
+      return new Promise((resolve, reject) => {
+        axios.get('/api/publications/hasPage/' + (currentPage + 1)).then((response) => {
+          resolve(response.data);
+        }).catch((error) => {
+          reject(error);
+        });
+      })
+
+    }
+    window.onload = () => {
+      getPublicationsPage(currentPage).then((response) => {
+        addPublications(response);
+        setLoading(false)
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+      } = document.documentElement;
+
+      if (scrollTop + clientHeight >= scrollHeight - 660 && !lockPostPageLoading) {
+        lockPostPageLoading = true;
+        hasMorePages().then((res) => {
+          if (res) {
+            currentPage++;
+            setLoadingPage(true);
+            getPublicationsPage(currentPage).then((response) => {
+              addPublications(response);
+              setLoadingPage(false);
+              lockPostPageLoading = false;
+            }).catch((error) => {
+              lockPostPageLoading = false;
+              console.log(error);
+            });
+          }
+        }).catch((error) => {
+          console.log(error);
+          lockPostPageLoading = false;
+        });
+      }
+    });
+  </script>
+  <% if (isPrivate) { %>
+  <%- include('./login-notification.ejs') %>
+  <% } %>
 </body>
 
 </html>

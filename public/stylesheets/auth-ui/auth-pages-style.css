@@ -246,6 +246,44 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+.error-label-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 25vw;
+    max-width: 350px;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+
+.error-label-container.visible {
+    visibility: visible;
+    opacity: 1;
+    height: 50px;
+}
+
+.error-label-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    fill: #B00020;
+}
+
+.error-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10pt;
+    color: #B00020;
+    text-align: left;
+    width: 100%;
+}
+
+input.errored {
+    border-color: #B00020;
+    background-color: rgba(176, 0, 32, 0.15);
+}
+
 #loading-container {
     width: 100%;
     height: 100%;
@@ -468,6 +506,10 @@ input[type=number] {
     .auth-page-form > .auth-btn-container {
         width: 50vw;
     }
+
+    .error-label-container {
+        width: 50vw;
+    }
 }
 @media screen and (max-width: 480px){
     input{
@@ -476,6 +518,10 @@ input[type=number] {
     }
 
     .auth-form-title{
+        width: 75vw;
+    }
+
+    .error-label-container {
         width: 75vw;
     }
 

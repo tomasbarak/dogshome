@@ -11,11 +11,9 @@ const express =       require('express')
 const cors =          require('cors');
 const fs =            require('fs');
 const https =         require('https');
-const http =          require('http');
 const { dirname } =   require('path');
 const appDir =        dirname(require.main.filename);
 const logger =        require("node-color-log");
-const argv =          require("minimist")(process.argv.slice(2));
 const { connectClient, 
         getMany,
         getOne, 
@@ -73,8 +71,6 @@ const addCors = (res) => {
 
 function setupPreloadFunction(expressApp, firebaseAdmin) {
   expressApp.use(function (req, res, next) {
-
-    console.log(req.body)
 
     //Setup CORS headers
     addCors(res);

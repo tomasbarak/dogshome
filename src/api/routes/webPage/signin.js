@@ -1,6 +1,5 @@
 const { dirname } = require('path');
 const appDir = dirname(require.main.filename);
-const axios = require('axios');
 
 function init(app, firebaseAdmin) {
     //Setting up login route
