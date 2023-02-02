@@ -16,3 +16,207 @@ html, body {
 }
 
 @font-face{font-family: 'libel-suit-rg'; src: url(../../fonts/libel-suit.otf) format('opentype');}
+
+#main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#dogshome-logo{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    width: auto;
+    width: 50px;
+    height: 50px;
+    filter: brightness(10);
+    -webkit-filter: brightness(10);
+}
+
+#dogshome-name {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-family: libel-suit-rg, sans-serif;
+    width: auto;
+    text-align: center;
+    color: #079292;
+    font-size: 24px;
+}
+
+.wave {
+    height: 100%;
+    width: 400px;
+}
+
+.loading-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.25s;
+    position: absolute;
+    z-index: 100;
+    /* Center */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.loading-container.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.25s;
+}
+
+#email-verification-icon {
+    width: 200px;
+}
+
+#email-verification-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 24pt;
+    font-weight: bolder;
+    text-align: center;
+    color: #333;
+    width: 100%;
+}
+
+#email-verification-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-top: -40px;
+}
+
+#btns-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#email-verification-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #079292;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#sign-out-btn {
+    width: 200px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: #333;
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.message-container {
+    height: 0;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.message-container.visible {
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
+    box-sizing: border-box;
+    padding: 0 15px;
+    gap: 50px;
+}
+
+.message-image {
+    width: 200px;
+}
+
+.message-title {
+    font-size: 24pt;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.message-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #079292;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 480px){
+    .wave {
+        width: 50px;
+    } 
+
+    #dogshome-logo{
+        left: auto;
+        right: 15px;
+        top: 15px;
+        filter: brightness(1);
+        -webkit-filter: brightness(1);
+    }
+
+    #btns-container {
+        flex-direction: column;
+    }
+}
