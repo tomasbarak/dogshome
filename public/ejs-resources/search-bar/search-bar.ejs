@@ -98,6 +98,7 @@
         
     </div>
 </div>
+<script src="/scripts/search/search.js"></script>
 <script>
     $(document).ready(function () {
         $(".hamburger").click(function () {
@@ -108,6 +109,15 @@
             $(".dropdown-btn-container").toggleClass("clicked");
             expandDropdownMenu();
         });
+        $("#search-input").keydown(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                console.log()
+                search(e.target.value, {});
+            }
+        });
+
+
     });
 
 </script>
