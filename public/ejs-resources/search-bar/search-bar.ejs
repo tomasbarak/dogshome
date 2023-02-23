@@ -1,123 +1,123 @@
 <% var rootPath = '../../'; %>
 <% var nav_btns = locals.navButtons || []; %>
-<% var userData = locals.userData || {}; %> 
-<%- include(rootPath + 'ejs-resources/search-bar/search_bar_style.ejs') %> 
-<%- include(rootPath + 'ejs-resources/search-bar/hamburger_menu_icon_style.ejs') %> 
-<%- include(rootPath + 'ejs-resources/search-bar/dropdown_button_icon_style.ejs') %> 
+<% var userData = locals.userData || {}; %>
+<%- include(rootPath + 'ejs-resources/search-bar/search_bar_style.ejs') %>
+<%- include(rootPath + 'ejs-resources/search-bar/hamburger_menu_icon_style.ejs') %>
+<%- include(rootPath + 'ejs-resources/search-bar/dropdown_button_icon_style.ejs') %>
 
 <div id="search-bar">
     <div class="top-bar-section-cont" id="logo-image-cont">
         <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo" style="height: 40px; width: 40px; margin-right: 10px">
-        <% nav_btns.forEach((button) => {%> 
-            <a class="desktop-elements nav-buttons" onclick="window.location.href = '<%= button.href %>'"><%= button.name %></a>
+        <% nav_btns.forEach((button) => {%>
+        <a class="desktop-elements nav-buttons" onclick="window.location.href = '<%= button.href %>'"><%= button.name %></a>
         <% }) %>
         <!-- <a id="refugios-button" class="desktop-elements nav-buttons" onclick="navigateToRefs()">Refugios</a>-->
     </div>
     <div class="top-bar-section-cont">
         <form id="search-form">
-            <div id="search-input-container"
-                style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
-                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…"
-                    maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"
-                    tabindex="3">
-                <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none"
-                    onclick="searchPost()">search</span>
+            <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
+                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
+                <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
         </form>
     </div>
-    <div class="top-bar-section-cont" id="userSpace"
-        style="flex: 1; align-items: center; justify-content: flex-end;">
+    <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
         <div class="hamburger-container mobile">
             <div class="hamburger" id="hamburger-1">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
-            </div>   
+            </div>
         </div>
-        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px"
-            onclick="navigateToProfile()"></a>
+        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="navigateToProfile()"></a>
         <% if (isPrivate) {%>
-            <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %>
-            alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
+        <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %> alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
             none; border-radius: 80px; object-fit: cover">
         <% } else { %>
-            <div id="notifications-icon-container">
-                <svg id="notifications-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"></svg>
-                <script>
-                    if(isNotificationAllowed()) {
-                        document.getElementById("notifications-icon").innerHTML = '';
-                    } else {
-                        document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
-                        document.getElementById("notifications-icon").addEventListener("click", () => {
-                            allowNotifications().then(allowed => {
-                                if(allowed) {
-                                    document.getElementById("notifications-icon").innerHTML = '';
-                                } else {
-                                    document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
-                                }
-                            })
-                        });
-                    }
-
-                    navigator.permissions.query({name: "notifications"}).then(np => {
-                        np.onchange = () => {
-                            if(isNotificationAllowed()) {
+        <div id="notifications-icon-container">
+            <svg id="notifications-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"></svg>
+            <script>
+                if (isNotificationAllowed()) {
+                    document.getElementById("notifications-icon").innerHTML = '';
+                } else {
+                    document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                    document.getElementById("notifications-icon").addEventListener("click", () => {
+                        allowNotifications().then(allowed => {
+                            if (allowed) {
                                 document.getElementById("notifications-icon").innerHTML = '';
                             } else {
                                 document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
-                                document.getElementById("notifications-icon").addEventListener("click", () => {
-                                    allowNotifications().then(allowed => {
-                                        if(allowed) {
-                                            document.getElementById("notifications-icon").innerHTML = '';
-                                        } else {
-                                            document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
-                                        }
-                                    })
-                                });
                             }
-                        }
-                    })
+                        })
+                    });
+                }
 
-                    
-                </script>
+                navigator.permissions.query({
+                    name: "notifications"
+                }).then(np => {
+                    np.onchange = () => {
+                        if (isNotificationAllowed()) {
+                            document.getElementById("notifications-icon").innerHTML = '';
+                        } else {
+                            document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                            document.getElementById("notifications-icon").addEventListener("click", () => {
+                                allowNotifications().then(allowed => {
+                                    if (allowed) {
+                                        document.getElementById("notifications-icon").innerHTML = '';
+                                    } else {
+                                        document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                                    }
+                                })
+                            });
+                        }
+                    }
+                })
+            </script>
+        </div>
+        <div id="user-menu-image-container" class="desktop-elements">
+            <div class="dropdown-btn-container">
+                <span class="arrow-line"></span>
+                <span class="arrow-line"></span>
             </div>
-            <div id="user-menu-image-container" class="desktop-elements">
-                <div class="dropdown-btn-container">
-                    <span class="arrow-line"></span>
-                    <span class="arrow-line"></span>
-                </div>
-                <p class="search-bar-display-name">
-                    <%= displayName %> 
-                </p>
-                <img loading="lazy" id="profile-pic"  src=<%=photoUrl %>
-                alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
+            <p class="search-bar-display-name">
+                <%= displayName %>
+            </p>
+            <img loading="lazy" id="profile-pic" src=<%=photoUrl %> alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
                 none; border-radius: 80px; object-fit: cover">
-            </div>
-            <%- include(rootPath + 'ejs-resources/search-bar/dropdown-menu/dropdown-menu.ejs') %> 
-        <% } %>   
-        
+        </div>
+        <%- include(rootPath + 'ejs-resources/search-bar/dropdown-menu/dropdown-menu.ejs') %>
+        <% } %>
+
     </div>
 </div>
 <script src="/scripts/search/search.js"></script>
 <script>
-    $(document).ready(function () {
-        $(".hamburger").click(function () {
+    let filters = sessionStorage.getItem("filters") ? JSON.parse(sessionStorage.getItem("filters")) : {};
+
+    $(document).ready(function() {
+        $(".hamburger").click(function() {
             $(this).toggleClass("is-active");
             expandMenu();
         });
-        $("#user-menu-image-container").click(function () {
+        $("#user-menu-image-container").click(function() {
             $(".dropdown-btn-container").toggleClass("clicked");
             expandDropdownMenu();
         });
-        $("#search-input").keydown(function (e) {
+        $("#search-input").keydown(function(e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
-                console.log()
-                search(e.target.value, {});
+                search_query();
             }
         });
-
-
     });
 
+    function search_query() {
+        let param_filters = new URLSearchParams(filters).toString();
+        let search_query = $("#search-input").val();
+        let complete_query = param_filters ? `?q=${search_query}&${param_filters}` : `?q=${search_query}`;
+
+        sessionStorage.setItem("filters", JSON.stringify(filters));
+
+        window.location.href = `/search${complete_query}`;
+    }
 </script>

@@ -9,7 +9,7 @@ const mongoDBName =                         'dogshome';
 
 function init(app) {
     //Setting up index route
-    app.get(['/', '/index', '/index.html', '/inicio'], (req, res) => {
+    app.get(['/', '/index', '/index.html', '/inicio', '/search'], (req, res) => {
         const isPrivate =       res.locals.isPrivate;
         const isVerified =      res.locals.isVerified;
         const user =            res.locals.user || {};
