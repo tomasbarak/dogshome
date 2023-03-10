@@ -16,10 +16,17 @@
     <div class="top-bar-section-cont">
         <form id="search-form">
             <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
+                <span id="filters-btn" class="material-icons-outlined in-use" onclick="openFilters()">tune</span>
+                <hr>
                 <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
                 <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
+            <div id="filters-container" class="hidden">
+            
+            </div>
         </form>
+
+        
     </div>
     <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
         <div class="hamburger-container mobile">
@@ -119,5 +126,20 @@
         sessionStorage.setItem("filters", JSON.stringify(filters));
 
         window.location.href = `/search${complete_query}`;
+    }
+
+    function openFilters() {
+        const filters_container = document.getElementById("filters-container");
+        const filters_btn = document.getElementById("filters-btn");
+
+        const isHidden = filters_container.classList.contains("hidden");
+
+        if (isHidden) {
+            filters_container.classList.remove("hidden");
+            filters_btn.classList.add("selecting");
+        } else {
+            filters_container.classList.add("hidden");
+            filters_btn.classList.remove("selecting");
+        }
     }
 </script>
