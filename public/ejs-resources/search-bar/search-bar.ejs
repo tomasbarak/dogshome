@@ -7,7 +7,7 @@
 
 <div id="search-bar">
     <div class="top-bar-section-cont" id="logo-image-cont">
-        <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo" style="height: 40px; width: 40px; margin-right: 10px">
+        <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo" onclick="window.location.href = '/inicio'" style="height: 40px; width: 40px; margin-right: 10px; cursor: pointer;">
         <% nav_btns.forEach((button) => {%>
         <a class="desktop-elements nav-buttons" onclick="window.location.href = '<%= button.href %>'"><%= button.name %></a>
         <% }) %>
