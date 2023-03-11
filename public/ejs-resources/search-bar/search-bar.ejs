@@ -22,7 +22,59 @@
                 <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
             <div id="filters-container" class="hidden">
-            
+                <div class="filter-container">
+                    <a class="filters-title">Edad</a>
+                    <div id="age-filter-container">
+                        <div class="age-input-container">
+                            <a>Mínimo</a>
+                            <input autocomplete="off" placeholder="Edad (años)" value="0" oninput="validity.valid||(value=0);" step="1" type="number" class="age-input filter-input" id="age-filter-from"  min="0" max="25">
+                        </div>
+                        <div class="age-input-container">
+                            <a>Máximo</a>
+                            <input autocomplete="off" placeholder="Edad (años)" value="0" oninput="validity.valid||(value=0);" step="1" type="number" class="age-input filter-input" id="age-filter-to"  min="0" max="25">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <a class="filters-title">Raza</a>
+                    <div class="breed-input-container">
+                        <input onfocus="$('#breed-input').autocomplete('search', this.value)" type="text" placeholder="Escribir raza..." id="breed-input" class="filter-input">
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <a class="filters-title">Salud</a>
+                    <div class="health-filters-container">
+                        <div class="health-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox">
+                            <label for="health-filter-castrated">Castrado</label>
+                        </div>
+                        <div class="health-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox">
+                            <label for="health-filter-dewormed">Desparasitado</label>
+                        </div>
+                        <div class="health-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox">
+                            <label for="health-filter-vaccinated">Vacunado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <a class="filters-title">Personalidad</a>
+                    <div class="personality-filters-container">
+                        <div class="personality-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox">
+                            <label for="personality-filter-catfriendly">Amigable con gatos</label>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox">
+                            <label for="personality-filter-kidsfriendly">Amigable con niños</label>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox">
+                            <label for="personality-filter-dogfirendly">Amigable con otros perros</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
 
@@ -142,4 +194,27 @@
             filters_btn.classList.remove("selecting");
         }
     }
+
+    function requestBreeds() {
+        return new Promise((resolve, reject) => {
+            axios.get(`https://${window.location.host}/draft-steps/breeds/breeds.json`).then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                reject(error);
+            });
+        })
+    }
+
+    requestBreeds().then((raw_res) => {
+        let data = raw_res.data;
+        window.breeds = data;
+
+        $("#breed-input").autocomplete({
+            source: data,
+            position: {  collision: "flip"  },
+            minLength: 0,
+        }).focus(function () {
+            $(this).autocomplete("search");
+        });
+    })
 </script>
