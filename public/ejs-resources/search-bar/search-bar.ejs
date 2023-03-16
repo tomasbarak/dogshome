@@ -42,36 +42,68 @@
                     </div>
                 </div>
                 <div class="filter-container">
-                    <a class="filters-title">Salud</a>
+                    <div class="filters-title">
+                        <h2>Salud</h2>
+                        <a>Limpiar</a>
+                    </div>
                     <div class="health-filters-container">
+                        <div class="checkbox-options-labels-container">
+                            <label>Sí</label>
+                            <label>No</label>
+                        </div>
                         <div class="health-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox">
                             <label for="health-filter-castrated">Castrado</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
                         </div>
                         <div class="health-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox">
                             <label for="health-filter-dewormed">Desparasitado</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
                         </div>
                         <div class="health-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox">
                             <label for="health-filter-vaccinated">Vacunado</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="filter-container">
-                    <a class="filters-title">Personalidad</a>
+                    <div class="filters-title">
+                        <h2>Personalidad</h2>
+                        <a onclick="clear_filter(event)">Limpiar</a>
+                    </div>
                     <div class="personality-filters-container">
-                        <div class="personality-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox">
-                            <label for="personality-filter-catfriendly">Amigable con gatos</label>
+                        <div class="checkbox-options-labels-container">
+                            <label>Sí</label>
+                            <label>No</label>
                         </div>
                         <div class="personality-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox">
-                            <label for="personality-filter-kidsfriendly">Amigable con niños</label>
+                            <label>Amigable con gatos</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
                         </div>
                         <div class="personality-checkbox-container">
-                            <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox">
-                            <label for="personality-filter-dogfirendly">Amigable con otros perros</label>
+                            <label>Amigable con niños</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <label>Amigable con otros perros</label>
+                            <div>
+                                <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,4 +249,26 @@
             $(this).autocomplete("search");
         });
     })
+
+    function filters_checkbox_click(e) {
+        const checkbox = e.target;
+        const parent = checkbox.parentElement;
+        const checkboxes = parent.querySelectorAll("input[type='checkbox']");
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        })
+
+        checkbox.checked = true;
+    }
+
+    function clear_filter(event) {
+        const filters_container = event.target.parentElement.nextElementSibling;
+        filters_container.querySelectorAll("div:not(.checkbox-options-labels-container)").forEach((filter) => {
+            filter.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+                checkbox.checked = false;
+            })
+        })
+    }
+
 </script>

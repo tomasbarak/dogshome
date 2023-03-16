@@ -217,14 +217,32 @@
     }
 
     .filters-title {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .filters-title > h2 {
         font-size: 20px;
         font-weight: 500;
         padding: 0;
         margin: 0;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
+    }
+
+    .filters-title > a {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        color: #079292;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.15s;
     }
 
     #age-filter-container {
@@ -265,6 +283,8 @@
         font-family: 'Lato', sans-serif;
         transition: 0.15s;
     }
+
+    
 
     .filter-input:focus{
         border-bottom: 1px solid rgba(7, 146, 146, 1);
@@ -314,7 +334,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 10px;
         box-sizing: border-box;
     }
@@ -325,7 +345,7 @@
         user-select: none;
     }
 
-    .health-checkbox-container > input {
+    .health-checkbox-container > div > input {
         width: 16px;
         height: 16px;
         cursor: pointer;
@@ -350,9 +370,26 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 10px;
         box-sizing: border-box;
+    }
+
+    .checkbox-options-labels-container {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        box-sizing: border-box;
+        padding-right: 3px;
+    }
+
+    .checkbox-options-labels-container > label {
+        font-size: 14px;
+        width: 16px;
     }
 
     .personality-checkbox-container > label {
@@ -361,7 +398,22 @@
         user-select: none;
     }
 
-    .personality-checkbox-container > input {
+    .round-checkbox {
+        background-color: white;
+        border-radius: 50%;
+        vertical-align: middle;
+        border: 1px solid #444;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .round-checkbox:checked {
+        background-color: #079292;
+    }
+
+    .personality-checkbox-container > div > input {
         width: 16px;
         height: 16px;
         cursor: pointer;
