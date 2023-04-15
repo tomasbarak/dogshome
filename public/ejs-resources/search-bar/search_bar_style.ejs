@@ -291,10 +291,6 @@
         transition: 0.15s;
     }
 
-    .breed-input-container {
-        
-    }
-
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -472,6 +468,59 @@
     .ui-state-active{
         color: #079292;
     }
+
+    .dropdown {
+        width: 100px;
+        height: 25px;
+        border: 1px solid #079292;
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        user-select: none;
+        transition: .25s;
+    }
+
+    .dropdown:hover {
+        transition: .25s;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .sex-filter-container{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .color-filter-container {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .size-filter-container {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
     @media screen and (max-width: 1184px) {
 
         #search-input,
