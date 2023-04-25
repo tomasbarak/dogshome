@@ -258,7 +258,13 @@
         console.log(filters);
         let param_filters = new URLSearchParams(filters).toString();
         let search_query = $("#search-input").val();
-        let complete_query = param_filters ? `?q=${search_query}&${param_filters}` : `?q=${search_query}`;
+        let complete_query = "";
+        if(search_query !== "") {
+            complete_query = param_filters ? `?q=${search_query}&${param_filters}` : `?q=${search_query}`;
+        } else {
+            complete_query = param_filters ? `?${param_filters}` : "";
+        }
+        
 
         sessionStorage.setItem("filters", JSON.stringify(filters));
 

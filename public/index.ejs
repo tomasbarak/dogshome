@@ -175,10 +175,12 @@
                 const query = params.get('q');
                 const page = params.get('p') || 1;
 
-                if (query) {
+                console.log(params)
+
+                if (params.size > 0) {
                     document.getElementById('search-input').value = query;
 
-                    search(query, {}).then((response) => {
+                    search(query, JSON.parse(sessionStorage.getItem("filters"))).then((response) => {
                         console.log(response);
                         addPublications(response);
                         setLoading(false)
