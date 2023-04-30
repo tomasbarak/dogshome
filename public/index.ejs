@@ -177,7 +177,7 @@
 
                 console.log(params)
 
-                if (params.size > 0) {
+                if (Array.from(params).length > 0) {
                     document.getElementById('search-input').value = query;
 
                     search(query, JSON.parse(sessionStorage.getItem("filters"))).then((response) => {
@@ -189,7 +189,7 @@
                     });
                 } else {
                     //Change url without reloading the page
-                    //window.history.replaceState({}, document.title, "/");
+                    window.history.replaceState({}, document.title, "/");
 
                     getPublicationsPage(currentPage).then((response) => {
                         addPublications(response);
