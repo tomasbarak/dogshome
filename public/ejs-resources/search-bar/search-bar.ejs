@@ -16,12 +16,12 @@
     <div class="top-bar-section-cont">
         <form id="search-form">
             <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
-                <span id="filters-btn" class="material-icons-outlined in-use" onclick="openFilters()">tune</span>
+                <span id="filters-btn" class="material-icons-outlined" onclick="openFilters()">tune</span>
                 <hr>
                 <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
                 <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
-            <div id="filters-container" class="hidden">
+            <div onmouseover="are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use')" id="filters-container" class="hidden">
                 <div class="filter-container">
                     <div class="filters-title">
                         <h2>Edad (años)</h2>
@@ -236,6 +236,8 @@
     // let filters = sessionStorage.getItem("filters") ? JSON.parse(sessionStorage.getItem("filters")) : {};
 
     $(document).ready(function() {
+        are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use');
+        
         $(".hamburger").click(function() {
             $(this).toggleClass("is-active");
             expandMenu();
@@ -384,7 +386,70 @@
             }
         });
 
-        console.log(filters);
         return filters;
+    }
+
+    function set_filters() {
+        //Get url search params
+        const urlParams = new URLSearchParams(window.location.search);
+        const filters = Object.fromEntries(urlParams.entries());
+
+        //Get all filters
+        const input_filters = document.querySelectorAll(".input-filter")
+        const select_filters = document.querySelectorAll(".select-filter")
+        const checkbox_filters = document.querySelectorAll(".checkbox-filter")
+
+        //Set input filters
+        input_filters.forEach((input) => {
+            const filter_name = input.getAttribute("data-filter-name");
+            const filter_value = filters[filter_name];
+
+            if (filter_value) {
+                input.value = filter_value;
+            }
+        });
+
+        //Set select filters
+        select_filters.forEach((select) => {
+            const filter_name = select.getAttribute("data-filter-name");
+            const filter_value = filters[filter_name];
+
+            if (filter_value) {
+                select.value = filter_value;
+            }
+        });
+
+        //Set checkbox filters
+        checkbox_filters.forEach((checkbox) => {
+            const checkbox_t = checkbox.children[0]
+            const checkbox_f = checkbox.children[1]
+            
+            const filter_name = checkbox.getAttribute("data-filter-name");
+
+            if (filters[filter_name] === "true") {
+                checkbox_t.checked = true;
+            } else if (filters[filter_name] === "false") {
+                checkbox_f.checked = true;
+            }
+        });
+
+        //Set search input
+        const search_input = document.getElementById("search-input");
+        const search_query = urlParams.get("q");
+
+        if (search_query) {
+            search_input.value = search_query;
+        }
+    }
+
+    function are_filters_empty() {
+        const filters = get_filters();
+        const filters_keys = Object.keys(filters);
+
+        if (filters_keys.length > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 </script>
