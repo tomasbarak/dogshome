@@ -18,9 +18,7 @@
             <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
                 <span id="filters-btn" class="material-icons-outlined" onclick="openFilters()">tune</span>
                 <hr>
-                <form id="search-input-form">
-                    <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
-                </form>
+                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
                 <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
             <div onmouseover="are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use')" id="filters-container" class="hidden">
@@ -244,11 +242,13 @@
             $(this).toggleClass("is-active");
             expandMenu();
         });
+
         $("#user-menu-image-container").click(function() {
             $(".dropdown-btn-container").toggleClass("clicked");
             expandDropdownMenu();
         });
-        $("#search-input-form").submit(function(e) {
+
+        $("#search-input").keydown(function(e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
                 search_query();
@@ -288,6 +288,15 @@
         } else {
             filters_container.classList.add("hidden");
             filters_btn.classList.remove("selecting");
+
+            if(are_filters_empty()) {
+                filters_btn.classList.remove("in-use");
+            } else {
+                filters_btn.classList.add("in-use");
+            }
+
+            search_query();
+
         }
     }
 
