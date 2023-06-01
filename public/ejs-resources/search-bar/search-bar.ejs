@@ -18,7 +18,9 @@
             <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
                 <span id="filters-btn" class="material-icons-outlined" onclick="openFilters()">tune</span>
                 <hr>
-                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
+                <form id="search-input-form">
+                    <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
+                </form>
                 <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
             </div>
             <div onmouseover="are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use')" id="filters-container" class="hidden">
@@ -237,7 +239,7 @@
 
     $(document).ready(function() {
         are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use');
-        
+
         $(".hamburger").click(function() {
             $(this).toggleClass("is-active");
             expandMenu();
@@ -246,10 +248,11 @@
             $(".dropdown-btn-container").toggleClass("clicked");
             expandDropdownMenu();
         });
-        $("#search-input").keydown(function(e) {
+        $("#search-input-form").submit(function(e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
                 search_query();
+                return false;
             }
         });
     });
