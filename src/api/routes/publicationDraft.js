@@ -14,7 +14,7 @@
         deleteMany, 
         sanitize, 
         insertOne } =   require(appDir + '/src/api/mongodbFunctions.js');
-    const mongoURL =    'mongodb://localhost:27017/dogshome';
+    const mongoURL =    `mongodb://${process.env.DATABASE_HOST}:27017/dogshome`;
     const mongoDBName = 'dogshome';
     const {
         uploadImages,

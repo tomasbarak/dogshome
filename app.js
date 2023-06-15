@@ -6,7 +6,7 @@
      - PRELOAD FUNCTION
      - HTTP/HTTPS SERVER
  */
-
+require('dotenv').config();
 const express =       require('express')
 const cors =          require('cors');
 const fs =            require('fs');
@@ -23,7 +23,7 @@ const { connectClient,
         deleteOne, 
         deleteMany, 
         sanitize } =  require(appDir + '/src/api/mongodbFunctions.js');
-const mongoURL =      'mongodb://localhost:27017/dogshome';
+const mongoURL =      `mongodb://${process.env.DATABASE_HOST}:27017/dogshome`;
 const mongoDBName =   'dogshome';
 
 /*////const commitVersion = require('child_process')
@@ -31,8 +31,8 @@ const mongoDBName =   'dogshome';
                       ////.toString().trim()*/
 
 //SSL Certificate
-var cert =    fs.readFileSync(appDir + '/certs/certificate.crt');
-var key =     fs.readFileSync(appDir + '/certs/private.key');
+var cert =    fs.readFileSync(appDir + '/certs/ssl/certificate.crt');
+var key =     fs.readFileSync(appDir + '/certs/ssl/private.key');
 var options = { key: key,
                 cert: cert };
 
