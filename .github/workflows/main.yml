@@ -38,6 +38,10 @@ jobs:
         uses: actions/checkout@v2
 
       -
+
+        name: Pull Docker Images
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /root/DogshomePlatform/ && docker pull tomasbarak/web.dogshome:latest && exit"
+      -
         name: Docker-Compose Remote Deployment
         uses: alex-ac/github-action-ssh-docker-compose@master
         with:
