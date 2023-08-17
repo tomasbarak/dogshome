@@ -1,0 +1,222 @@
+{
+    "cantidad": 25,
+    "departamentos": [
+        {
+            "centroide_lat": -28.4973936042369,
+            "centroide_lon": -58.930436271179,
+            "id": "18007",
+            "nombre": "Bella Vista",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.4779720010057,
+            "centroide_lon": -57.6113792118725,
+            "id": "18014",
+            "nombre": "Berón de Astrada",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.522187514513,
+            "centroide_lon": -58.7627061875969,
+            "id": "18021",
+            "nombre": "Capital",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.4083953496766,
+            "centroide_lon": -58.031384641798,
+            "id": "18028",
+            "nombre": "Concepción",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.6955178131115,
+            "centroide_lon": -58.3248439252656,
+            "id": "18035",
+            "nombre": "Curuzu Cuatia",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.8961218833917,
+            "centroide_lon": -58.6658439667722,
+            "id": "18042",
+            "nombre": "Empedrado",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.9854770547953,
+            "centroide_lon": -59.2414216570581,
+            "id": "18049",
+            "nombre": "Esquina",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.7751848033313,
+            "centroide_lon": -56.5115297991712,
+            "id": "18056",
+            "nombre": "General Alvear",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.7199243812297,
+            "centroide_lon": -57.7876196199145,
+            "id": "18063",
+            "nombre": "General Paz",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.4514531616824,
+            "centroide_lon": -59.255912536825,
+            "id": "18070",
+            "nombre": "Goya",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.3460562357383,
+            "centroide_lon": -58.0713754415461,
+            "id": "18077",
+            "nombre": "Itatí",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.9114257175706,
+            "centroide_lon": -56.7904763823004,
+            "id": "18084",
+            "nombre": "Ituzaingó",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.9879963080686,
+            "centroide_lon": -58.9337155943843,
+            "id": "18091",
+            "nombre": "Lavalle",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.0163816801467,
+            "centroide_lon": -58.1855624499057,
+            "id": "18098",
+            "nombre": "Mburucuyá",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.0645100901984,
+            "centroide_lon": -57.818389954722,
+            "id": "18105",
+            "nombre": "Mercedes",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -30.2289552221138,
+            "centroide_lon": -57.8702855877153,
+            "id": "18112",
+            "nombre": "Monte Caseros",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.5936355856024,
+            "centroide_lon": -57.2996337303242,
+            "id": "18119",
+            "nombre": "Paso de los Libres",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.2124729464641,
+            "centroide_lon": -58.6199065693295,
+            "id": "18126",
+            "nombre": "Saladas",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.3823055047941,
+            "centroide_lon": -58.5174860021794,
+            "id": "18133",
+            "nombre": "San Cosme",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.6020473964888,
+            "centroide_lon": -58.2685422687085,
+            "id": "18140",
+            "nombre": "San Luis del Palmar",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.8289705275493,
+            "centroide_lon": -56.9315923506787,
+            "id": "18147",
+            "nombre": "San Martín",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -27.8758228176186,
+            "centroide_lon": -57.409985810344,
+            "id": "18154",
+            "nombre": "San Miguel",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.7057979959044,
+            "centroide_lon": -58.6130197699847,
+            "id": "18161",
+            "nombre": "San Roque",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -28.2311093523606,
+            "centroide_lon": -56.222206072693,
+            "id": "18168",
+            "nombre": "Santo Tomé",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        },
+        {
+            "centroide_lat": -29.9995445616697,
+            "centroide_lon": -58.7950373826119,
+            "id": "18175",
+            "nombre": "Sauce",
+            "provincia_id": "18",
+            "provincia_nombre": "Corrientes"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Corrientes"
+    },
+    "total": 25
+}

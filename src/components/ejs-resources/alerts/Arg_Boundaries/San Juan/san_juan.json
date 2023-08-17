@@ -1,0 +1,174 @@
+{
+    "cantidad": 19,
+    "departamentos": [
+        {
+            "centroide_lat": -31.9896198487776,
+            "centroide_lon": -67.8274038981039,
+            "id": "70126",
+            "nombre": "25 de Mayo",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.6458046846082,
+            "centroide_lon": -68.3890526964703,
+            "id": "70063",
+            "nombre": "9 de Julio",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.2096344810555,
+            "centroide_lon": -68.4519807662306,
+            "id": "70007",
+            "nombre": "Albardón",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.1922192642063,
+            "centroide_lon": -68.1319625798128,
+            "id": "70014",
+            "nombre": "Angaco",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.453365238609,
+            "centroide_lon": -69.8338001250755,
+            "id": "70021",
+            "nombre": "Calingasta",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.5330748483572,
+            "centroide_lon": -68.5342856277406,
+            "id": "70028",
+            "nombre": "Capital",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.506381702579,
+            "centroide_lon": -67.5458594420512,
+            "id": "70035",
+            "nombre": "Caucete",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.4874196948621,
+            "centroide_lon": -68.5239289662613,
+            "id": "70042",
+            "nombre": "Chimbas",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -29.6066873518726,
+            "centroide_lon": -69.437949892691,
+            "id": "70049",
+            "nombre": "Iglesia",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -30.3550759493245,
+            "centroide_lon": -68.4412683481467,
+            "id": "70056",
+            "nombre": "Jáchal",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.7459555808161,
+            "centroide_lon": -68.5842081096793,
+            "id": "70070",
+            "nombre": "Pocito",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.6865858135558,
+            "centroide_lon": -68.4675631318926,
+            "id": "70077",
+            "nombre": "Rawson",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.5542325394479,
+            "centroide_lon": -68.6416232535812,
+            "id": "70084",
+            "nombre": "Rivadavia",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.5285412012606,
+            "centroide_lon": -68.2072931248825,
+            "id": "70091",
+            "nombre": "San Martín",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.5327173670967,
+            "centroide_lon": -68.4634116809574,
+            "id": "70098",
+            "nombre": "Santa Lucía",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -32.073542322508,
+            "centroide_lon": -68.691135621109,
+            "id": "70105",
+            "nombre": "Sarmiento",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.0904647062097,
+            "centroide_lon": -68.8815821606005,
+            "id": "70112",
+            "nombre": "Ullúm",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -30.7122962694155,
+            "centroide_lon": -67.5323035648395,
+            "id": "70119",
+            "nombre": "Valle Fértil",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        },
+        {
+            "centroide_lat": -31.6381980593912,
+            "centroide_lon": -68.9555709233027,
+            "id": "70133",
+            "nombre": "Zonda",
+            "provincia_id": "70",
+            "provincia_nombre": "San Juan"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "San Juan"
+    },
+    "total": 19
+}

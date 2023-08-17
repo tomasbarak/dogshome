@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <% var rootPath = './' %> 
+    <%- include(rootPath + 'head.ejs'); %>
+    <%- include(rootPath + 'ejs-resources/create-draft/create_draft_style.ejs') %> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear publicación</title>
+    <script src="/scripts/auth/sign-out.js"></script>
+
+    <link rel="icon" href="/images/DogsHomeLogo-ReDesign (Colorified&Final).png">
+
+</head>
+<body>
+
+    <%- include(rootPath + 'ejs-resources/search-bar/search-bar.ejs') %> 
+    
+    <%- include(rootPath + 'ejs-resources/menu-mobile/expandable-menu.ejs') %> 
+    
+    <%- include(`./other/step_${step}.ejs`) %>
+    <span style="position: absolute; top: 0; left: 0; width: 100%; height: 50vh; background-color: rgba(7, 146, 146, .8); z-index: -1; min-height: 300px !important"></span>
+    <span style="position: absolute; top: 50vh; left: 0; width: 100%; height: 50vh; background-color: white; z-index: -1;"></span>
+    <div id="buttons-container">
+        <div id="action-buttons-container">
+            <% if (false) { %>
+                <a id="skip-button" onclick="skipStep()">Saltar</a>
+            <% } %>
+            <div id="action-btn-subcontainer">
+                <% if (step > 1) { %>
+                    <svg id="back-button" style="margin-bottom: 8px; margin-right: 5px;  cursor: pointer; display: flex;" onclick="stepBack('<%= draftId %>')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="24" height="24"><path fill-rule="evenodd" d="M9.78 12.78a.75.75 0 01-1.06 0L4.47 8.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L6.06 8l3.72 3.72a.75.75 0 010 1.06z"></path></svg>
+                <% } %>
+                <a id="next-button" onclick="updateDraft('<%= draftId %>')"><% if (step === 6) {%> Publicar <% } else {%> Siguiente <% } %> </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const stepBack = (draftId) => {
+            Swal.fire({
+                title: 'Volviendo al paso anterior',
+                text: 'Esperá un momento',
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                allowOutsideClick: false,
+                heightAuto: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+
+            });
+            axios.post(`https://${window.location.host}/update/publication/draft/${draftId}/`, {
+                step: 'back',
+            }).then(res => {
+                if(res.status === 200){
+                    window.location.reload();
+                }else{
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        heightAuto: false,
+                        text: 'Algo salió mal, intenta de nuevo',
+                        confirmButtonColor: '#079292'
+                    });
+                }
+            }).catch(err => {
+                console.log(err);
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, intenta de nuevo',
+                    heightAuto: false,
+                    confirmButtonColor: '#079292'
+                });
+            });
+        } 
+    </script>
+        
+</body>
+</html>

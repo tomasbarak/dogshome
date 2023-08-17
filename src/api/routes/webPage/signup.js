@@ -15,10 +15,10 @@ function init(app, firebaseAdmin) {
                     res.redirect('/verification');
                 }
             }).catch((error) => {
-                res.render(appDir + '/public/signup');
+                res.render(appDir + '/src/components/signup');
             });
         }else{
-            res.render(appDir + '/public/signup',);
+            res.render(appDir + '/src/components/signup',);
         }
     });
 }

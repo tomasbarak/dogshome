@@ -1,0 +1,94 @@
+{
+    "cantidad": 9,
+    "departamentos": [
+        {
+            "centroide_lat": -24.0255563345755,
+            "centroide_lon": -61.2828019983788,
+            "id": "34007",
+            "nombre": "Bermejo",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -25.9396352318956,
+            "centroide_lon": -58.3773174492554,
+            "id": "34014",
+            "nombre": "Formosa (Capital)",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -26.467587999102,
+            "centroide_lon": -58.5654369092882,
+            "id": "34021",
+            "nombre": "Laishí",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -23.854855944809,
+            "centroide_lon": -62.076891256733,
+            "id": "34028",
+            "nombre": "Matacos",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -24.8750609917942,
+            "centroide_lon": -59.9585024741836,
+            "id": "34035",
+            "nombre": "Patiño",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -25.1053773070169,
+            "centroide_lon": -58.6616277482245,
+            "id": "34042",
+            "nombre": "Pilagás",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -25.3700377167627,
+            "centroide_lon": -58.062606265553,
+            "id": "34049",
+            "nombre": "Pilcomayo",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -25.7672893097833,
+            "centroide_lon": -59.1592573575224,
+            "id": "34056",
+            "nombre": "Pirané",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        },
+        {
+            "centroide_lat": -23.1201560396969,
+            "centroide_lon": -62.1382049441497,
+            "id": "34063",
+            "nombre": "Ramón Lista",
+            "provincia_id": "34",
+            "provincia_nombre": "Formosa"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Formosa"
+    },
+    "total": 9
+}

@@ -1,0 +1,230 @@
+{
+    "cantidad": 26,
+    "departamentos": [
+        {
+            "centroide_lat": -32.2027119466219,
+            "centroide_lon": -64.6167170389735,
+            "id": "14007",
+            "nombre": "Calamuchita",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.4170686019036,
+            "centroide_lon": -64.1832168468628,
+            "id": "14014",
+            "nombre": "Capital",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.1440502226475,
+            "centroide_lon": -64.1528709889175,
+            "id": "14021",
+            "nombre": "Colón",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -30.6580631596452,
+            "centroide_lon": -65.0774738750322,
+            "id": "14028",
+            "nombre": "Cruz del Eje",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -34.6170744283348,
+            "centroide_lon": -64.3787603319835,
+            "id": "14035",
+            "nombre": "General Roca",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -32.5143341151357,
+            "centroide_lon": -63.2562237062848,
+            "id": "14042",
+            "nombre": "General San Martín",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -30.3997182320053,
+            "centroide_lon": -64.6094899792791,
+            "id": "14049",
+            "nombre": "Ischilín",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -33.329445846674,
+            "centroide_lon": -63.6063356482423,
+            "id": "14056",
+            "nombre": "Juárez Celman",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -33.030846572143,
+            "centroide_lon": -62.2767719720096,
+            "id": "14063",
+            "nombre": "Marcos Juárez",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.0355515814319,
+            "centroide_lon": -65.4111896095111,
+            "id": "14070",
+            "nombre": "Minas",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.4634407170853,
+            "centroide_lon": -65.4384772539188,
+            "id": "14077",
+            "nombre": "Pocho",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -34.1401111180237,
+            "centroide_lon": -63.4187744697841,
+            "id": "14084",
+            "nombre": "Presidente Roque Sáenz Peña",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.2225592168079,
+            "centroide_lon": -64.5861516801457,
+            "id": "14091",
+            "nombre": "Punilla",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -33.3308032176015,
+            "centroide_lon": -64.494180483748,
+            "id": "14098",
+            "nombre": "Río Cuarto",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.0327992067991,
+            "centroide_lon": -63.4385673505455,
+            "id": "14105",
+            "nombre": "Río Primero",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -30.032189401961,
+            "centroide_lon": -63.2238214757827,
+            "id": "14112",
+            "nombre": "Río Seco",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.7330269369319,
+            "centroide_lon": -63.4769207987931,
+            "id": "14119",
+            "nombre": "Río Segundo",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.707791961138,
+            "centroide_lon": -65.1564069990554,
+            "id": "14126",
+            "nombre": "San Alberto",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -32.0753882467214,
+            "centroide_lon": -65.1421073770609,
+            "id": "14133",
+            "nombre": "San Javier",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.2393990103815,
+            "centroide_lon": -62.5260292405918,
+            "id": "14140",
+            "nombre": "San Justo",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -31.7112016051317,
+            "centroide_lon": -64.3070593086884,
+            "id": "14147",
+            "nombre": "Santa María",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -29.7654579620613,
+            "centroide_lon": -64.1428878947488,
+            "id": "14154",
+            "nombre": "Sobremonte",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -32.2877127172928,
+            "centroide_lon": -63.7792479671775,
+            "id": "14161",
+            "nombre": "Tercero Arriba",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -30.7261313372803,
+            "centroide_lon": -63.9842524222316,
+            "id": "14168",
+            "nombre": "Totoral",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -30.2222689247998,
+            "centroide_lon": -63.8118051923902,
+            "id": "14175",
+            "nombre": "Tulumba",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        },
+        {
+            "centroide_lat": -32.8784545187661,
+            "centroide_lon": -62.7914258058015,
+            "id": "14182",
+            "nombre": "Unión",
+            "provincia_id": "14",
+            "provincia_nombre": "Córdoba"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Cordoba"
+    },
+    "total": 26
+}

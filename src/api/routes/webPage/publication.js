@@ -34,7 +34,7 @@ function init(app, firebaseAdmin) {
                 let secPhotosArray = [];
                 if (Object.keys(snapshotVal).length === 0) {
                     res.status(404);
-                    res.render(appDir + '/public/404', {
+                    res.render(appDir + '/src/components/404', {
                         errorCode: "404",
                         errorMessage: "Publicación no encontrada",
                     });
@@ -118,7 +118,7 @@ function init(app, firebaseAdmin) {
                                     snapshot.forEach(element => {
                                         result.push(element);
                                     });
-                                    res.render(appDir + '/public/publication', renderVar);
+                                    res.render(appDir + '/src/components/publication', renderVar);
                                     client.close();
 
                                 }).catch((err) => {
@@ -129,7 +129,7 @@ function init(app, firebaseAdmin) {
                                 });
                             } else {
                                 renderVar.shelterPubs = [];
-                                res.render(appDir + '/public/publication', renderVar)
+                                res.render(appDir + '/src/components/publication', renderVar)
                                 client.close();
 
                             }
@@ -185,14 +185,14 @@ function init(app, firebaseAdmin) {
                                 snapshot.forEach(element => {
                                     result.push(element);
                                 });
-                                res.render(appDir + '/public/publication', renderPrivVar);
+                                res.render(appDir + '/src/components/publication', renderPrivVar);
                                 client.close();
                             }).catch((err) => {
                                 console.log(err);
                             });
                         } else {
                             renderPrivVar.shelterPubs = [];
-                            res.render(appDir + '/public/publication', renderPrivVar)
+                            res.render(appDir + '/src/components/publication', renderPrivVar)
                             client.close();
                         }
                     });

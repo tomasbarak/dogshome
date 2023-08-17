@@ -82,7 +82,7 @@ async function sendEmail(email, emailVerificationLink) {
     });
 
     //Generate e-mail template using EJS
-    const data =            await ejs.renderFile(appDir + '/public/mailTemplate.ejs', { link: emailVerificationLink }, { async: true });
+    const data =            await ejs.renderFile(appDir + '/src/components/mailTemplate.ejs', { link: emailVerificationLink }, { async: true });
     const mailOptions =     {
                                 from:       process.env.verificationEmail,
                                 to:         email,

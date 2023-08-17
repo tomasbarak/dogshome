@@ -71,7 +71,7 @@ function init(app, firebaseAdmin) {
         const user = res.locals.user || {};
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -141,7 +141,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -202,7 +202,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -260,7 +260,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -326,7 +326,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -391,7 +391,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -456,7 +456,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -513,7 +513,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,
@@ -573,7 +573,7 @@ function init(app, firebaseAdmin) {
 
         if (!isPrivate) {
             if (isVerified) {
-                res.render(appDir + '/public/create-profile.ejs', {
+                res.render(appDir + '/src/components/create-profile.ejs', {
                     uid: user.user_id,
                     creationInstance: creationInstance,
                     isVerified: isVerified,

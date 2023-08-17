@@ -237,7 +237,7 @@
                                             const department =      String(req.body.department).toLowerCase().replace(/ /g, '_');
                                             const provinceName_raw =    String(raw_provincesArr[province]);
                                             const provinceName =    String(provincesArr[province]).toLowerCase().replace(/ /g, '_');
-                                            const departmentArr_raw = require(`../../../public/draft-steps/departments/${provinceName}.json`).departamentos.map((value) => {
+                                            const departmentArr_raw = require(`../../../public/other/departments/${provinceName}.json`).departamentos.map((value) => {
                                                 return value.nombre;
                                             });
                                             const departmentArr = departmentArr_raw.map((value) => {
@@ -266,7 +266,7 @@
                                             client.close();
                                             break;
                                         case 5:
-                                            const breeds = require(appDir + '/public/draft-steps/breeds/breeds.json');
+                                            const breeds = require(appDir + '/src/components/other/breeds/breeds.json');
 
                                             const ageMonths = Number(req.body.filters.ageMonths);
                                             const ageYears = Number(req.body.filters.ageYears);

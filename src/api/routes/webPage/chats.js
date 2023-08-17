@@ -16,7 +16,7 @@ function init(app, firebasAdmin) {
         connectClient(mongoURL).then(client => {
             const mongoDB =         client.db(mongoDBName);
             if(isPrivate || !isVerified){
-                res.render(appDir + '/public/404', {
+                res.render(appDir + '/src/components/404', {
                     errorCode: "404",
                     errorMessage: "Página no encontrada",
                 });
@@ -30,7 +30,7 @@ function init(app, firebasAdmin) {
                 const nameAndSurname_name =         nameAndSurname.name || ' ';
                 const nameAndSurname_surname =      nameAndSurname.surname || ' ';
                 const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
-                res.render(appDir + '/public/chats', {
+                res.render(appDir + '/src/components/chats', {
                     uid:            user.user_id,
                     displayName:    nameAndSurname_fullName || ' ',
                     name:           nameAndSurname_name || ' ',

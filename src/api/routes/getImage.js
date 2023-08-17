@@ -18,7 +18,7 @@ function init(app){
         }else {
             //Send 404 error
             res.status(404);
-            res.render(appDir + '/public/404', {
+            res.render(appDir + '/src/components/404', {
                 errorCode: "404",
                 errorMessage: "Imagen no encontrada",
             });
@@ -35,7 +35,7 @@ function init(app){
         }else{
             //Send 404 error
             res.status(404);
-            res.render(appDir + '/public/404', {
+            res.render(appDir + '/src/components/404', {
                 errorCode: "404",
                 errorMessage: "Imagen no encontrada",
             });

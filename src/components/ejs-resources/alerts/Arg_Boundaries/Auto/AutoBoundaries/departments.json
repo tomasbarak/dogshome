@@ -1,0 +1,518 @@
+[
+    {
+        "nombre": "Adolfo Alsina",
+        "id": 2580751
+    },
+    {
+        "nombre": "Adolfo Gonzales Chaves",
+        "id": 2597664
+    },
+    {
+        "nombre": "Alberti",
+        "id": 2559862
+    },
+    {
+        "nombre": "Almirante Brown",
+        "id": 2402606
+    },
+    {
+        "nombre": "Arrecifes",
+        "id": 2455558
+    },
+    {
+        "nombre": "Avellaneda",
+        "id": 2146109
+    },
+    {
+        "nombre": "Ayacucho",
+        "id": 2612454
+    },
+    {
+        "nombre": "Azul",
+        "id": 2609604
+    },
+    {
+        "nombre": "Bahía Blanca",
+        "id": 2582799
+    },
+    {
+        "nombre": "Balcarce",
+        "id": 2599725
+    },
+    {
+        "nombre": "Baradero",
+        "id": 2453281
+    },
+    {
+        "nombre": "Benito Juárez",
+        "id": 2607483
+    },
+    {
+        "nombre": "Berazategui",
+        "id": 2345171
+    },
+    {
+        "nombre": "Berisso",
+        "id": 2435142
+    },
+    {
+        "nombre": "Bolívar",
+        "id": 2597622
+    },
+    {
+        "nombre": "Bragado",
+        "id": 2559813
+    },
+    {
+        "nombre": "Brandsen",
+        "id": 2499213
+    },
+    {
+        "nombre": "Campana",
+        "id": 2451540
+    },
+    {
+        "nombre": "Cañuelas",
+        "id": 2498288
+    },
+    {
+        "nombre": "Capitán Sarmiento",
+        "id": 2455548
+    },
+    {
+        "nombre": "Carlos Casares",
+        "id": 2571699
+    },
+    {
+        "nombre": "Carlos Tejedor",
+        "id": 2564066
+    },
+    {
+        "nombre": "Carmen de Areco",
+        "id": 2463037
+    },
+    {
+        "nombre": "Castelli",
+        "id": 2613311
+    },
+    {
+        "nombre": "Chacabuco",
+        "id": 2479591
+    },
+    {
+        "nombre": "Chascomús",
+        "id": 2516826
+    },
+    {
+        "nombre": "Chivilcoy",
+        "id": 2484220
+    },
+    {
+        "nombre": "General San Martín",
+        "id": 1719022
+    },
+    {
+        "nombre": "Colón",
+        "id": 2459899
+    },
+    {
+        "nombre": "Coronel de Marina Leonardo Rosales",
+        "id": 2584648
+    },
+    {
+        "nombre": "Coronel Dorrego",
+        "id": 2589847
+    },
+    {
+        "nombre": "Coronel Pringles",
+        "id": 2592479
+    },
+    {
+        "nombre": "Coronel Suárez",
+        "id": 2594942
+    },
+    {
+        "nombre": "Daireaux",
+        "id": 2595082
+    },
+    {
+        "nombre": "Dolores",
+        "id": 2616801
+    },
+    {
+        "nombre": "Ensenada",
+        "id": 2401891
+    },
+    {
+        "nombre": "Escobar",
+        "id": 2443300
+    },
+    {
+        "nombre": "Esteban Echeverría",
+        "id": 2401204
+    },
+    {
+        "nombre": "Exaltación de la Cruz",
+        "id": 2452336
+    },
+    {
+        "nombre": "Florencio Varela",
+        "id": 2404193
+    },
+    {
+        "nombre": "Florentino Ameghino",
+        "id": 2557534
+    },
+    {
+        "nombre": "General Alvarado",
+        "id": 2621700
+    },
+    {
+        "nombre": "General Alvear",
+        "id": 2599047
+    },
+    {
+        "nombre": "General Arenales",
+        "id": 2475018
+    },
+    {
+        "nombre": "General Belgrano",
+        "id": 2599608
+    },
+    {
+        "nombre": "General Guido",
+        "id": 2614831
+    },
+    {
+        "nombre": "General Las Heras",
+        "id": 1934039
+    },
+    {
+        "nombre": "General Lavalle",
+        "id": 2621565
+    },
+    {
+        "nombre": "General Paz",
+        "id": 2512688
+    },
+    {
+        "nombre": "General Pinto",
+        "id": 2554695
+    },
+    {
+        "nombre": "General Pueyrredón",
+        "id": 2621716
+    },
+    {
+        "nombre": "General Rodríguez",
+        "id": 2431653
+    },
+    {
+        "nombre": "General Viamonte",
+        "id": 2559810
+    },
+    {
+        "nombre": "General Villegas",
+        "id": 2557559
+    },
+    {
+        "nombre": "Guaminí",
+        "id": 2593543
+    },
+    {
+        "nombre": "Hipólito Yrigoyen",
+        "id": 2580596
+    },
+    {
+        "nombre": "Hurlingham",
+        "id": 2026612
+    },
+    {
+        "nombre": "Ituzaingó",
+        "id": 2018776
+    },
+    {
+        "nombre": "José C. Paz",
+        "id": 2430431
+    },
+    {
+        "nombre": "Junín",
+        "id": 2519224
+    },
+    {
+        "nombre": "La Costa",
+        "id": 2621507
+    },
+    {
+        "nombre": "La Matanza",
+        "id": 1749088
+    },
+    {
+        "nombre": "La Plata",
+        "id": 2499263
+    },
+    {
+        "nombre": "Lanús",
+        "id": 1421519
+    },
+    {
+        "nombre": "Laprida",
+        "id": 2598224
+    },
+    {
+        "nombre": "Las Flores",
+        "id": 2611521
+    },
+    {
+        "nombre": "Leandro N. Alem",
+        "id": 2554600
+    },
+    {
+        "nombre": "Lezama",
+        "id": 2516844
+    },
+    {
+        "nombre": "Lincoln",
+        "id": 2559673
+    },
+    {
+        "nombre": "Lobería",
+        "id": 2599688
+    },
+    {
+        "nombre": "Lobos",
+        "id": 2497992
+    },
+    {
+        "nombre": "Lomas de Zamora",
+        "id": 2400639
+    },
+    {
+        "nombre": "Luján",
+        "id": 2355138
+    },
+    {
+        "nombre": "Magdalena",
+        "id": 2512537
+    },
+    {
+        "nombre": "Maipú",
+        "id": 2616837
+    },
+    {
+        "nombre": "Malvinas Argentinas",
+        "id": 2430452
+    },
+    {
+        "nombre": "Mar Chiquita",
+        "id": 2621605
+    },
+    {
+        "nombre": "Marcos Paz",
+        "id": 2354919
+    },
+    {
+        "nombre": "Mercedes",
+        "id": 2457634
+    },
+    {
+        "nombre": "Merlo",
+        "id": 2431612
+    },
+    {
+        "nombre": "Monte",
+        "id": 2512599
+    },
+    {
+        "nombre": "Monte Hermoso",
+        "id": 2584665
+    },
+    {
+        "nombre": "Moreno",
+        "id": 2431386
+    },
+    {
+        "nombre": "Morón",
+        "id": 1767342
+    },
+    {
+        "nombre": "Navarro",
+        "id": 2484110
+    },
+    {
+        "nombre": "Necochea",
+        "id": 2598290
+    },
+    {
+        "nombre": "Olavarría",
+        "id": 2607600
+    },
+    {
+        "nombre": "Patagones",
+        "id": 2582656
+    },
+    {
+        "nombre": "Pehuajó",
+        "id": 2565320
+    },
+    {
+        "nombre": "Pellegrini",
+        "id": 2563454
+    },
+    {
+        "nombre": "Pergamino",
+        "id": 2459663
+    },
+    {
+        "nombre": "Pila",
+        "id": 2612278
+    },
+    {
+        "nombre": "Pilar",
+        "id": 2431954
+    },
+    {
+        "nombre": "Pinamar",
+        "id": 2621525
+    },
+    {
+        "nombre": "Presidente Perón",
+        "id": 2403624
+    },
+    {
+        "nombre": "Punta Indio",
+        "id": 2512592
+    },
+    {
+        "nombre": "Quilmes",
+        "id": 2068012
+    },
+    {
+        "nombre": "Ramallo",
+        "id": 2455424
+    },
+    {
+        "nombre": "Rauch",
+        "id": 2612035
+    },
+    {
+        "nombre": "Rivadavia",
+        "id": 2563415
+    },
+    {
+        "nombre": "Rojas",
+        "id": 2474121
+    },
+    {
+        "nombre": "Roque Pérez",
+        "id": 2598812
+    },
+    {
+        "nombre": "Saavedra",
+        "id": 2592550
+    },
+    {
+        "nombre": "Saladillo",
+        "id": 2598907
+    },
+    {
+        "nombre": "Salliqueló",
+        "id": 2565000
+    },
+    {
+        "nombre": "Salto",
+        "id": 2461232
+    },
+    {
+        "nombre": "San Andrés de Giles",
+        "id": 2456577
+    },
+    {
+        "nombre": "San Antonio de Areco",
+        "id": 2456452
+    },
+    {
+        "nombre": "San Cayetano",
+        "id": 2590286
+    },
+    {
+        "nombre": "San Fernando",
+        "id": 2443418
+    },
+    {
+        "nombre": "San Isidro",
+        "id": 1769044
+    },
+    {
+        "nombre": "San Miguel",
+        "id": 2430369
+    },
+    {
+        "nombre": "San Nicolás",
+        "id": 2453690
+    },
+    {
+        "nombre": "San Pedro",
+        "id": 2453543
+    },
+    {
+        "nombre": "San Vicente",
+        "id": 2498924
+    },
+    {
+        "nombre": "Suipacha",
+        "id": 2484090
+    },
+    {
+        "nombre": "Tandil",
+        "id": 2607680
+    },
+    {
+        "nombre": "Tapalqué",
+        "id": 2609492
+    },
+    {
+        "nombre": "Tigre",
+        "id": 2411762
+    },
+    {
+        "nombre": "Tordillo",
+        "id": 2616944
+    },
+    {
+        "nombre": "Tornquist",
+        "id": 2586980
+    },
+    {
+        "nombre": "Trenque Lauquen",
+        "id": 2564357
+    },
+    {
+        "nombre": "Tres Arroyos",
+        "id": 2590085
+    },
+    {
+        "nombre": "Tres de Febrero",
+        "id": 1767378
+    },
+    {
+        "nombre": "Tres Lomas",
+        "id": 2564922
+    },
+    {
+        "nombre": "Vicente López",
+        "id": 2752665
+    },
+    {
+        "nombre": "Villa Gesell",
+        "id": 2621531
+    },
+    {
+        "nombre": "Villarino",
+        "id": 2582585
+    },
+    {
+        "nombre": "Zárate",
+        "id": 2452288
+    }
+]
