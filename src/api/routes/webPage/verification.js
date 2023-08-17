@@ -12,7 +12,7 @@ function init(app, firebaseAdmin) {
             if(isVerified){
                 res.redirect('/');
             }else{
-                res.render(appDir + '/public/verification');
+                res.render(appDir + '/src/components/verification');
             }
         }else{
             res.redirect('/signin');

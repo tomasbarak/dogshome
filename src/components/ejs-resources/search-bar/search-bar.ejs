@@ -1,0 +1,467 @@
+<% var rootPath = '../../'; %>
+<% var nav_btns = locals.navButtons || []; %>
+<% var userData = locals.userData || {}; %>
+<%- include(rootPath + 'ejs-resources/search-bar/search_bar_style.ejs') %>
+<%- include(rootPath + 'ejs-resources/search-bar/hamburger_menu_icon_style.ejs') %>
+<%- include(rootPath + 'ejs-resources/search-bar/dropdown_button_icon_style.ejs') %>
+
+<div id="search-bar">
+    <div class="top-bar-section-cont" id="logo-image-cont">
+        <img loading="lazy" src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="Dogshome logo" onclick="window.location.href = '/inicio'" style="height: 40px; width: 40px; margin-right: 10px; cursor: pointer;">
+        <% nav_btns.forEach((button) => {%>
+        <a class="desktop-elements nav-buttons" onclick="window.location.href = '<%= button.href %>'"><%= button.name %></a>
+        <% }) %>
+        <!-- <a id="refugios-button" class="desktop-elements nav-buttons" onclick="navigateToRefs()">Refugios</a>-->
+    </div>
+    <div class="top-bar-section-cont">
+        <form id="search-form">
+            <div id="search-input-container" style="width: 100%; height: 100%; max-width: 600px; flex-direction: row; display: flex; align-items: center; justify-content: center; background-color: white">
+                <span id="filters-btn" class="material-icons-outlined" onclick="openFilters()">tune</span>
+                <hr>
+                <input type="text" id="search-input" aria-label="Buscar" placeholder="Buscar en DogsHome…" maxlength="120" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" tabindex="3">
+                <span class="material-icons-outlined" style="color: #d3d3d3; cursor: pointer; user-select: none" onclick="search_query()">search</span>
+            </div>
+            <div onmouseover="are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use')" id="filters-container" class="hidden">
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Edad (años)</h2>
+                        <a onclick="clear_inputs(event)">Limpiar</a>
+                    </div>
+                    <div id="age-filter-container">
+                        <div class="age-input-container">
+                            <a>Mínimo</a>
+                            <input autocomplete="off" data-filter-name="AgeMin" placeholder="Edad (años)" value="" oninput="validity.valid||(value=0);" step="1" type="number" class="age-input filter-input input-filter" id="age-filter-from"  min="0" max="25">
+                        </div>
+                        <div class="age-input-container">
+                            <a>Máximo</a>
+                            <input autocomplete="off" data-filter-name="AgeMax" placeholder="Edad (años)" value="" oninput="validity.valid||(value=0);" step="1" type="number" class="age-input filter-input input-filter" id="age-filter-to"  min="0" max="25">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <a class="filters-title">Raza</a>
+                    <div class="breed-input-container">
+                        <input autocomplete="off" data-filter-name="Breed" onfocus="$('#breed-input').autocomplete('search', this.value)" type="text" placeholder="Escribir raza..." id="breed-input" class="filter-input input-filter">
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Sexo</h2>
+                        <a onclick="clear_select(event)">Limpiar</a>
+                    </div>
+
+                    <div class="sex-filter-container">
+                        <select data-filter-name="Sex" autocomplete="off" name="Sex" class="dropdown select-filter" id="sex-dropdown">
+                            <option disabled="" selected="" value="">Seleccionar...</option>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Color</h2>
+                        <a onclick="clear_select(event)">Limpiar</a>
+                    </div>
+                    <div class="color-filter-container">
+                        <select data-filter-name="Color" autocomplete="off" name="Sex" class="dropdown select-filter" id="color-dropdown">
+                            <option disabled="" selected="" value="">Seleccionar...</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Gris">Gris</option>
+                            <option value="Negro">Negro</option>
+                            <option value="Marrón">Marrón</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Mixto">Mixto</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Tamaño</h2>
+                        <a onclick="clear_select(event)">Limpiar</a>
+                    </div>
+                    <div class="size-filter-container">
+                        <select data-filter-name="Size" autocomplete="off" name="Sex" class="dropdown select-filter" id="size-dropdown">
+                            <option disabled="" selected="" value="">Seleccionar...</option>
+                            <option value="Muy pequeño">Muy pequeño</option>
+                            <option value="Pequeño">Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
+                            <option value="Muy grande">Muy grande</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Salud</h2>
+                        <a onclick="clear_filter(event)">Limpiar</a>
+                    </div>
+                    <div class="health-filters-container">
+                        <div class="checkbox-options-labels-container">
+                            <label>Sí</label>
+                            <label>No</label>
+                        </div>
+                        <div class="health-checkbox-container">
+                            <label for="health-filter-castrated">Castrado</label>
+                            <div class="checkbox-filter" data-filter-name="Castrated">
+                                <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-castrated" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                        <div class="health-checkbox-container">
+                            <label for="health-filter-dewormed">Desparasitado</label>
+                            <div class="checkbox-filter" data-filter-name="Dewormed">
+                                <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-dewormed" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                        <div class="health-checkbox-container">
+                            <label for="health-filter-vaccinated">Vacunado</label>
+                            <div class="checkbox-filter" data-filter-name="Vaccinated">
+                                <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="health-filter-vaccinated" class="health-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-container">
+                    <div class="filters-title">
+                        <h2>Personalidad</h2>
+                        <a onclick="clear_filter(event)">Limpiar</a>
+                    </div>
+                    <div class="personality-filters-container">
+                        <div class="checkbox-options-labels-container">
+                            <label>Sí</label>
+                            <label>No</label>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <label>Amigable con gatos</label>
+                            <div class="checkbox-filter" data-filter-name="CatFriendly">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-catfriendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <label>Amigable con niños</label>
+                            <div class="checkbox-filter" data-filter-name="KidsFriendly">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-kidsfriendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                        <div class="personality-checkbox-container">
+                            <label>Amigable con otros perros</label>
+                            <div class="checkbox-filter" data-filter-name="DogFriendly">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox round-checkbox checkbox-t" onclick="filters_checkbox_click(event)">
+                                <input autocomplete="off" type="checkbox" id="personality-filter-dogfirendly" class="personality-checkbox round-checkbox checkbox-f" onclick="filters_checkbox_click(event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        
+    </div>
+    <div class="top-bar-section-cont" id="userSpace" style="flex: 1; align-items: center; justify-content: flex-end;">
+        <div class="hamburger-container mobile">
+            <div class="hamburger" id="hamburger-1">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+        <a class="desktop-elements nav-buttons" id="profile-name" style="margin-right: 0; padding-right: 10px" onclick="navigateToProfile()"></a>
+        <% if (isPrivate) {%>
+        <img loading="lazy" class="desktop-elements" id="profile-pic" onclick="window.location.href = '/signin'" src=<%=photoUrl %> alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
+            none; border-radius: 80px; object-fit: cover">
+        <% } else { %>
+        <div id="notifications-icon-container">
+            <svg id="notifications-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"></svg>
+            <script>
+                if (isNotificationAllowed()) {
+                    document.getElementById("notifications-icon").innerHTML = '';
+                } else {
+                    document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                    document.getElementById("notifications-icon").addEventListener("click", () => {
+                        allowNotifications().then(allowed => {
+                            if (allowed) {
+                                document.getElementById("notifications-icon").innerHTML = '';
+                            } else {
+                                document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                            }
+                        })
+                    });
+                }
+
+                navigator.permissions.query({
+                    name: "notifications"
+                }).then(np => {
+                    np.onchange = () => {
+                        if (isNotificationAllowed()) {
+                            document.getElementById("notifications-icon").innerHTML = '';
+                        } else {
+                            document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                            document.getElementById("notifications-icon").addEventListener("click", () => {
+                                allowNotifications().then(allowed => {
+                                    if (allowed) {
+                                        document.getElementById("notifications-icon").innerHTML = '';
+                                    } else {
+                                        document.getElementById("notifications-icon").innerHTML = '<path d="M12 1c3.681 0 7 2.565 7 6v4.539c0 .642.189 1.269.545 1.803l2.2 3.298A1.517 1.517 0 0 1 20.482 19H15.5a3.5 3.5 0 1 1-7 0H3.519a1.518 1.518 0 0 1-1.265-2.359l2.2-3.299A3.25 3.25 0 0 0 5 11.539V7c0-3.435 3.318-6 7-6ZM6.5 7v4.539a4.75 4.75 0 0 1-.797 2.635l-2.2 3.298-.003.01.001.007.004.006.006.004.007.001h16.964l.007-.001.006-.004.004-.006.001-.006a.017.017 0 0 0-.003-.01l-2.199-3.299a4.753 4.753 0 0 1-.798-2.635V7c0-2.364-2.383-4.5-5.5-4.5S6.5 4.636 6.5 7ZM14 19h-4a2 2 0 1 0 4 0Z"></path>';
+                                    }
+                                })
+                            });
+                        }
+                    }
+                })
+            </script>
+        </div>
+        <div id="user-menu-image-container" class="desktop-elements">
+            <div class="dropdown-btn-container">
+                <span class="arrow-line"></span>
+                <span class="arrow-line"></span>
+            </div>
+            <p class="search-bar-display-name">
+                <%= displayName %>
+            </p>
+            <img loading="lazy" id="profile-pic" src=<%=photoUrl %> alt="profile pic" style="height: 40px; width: 40px; cursor: pointer; margin-right: 10px; user-select:
+                none; border-radius: 80px; object-fit: cover">
+        </div>
+        <%- include(rootPath + 'ejs-resources/search-bar/dropdown-menu/dropdown-menu.ejs') %>
+        <% } %>
+
+    </div>
+</div>
+<script src="/scripts/search/search.js"></script>
+<script>
+    // let filters = sessionStorage.getItem("filters") ? JSON.parse(sessionStorage.getItem("filters")) : {};
+
+    $(document).ready(function() {
+        are_filters_empty() ? document.getElementById('filters-btn').classList.remove('in-use') : document.getElementById('filters-btn').classList.add('in-use');
+
+        $(".hamburger").click(function() {
+            $(this).toggleClass("is-active");
+            expandMenu();
+        });
+
+        $("#user-menu-image-container").click(function() {
+            $(".dropdown-btn-container").toggleClass("clicked");
+            expandDropdownMenu();
+        });
+
+        $("#search-input").keydown(function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                search_query();
+                return false;
+            }
+        });
+    });
+
+
+    function search_query() {
+        const filters = get_filters();
+        console.log(filters);
+        let param_filters = new URLSearchParams(filters).toString();
+        let search_query = $("#search-input").val();
+        let complete_query = "";
+        if(search_query !== "") {
+            complete_query = param_filters ? `?q=${search_query}&${param_filters}` : `?q=${search_query}`;
+        } else {
+            complete_query = param_filters ? `?${param_filters}` : "";
+        }
+        
+
+        sessionStorage.setItem("filters", JSON.stringify(filters));
+
+        window.location.href = `/search${complete_query}`;
+    }
+
+    function openFilters() {
+        const filters_container = document.getElementById("filters-container");
+        const filters_btn = document.getElementById("filters-btn");
+
+        const isHidden = filters_container.classList.contains("hidden");
+
+        if (isHidden) {
+            filters_container.classList.remove("hidden");
+            filters_btn.classList.add("selecting");
+        } else {
+            filters_container.classList.add("hidden");
+            filters_btn.classList.remove("selecting");
+
+            if(are_filters_empty()) {
+                filters_btn.classList.remove("in-use");
+            } else {
+                filters_btn.classList.add("in-use");
+            }
+
+            search_query();
+
+        }
+    }
+
+    function requestBreeds() {
+        return new Promise((resolve, reject) => {
+            axios.get(`https://${window.location.host}/other/breeds/breeds.json`).then(function (response) {
+                resolve(response);
+            }).catch(function (error) {
+                reject(error);
+            });
+        })
+    }
+
+    requestBreeds().then((raw_res) => {
+        let data = raw_res.data;
+        window.breeds = data;
+
+        $("#breed-input").autocomplete({
+            source: data,
+            position: {  collision: "flip"  },
+            minLength: 0,
+        }).focus(function () {
+            $(this).autocomplete("search");
+        });
+    })
+
+    function filters_checkbox_click(e) {
+        const checkbox = e.target;
+        const parent = checkbox.parentElement;
+        const checkboxes = parent.querySelectorAll("input[type='checkbox']");
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        })
+
+        checkbox.checked = true;
+    }
+
+    function clear_filter(event) {
+        const filters_container = event.target.parentElement.nextElementSibling;
+        filters_container.querySelectorAll("div:not(.checkbox-options-labels-container)").forEach((filter) => {
+            filter.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+                checkbox.checked = false;
+            })
+        })
+    }
+
+    function clear_select(event) {
+        const select = event.target.parentElement.nextElementSibling.children[0];
+        console.log(select);
+        select.selectedIndex = 0;
+    }
+
+    function clear_inputs(event) {
+        const inputs_container = event.target.parentElement.nextElementSibling;
+        console.log(inputs_container);
+        inputs_container.querySelectorAll("input").forEach((input) => {
+            console.log(input);
+            input.value = "";
+        })
+    }
+
+    function get_filters() {
+        const filters_container = document.getElementById("filters-container");
+        const input_filters = filters_container.querySelectorAll(".input-filter")
+        const select_filters = filters_container.querySelectorAll(".select-filter")
+        const checkbox_filters = filters_container.querySelectorAll(".checkbox-filter")
+
+        let filters = {};
+
+        input_filters.forEach((input) => {
+            const filter_name = input.getAttribute("data-filter-name");
+            const filter_value = input.value;
+
+            if (filter_value.length > 0) {
+                filters[filter_name] = filter_value;
+            }
+        });
+
+        select_filters.forEach((select) => {
+            const filter_name = select.getAttribute("data-filter-name");
+            const filter_value = select.value;
+
+            if (filter_value.length > 0) {
+                filters[filter_name] = filter_value;
+            }
+        });
+
+        checkbox_filters.forEach((checkbox) => {
+            const checkbox_t = checkbox.children[0]
+            const checkbox_f = checkbox.children[1]
+            
+            const filter_name = checkbox.getAttribute("data-filter-name");
+
+            if (checkbox_t.checked) {
+                filters[filter_name] = "true";
+            } else if (checkbox_f.checked) {
+                filters[filter_name] = "false";
+            }
+        });
+
+        return filters;
+    }
+
+    function set_filters() {
+        //Get url search params
+        const urlParams = new URLSearchParams(window.location.search);
+        const filters = Object.fromEntries(urlParams.entries());
+
+        //Get all filters
+        const input_filters = document.querySelectorAll(".input-filter")
+        const select_filters = document.querySelectorAll(".select-filter")
+        const checkbox_filters = document.querySelectorAll(".checkbox-filter")
+
+        //Set input filters
+        input_filters.forEach((input) => {
+            const filter_name = input.getAttribute("data-filter-name");
+            const filter_value = filters[filter_name];
+
+            if (filter_value) {
+                input.value = filter_value;
+            }
+        });
+
+        //Set select filters
+        select_filters.forEach((select) => {
+            const filter_name = select.getAttribute("data-filter-name");
+            const filter_value = filters[filter_name];
+
+            if (filter_value) {
+                select.value = filter_value;
+            }
+        });
+
+        //Set checkbox filters
+        checkbox_filters.forEach((checkbox) => {
+            const checkbox_t = checkbox.children[0]
+            const checkbox_f = checkbox.children[1]
+            
+            const filter_name = checkbox.getAttribute("data-filter-name");
+
+            if (filters[filter_name] === "true") {
+                checkbox_t.checked = true;
+            } else if (filters[filter_name] === "false") {
+                checkbox_f.checked = true;
+            }
+        });
+
+        //Set search input
+        const search_input = document.getElementById("search-input");
+        const search_query = urlParams.get("q");
+
+        if (search_query) {
+            search_input.value = search_query;
+        }
+    }
+
+    function are_filters_empty() {
+        const filters = get_filters();
+        const filters_keys = Object.keys(filters);
+
+        if (filters_keys.length > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

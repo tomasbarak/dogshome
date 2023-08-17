@@ -18,7 +18,7 @@ function init(app) {
             const mongoDB =         client.db(mongoDBName);
 
             if (isPrivate) {
-                res.render(appDir + '/public/alerts', {
+                res.render(appDir + '/src/components/alerts', {
                     uid:            '',
                     displayName:    'Cuenta Privada',
                     name:           'Cuenta',
@@ -35,7 +35,7 @@ function init(app) {
                 const nameAndSurname_name =         nameAndSurname.name || ' ';
                 const nameAndSurname_surname =      nameAndSurname.surname || ' ';
                 const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
-                res.render(appDir + '/public/alerts', {
+                res.render(appDir + '/src/components/alerts', {
                     uid:            user.user_id,
                     displayName:    nameAndSurname_fullName || ' ',
                     name:           nameAndSurname_name || ' ',

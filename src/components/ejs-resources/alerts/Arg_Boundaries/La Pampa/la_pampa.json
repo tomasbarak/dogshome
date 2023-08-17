@@ -1,0 +1,198 @@
+{
+    "cantidad": 22,
+    "departamentos": [
+        {
+            "centroide_lat": -37.0324956718132,
+            "centroide_lon": -63.7788855690903,
+            "id": "42007",
+            "nombre": "Atreucó",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -38.6755832575061,
+            "centroide_lon": -63.8968179856269,
+            "id": "42014",
+            "nombre": "Caleu Caleu",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.4980625981793,
+            "centroide_lon": -64.198128304727,
+            "id": "42021",
+            "nombre": "Capital",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.5816678881383,
+            "centroide_lon": -63.6648708546651,
+            "id": "42028",
+            "nombre": "Catriló",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.3954095124282,
+            "centroide_lon": -66.5727556640635,
+            "id": "42049",
+            "nombre": "Chalileo",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -35.2272428701704,
+            "centroide_lon": -63.6609121074931,
+            "id": "42056",
+            "nombre": "Chapaleufú",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.3978994715573,
+            "centroide_lon": -67.6953932639542,
+            "id": "42063",
+            "nombre": "Chical Co",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.0315435775022,
+            "centroide_lon": -64.5106030260375,
+            "id": "42035",
+            "nombre": "Conhelo",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -38.1797375458882,
+            "centroide_lon": -66.3301334719636,
+            "id": "42042",
+            "nombre": "Curacó",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -37.4836474005921,
+            "centroide_lon": -63.7813086707571,
+            "id": "42070",
+            "nombre": "Guatraché",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -37.9792340442423,
+            "centroide_lon": -63.9544827643711,
+            "id": "42077",
+            "nombre": "Hucal",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -38.2616553827262,
+            "centroide_lon": -65.0966303997922,
+            "id": "42084",
+            "nombre": "Lihuel Calel",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -37.2419021199786,
+            "centroide_lon": -66.555232691641,
+            "id": "42091",
+            "nombre": "Limay Mahuida",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.4787683011276,
+            "centroide_lon": -65.5329694083622,
+            "id": "42098",
+            "nombre": "Loventué",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -35.6796177582431,
+            "centroide_lon": -63.6624891520267,
+            "id": "42105",
+            "nombre": "Maracó",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -37.4341807808756,
+            "centroide_lon": -67.6049641366153,
+            "id": "42112",
+            "nombre": "Puelén",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.1306397823227,
+            "centroide_lon": -63.663736169201,
+            "id": "42119",
+            "nombre": "Quemú Quemú",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -35.4015889145024,
+            "centroide_lon": -64.8014904385407,
+            "id": "42126",
+            "nombre": "Rancul",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -35.2257917366713,
+            "centroide_lon": -64.2102269263624,
+            "id": "42133",
+            "nombre": "Realicó",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -36.6621621527055,
+            "centroide_lon": -64.6922110146556,
+            "id": "42140",
+            "nombre": "Toay",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -35.6318750123361,
+            "centroide_lon": -64.2143766258097,
+            "id": "42147",
+            "nombre": "Trenel",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        },
+        {
+            "centroide_lat": -37.3338794806846,
+            "centroide_lon": -65.0828316677234,
+            "id": "42154",
+            "nombre": "Utracán",
+            "provincia_id": "42",
+            "provincia_nombre": "La Pampa"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "La Pampa"
+    },
+    "total": 22
+}

@@ -1,0 +1,150 @@
+{
+    "cantidad": 16,
+    "departamentos": [
+        {
+            "centroide_lat": -28.0189344685483,
+            "centroide_lon": -65.9222983796596,
+            "id": "10007",
+            "nombre": "Ambato",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.9266675681635,
+            "centroide_lon": -65.5038083174841,
+            "id": "10014",
+            "nombre": "Ancasti",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -27.5445087646164,
+            "centroide_lon": -66.3560062057426,
+            "id": "10021",
+            "nombre": "Andalgalá",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -25.9455797002151,
+            "centroide_lon": -67.6777645009401,
+            "id": "10028",
+            "nombre": "Antofagasta de la Sierra",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -27.1000545044873,
+            "centroide_lon": -66.9223774125099,
+            "id": "10035",
+            "nombre": "Belén",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.9092326420174,
+            "centroide_lon": -65.9015706538014,
+            "id": "10042",
+            "nombre": "Capayán",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.4104559393629,
+            "centroide_lon": -65.8362002957174,
+            "id": "10049",
+            "nombre": "Capital",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.430382930044,
+            "centroide_lon": -65.3599245662077,
+            "id": "10056",
+            "nombre": "El Alto",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.3329401551221,
+            "centroide_lon": -65.7309008581155,
+            "id": "10063",
+            "nombre": "Fray Mamerto Esquiú",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -29.3952000610314,
+            "centroide_lon": -65.1919504325436,
+            "id": "10070",
+            "nombre": "La Paz",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.1100496216627,
+            "centroide_lon": -65.6738760483046,
+            "id": "10077",
+            "nombre": "Paclín",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.2055993966253,
+            "centroide_lon": -66.4072986488285,
+            "id": "10084",
+            "nombre": "Pomán",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -26.7859032829476,
+            "centroide_lon": -66.2618848691237,
+            "id": "10091",
+            "nombre": "Santa María",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.0814710804867,
+            "centroide_lon": -65.3349462642257,
+            "id": "10098",
+            "nombre": "Santa Rosa",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -27.5405127310562,
+            "centroide_lon": -67.9292408147481,
+            "id": "10105",
+            "nombre": "Tinogasta",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        },
+        {
+            "centroide_lat": -28.5987132205968,
+            "centroide_lon": -65.7071834454567,
+            "id": "10112",
+            "nombre": "Valle Viejo",
+            "provincia_id": "10",
+            "provincia_nombre": "Catamarca"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Catamarca"
+    },
+    "total": 16
+}

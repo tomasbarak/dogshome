@@ -15,7 +15,7 @@ function init(app) {
             const isVerified = res.locals.isVerified;
             const user = res.locals.user || {};
             if(isPrivate || !isVerified){
-                res.render(appDir + '/public/404', {
+                res.render(appDir + '/src/components/404', {
                     errorCode: "404",
                     errorMessage: "Página no encontrada",
                 });
@@ -30,7 +30,7 @@ function init(app) {
 
                     getMany(draftsCollection, requestProjection, requestQuery).then((snapshot) => {
                         let parsedDisplayName = JSON.parse(user.name);
-                        res.render(appDir + '/public/view-drafts.ejs',{
+                        res.render(appDir + '/src/components/view-drafts.ejs',{
                             drafts: snapshot,
                             uid: userId,
                             displayName: parsedDisplayName.nameAndSurname.displayName,

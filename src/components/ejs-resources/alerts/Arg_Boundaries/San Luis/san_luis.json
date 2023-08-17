@@ -1,0 +1,94 @@
+{
+    "cantidad": 9,
+    "departamentos": [
+        {
+            "centroide_lat": -32.1656565638277,
+            "centroide_lon": -66.5422509844147,
+            "id": "74007",
+            "nombre": "Ayacucho",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -32.7356115411335,
+            "centroide_lon": -66.7150069507327,
+            "id": "74014",
+            "nombre": "Belgrano",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -32.7269672116015,
+            "centroide_lon": -65.1982374778981,
+            "id": "74028",
+            "nombre": "Chacabuco",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -33.1068820542746,
+            "centroide_lon": -65.900790202998,
+            "id": "74021",
+            "nombre": "Coronel Pringles",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -33.8905514573194,
+            "centroide_lon": -65.56285207424,
+            "id": "74035",
+            "nombre": "General Pedernera",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -35.369087077487,
+            "centroide_lon": -65.8148193795656,
+            "id": "74042",
+            "nombre": "Gobernador Dupuy",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -33.9008795169272,
+            "centroide_lon": -66.5025775641531,
+            "id": "74056",
+            "nombre": "Juan Martín de Pueyrredón",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -32.216548125306,
+            "centroide_lon": -65.3939560584901,
+            "id": "74049",
+            "nombre": "Junín",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        },
+        {
+            "centroide_lat": -32.5784192360116,
+            "centroide_lon": -65.7095887724917,
+            "id": "74063",
+            "nombre": "Libertador General San Martín",
+            "provincia_id": "74",
+            "provincia_nombre": "San Luis"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "San Luis"
+    },
+    "total": 9
+}

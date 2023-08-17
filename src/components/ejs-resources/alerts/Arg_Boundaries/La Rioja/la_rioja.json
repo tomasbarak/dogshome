@@ -1,0 +1,166 @@
+{
+    "cantidad": 18,
+    "departamentos": [
+        {
+            "centroide_lat": -28.5330735278082,
+            "centroide_lon": -66.7191515033817,
+            "id": "46007",
+            "nombre": "Arauco",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -29.4604898579358,
+            "centroide_lon": -66.3525089002799,
+            "id": "46014",
+            "nombre": "Capital",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -28.8599829479001,
+            "centroide_lon": -66.9185847556269,
+            "id": "46021",
+            "nombre": "Castro Barros",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -30.1677065304375,
+            "centroide_lon": -65.9562869452052,
+            "id": "46035",
+            "nombre": "Chamical",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -29.3959374753391,
+            "centroide_lon": -67.4278867891974,
+            "id": "46042",
+            "nombre": "Chilecito",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -29.449795605204,
+            "centroide_lon": -68.3284822964489,
+            "id": "46028",
+            "nombre": "Coronel Felipe Varela",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -28.6973037998771,
+            "centroide_lon": -67.5592920371088,
+            "id": "46049",
+            "nombre": "Famatina",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -30.3128975389814,
+            "centroide_lon": -66.6630521188972,
+            "id": "46056",
+            "nombre": "General Ángel V. Peñaloza",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -30.5776916502152,
+            "centroide_lon": -65.9316310510947,
+            "id": "46063",
+            "nombre": "General Belgrano",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -30.800959034536,
+            "centroide_lon": -66.868104514456,
+            "id": "46070",
+            "nombre": "General Juan F. Quiroga",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -28.7904353562793,
+            "centroide_lon": -68.6977547342214,
+            "id": "46077",
+            "nombre": "General Lamadrid",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -31.0066417359043,
+            "centroide_lon": -66.0590548632025,
+            "id": "46084",
+            "nombre": "General Ocampo",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -31.6413069709194,
+            "centroide_lon": -66.1459756728153,
+            "id": "46091",
+            "nombre": "General San Martín",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -30.1144612462884,
+            "centroide_lon": -67.3355202231145,
+            "id": "46105",
+            "nombre": "Independencia",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -31.4205977732086,
+            "centroide_lon": -66.6788621651991,
+            "id": "46112",
+            "nombre": "Rosario Vera Peñaloza",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -28.5433309063736,
+            "centroide_lon": -67.1581530651936,
+            "id": "46119",
+            "nombre": "San Blas de Los Sauces",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -29.1585269700688,
+            "centroide_lon": -67.0658836337793,
+            "id": "46126",
+            "nombre": "Sanagasta",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        },
+        {
+            "centroide_lat": -28.3164203776524,
+            "centroide_lon": -68.525398463115,
+            "id": "46098",
+            "nombre": "Vinchina",
+            "provincia_id": "46",
+            "provincia_nombre": "La Rioja"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "La Rioja"
+    },
+    "total": 18
+}

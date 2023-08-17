@@ -34,7 +34,7 @@ function init(app){
                     if(step < 7) {
                         const provincesArr = ['Ciudad de Buenos Aires', 'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Cordoba', 'Corrientes', 'Entre Rios', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquen', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucuman']
                         const provinceName = provincesArr[provincesArr.indexOf(snapshot.Province)]
-                        res.render(appDir + '/public/create-publication', {
+                        res.render(appDir + '/src/components/create-publication', {
                             uid:            user.user_id,
                             displayName:    nameAndSurname_fullName || ' ',
                             name:           nameAndSurname_name || ' ',
@@ -52,7 +52,7 @@ function init(app){
                         res.redirect('/publicacion/' + draftId);
                     }
                 }else{
-                    res.render(appDir + '/public/404', {
+                    res.render(appDir + '/src/components/404', {
                         errorCode: '404',
                         errorMessage: 'No se encontró el borrador de publicación',
                     });

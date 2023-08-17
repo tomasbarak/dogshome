@@ -15,7 +15,7 @@ function init(app) {
             const isVerified = res.locals.isVerified;
             const user = res.locals.user || {};
             if(isPrivate || !isVerified){
-                res.render(appDir + '/public/404', {
+                res.render(appDir + '/src/components/404', {
                     errorCode: "404",
                     errorMessage: "Página no encontrada",
                 });
@@ -23,7 +23,7 @@ function init(app) {
                 const userId = sanitize(req.params.u || user.uid || ' ');
 
                 let parsedDisplayName = JSON.parse(user.name);
-                res.render(appDir + '/public/favorites.ejs',{
+                res.render(appDir + '/src/components/favorites.ejs',{
                     uid: userId,
                     displayName: parsedDisplayName.nameAndSurname.displayName,
                     photoUrl:       user.picture || 'https://dogshome.com.ar/profile/image/uploaded/default-user-image.png',

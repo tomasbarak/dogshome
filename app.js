@@ -6,7 +6,6 @@
      - PRELOAD FUNCTION
      - HTTP/HTTPS SERVER
  */
-require('dotenv').config();
 const express =       require('express')
 const cors =          require('cors');
 const fs =            require('fs');
@@ -14,6 +13,10 @@ const https =         require('https');
 const { dirname } =   require('path');
 const appDir =        dirname(require.main.filename);
 const logger =        require("node-color-log");
+const path   =        require('path');
+require('dotenv').config({
+  path: path.join(__dirname, '.env'),
+});
 const { connectClient, 
         getMany,
         getOne, 
@@ -54,7 +57,7 @@ SecureServer.listen(8443, function () {
   require(appDir + '/src/config/configRoutes').config(expressApp, firebaseAdmin);
   expressApp.use(function (req, res, next) {
     res.status(404);
-    res.render(appDir + '/public/404', {
+    res.render(appDir + '/src/components/404', {
       errorCode: "404",
       errorMessage: "Página no encontrada",
       isPrivate: res.locals.isPrivate,

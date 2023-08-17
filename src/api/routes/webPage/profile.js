@@ -29,7 +29,7 @@ function init(app) {
 
                 if (Object.keys(profile).length === 0) {
                     res.status(404);
-                    res.render(appDir + '/public/404', {
+                    res.render(appDir + '/src/components/404', {
                         errorCode: "404",
                         errorMessage: "Perfil no encontrado",
                     });
@@ -88,7 +88,7 @@ function init(app) {
                             snapshot.forEach((publication) => {
                                 result.push(publication);
                             });
-                            res.render(appDir + '/public/profile', renderPrivVar);
+                            res.render(appDir + '/src/components/profile', renderPrivVar);
                             client.close();
 
                         }).catch((err) => {
@@ -99,7 +99,7 @@ function init(app) {
                         });
                     } else {
                         renderPrivVar.publications = [];
-                        res.render(appDir + '/public/profile', renderPrivVar);
+                        res.render(appDir + '/src/components/profile', renderPrivVar);
                         client.close();
 
                     }
@@ -147,7 +147,7 @@ function init(app) {
                                 snapshot.forEach((publication) => {
                                     result.push(publication);
                                 });
-                                res.render(appDir + '/public/profile', renderVar);
+                                res.render(appDir + '/src/components/profile', renderVar);
                                 client.close();
 
                             }).catch((err) => {
@@ -159,7 +159,7 @@ function init(app) {
                         } else {
 
                             renderVar.publications = [];
-                            res.render(appDir + '/public/profile', renderVar);
+                            res.render(appDir + '/src/components/profile', renderVar);
                             client.close();
 
                         }

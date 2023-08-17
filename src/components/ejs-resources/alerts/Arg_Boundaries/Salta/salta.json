@@ -1,0 +1,206 @@
+{
+    "cantidad": 23,
+    "departamentos": [
+        {
+            "centroide_lat": -24.8751339637689,
+            "centroide_lon": -63.8400961373676,
+            "id": "66007",
+            "nombre": "Anta",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.038234468241,
+            "centroide_lon": -66.2030292859746,
+            "id": "66014",
+            "nombre": "Cachi",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -26.1255099823638,
+            "centroide_lon": -65.8800888963475,
+            "id": "66021",
+            "nombre": "Cafayate",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.8902273126574,
+            "centroide_lon": -65.2702656216248,
+            "id": "66028",
+            "nombre": "Capital",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.9885518325631,
+            "centroide_lon": -65.4038423380142,
+            "id": "66035",
+            "nombre": "Cerrillos",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.1514718801816,
+            "centroide_lon": -65.6059279182319,
+            "id": "66042",
+            "nombre": "Chicoana",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.7648231076768,
+            "centroide_lon": -64.9560952507157,
+            "id": "66049",
+            "nombre": "General Güemes",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -22.7169492299382,
+            "centroide_lon": -63.6627437658428,
+            "id": "66056",
+            "nombre": "General José de San Martín",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.7029508773623,
+            "centroide_lon": -65.4445360285708,
+            "id": "66063",
+            "nombre": "Guachipas",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -22.8148374145959,
+            "centroide_lon": -64.9202186004952,
+            "id": "66070",
+            "nombre": "Iruya",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.5623945143611,
+            "centroide_lon": -65.4300986417702,
+            "id": "66077",
+            "nombre": "La Caldera",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -26.0838657971757,
+            "centroide_lon": -65.1765900958914,
+            "id": "66084",
+            "nombre": "La Candelaria",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.1468804221181,
+            "centroide_lon": -66.2073097573146,
+            "id": "66091",
+            "nombre": "La Poma",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.4475878403232,
+            "centroide_lon": -65.5807612448506,
+            "id": "66098",
+            "nombre": "La Viña",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.6424364614968,
+            "centroide_lon": -67.34403275869,
+            "id": "66105",
+            "nombre": "Los Andes",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.4251673018384,
+            "centroide_lon": -64.588141248868,
+            "id": "66112",
+            "nombre": "Metán",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.5643605125424,
+            "centroide_lon": -66.4549057919868,
+            "id": "66119",
+            "nombre": "Molinos",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -23.4987690402927,
+            "centroide_lon": -64.1510163822065,
+            "id": "66126",
+            "nombre": "Orán",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -23.5128446678353,
+            "centroide_lon": -62.8303776832343,
+            "id": "66133",
+            "nombre": "Rivadavia",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.8718676537564,
+            "centroide_lon": -64.7278906135036,
+            "id": "66140",
+            "nombre": "Rosario de la Frontera",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -24.5462867797822,
+            "centroide_lon": -65.8530871719889,
+            "id": "66147",
+            "nombre": "Rosario de Lerma",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -25.8276863599322,
+            "centroide_lon": -66.1742423008628,
+            "id": "66154",
+            "nombre": "San Carlos",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        },
+        {
+            "centroide_lat": -22.3958266942337,
+            "centroide_lon": -64.8956351260047,
+            "id": "66161",
+            "nombre": "Santa Victoria",
+            "provincia_id": "66",
+            "provincia_nombre": "Salta"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Salta"
+    },
+    "total": 23
+}

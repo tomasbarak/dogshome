@@ -1,0 +1,238 @@
+{
+    "cantidad": 27,
+    "departamentos": [
+        {
+            "centroide_lat": -29.2978682731406,
+            "centroide_lon": -62.5153416521407,
+            "id": "86007",
+            "nombre": "Aguirre",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -26.5210512908819,
+            "centroide_lon": -62.7274743405239,
+            "id": "86014",
+            "nombre": "Alberdi",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.6918181694465,
+            "centroide_lon": -63.8815639978494,
+            "id": "86021",
+            "nombre": "Atamisqui",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.5553626652401,
+            "centroide_lon": -63.2037665884943,
+            "id": "86028",
+            "nombre": "Avellaneda",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.4347067679294,
+            "centroide_lon": -64.2098658068888,
+            "id": "86035",
+            "nombre": "Banda",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -29.0813959929051,
+            "centroide_lon": -62.2187677325403,
+            "id": "86042",
+            "nombre": "Belgrano",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.8847652276316,
+            "centroide_lon": -64.4356675404002,
+            "id": "86049",
+            "nombre": "Juan F. Borges",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.7536335933641,
+            "centroide_lon": -64.7638996164731,
+            "id": "86063",
+            "nombre": "Choya",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -25.9392514746819,
+            "centroide_lon": -62.7304991775974,
+            "id": "86056",
+            "nombre": "Copo",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.3218567500252,
+            "centroide_lon": -63.5796320220819,
+            "id": "86070",
+            "nombre": "Figueroa",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.5682847400822,
+            "centroide_lon": -62.3388258455986,
+            "id": "86077",
+            "nombre": "General Taboada",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.9767710254958,
+            "centroide_lon": -64.8711532150043,
+            "id": "86084",
+            "nombre": "Guasayán",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -26.899591169452,
+            "centroide_lon": -64.2725159118858,
+            "id": "86091",
+            "nombre": "Jiménez",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.0394963430537,
+            "centroide_lon": -62.5440138783592,
+            "id": "86098",
+            "nombre": "Juan F. Ibarra",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.6244804367569,
+            "centroide_lon": -64.3107274308234,
+            "id": "86105",
+            "nombre": "Loreto",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -29.6150659886474,
+            "centroide_lon": -62.7386805205781,
+            "id": "86112",
+            "nombre": "Mitre",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.2981373849478,
+            "centroide_lon": -62.4633306370511,
+            "id": "86119",
+            "nombre": "Moreno",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -29.3040900587554,
+            "centroide_lon": -64.0149932737063,
+            "id": "86126",
+            "nombre": "Ojo de Agua",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -26.2203346046951,
+            "centroide_lon": -64.0912083069938,
+            "id": "86133",
+            "nombre": "Pellegrini",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -29.382302416388,
+            "centroide_lon": -63.3535127711283,
+            "id": "86140",
+            "nombre": "Quebrachos",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.4854057246231,
+            "centroide_lon": -64.7601873654679,
+            "id": "86147",
+            "nombre": "Río Hondo",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -30.0205633751884,
+            "centroide_lon": -62.2804530355771,
+            "id": "86154",
+            "nombre": "Rivadavia",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -27.8539440726125,
+            "centroide_lon": -63.9075092603179,
+            "id": "86161",
+            "nombre": "Robles",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.9187435892712,
+            "centroide_lon": -63.3035949540839,
+            "id": "86168",
+            "nombre": "Salavina",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.1877612837658,
+            "centroide_lon": -63.854114579231,
+            "id": "86175",
+            "nombre": "San Martín",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.1061147414005,
+            "centroide_lon": -63.4461751488674,
+            "id": "86182",
+            "nombre": "Sarmiento",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        },
+        {
+            "centroide_lat": -28.1888486587603,
+            "centroide_lon": -64.2732683808708,
+            "id": "86189",
+            "nombre": "Silípica",
+            "provincia_id": "86",
+            "provincia_nombre": "Santiago del Estero"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Santiago del Estero"
+    },
+    "total": 27
+}

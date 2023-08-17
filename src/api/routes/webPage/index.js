@@ -24,7 +24,7 @@ function init(app) {
                 var json_data =     snapshot || {};
                 const result =      createArrayFromJson(json_data);
                 if (isPrivate) {
-                    res.render(appDir + '/public/index', {
+                    res.render(appDir + '/src/components/index', {
                         uid:            '',
                         displayName:    'Cuenta Privada',
                         name:           'Cuenta',
@@ -42,7 +42,7 @@ function init(app) {
                     const nameAndSurname_name =         nameAndSurname.name || ' ';
                     const nameAndSurname_surname =      nameAndSurname.surname || ' ';
                     const nameAndSurname_fullName =     nameAndSurname.displayName || ' ';
-                    res.render(appDir + '/public/index', {
+                    res.render(appDir + '/src/components/index', {
                         uid:            user.user_id,
                         displayName:    nameAndSurname_fullName || ' ',
                         name:           nameAndSurname_name || ' ',

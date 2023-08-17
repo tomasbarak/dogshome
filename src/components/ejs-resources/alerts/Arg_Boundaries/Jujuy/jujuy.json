@@ -1,0 +1,150 @@
+{
+    "cantidad": 16,
+    "departamentos": [
+        {
+            "centroide_lat": -22.9392350234639,
+            "centroide_lon": -65.9346878202021,
+            "id": "38007",
+            "nombre": "Cochinoca",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.0893413107767,
+            "centroide_lon": -65.4484768876505,
+            "id": "38021",
+            "nombre": "Dr. Manuel Belgrano",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.447823040536,
+            "centroide_lon": -65.1011266142907,
+            "id": "38014",
+            "nombre": "El Carmen",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.0821382910047,
+            "centroide_lon": -65.4089124214828,
+            "id": "38028",
+            "nombre": "Humahuaca",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.7855349092159,
+            "centroide_lon": -64.8287565421131,
+            "id": "38035",
+            "nombre": "Ledesma",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.1949225444459,
+            "centroide_lon": -65.1264498289923,
+            "id": "38042",
+            "nombre": "Palpalá",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -22.6216157957901,
+            "centroide_lon": -66.5415733150047,
+            "id": "38049",
+            "nombre": "Rinconada",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.3467258804414,
+            "centroide_lon": -65.4468528811404,
+            "id": "38056",
+            "nombre": "San Antonio",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.2985497355434,
+            "centroide_lon": -64.8110140944895,
+            "id": "38063",
+            "nombre": "San Pedro",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -24.0075465739997,
+            "centroide_lon": -64.4023110880998,
+            "id": "38070",
+            "nombre": "Santa Bárbara",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -22.137931595162,
+            "centroide_lon": -66.227664877192,
+            "id": "38077",
+            "nombre": "Santa Catalina",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.5204314374652,
+            "centroide_lon": -66.6617993267455,
+            "id": "38084",
+            "nombre": "Susques",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.560543852464,
+            "centroide_lon": -65.3197513527091,
+            "id": "38094",
+            "nombre": "Tilcara",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.7434725633393,
+            "centroide_lon": -65.696096204681,
+            "id": "38098",
+            "nombre": "Tumbaya",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -23.4670612447247,
+            "centroide_lon": -65.0119194137172,
+            "id": "38105",
+            "nombre": "Valle Grande",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        },
+        {
+            "centroide_lat": -22.2906705371725,
+            "centroide_lon": -65.5669616842196,
+            "id": "38112",
+            "nombre": "Yaví",
+            "provincia_id": "38",
+            "provincia_nombre": "Jujuy"
+        }
+    ],
+    "inicio": 0,
+    "parametros": {
+        "aplanar": true,
+        "campos": [
+            "centroide.lon",
+            "id",
+            "provincia.nombre",
+            "nombre",
+            "provincia.id",
+            "centroide.lat"
+        ],
+        "exacto": true,
+        "max": 1000,
+        "orden": "nombre",
+        "provincia": "Jujuy"
+    },
+    "total": 16
+}
