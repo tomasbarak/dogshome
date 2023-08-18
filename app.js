@@ -19,19 +19,9 @@ require('dotenv').config({
 });
 const { connectClient, 
         getMany,
-        getOne, 
-        getAllCollection,
-        saveOne, 
-        saveMany,
-        deleteOne, 
-        deleteMany, 
         sanitize } =  require(appDir + '/src/api/mongodbFunctions.js');
 const mongoURL =      `mongodb://${process.env.DATABASE_HOST}:27017/dogshome`;
 const mongoDBName =   'dogshome';
-
-/*////const commitVersion = require('child_process')
-                      ////.execSync('git rev-parse HEAD')
-                      ////.toString().trim()*/
 
 //SSL Certificate
 var cert =    fs.readFileSync(appDir + '/certs/ssl/certificate.crt');
@@ -45,8 +35,6 @@ let expressApp = require(appDir + '/src/config/expressConfig').config(express, c
 const firebaseAdmin = require(appDir + '/src/config/firebaseAdminConfig').config();
 
 var SecureServer = https.createServer(options, expressApp);
-
-////logger.fontColorLog('cyan', 'App started version: ' + commitVersion);
 
 SecureServer.listen(8443, function () {
   logger.fontColorLog('green', 'HTTPS Server listening on port 8443');
@@ -63,7 +51,6 @@ SecureServer.listen(8443, function () {
       isPrivate: res.locals.isPrivate,
     });
   });
-  //require(appDir + '/src/cleaning/purgeUnverifiedUsers').init(firebaseAdmin)
 })
 
 const addCors = (res) => {
