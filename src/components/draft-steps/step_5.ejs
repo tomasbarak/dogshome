@@ -189,7 +189,7 @@
         margin-top: 10px;
     }
 
-    #habits-input-container {
+    #draft-habits-input-container {
         height: 125px;
         width: 100%;
         display: flex;
@@ -202,13 +202,13 @@
         transition: border .5s;
     }
 
-    #habits-input-container:hover {
+    #draft-habits-input-container:hover {
         transition: border .5s;
         border: 1.5px solid #079292;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
-    #habits-input {
+    #draft-habits-input {
         width: 100%;
         height: 100%;
         border: none;
@@ -223,7 +223,7 @@
         resize: none;
     }
 
-    #habits-input-counter{
+    #draft-habits-input-counter{
         font-size: 0.7rem;
         color: #079292;
         font-weight: bold;
@@ -233,7 +233,7 @@
         text-align: right;
     }
 
-    #observations-input-container {
+    #draft-observations-input-container {
         height: 125px;
         width: 100%;
         display: flex;
@@ -246,13 +246,13 @@
         transition: border .5s;
     }
 
-    #observations-input-container:hover {
+    #draft-observations-input-container:hover {
         transition: border .5s;
         border: 1.5px solid #079292;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
-    #observations-input {
+    #draft-observations-input {
         width: 100%;
         height: 100%;
         border: none;
@@ -267,7 +267,7 @@
         resize: none;
     }
 
-    #observations-input-counter{
+    #draft-observations-input-counter{
         font-size: 0.7rem;
         color: #079292;
         font-weight: bold;
@@ -319,29 +319,29 @@
         <div class="filter-section" id="age-section">
             <a class="filter-section-title">Edad</a>
             <label for="age-years" class="filter-label">Años</label>
-            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="age-years" min="0" max="25" class="filter-input">
+            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="draft-age-years" min="0" max="25" class="filter-input">
             <label for="age-months" class="filter-label">Meses</label>
-            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="age-months" min="0" max="11" class="filter-input">
+            <input value="0" oninput="validity.valid||(value=0);" step="1" type="number" id="draft-age-months" min="0" max="11" class="filter-input">
             <label class="filter-label" style="color: #079292" id="age-final"></label>
         </div>
         <div class="filter-section" id="personality-section">
             <a class="filter-section-title">Personalidad</a>
             <label class="filter-label">Amigable con gatos</label>
-            <select name="cat-friendly" class="dropdown" id="cat-friendly-dropdown">
+            <select name="cat-friendly" class="dropdown" id="draft-cat-friendly-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Sí</option>
                 <option value="2">No estoy seguro</option>
             </select>
             <label class="filter-label">Amigable con perros</label>
-            <select name="dog-friendly" class="dropdown" id="dog-friendly-dropdown">
+            <select name="dog-friendly" class="dropdown" id="draft-dog-friendly-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Sí</option>
                 <option value="2">No estoy seguro</option>
             </select>
             <label class="filter-label">Amigable con niños</label>
-            <select name="child-friendly" class="dropdown" id="child-friendly-dropdown">
+            <select name="child-friendly" class="dropdown" id="draft-child-friendly-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Sí</option>
@@ -354,13 +354,13 @@
         <div class="filter-section" id="physical-characteristics-section">
             <a class="filter-section-title">Características físicas</a>
             <label class="filter-label">Sexo</label>
-            <select name="Sex" class="dropdown" id="sex-dropdown">
+            <select name="Sex" class="dropdown" id="draft-sex-dropdown">
                 <option disabled="" selected="" value="">Sexo...</option>
                 <option value="0">Macho</option>
                 <option value="1">Hembra</option>
             </select>
             <label class="filter-label">Color (aproximado)</label>
-            <select name="Color" class="dropdown" id="color-dropdown">
+            <select name="Color" class="dropdown" id="draft-color-dropdown">
                 <option disabled="" selected="" value="">Color...</option>
                 <option value="0">Blanco</option>
                 <option value="1">Gris</option>
@@ -370,7 +370,7 @@
                 <option value="5">Mixto</option>
             </select>
             <label class="filter-label">Tamaño</label>
-            <select name="size" class="dropdown" id="size-dropdown">
+            <select name="size" class="dropdown" id="draft-size-dropdown">
                 <option disabled="" selected="" value="">Tamaño...</option>
                 <option value="0">Muy pequeño</option>
                 <option value="1">Pequeño</option>
@@ -379,16 +379,16 @@
                 <option value="4">Muy grande</option>
             </select>
             <label for="age-months" class="filter-label">Peso (kg.)</label>
-            <input oninput="validity.valid||(value=0);" type="number" id="weight-input" placeholder="Ingresar peso en kg..." step=".01" min="0" max="99" class="filter-input">
+            <input oninput="validity.valid||(value=0);" type="number" id="draft-weight-input" placeholder="Ingresar peso en kg..." step=".01" min="0" max="99" class="filter-input">
             <label class="filter-label">Raza</label>
             <div class="text-search-container " id="departamento">
-                <input onfocus="$('#breed-input').autocomplete('search', this.value)" type="text" placeholder="Escribir raza..." id="breed-input" class="filter-input">
+                <input onfocus="$('#draft-breed-input').autocomplete('search', this.value)" type="text" placeholder="Escribir raza..." id="draft-breed-input" class="filter-input">
             </div>
         </div>
         <div class="filter-section" id="health-section">
             <a class="filter-section-title">Salud</a>
             <label class="filter-label">Vacunado</label>
-            <select name="vaccinated" class="dropdown" id="vaccinated-dropdown">
+            <select name="vaccinated" class="dropdown" id="draft-vaccinated-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No vacunado</option>
                 <option value="1">Vacunación incompleta</option>
@@ -396,14 +396,14 @@
                 <option value="3">No estoy seguro</option>
             </select>
             <label class="filter-label">Desparasitado</label>
-            <select name="dewormed" class="dropdown" id="dewormed-dropdown">
+            <select name="dewormed" class="dropdown" id="draft-dewormed-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Si</option>
                 <option value="2">No estoy seguro</option>
             </select>
             <label class="filter-label">Castrado</label>
-            <select name="castrated" class="dropdown" id="castrated-dropdown">
+            <select name="castrated" class="dropdown" id="draft-castrated-dropdown">
                 <option disabled="" selected="" value="">Seleccionar...</option>
                 <option value="0">No</option>
                 <option value="1">Si</option>
@@ -414,17 +414,17 @@
     <div class="filter-column">
         <div class="filter-section" id="habits-section">
             <a class="filter-section-title">Hábitos</a>
-            <div id="habits-input-container">
-                <textarea name="habitos" id="habits-input" oninput="updateCounter('habits')"></textarea>
+            <div id="draft-habits-input-container">
+                <textarea name="habitos" id="draft-habits-input" oninput="updateCounter('draft-habits')"></textarea>
             </div>
-            <a id="habits-input-counter">0/140</a>
+            <a id="draft-habits-input-counter">0/140</a>
         </div>
         <div class="filter-section" id="observations-section">
             <a class="filter-section-title">Observaciones</a>
-            <div id="observations-input-container">
-                <textarea name="observaciones" id="observations-input" oninput="updateCounter('observations')"></textarea>
+            <div id="draft-observations-input-container">
+                <textarea name="observaciones" id="draft-observations-input" oninput="updateCounter('draft-observations')"></textarea>
             </div>
-            <a id="observations-input-counter">0/140</a>
+            <a id="draft-observations-input-counter">0/140</a>
         </div>
     </div>
     
@@ -444,7 +444,7 @@
         let data = raw_res.data;
         window.breeds = data;
 
-        $("#breed-input").autocomplete({
+        $("#draft-breed-input").autocomplete({
             source: data,
             position: {  collision: "flip"  },
             minLength: 0,
@@ -490,16 +490,16 @@
         }
     }
 
-    document.querySelector('#age-months').addEventListener('input', function (e) {
-        const ageYears = document.querySelector('#age-years').value;
+    document.querySelector('#draft-age-months').addEventListener('input', function (e) {
+        const ageYears = document.querySelector('#draft-age-years').value;
         const ageMonths = e.target.value;
 
         setAgeFinalLabel(ageYears, ageMonths);
     });
 
-    document.querySelector('#age-years').addEventListener('input', function (e) {
+    document.querySelector('#draft-age-years').addEventListener('input', function (e) {
         const ageYears = e.target.value;
-        const ageMonths = document.querySelector('#age-months').value;
+        const ageMonths = document.querySelector('#draft-age-months').value;
         
         setAgeFinalLabel(ageYears, ageMonths);
     });
@@ -510,12 +510,12 @@
         input.setAttribute('maxlength', 140);
         counter.innerHTML = `${input.value.length}/140`;
     }
-    window.onload = () => {updateCounter('habits'); updateCounter('observations')};
+    window.onload = () => {updateCounter('draft-habits'); updateCounter('draft-observations')};
 
     function checkAgeFilterSection() {
         const ageSection = document.getElementById('age-section');
-        const ageMonths = document.getElementById('age-months').value;
-        const ageYears = document.getElementById('age-years').value;
+        const ageMonths = document.getElementById('draft-age-months').value;
+        const ageYears = document.getElementById('draft-age-years').value;
 
         if (ageMonths.length <= 0 || ageYears.length <= 0) {
             return {
@@ -546,11 +546,11 @@
 
     function checkPersonalityFilterSection() {
         const personalitySection = document.getElementById('personality-section');
-        const catFriendly = document.getElementById('cat-friendly-dropdown').value;
-        const dogFriendly = document.getElementById('dog-friendly-dropdown').value;
-        const childFriendly = document.getElementById('child-friendly-dropdown').value;
+        const catFriendly = document.getElementById('draft-cat-friendly-dropdown').value;
+        const dogFriendly = document.getElementById('draft-dog-friendly-dropdown').value;
+        const childFriendly = document.getElementById('draft-child-friendly-dropdown').value;
 
-        document.getElementById('cat-friendly-dropdown').selected = document.getElementById('cat-friendly-dropdown').defaultSelected;
+        document.getElementById('draft-cat-friendly-dropdown').selected = document.getElementById('draft-cat-friendly-dropdown').defaultSelected;
 
         console.log(catFriendly, dogFriendly, childFriendly);
         
@@ -584,11 +584,11 @@
 
     function checkPhysicalCharacteristicsFilterSection() {
         const physicalCharacteristicsSection = document.getElementById('physical-characteristics-section');
-        const sex = document.getElementById('sex-dropdown').value;
-        const color = document.getElementById('color-dropdown').value;
-        const size = document.getElementById('size-dropdown').value;
-        const weight = document.getElementById('weight-input').value;
-        const breed = document.getElementById('breed-input').value;
+        const sex = document.getElementById('draft-sex-dropdown').value;
+        const color = document.getElementById('draft-color-dropdown').value;
+        const size = document.getElementById('draft-size-dropdown').value;
+        const weight = document.getElementById('draft-weight-input').value;
+        const breed = document.getElementById('draft-breed-input').value;
 
         if(sex.length <= 0) {
             return {
@@ -647,9 +647,9 @@
 
     function checkHealthFilterSection() {
         const healthSection = document.getElementById('health-section');
-        const vaccinated = document.getElementById('vaccinated-dropdown').value;
-        const dewormed = document.getElementById('dewormed-dropdown').value;
-        const castrated = document.getElementById('castrated-dropdown').value;
+        const vaccinated = document.getElementById('draft-vaccinated-dropdown').value;
+        const dewormed = document.getElementById('draft-dewormed-dropdown').value;
+        const castrated = document.getElementById('draft-castrated-dropdown').value;
 
         if(vaccinated.length <= 0) {
             return {
@@ -681,7 +681,7 @@
     
     function checkHabitsFilterSection() {
         const habitsSection = document.getElementById('habits-section');
-        const habits = document.getElementById('habits-input').value;
+        const habits = document.getElementById('draft-habits-input').value;
 
         if(habits.length <= 30) {
             return {
@@ -706,7 +706,7 @@
 
     function checkObservationsFilterSection() {
         const observationsSection = document.getElementById('observations-section');
-        const observations = document.getElementById('observations-input').value;
+        const observations = document.getElementById('draft-observations-input').value;
 
         if(observations.length <= 30) {
             return {

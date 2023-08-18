@@ -266,7 +266,7 @@
                                             client.close();
                                             break;
                                         case 5:
-                                            const breeds = require(appDir + '/src/components/other/breeds/breeds.json');
+                                            const breeds = require(appDir + '/public/other/breeds/breeds.json');
 
                                             const ageMonths = Number(req.body.filters.ageMonths);
                                             const ageYears = Number(req.body.filters.ageYears);

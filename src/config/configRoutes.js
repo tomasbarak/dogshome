@@ -8,17 +8,11 @@ const appDir =          dirname(require.main.filename);
 function config(app, firebaseadmin){
     //API routes
     require( appDir + '/src/api/routes/uploadImage')                    .init(app);
-    require( appDir + '/src/api/routes/accountProfile')                 .init(app);
-    require( appDir + '/src/api/routes/accountStats')                   .init(app);
     require( appDir + '/src/api/routes/allPublications')                .init(app);
     require( appDir + '/src/api/routes/publicationsPagination')         .init(app);
     require( appDir + '/src/api/routes/publicationById')                .init(app);
-    require( appDir + '/src/api/routes/accountDisplayName')             .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/email/sendVerification')         .init(app, firebaseadmin);
-    require( appDir + '/src/api/routes/accountPhotoUrl')                .init(app, firebaseadmin);
-////require( appDir + '/src/api/routes/verifyEmail')                    .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/getImage')                       .init(app);
-    require( appDir + '/src/api/generateApiToken')                      .init(app, firebaseadmin);
     require( appDir + '/src/api/routes/publicationDraft')               .init(app);
 
     //WebPage routes
