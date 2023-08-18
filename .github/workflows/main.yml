@@ -12,7 +12,7 @@ on:
       - 'dev'
 
 jobs:
-  docker:
+  publish:
     runs-on: ubuntu-latest
     steps:
       -
@@ -37,10 +37,22 @@ jobs:
         
         uses: actions/checkout@v2
 
+  pull-docker-image:
+    runs-on: ubuntu-latest
+    steps:
       -
-
+        name: Install SSH Keys
+        run: |
+            install -m 600 -D /dev/null ~/.ssh/id_rsa
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      -
         name: Pull Docker Images
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /root/DogshomePlatform/ && docker pull tomasbarak/web.dogshome:latest && exit"
+  
+  restart-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
       -
         name: Docker-Compose Remote Deployment
         uses: alex-ac/github-action-ssh-docker-compose@master
