@@ -38,6 +38,7 @@ jobs:
         uses: actions/checkout@v2
 
   pull-docker-image:
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       -
@@ -51,6 +52,7 @@ jobs:
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /root/DogshomePlatform/ && docker pull tomasbarak/web.dogshome:latest && exit"
   
   restart-docker-compose:
+    needs: pull-docker-image
     runs-on: ubuntu-latest
     steps:
       -
