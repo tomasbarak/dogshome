@@ -5,7 +5,7 @@ const { connectClient, getMany,
     getOne, getAllCollection,
     saveOne, saveMany,
     deleteOne, deleteMany, sanitize } = require(appDir + '/src/api/mongodbFunctions.js');
-const mongoURL = `mongodb://${process.env.DATABASE_HOST}:27017/dogshome`;
+const mongoURL = `mongodb://${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/dogshome`;
 const mongoDBName = 'dogshome';
 //Route to get account profile
 function init(app){
