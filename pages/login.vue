@@ -26,6 +26,12 @@
 </script>
 
 <template>
+
+    <Head>
+        <Title>Iniciar sesión</Title>
+        <Link rel="icon" href="/images/DogsHomeLogo-ReDesign (Colorified&Final).png"></Link>
+    </Head>
+
     <div class="flex flex-row h-full items-center justify-start">
 
         <img src="/images/DogsHomeLogo-ReDesign%20(White&Final).png" alt="DogsHome logo" id="logo" class="absolute w-[50px] h-[50px] top-[15px] left-[15px]">
