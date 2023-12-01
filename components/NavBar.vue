@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+    
 </script>
 
 <template>
@@ -30,6 +30,25 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+    export default {
+        props: {
+            userName: {
+                type: String,
+            },
+            userSurname: {
+                type: String,
+            },
+            userPhotoURL: {
+                type: String,
+            },
+            userAccountType: {
+                type: String,
+            },
+        }
+    }
+</script>
 
 <style scoped>
 </style>
