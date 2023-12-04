@@ -19,18 +19,18 @@ export default function() {
         return false;
     }
 
-    const loginUser = async (email: string, password: string): Promise<boolean> => {
+    const loginUser = async (email: string, password: string): Promise<any> => {
         try {
             const userCreds = await signInWithEmailAndPassword($auth, email, password);
             if ( userCreds ) {
                 user.value = userCreds.user;
-                return true;
+                return {success: true, user: userCreds.user};
             }
         } catch (error) {
             console.log(error);
-            return false;
+            return {success: false, error: error};
         }
-        return false;
+        return {success: false, error: "Unknown error"};
     }
 
     return {
