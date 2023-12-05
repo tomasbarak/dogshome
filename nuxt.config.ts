@@ -1,8 +1,8 @@
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   devServer: {
-    port: 8443,
+    port: 8443
   },
 
   modules: ["@nuxtjs/tailwindcss", 'nuxt-icon', ['@nuxtjs/google-fonts', {
@@ -22,4 +22,11 @@ export default defineNuxtConfig({
   plugins: [
     {src: '~/plugins/firebase.client.ts', mode: 'client'},
   ],
+  vite: {
+    server: {
+      hmr: {
+        host: 'localhost',
+      }
+    }
+  }
 })

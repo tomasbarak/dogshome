@@ -11,47 +11,94 @@
         strength: 'weak'
     })
 
-    const calculatePasswordStrength = (password: string): 'strong' | 'medium' | 'weak' => {
+    const calculatePasswordStrength = (password: string): 'strong' | 'medium' | 'weak' | 'empty' => {
         const strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+
+        // STRONG PASSWORD SHOULD HAVE: 1 lowercase, 1 uppercase, 1 number, 1 special character and 8 characters long
         const mediumPassword = new RegExp('((?=.*[a-z])(?=.*[0-9])(?=.{8,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
 
         if (strongPassword.test(password)) {
             return 'strong'
         } else if (mediumPassword.test(password)) {
             return 'medium'
-        } else {
+        } else if (password.length > 0) {
             return 'weak'
+        } else {
+            return 'empty'
         }
     }
 
-    const handlePasswordInput = (event: any) => {
-        const inputStrength = calculatePasswordStrength(event.target.value)
-        passwordStrength.strength = inputStrength
-
-        const target = event.target
-
-        switch(inputStrength) {
+    const changePasswordStrength = (strength: 'strong' | 'medium' | 'weak' | 'empty') => {
+        const passwordStrengthElem = document.querySelector('#password-strength')
+        const passwordStrengthCheck = document.querySelector('#password-strong')
+        switch(strength) {
             case 'weak':
-                target.classList.add('bg-[#f87272]/25')
+                passwordStrengthElem!.classList.remove('medium-pass')
+                passwordStrengthElem!.classList.remove('strong-pass')
+                passwordStrengthElem!.classList.remove('empty-pass')
+                passwordStrengthElem!.classList.add('weak-pass')
 
-                //Remove other classes
-                target.classList.remove('bg-[#fbbd23]/50')
-                target.classList.remove('bg-[#079292]/25')
+                passwordStrengthCheck!.classList.remove('fill-[#ddb333]')
+                passwordStrengthCheck!.classList.remove('fill-[#4bb543]')
+                passwordStrengthCheck!.classList.add('fill-white')
                 break
             case 'medium':
-                target.classList.add('bg-[#079292]/25')
+                passwordStrengthElem!.classList.remove('weak-pass')
+                passwordStrengthElem!.classList.remove('strong-pass')
+                passwordStrengthElem!.classList.remove('empty-pass')
+                passwordStrengthElem!.classList.add('medium-pass')
 
-                //Remove other classes
-                target.classList.remove('bg-[#f87272]/25')
-                target.classList.remove('bg-[#fbbd23]/50')
+                passwordStrengthCheck!.classList.remove('fill-white')
+                passwordStrengthCheck!.classList.remove('fill-[#4bb543]')
+                passwordStrengthCheck!.classList.add('fill-[#ddb333]')
                 break
             case 'strong':
-                target.classList.add('bg-[#079292]/25')
+                passwordStrengthElem!.classList.remove('weak-pass')
+                passwordStrengthElem!.classList.remove('medium-pass')
+                passwordStrengthElem!.classList.remove('empty-pass')
+                passwordStrengthElem!.classList.add('strong-pass')
 
-                //Remove other classes
-                target.classList.remove('bg-[#f87272]/25')
-                target.classList.remove('bg-[#fbbd23]/50')
+                passwordStrengthCheck!.classList.remove('fill-white')
+                passwordStrengthCheck!.classList.remove('fill-[#ddb333]')
+                passwordStrengthCheck!.classList.add('fill-[#4bb543]')
                 break
+            case 'empty':
+                passwordStrengthElem!.classList.remove('weak-pass')
+                passwordStrengthElem!.classList.remove('medium-pass')
+                passwordStrengthElem!.classList.remove('strong-pass')
+                passwordStrengthElem!.classList.add('empty-pass')
+
+                passwordStrengthCheck!.classList.remove('fill-[#ddb333]')
+                passwordStrengthCheck!.classList.remove('fill-[#4bb543]')
+                passwordStrengthCheck!.classList.add('fill-white')
+                break
+        }
+    }
+
+    const handleRepeatPasswordInput = () => {
+        const password = credentials.password
+        const repeatPasswordInput: HTMLInputElement | null = document.querySelector('#repeat-password-input')
+        const repeatPasswordCheck = document.querySelector('#password-concidence')
+
+        if (passwordStrength.strength == 'empty' || passwordStrength.strength == 'weak'){
+            repeatPasswordCheck!.classList.remove('fill-[#4bb543]')
+            repeatPasswordCheck!.classList.add('fill-white')
+            return
+        }
+
+        console.log(passwordStrength.strength)
+
+        const checkColor = passwordStrength.strength == 'strong' ? '#4bb543' : '#ddb333'
+
+        if(password != repeatPasswordInput!.value) {
+            repeatPasswordCheck!.classList.remove('fill-[#4bb543]')
+            repeatPasswordCheck!.classList.remove('fill-[#ddb333]')
+            repeatPasswordCheck!.classList.add('fill-white')
+        } else {
+            repeatPasswordCheck!.classList.remove('fill-white')
+            repeatPasswordCheck!.classList.remove('fill-[#4bb543]')
+            repeatPasswordCheck!.classList.remove('fill-[#ddb333]')
+            repeatPasswordCheck!.classList.add(`fill-[${checkColor}]`)
         }
     }
 
@@ -94,6 +141,73 @@
         //Redirect to home page
         window.location.href = '/'
     }
+
+    const validateRule = (ruleName: string) => {
+        const rule = document.querySelector(`#rule-${ruleName}`)
+        const textRule = document.querySelector(`#text-rule-${ruleName}`)
+
+        // Set colors to rule
+        // rule!.classList.remove('fill-white')
+        // rule!.classList.add('fill-[#4bb543]')
+
+        // Set colors to text rule
+        textRule!.classList.remove('text-[#d3d3d3]')
+        textRule!.classList.add('text-[#4bb543]')
+    }
+
+    const invalidateRule = (ruleName: string) => {
+        const rule = document.querySelector(`#rule-${ruleName}`)
+        const textRule = document.querySelector(`#text-rule-${ruleName}`)
+
+        // Set colors to rule
+        // rule!.classList.remove('fill-[#4bb543]')
+        // rule!.classList.add('fill-white')
+
+        // Set colors to text rule
+        textRule!.classList.remove('text-[#4bb543]')
+        textRule!.classList.add('text-[#d3d3d3]')
+    }
+
+    const handlePasswordInputTEST = (event: any) => {
+        const ruleNames = [
+            "eight-chars",
+            "upper-lower",
+            "one-number",
+            "special-char"
+        ]
+
+        for (const ruleName of ruleNames) {
+            const rule = document.querySelector(`#rule-${ruleName}`)
+            const textRule = document.querySelector(`#text-rule-${ruleName}`)
+
+           switch (ruleName) {
+                case "eight-chars":
+                    const hasEightChars = new RegExp('(?=.{8,})').test(event.target.value)
+                    hasEightChars ? validateRule(ruleName) : invalidateRule(ruleName)
+                    break;
+                case "upper-lower":
+                    const hassUpperAndLower = new RegExp('(?=.*[a-z])(?=.*[A-Z])').test(event.target.value)
+                    hassUpperAndLower ? validateRule(ruleName) : invalidateRule(ruleName)
+                    break;
+                case "one-number":
+                    const hasOneNumber = new RegExp('(?=.*[0-9])').test(event.target.value)
+                    hasOneNumber ? validateRule(ruleName) : invalidateRule(ruleName)
+                    break;
+                case "special-char":
+                    const hasSpecialChar = new RegExp('(?=.*[^A-Za-z0-9])').test(event.target.value)
+                    hasSpecialChar ? validateRule(ruleName) : invalidateRule(ruleName)
+                    break;
+           }
+        }
+
+        const inputStrength = calculatePasswordStrength(event.target.value)
+        passwordStrength.strength = inputStrength
+
+        const target = event.target
+
+        changePasswordStrength(inputStrength)
+        handleRepeatPasswordInput()
+    }
 </script>
 
 <style scoped>
@@ -113,6 +227,51 @@
         transition: visibility 0.25s, opacity 0.5s linear;
     }
 
+    .password-strength {
+        width: 0;
+    }
+
+    .weak-pass {
+        width: calc(100%/4)!important;
+        height: 5px;
+        border-radius: 25px;
+        background-color: #d33;
+    }
+
+    .medium-pass {
+        width: calc(100%/2)!important;
+        height: 5px;
+        border-radius: 25px;
+        background-color: #ddb333;
+    }
+
+    .strong-pass {
+        width: calc(100%)!important;
+        height: 5px;
+        border-radius: 25px;
+        background-color: #4bb543;
+    }
+
+    .empty-pass {
+        width: 0!important;
+        height: 5px;
+        border-radius: 25px;
+        background-color: #d3d3d3;
+    }
+
+    .rule-item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        transition: all 0.5s;
+    }
+
+    .rule-icon {
+        transition: all 0.5s;
+        margin-left: 5px;
+    }
 </style>
 
 <template>
@@ -134,8 +293,33 @@
                 <div class="label p-0 w-full max-w-[350px]">
                     <span class="text-[12pt] p-0 text-left text-black">Contraseña:</span>
                 </div>
-    
-                <AuthInput placeholder="Contraseña" type="password" v-model="credentials.password" @input="handlePasswordInput"/>
+                
+                <PasswordInput  placeholder="Contraseña" type="password" v-model="credentials.password" @input="handlePasswordInputTEST"/>
+
+                <div class="w-[calc(100%+20px)] flex flex-col mt-[25px]">
+                    <div class="w-full flex flex-row items-center justify-center">
+                        <div id="password-strength-container" class="transition-all duration-500 w-full h-[5px] mt-[5px] mb-[5px] radious-[25px] bg-[#d3d3d3] flex">
+                            <div id="password-strength" class="empty-pass transition-all duration-500 flex weak-pass"></div>
+                        </div>
+                        <CheckIcon id="password-strong" class="fill-white rule-icon"/>
+                    </div>
+                    <!-- LIST -->
+                    <ul class="text-[10pt] font-extrabold text-[#d3d3d3]">
+                        <li id="text-rule-eight-chars" class="rule-item">
+                            8 Caracteres *
+                        </li>
+                        <li id="text-rule-upper-lower" class="rule-item">
+                            1 Minúscula y 1 mayúscula
+                        </li>
+                        <li id="text-rule-one-number" class="rule-item">
+                            1 Número *
+                        </li>
+                        <li id="text-rule-special-char" class="rule-item">
+                            1 Carácter especial
+                        </li>
+                    </ul>
+                </div>
+            
             </div>
 
             <div class="mb-[15px] mt-[10px]">
@@ -143,7 +327,12 @@
                     <span class="text-[12pt] p-0 text-left text-black">Repetir contraseña:</span>
                 </div>
 
-                <AuthInput placeholder="Repetir contraseña" type="password" v-model="credentials.repeatPassword" @input="handlePasswordInput"/>
+                <AuthInput v-if="useState('passwordShowState').value" id="repeat-password-input" placeholder="Repetir contraseña" type="text" v-model="credentials.repeatPassword" @input="handleRepeatPasswordInput"/>
+                <AuthInput v-else id="repeat-password-input" placeholder="Repetir contraseña" type="password" v-model="credentials.repeatPassword" @input="handleRepeatPasswordInput"/>
+            
+                <div class="flex flex-row-reverse mt-[5px] w-[calc(100%+20px)]">
+                    <CheckIcon id="password-concidence" class="fill-white rule-icon"/>
+                </div>
             </div>
 
             <div class="mb-[15px] mt-[15px] flex flex-row items-center justify-between w-[75w] md:w-[50vw] max-w-[350px]">

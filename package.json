@@ -28,7 +28,7 @@
     "@types/nodemailer": "^6.4.11",
     "ejs": "^3.1.9",
     "firebase": "^10.4.0",
-    "firebase-admin": "^11.10.1",
+    "firebase-admin": "^11.11.1",
     "lottie-web": "^5.12.2",
     "nodemailer": "^6.9.5",
     "sweetalert2": "^11.10.1",
